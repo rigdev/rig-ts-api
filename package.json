@@ -1,0 +1,19 @@
+{
+    "name": "@rigdev/api",
+    "version": "0.0.2-dev.15",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "description": "",
+    "devDependencies": {
+        "typescript": "^5.0.4",
+        "ts-create-index": "^3.0.10"
+    },
+    "scripts": {
+        "build": "tsc",
+        "build-index": "ts-create-index ./api -r && ts-create-index ./model -r",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
