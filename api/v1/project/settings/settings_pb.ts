@@ -650,9 +650,9 @@ export class Settings extends Message<Settings> {
   templates?: Templates;
 
   /**
-   * @generated from field: api.v1.project.settings.DockerRegistries docker_registries = 4;
+   * @generated from field: repeated api.v1.project.settings.DockerRegistry docker_registries = 4;
    */
-  dockerRegistries?: DockerRegistries;
+  dockerRegistries: DockerRegistry[] = [];
 
   constructor(data?: PartialMessage<Settings>) {
     super();
@@ -665,7 +665,7 @@ export class Settings extends Message<Settings> {
     { no: 1, name: "email_provider", kind: "message", T: EmailProviderEntry },
     { no: 2, name: "text_provider", kind: "message", T: TextProviderEntry },
     { no: 3, name: "templates", kind: "message", T: Templates },
-    { no: 4, name: "docker_registries", kind: "message", T: DockerRegistries },
+    { no: 4, name: "docker_registries", kind: "message", T: DockerRegistry, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Settings {
@@ -686,73 +686,18 @@ export class Settings extends Message<Settings> {
 }
 
 /**
- * @generated from message api.v1.project.settings.DockerRegistries
+ * @generated from message api.v1.project.settings.DockerRegistry
  */
-export class DockerRegistries extends Message<DockerRegistries> {
+export class DockerRegistry extends Message<DockerRegistry> {
   /**
    * @generated from field: string secret_id = 1;
    */
   secretId = "";
 
   /**
-   * @generated from field: repeated string hosts = 2;
-   */
-  hosts: string[] = [];
-
-  constructor(data?: PartialMessage<DockerRegistries>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.project.settings.DockerRegistries";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "secret_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "hosts", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DockerRegistries {
-    return new DockerRegistries().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DockerRegistries {
-    return new DockerRegistries().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DockerRegistries {
-    return new DockerRegistries().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: DockerRegistries | PlainMessage<DockerRegistries> | undefined, b: DockerRegistries | PlainMessage<DockerRegistries> | undefined): boolean {
-    return proto3.util.equals(DockerRegistries, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.project.settings.DockerRegistry
- */
-export class DockerRegistry extends Message<DockerRegistry> {
-  /**
-   * @generated from field: string host = 1;
+   * @generated from field: string host = 2;
    */
   host = "";
-
-  /**
-   * @generated from oneof api.v1.project.settings.DockerRegistry.field
-   */
-  field: {
-    /**
-     * @generated from field: string auth = 2;
-     */
-    value: string;
-    case: "auth";
-  } | {
-    /**
-     * @generated from field: api.v1.project.settings.DockerRegistryCredentials credentials = 3;
-     */
-    value: DockerRegistryCredentials;
-    case: "credentials";
-  } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<DockerRegistry>) {
     super();
@@ -762,9 +707,8 @@ export class DockerRegistry extends Message<DockerRegistry> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.settings.DockerRegistry";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
-    { no: 3, name: "credentials", kind: "message", T: DockerRegistryCredentials, oneof: "field" },
+    { no: 1, name: "secret_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DockerRegistry {
@@ -781,6 +725,62 @@ export class DockerRegistry extends Message<DockerRegistry> {
 
   static equals(a: DockerRegistry | PlainMessage<DockerRegistry> | undefined, b: DockerRegistry | PlainMessage<DockerRegistry> | undefined): boolean {
     return proto3.util.equals(DockerRegistry, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.settings.AddDockerRegistry
+ */
+export class AddDockerRegistry extends Message<AddDockerRegistry> {
+  /**
+   * @generated from field: string host = 1;
+   */
+  host = "";
+
+  /**
+   * @generated from oneof api.v1.project.settings.AddDockerRegistry.field
+   */
+  field: {
+    /**
+     * @generated from field: string auth = 2;
+     */
+    value: string;
+    case: "auth";
+  } | {
+    /**
+     * @generated from field: api.v1.project.settings.DockerRegistryCredentials credentials = 3;
+     */
+    value: DockerRegistryCredentials;
+    case: "credentials";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<AddDockerRegistry>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.settings.AddDockerRegistry";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 3, name: "credentials", kind: "message", T: DockerRegistryCredentials, oneof: "field" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AddDockerRegistry {
+    return new AddDockerRegistry().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AddDockerRegistry {
+    return new AddDockerRegistry().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AddDockerRegistry {
+    return new AddDockerRegistry().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AddDockerRegistry | PlainMessage<AddDockerRegistry> | undefined, b: AddDockerRegistry | PlainMessage<AddDockerRegistry> | undefined): boolean {
+    return proto3.util.equals(AddDockerRegistry, a, b);
   }
 }
 
@@ -860,9 +860,9 @@ export class Update extends Message<Update> {
     case: "template";
   } | {
     /**
-     * @generated from field: api.v1.project.settings.DockerRegistry add_docker_registry = 4;
+     * @generated from field: api.v1.project.settings.AddDockerRegistry add_docker_registry = 4;
      */
-    value: DockerRegistry;
+    value: AddDockerRegistry;
     case: "addDockerRegistry";
   } | {
     /**
@@ -883,7 +883,7 @@ export class Update extends Message<Update> {
     { no: 1, name: "email_provider", kind: "message", T: EmailProvider, oneof: "field" },
     { no: 2, name: "text_provider", kind: "message", T: TextProvider, oneof: "field" },
     { no: 3, name: "template", kind: "message", T: Template, oneof: "field" },
-    { no: 4, name: "add_docker_registry", kind: "message", T: DockerRegistry, oneof: "field" },
+    { no: 4, name: "add_docker_registry", kind: "message", T: AddDockerRegistry, oneof: "field" },
     { no: 5, name: "delete_docker_registry", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
