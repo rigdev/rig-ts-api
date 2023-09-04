@@ -584,14 +584,14 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
   capsuleId = "";
 
   /**
-   * @generated from field: string build_id = 2;
-   */
-  buildId = "";
-
-  /**
-   * @generated from field: string image = 3;
+   * @generated from field: string image = 2;
    */
   image = "";
+
+  /**
+   * @generated from field: string digest = 3;
+   */
+  digest = "";
 
   /**
    * @generated from field: api.v1.capsule.Origin origin = 4;
@@ -612,8 +612,8 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
   static readonly typeName = "api.v1.capsule.CreateBuildRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "origin", kind: "message", T: Origin },
     { no: 5, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
@@ -639,6 +639,11 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
  * @generated from message api.v1.capsule.CreateBuildResponse
  */
 export class CreateBuildResponse extends Message<CreateBuildResponse> {
+  /**
+   * @generated from field: string build_id = 1;
+   */
+  buildId = "";
+
   constructor(data?: PartialMessage<CreateBuildResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -647,6 +652,7 @@ export class CreateBuildResponse extends Message<CreateBuildResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.CreateBuildResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateBuildResponse {
