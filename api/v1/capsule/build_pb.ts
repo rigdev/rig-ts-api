@@ -12,42 +12,42 @@ import { Author } from "../../../model/author_pb.js";
  */
 export class Build extends Message<Build> {
   /**
-   * @generated from field: string build_id = 1;
+   * @generated from field: string build_id = 2;
    */
   buildId = "";
 
   /**
-   * @generated from field: string digest = 2;
+   * @generated from field: string digest = 7;
    */
   digest = "";
 
   /**
-   * @generated from field: string repository = 3;
+   * @generated from field: string repository = 8;
    */
   repository = "";
 
   /**
-   * @generated from field: string tag = 4;
+   * @generated from field: string tag = 9;
    */
   tag = "";
 
   /**
-   * @generated from field: model.Author created_by = 5;
+   * @generated from field: model.Author created_by = 3;
    */
   createdBy?: Author;
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: api.v1.capsule.Origin origin = 7;
+   * @generated from field: api.v1.capsule.Origin origin = 5;
    */
   origin?: Origin;
 
   /**
-   * @generated from field: map<string, string> labels = 8;
+   * @generated from field: map<string, string> labels = 6;
    */
   labels: { [key: string]: string } = {};
 
@@ -59,14 +59,14 @@ export class Build extends Message<Build> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.Build";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "tag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "created_by", kind: "message", T: Author },
-    { no: 6, name: "created_at", kind: "message", T: Timestamp },
-    { no: 7, name: "origin", kind: "message", T: Origin },
-    { no: 8, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "tag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "created_by", kind: "message", T: Author },
+    { no: 4, name: "created_at", kind: "message", T: Timestamp },
+    { no: 5, name: "origin", kind: "message", T: Origin },
+    { no: 6, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Build {
