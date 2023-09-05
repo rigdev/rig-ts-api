@@ -603,6 +603,11 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
    */
   labels: { [key: string]: string } = {};
 
+  /**
+   * @generated from field: bool skip_image_check = 6;
+   */
+  skipImageCheck = false;
+
   constructor(data?: PartialMessage<CreateBuildRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -616,6 +621,7 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
     { no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "origin", kind: "message", T: Origin },
     { no: 5, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 6, name: "skip_image_check", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateBuildRequest {
