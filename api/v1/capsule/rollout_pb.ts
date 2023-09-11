@@ -352,6 +352,11 @@ export class ContainerSettings extends Message<ContainerSettings> {
    */
   args: string[] = [];
 
+  /**
+   * @generated from field: api.v1.capsule.Resources resources = 4;
+   */
+  resources?: Resources;
+
   constructor(data?: PartialMessage<ContainerSettings>) {
     super();
     proto3.util.initPartial(data, this);
@@ -363,6 +368,7 @@ export class ContainerSettings extends Message<ContainerSettings> {
     { no: 1, name: "environment_variables", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 2, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "resources", kind: "message", T: Resources },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerSettings {
@@ -379,6 +385,104 @@ export class ContainerSettings extends Message<ContainerSettings> {
 
   static equals(a: ContainerSettings | PlainMessage<ContainerSettings> | undefined, b: ContainerSettings | PlainMessage<ContainerSettings> | undefined): boolean {
     return proto3.util.equals(ContainerSettings, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Resources
+ */
+export class Resources extends Message<Resources> {
+  /**
+   * @generated from field: api.v1.capsule.ResourceList requests = 1;
+   */
+  requests?: ResourceList;
+
+  /**
+   * @generated from field: api.v1.capsule.ResourceList limits = 2;
+   */
+  limits?: ResourceList;
+
+  constructor(data?: PartialMessage<Resources>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Resources";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "requests", kind: "message", T: ResourceList },
+    { no: 2, name: "limits", kind: "message", T: ResourceList },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Resources {
+    return new Resources().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Resources {
+    return new Resources().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Resources {
+    return new Resources().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Resources | PlainMessage<Resources> | undefined, b: Resources | PlainMessage<Resources> | undefined): boolean {
+    return proto3.util.equals(Resources, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ResourceList
+ */
+export class ResourceList extends Message<ResourceList> {
+  /**
+   * Unit: milli-CPUs
+   *
+   * @generated from field: uint32 cpu = 1;
+   */
+  cpu = 0;
+
+  /**
+   * Unit: Bytes
+   *
+   * @generated from field: uint64 memory = 2;
+   */
+  memory = protoInt64.zero;
+
+  /**
+   * Unit: Bytes
+   *
+   * @generated from field: uint64 ephemeral_storage = 3;
+   */
+  ephemeralStorage = protoInt64.zero;
+
+  constructor(data?: PartialMessage<ResourceList>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ResourceList";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cpu", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "memory", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "ephemeral_storage", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceList {
+    return new ResourceList().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ResourceList {
+    return new ResourceList().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ResourceList {
+    return new ResourceList().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ResourceList | PlainMessage<ResourceList> | undefined, b: ResourceList | PlainMessage<ResourceList> | undefined): boolean {
+    return proto3.util.equals(ResourceList, a, b);
   }
 }
 
