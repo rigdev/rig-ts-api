@@ -120,6 +120,18 @@ export class Change extends Message<Change> {
      */
     value: boolean;
     case: "autoAddRigServiceAccounts";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.ConfigFile add_config_file = 6;
+     */
+    value: ConfigFile;
+    case: "addConfigFile";
+  } | {
+    /**
+     * @generated from field: string remove_config_file = 7;
+     */
+    value: string;
+    case: "removeConfigFile";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -135,6 +147,8 @@ export class Change extends Message<Change> {
     { no: 3, name: "network", kind: "message", T: Network, oneof: "field" },
     { no: 4, name: "container_settings", kind: "message", T: ContainerSettings, oneof: "field" },
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
+    { no: 6, name: "add_config_file", kind: "message", T: ConfigFile, oneof: "field" },
+    { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -249,6 +263,11 @@ export class RolloutConfig extends Message<RolloutConfig> {
    */
   autoAddRigServiceAccounts = false;
 
+  /**
+   * @generated from field: repeated api.v1.capsule.ConfigFile config_files = 9;
+   */
+  configFiles: ConfigFile[] = [];
+
   constructor(data?: PartialMessage<RolloutConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -265,6 +284,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 6, name: "network", kind: "message", T: Network },
     { no: 7, name: "container_settings", kind: "message", T: ContainerSettings },
     { no: 8, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "config_files", kind: "message", T: ConfigFile, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutConfig {
@@ -281,6 +301,49 @@ export class RolloutConfig extends Message<RolloutConfig> {
 
   static equals(a: RolloutConfig | PlainMessage<RolloutConfig> | undefined, b: RolloutConfig | PlainMessage<RolloutConfig> | undefined): boolean {
     return proto3.util.equals(RolloutConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ConfigFile
+ */
+export class ConfigFile extends Message<ConfigFile> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: bytes content = 2;
+   */
+  content = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<ConfigFile>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ConfigFile";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFile {
+    return new ConfigFile().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConfigFile {
+    return new ConfigFile().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConfigFile {
+    return new ConfigFile().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ConfigFile | PlainMessage<ConfigFile> | undefined, b: ConfigFile | PlainMessage<ConfigFile> | undefined): boolean {
+    return proto3.util.equals(ConfigFile, a, b);
   }
 }
 
