@@ -122,10 +122,10 @@ export class Change extends Message<Change> {
     case: "autoAddRigServiceAccounts";
   } | {
     /**
-     * @generated from field: api.v1.capsule.ConfigFile add_config_file = 6;
+     * @generated from field: api.v1.capsule.ConfigFile set_config_file = 6;
      */
     value: ConfigFile;
-    case: "addConfigFile";
+    case: "setConfigFile";
   } | {
     /**
      * @generated from field: string remove_config_file = 7;
@@ -147,7 +147,7 @@ export class Change extends Message<Change> {
     { no: 3, name: "network", kind: "message", T: Network, oneof: "field" },
     { no: 4, name: "container_settings", kind: "message", T: ContainerSettings, oneof: "field" },
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
-    { no: 6, name: "add_config_file", kind: "message", T: ConfigFile, oneof: "field" },
+    { no: 6, name: "set_config_file", kind: "message", T: ConfigFile, oneof: "field" },
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
