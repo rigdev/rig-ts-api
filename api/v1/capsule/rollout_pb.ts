@@ -501,23 +501,16 @@ export class ResourceList extends Message<ResourceList> {
   /**
    * Unit: milli-CPUs
    *
-   * @generated from field: uint32 cpu = 1;
+   * @generated from field: uint32 cpu_millis = 1;
    */
-  cpu = 0;
+  cpuMillis = 0;
 
   /**
    * Unit: Bytes
    *
-   * @generated from field: uint64 memory = 2;
+   * @generated from field: uint64 memory_bytes = 2;
    */
-  memory = protoInt64.zero;
-
-  /**
-   * Unit: Bytes
-   *
-   * @generated from field: uint64 ephemeral_storage = 3;
-   */
-  ephemeralStorage = protoInt64.zero;
+  memoryBytes = protoInt64.zero;
 
   constructor(data?: PartialMessage<ResourceList>) {
     super();
@@ -527,9 +520,8 @@ export class ResourceList extends Message<ResourceList> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ResourceList";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "cpu", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "memory", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "ephemeral_storage", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "cpu_millis", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "memory_bytes", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceList {
