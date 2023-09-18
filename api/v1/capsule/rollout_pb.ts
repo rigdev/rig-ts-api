@@ -122,9 +122,9 @@ export class Change extends Message<Change> {
     case: "autoAddRigServiceAccounts";
   } | {
     /**
-     * @generated from field: api.v1.capsule.ConfigFile set_config_file = 6;
+     * @generated from field: api.v1.capsule.Change.ConfigFile set_config_file = 6;
      */
-    value: ConfigFile;
+    value: Change_ConfigFile;
     case: "setConfigFile";
   } | {
     /**
@@ -147,7 +147,7 @@ export class Change extends Message<Change> {
     { no: 3, name: "network", kind: "message", T: Network, oneof: "field" },
     { no: 4, name: "container_settings", kind: "message", T: ContainerSettings, oneof: "field" },
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
-    { no: 6, name: "set_config_file", kind: "message", T: ConfigFile, oneof: "field" },
+    { no: 6, name: "set_config_file", kind: "message", T: Change_ConfigFile, oneof: "field" },
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
@@ -165,6 +165,49 @@ export class Change extends Message<Change> {
 
   static equals(a: Change | PlainMessage<Change> | undefined, b: Change | PlainMessage<Change> | undefined): boolean {
     return proto3.util.equals(Change, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Change.ConfigFile
+ */
+export class Change_ConfigFile extends Message<Change_ConfigFile> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: bytes content = 2;
+   */
+  content = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<Change_ConfigFile>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Change.ConfigFile";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_ConfigFile {
+    return new Change_ConfigFile().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_ConfigFile {
+    return new Change_ConfigFile().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_ConfigFile {
+    return new Change_ConfigFile().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Change_ConfigFile | PlainMessage<Change_ConfigFile> | undefined, b: Change_ConfigFile | PlainMessage<Change_ConfigFile> | undefined): boolean {
+    return proto3.util.equals(Change_ConfigFile, a, b);
   }
 }
 
@@ -318,6 +361,16 @@ export class ConfigFile extends Message<ConfigFile> {
    */
   content = new Uint8Array(0);
 
+  /**
+   * @generated from field: model.Author updated_by = 3;
+   */
+  updatedBy?: Author;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 4;
+   */
+  updatedAt?: Timestamp;
+
   constructor(data?: PartialMessage<ConfigFile>) {
     super();
     proto3.util.initPartial(data, this);
@@ -328,6 +381,8 @@ export class ConfigFile extends Message<ConfigFile> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "updated_by", kind: "message", T: Author },
+    { no: 4, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFile {
