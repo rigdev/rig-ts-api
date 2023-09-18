@@ -17,24 +17,19 @@ export class Capsule extends Message<Capsule> {
   capsuleId = "";
 
   /**
-   * @generated from field: string name = 2;
-   */
-  name = "";
-
-  /**
-   * @generated from field: google.protobuf.Timestamp created_at = 3;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * @generated from field: model.Author created_by = 4;
-   */
-  createdBy?: Author;
-
-  /**
    * @generated from field: uint64 current_rollout = 5;
    */
   currentRollout = protoInt64.zero;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 6;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: model.Author updated_by = 7;
+   */
+  updatedBy?: Author;
 
   constructor(data?: PartialMessage<Capsule>) {
     super();
@@ -45,10 +40,9 @@ export class Capsule extends Message<Capsule> {
   static readonly typeName = "api.v1.capsule.Capsule";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "created_at", kind: "message", T: Timestamp },
-    { no: 4, name: "created_by", kind: "message", T: Author },
     { no: 5, name: "current_rollout", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 7, name: "updated_by", kind: "message", T: Author },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Capsule {

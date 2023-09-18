@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetByNameRequest, GetByNameResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -78,17 +78,6 @@ export const Service = {
       name: "List",
       I: ListRequest,
       O: ListResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Get a capsule by name.
-     *
-     * @generated from rpc api.v1.capsule.Service.GetByName
-     */
-    getByName: {
-      name: "GetByName",
-      I: GetByNameRequest,
-      O: GetByNameResponse,
       kind: MethodKind.Unary,
     },
     /**
