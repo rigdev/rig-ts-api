@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum api.v1.capsule.State
@@ -83,6 +83,16 @@ export class Instance extends Message<Instance> {
    */
   finishedAt?: Timestamp;
 
+  /**
+   * @generated from field: string message = 8;
+   */
+  message = "";
+
+  /**
+   * @generated from field: uint64 rollout_id = 9;
+   */
+  rolloutId = protoInt64.zero;
+
   constructor(data?: PartialMessage<Instance>) {
     super();
     proto3.util.initPartial(data, this);
@@ -98,6 +108,8 @@ export class Instance extends Message<Instance> {
     { no: 5, name: "created_at", kind: "message", T: Timestamp },
     { no: 6, name: "started_at", kind: "message", T: Timestamp },
     { no: 7, name: "finished_at", kind: "message", T: Timestamp },
+    { no: 8, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Instance {
