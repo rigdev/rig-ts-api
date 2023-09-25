@@ -19,6 +19,11 @@ export class CreateRequest extends Message<CreateRequest> {
    */
   initializers: Update[] = [];
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<CreateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -28,6 +33,7 @@ export class CreateRequest extends Message<CreateRequest> {
   static readonly typeName = "api.v1.project.CreateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "initializers", kind: "message", T: Update, repeated: true },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
