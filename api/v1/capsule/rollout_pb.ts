@@ -132,6 +132,12 @@ export class Change extends Message<Change> {
      */
     value: string;
     case: "removeConfigFile";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.HorizontalScale horizontal_scale = 8;
+     */
+    value: HorizontalScale;
+    case: "horizontalScale";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -149,6 +155,7 @@ export class Change extends Message<Change> {
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
     { no: 6, name: "set_config_file", kind: "message", T: Change_ConfigFile, oneof: "field" },
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 8, name: "horizontal_scale", kind: "message", T: HorizontalScale, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -1308,6 +1315,92 @@ export class Auth_AllowAuthorized extends Message<Auth_AllowAuthorized> {
 
   static equals(a: Auth_AllowAuthorized | PlainMessage<Auth_AllowAuthorized> | undefined, b: Auth_AllowAuthorized | PlainMessage<Auth_AllowAuthorized> | undefined): boolean {
     return proto3.util.equals(Auth_AllowAuthorized, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.HorizontalScale
+ */
+export class HorizontalScale extends Message<HorizontalScale> {
+  /**
+   * @generated from field: uint32 max_replicas = 1;
+   */
+  maxReplicas = 0;
+
+  /**
+   * @generated from field: uint32 min_replicas = 2;
+   */
+  minReplicas = 0;
+
+  /**
+   * @generated from field: api.v1.capsule.CPUTarget cpu_target = 3;
+   */
+  cpuTarget?: CPUTarget;
+
+  constructor(data?: PartialMessage<HorizontalScale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.HorizontalScale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "max_replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "min_replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "cpu_target", kind: "message", T: CPUTarget },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HorizontalScale | PlainMessage<HorizontalScale> | undefined, b: HorizontalScale | PlainMessage<HorizontalScale> | undefined): boolean {
+    return proto3.util.equals(HorizontalScale, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.CPUTarget
+ */
+export class CPUTarget extends Message<CPUTarget> {
+  /**
+   * @generated from field: uint32 average_utilization_percentage = 1;
+   */
+  averageUtilizationPercentage = 0;
+
+  constructor(data?: PartialMessage<CPUTarget>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.CPUTarget";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "average_utilization_percentage", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CPUTarget {
+    return new CPUTarget().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CPUTarget {
+    return new CPUTarget().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CPUTarget {
+    return new CPUTarget().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CPUTarget | PlainMessage<CPUTarget> | undefined, b: CPUTarget | PlainMessage<CPUTarget> | undefined): boolean {
+    return proto3.util.equals(CPUTarget, a, b);
   }
 }
 
