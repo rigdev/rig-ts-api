@@ -318,6 +318,11 @@ export class RolloutConfig extends Message<RolloutConfig> {
    */
   configFiles: ConfigFile[] = [];
 
+  /**
+   * @generated from field: api.v1.capsule.HorizontalScale horizontal_scale = 10;
+   */
+  horizontalScale?: HorizontalScale;
+
   constructor(data?: PartialMessage<RolloutConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -335,6 +340,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 7, name: "container_settings", kind: "message", T: ContainerSettings },
     { no: 8, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 9, name: "config_files", kind: "message", T: ConfigFile, repeated: true },
+    { no: 10, name: "horizontal_scale", kind: "message", T: HorizontalScale },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutConfig {
