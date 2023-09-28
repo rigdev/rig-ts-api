@@ -138,6 +138,12 @@ export class Change extends Message<Change> {
      */
     value: HorizontalScale;
     case: "horizontalScale";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.Rollback rollback = 9;
+     */
+    value: Rollback;
+    case: "rollback";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -156,6 +162,7 @@ export class Change extends Message<Change> {
     { no: 6, name: "set_config_file", kind: "message", T: Change_ConfigFile, oneof: "field" },
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 8, name: "horizontal_scale", kind: "message", T: HorizontalScale, oneof: "field" },
+    { no: 9, name: "rollback", kind: "message", T: Rollback, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -1407,6 +1414,43 @@ export class CPUTarget extends Message<CPUTarget> {
 
   static equals(a: CPUTarget | PlainMessage<CPUTarget> | undefined, b: CPUTarget | PlainMessage<CPUTarget> | undefined): boolean {
     return proto3.util.equals(CPUTarget, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Rollback
+ */
+export class Rollback extends Message<Rollback> {
+  /**
+   * @generated from field: string rollback_id = 1;
+   */
+  rollbackId = "";
+
+  constructor(data?: PartialMessage<Rollback>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Rollback";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "rollback_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rollback {
+    return new Rollback().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Rollback {
+    return new Rollback().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Rollback {
+    return new Rollback().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Rollback | PlainMessage<Rollback> | undefined, b: Rollback | PlainMessage<Rollback> | undefined): boolean {
+    return proto3.util.equals(Rollback, a, b);
   }
 }
 
