@@ -1422,9 +1422,9 @@ export class CPUTarget extends Message<CPUTarget> {
  */
 export class Rollback extends Message<Rollback> {
   /**
-   * @generated from field: string rollback_id = 1;
+   * @generated from field: uint64 rollback_id = 1;
    */
-  rollbackId = "";
+  rollbackId = protoInt64.zero;
 
   constructor(data?: PartialMessage<Rollback>) {
     super();
@@ -1434,7 +1434,7 @@ export class Rollback extends Message<Rollback> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.Rollback";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rollback_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "rollback_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rollback {
