@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -211,8 +211,8 @@ export const Service = {
      */
     listInstanceStatuses: {
       name: "ListInstanceStatuses",
-      I: ListInstancesRequest,
-      O: ListInstancesResponse,
+      I: ListInstanceStatusesRequest,
+      O: ListInstanceStatusesResponse,
       kind: MethodKind.Unary,
     },
   }
