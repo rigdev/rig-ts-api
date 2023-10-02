@@ -204,6 +204,17 @@ export const Service = {
       O: CapsuleMetricsResponse,
       kind: MethodKind.Unary,
     },
+    /**
+     * Lists all instance statuses for the capsule.
+     *
+     * @generated from rpc api.v1.capsule.Service.ListInstanceStatuses
+     */
+    listInstanceStatuses: {
+      name: "ListInstanceStatuses",
+      I: ListInstancesRequest,
+      O: ListInstancesResponse,
+      kind: MethodKind.Unary,
+    },
   }
 } as const;
 

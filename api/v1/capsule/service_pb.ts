@@ -10,7 +10,7 @@ import { Log } from "./log_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Build, Origin } from "./build_pb.js";
 import { Change, Rollout } from "./rollout_pb.js";
-import { Instance } from "./instance_pb.js";
+import { Instance, InstanceStatus } from "./instance_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics } from "./metrics_pb.js";
 
@@ -933,6 +933,92 @@ export class ListInstancesResponse extends Message<ListInstancesResponse> {
 
   static equals(a: ListInstancesResponse | PlainMessage<ListInstancesResponse> | undefined, b: ListInstancesResponse | PlainMessage<ListInstancesResponse> | undefined): boolean {
     return proto3.util.equals(ListInstancesResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListInstanceStatusesRequest
+ */
+export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesRequest> {
+  /**
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: model.Pagination pagination = 2;
+   */
+  pagination?: Pagination;
+
+  constructor(data?: PartialMessage<ListInstanceStatusesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListInstanceStatusesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "pagination", kind: "message", T: Pagination },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstanceStatusesRequest {
+    return new ListInstanceStatusesRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListInstanceStatusesRequest {
+    return new ListInstanceStatusesRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListInstanceStatusesRequest {
+    return new ListInstanceStatusesRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListInstanceStatusesRequest | PlainMessage<ListInstanceStatusesRequest> | undefined, b: ListInstanceStatusesRequest | PlainMessage<ListInstanceStatusesRequest> | undefined): boolean {
+    return proto3.util.equals(ListInstanceStatusesRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListInstanceStatusesResponse
+ */
+export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesResponse> {
+  /**
+   * @generated from field: repeated api.v1.capsule.InstanceStatus instances = 1;
+   */
+  instances: InstanceStatus[] = [];
+
+  /**
+   * @generated from field: uint64 total = 2;
+   */
+  total = protoInt64.zero;
+
+  constructor(data?: PartialMessage<ListInstanceStatusesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListInstanceStatusesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instances", kind: "message", T: InstanceStatus, repeated: true },
+    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstanceStatusesResponse {
+    return new ListInstanceStatusesResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListInstanceStatusesResponse {
+    return new ListInstanceStatusesResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListInstanceStatusesResponse {
+    return new ListInstanceStatusesResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListInstanceStatusesResponse | PlainMessage<ListInstanceStatusesResponse> | undefined, b: ListInstanceStatusesResponse | PlainMessage<ListInstanceStatusesResponse> | undefined): boolean {
+    return proto3.util.equals(ListInstanceStatusesResponse, a, b);
   }
 }
 

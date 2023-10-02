@@ -45,6 +45,50 @@ proto3.util.setEnumType(State, "api.v1.capsule.State", [
 ]);
 
 /**
+ * @generated from enum api.v1.capsule.ConditionType
+ */
+export enum ConditionType {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: CONTAINERS_READY = 1;
+   */
+  CONTAINERS_READY = 1,
+
+  /**
+   * @generated from enum value: INSTANCE_INITIALIZED = 2;
+   */
+  INSTANCE_INITIALIZED = 2,
+
+  /**
+   * @generated from enum value: INSTANCE_READY = 3;
+   */
+  INSTANCE_READY = 3,
+
+  /**
+   * @generated from enum value: INSTANCE_SCHEDULED = 4;
+   */
+  INSTANCE_SCHEDULED = 4,
+
+  /**
+   * @generated from enum value: DISRUPTION_TARGET = 5;
+   */
+  DISRUPTION_TARGET = 5,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ConditionType)
+proto3.util.setEnumType(ConditionType, "api.v1.capsule.ConditionType", [
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "CONTAINERS_READY" },
+  { no: 2, name: "INSTANCE_INITIALIZED" },
+  { no: 3, name: "INSTANCE_READY" },
+  { no: 4, name: "INSTANCE_SCHEDULED" },
+  { no: 5, name: "DISRUPTION_TARGET" },
+]);
+
+/**
  * @generated from message api.v1.capsule.Instance
  */
 export class Instance extends Message<Instance> {
@@ -126,6 +170,346 @@ export class Instance extends Message<Instance> {
 
   static equals(a: Instance | PlainMessage<Instance> | undefined, b: Instance | PlainMessage<Instance> | undefined): boolean {
     return proto3.util.equals(Instance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.InstanceStatus
+ */
+export class InstanceStatus extends Message<InstanceStatus> {
+  /**
+   * @generated from field: string instance_id = 1;
+   */
+  instanceId = "";
+
+  /**
+   * @generated from field: api.v1.capsule.State state = 2;
+   */
+  state = State.UNSPECIFIED;
+
+  /**
+   * @generated from field: api.v1.capsule.PodCondition condition = 3;
+   */
+  condition?: PodCondition;
+
+  /**
+   * @generated from field: api.v1.capsule.ContainerState container_state = 4;
+   */
+  containerState?: ContainerState;
+
+  constructor(data?: PartialMessage<InstanceStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(State) },
+    { no: 3, name: "condition", kind: "message", T: PodCondition },
+    { no: 4, name: "container_state", kind: "message", T: ContainerState },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatus {
+    return new InstanceStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatus {
+    return new InstanceStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatus {
+    return new InstanceStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatus | PlainMessage<InstanceStatus> | undefined, b: InstanceStatus | PlainMessage<InstanceStatus> | undefined): boolean {
+    return proto3.util.equals(InstanceStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PodCondition
+ */
+export class PodCondition extends Message<PodCondition> {
+  /**
+   * @generated from field: google.protobuf.Timestamp start = 1;
+   */
+  start?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.capsule.ConditionType type = 2;
+   */
+  type = ConditionType.UNSPECIFIED;
+
+  /**
+   * @generated from field: string pod_reason = 3;
+   */
+  podReason = "";
+
+  /**
+   * @generated from field: string pod_message = 4;
+   */
+  podMessage = "";
+
+  constructor(data?: PartialMessage<PodCondition>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PodCondition";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "start", kind: "message", T: Timestamp },
+    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(ConditionType) },
+    { no: 3, name: "pod_reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "pod_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PodCondition {
+    return new PodCondition().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PodCondition {
+    return new PodCondition().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PodCondition {
+    return new PodCondition().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PodCondition | PlainMessage<PodCondition> | undefined, b: PodCondition | PlainMessage<PodCondition> | undefined): boolean {
+    return proto3.util.equals(PodCondition, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ContainerState
+ */
+export class ContainerState extends Message<ContainerState> {
+  /**
+   * @generated from oneof api.v1.capsule.ContainerState.state
+   */
+  state: {
+    /**
+     * @generated from field: api.v1.capsule.ContainerStateWaiting waiting = 1;
+     */
+    value: ContainerStateWaiting;
+    case: "waiting";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.ContainerStateRunning running = 2;
+     */
+    value: ContainerStateRunning;
+    case: "running";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.ContainerStateTerminated terminated = 3;
+     */
+    value: ContainerStateTerminated;
+    case: "terminated";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<ContainerState>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ContainerState";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "waiting", kind: "message", T: ContainerStateWaiting, oneof: "state" },
+    { no: 2, name: "running", kind: "message", T: ContainerStateRunning, oneof: "state" },
+    { no: 3, name: "terminated", kind: "message", T: ContainerStateTerminated, oneof: "state" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerState {
+    return new ContainerState().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContainerState {
+    return new ContainerState().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContainerState {
+    return new ContainerState().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ContainerState | PlainMessage<ContainerState> | undefined, b: ContainerState | PlainMessage<ContainerState> | undefined): boolean {
+    return proto3.util.equals(ContainerState, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ContainerStateWaiting
+ */
+export class ContainerStateWaiting extends Message<ContainerStateWaiting> {
+  /**
+   * @generated from field: string reason = 1;
+   */
+  reason = "";
+
+  /**
+   * @generated from field: string message = 2;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<ContainerStateWaiting>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ContainerStateWaiting";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerStateWaiting {
+    return new ContainerStateWaiting().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContainerStateWaiting {
+    return new ContainerStateWaiting().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContainerStateWaiting {
+    return new ContainerStateWaiting().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ContainerStateWaiting | PlainMessage<ContainerStateWaiting> | undefined, b: ContainerStateWaiting | PlainMessage<ContainerStateWaiting> | undefined): boolean {
+    return proto3.util.equals(ContainerStateWaiting, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ContainerStateRunning
+ */
+export class ContainerStateRunning extends Message<ContainerStateRunning> {
+  /**
+   * @generated from field: google.protobuf.Timestamp started_at = 1;
+   */
+  startedAt?: Timestamp;
+
+  constructor(data?: PartialMessage<ContainerStateRunning>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ContainerStateRunning";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "started_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerStateRunning {
+    return new ContainerStateRunning().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContainerStateRunning {
+    return new ContainerStateRunning().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContainerStateRunning {
+    return new ContainerStateRunning().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ContainerStateRunning | PlainMessage<ContainerStateRunning> | undefined, b: ContainerStateRunning | PlainMessage<ContainerStateRunning> | undefined): boolean {
+    return proto3.util.equals(ContainerStateRunning, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ContainerStateTerminated
+ */
+export class ContainerStateTerminated extends Message<ContainerStateTerminated> {
+  /**
+   * Exit status from the last termination of the container
+   *
+   * @generated from field: int32 exit_code = 1;
+   */
+  exitCode = 0;
+
+  /**
+   * Signal from the last termination of the container
+   * +optional
+   *
+   * @generated from field: int32 signal = 2;
+   */
+  signal = 0;
+
+  /**
+   * (brief) reason from the last termination of the container
+   * +optional
+   *
+   * @generated from field: string reason = 3;
+   */
+  reason = "";
+
+  /**
+   * Message regarding the last termination of the container
+   * +optional
+   *
+   * @generated from field: string message = 4;
+   */
+  message = "";
+
+  /**
+   * Time at which previous execution of the container started
+   * +optional
+   *
+   * @generated from field: google.protobuf.Timestamp started_at = 5;
+   */
+  startedAt?: Timestamp;
+
+  /**
+   * Time at which the container last terminated
+   * +optional
+   *
+   * @generated from field: google.protobuf.Timestamp finished_at = 6;
+   */
+  finishedAt?: Timestamp;
+
+  /**
+   * Container's ID in the format '<type>://<container_id>'
+   * +optional
+   *
+   * @generated from field: string container_id = 7;
+   */
+  containerId = "";
+
+  constructor(data?: PartialMessage<ContainerStateTerminated>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ContainerStateTerminated";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "exit_code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "signal", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "started_at", kind: "message", T: Timestamp },
+    { no: 6, name: "finished_at", kind: "message", T: Timestamp },
+    { no: 7, name: "container_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerStateTerminated {
+    return new ContainerStateTerminated().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContainerStateTerminated {
+    return new ContainerStateTerminated().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContainerStateTerminated {
+    return new ContainerStateTerminated().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ContainerStateTerminated | PlainMessage<ContainerStateTerminated> | undefined, b: ContainerStateTerminated | PlainMessage<ContainerStateTerminated> | undefined): boolean {
+    return proto3.util.equals(ContainerStateTerminated, a, b);
   }
 }
 
