@@ -224,22 +224,27 @@ export class Instance extends Message<Instance> {
  */
 export class InstanceStatus extends Message<InstanceStatus> {
   /**
-   * @generated from field: string message = 1;
+   * @generated from field: string instance_id = 1;
+   */
+  instanceId = "";
+
+  /**
+   * @generated from field: string message = 2;
    */
   message = "";
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 2;
+   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 3;
    */
   schedule?: InstanceStatusScheduling;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 3;
+   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 4;
    */
   preparing?: InstanceStatusPreparing;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 4;
+   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 5;
    */
   running?: InstanceStatusRunning;
 
@@ -251,10 +256,11 @@ export class InstanceStatus extends Message<InstanceStatus> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.InstanceStatus";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "schedule", kind: "message", T: InstanceStatusScheduling },
-    { no: 3, name: "preparing", kind: "message", T: InstanceStatusPreparing },
-    { no: 4, name: "running", kind: "message", T: InstanceStatusRunning },
+    { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "schedule", kind: "message", T: InstanceStatusScheduling },
+    { no: 4, name: "preparing", kind: "message", T: InstanceStatusPreparing },
+    { no: 5, name: "running", kind: "message", T: InstanceStatusRunning },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatus {
