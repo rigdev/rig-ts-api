@@ -234,17 +234,22 @@ export class InstanceStatus extends Message<InstanceStatus> {
   message = "";
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 3;
+   * @generated from field: google.protobuf.Timestamp timestamp = 3;
+   */
+  timestamp?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 4;
    */
   schedule?: InstanceStatusScheduling;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 4;
+   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 5;
    */
   preparing?: InstanceStatusPreparing;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 5;
+   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 6;
    */
   running?: InstanceStatusRunning;
 
@@ -258,9 +263,10 @@ export class InstanceStatus extends Message<InstanceStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "schedule", kind: "message", T: InstanceStatusScheduling },
-    { no: 4, name: "preparing", kind: "message", T: InstanceStatusPreparing },
-    { no: 5, name: "running", kind: "message", T: InstanceStatusRunning },
+    { no: 3, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 4, name: "schedule", kind: "message", T: InstanceStatusScheduling },
+    { no: 5, name: "preparing", kind: "message", T: InstanceStatusPreparing },
+    { no: 6, name: "running", kind: "message", T: InstanceStatusRunning },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatus {
