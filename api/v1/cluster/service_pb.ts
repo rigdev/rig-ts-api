@@ -89,6 +89,11 @@ export class GetConfigResponse extends Message<GetConfigResponse> {
     case: "registry";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
+  /**
+   * @generated from field: bool ingress = 4;
+   */
+  ingress = false;
+
   constructor(data?: PartialMessage<GetConfigResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -100,6 +105,7 @@ export class GetConfigResponse extends Message<GetConfigResponse> {
     { no: 1, name: "cluster_type", kind: "enum", T: proto3.getEnumType(ClusterType) },
     { no: 2, name: "docker", kind: "message", T: DockerDaemon, oneof: "dev_registry" },
     { no: 3, name: "registry", kind: "message", T: Registry, oneof: "dev_registry" },
+    { no: 4, name: "ingress", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigResponse {
