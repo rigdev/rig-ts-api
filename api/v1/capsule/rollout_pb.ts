@@ -816,6 +816,11 @@ export class RoutingMethod_LoadBalancer extends Message<RoutingMethod_LoadBalanc
    */
   port = 0;
 
+  /**
+   * @generated from field: uint32 node_port = 2;
+   */
+  nodePort = 0;
+
   constructor(data?: PartialMessage<RoutingMethod_LoadBalancer>) {
     super();
     proto3.util.initPartial(data, this);
@@ -825,6 +830,7 @@ export class RoutingMethod_LoadBalancer extends Message<RoutingMethod_LoadBalanc
   static readonly typeName = "api.v1.capsule.RoutingMethod.LoadBalancer";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "node_port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RoutingMethod_LoadBalancer {
