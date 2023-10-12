@@ -45,96 +45,6 @@ proto3.util.setEnumType(State, "api.v1.capsule.State", [
 ]);
 
 /**
- * @generated from enum api.v1.capsule.ScheduleState
- */
-export enum ScheduleState {
-  /**
-   * @generated from enum value: SCHEDULE_STATE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: SCHEDULE_STATE_CURRENTLY_UNSCHEDULEABLE = 1;
-   */
-  CURRENTLY_UNSCHEDULEABLE = 1,
-
-  /**
-   * @generated from enum value: SCHEDULE_STATE_DONE = 2;
-   */
-  DONE = 2,
-}
-// Retrieve enum metadata with: proto3.getEnumType(ScheduleState)
-proto3.util.setEnumType(ScheduleState, "api.v1.capsule.ScheduleState", [
-  { no: 0, name: "SCHEDULE_STATE_UNSPECIFIED" },
-  { no: 1, name: "SCHEDULE_STATE_CURRENTLY_UNSCHEDULEABLE" },
-  { no: 2, name: "SCHEDULE_STATE_DONE" },
-]);
-
-/**
- * @generated from enum api.v1.capsule.ImagePullingState
- */
-export enum ImagePullingState {
-  /**
-   * @generated from enum value: IMAGE_PULLING_STATE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: IMAGE_PULLING_STATE_PULLING = 1;
-   */
-  PULLING = 1,
-
-  /**
-   * @generated from enum value: IMAGE_PULLING_STATE_ERROR = 2;
-   */
-  ERROR = 2,
-
-  /**
-   * @generated from enum value: IMAGE_PULLING_STATE_PULL_BACKOFF = 3;
-   */
-  PULL_BACKOFF = 3,
-
-  /**
-   * @generated from enum value: IMAGE_PULLING_STATE_DONE = 4;
-   */
-  DONE = 4,
-}
-// Retrieve enum metadata with: proto3.getEnumType(ImagePullingState)
-proto3.util.setEnumType(ImagePullingState, "api.v1.capsule.ImagePullingState", [
-  { no: 0, name: "IMAGE_PULLING_STATE_UNSPECIFIED" },
-  { no: 1, name: "IMAGE_PULLING_STATE_PULLING" },
-  { no: 2, name: "IMAGE_PULLING_STATE_ERROR" },
-  { no: 3, name: "IMAGE_PULLING_STATE_PULL_BACKOFF" },
-  { no: 4, name: "IMAGE_PULLING_STATE_DONE" },
-]);
-
-/**
- * @generated from enum api.v1.capsule.InstanceRunningReadyState
- */
-export enum InstanceRunningReadyState {
-  /**
-   * @generated from enum value: INSTANCE_RUNNING_READY_STATE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: INSTANCE_RUNNING_READY_STATE_NOT_READY = 1;
-   */
-  NOT_READY = 1,
-
-  /**
-   * @generated from enum value: INSTANCE_RUNNING_READY_STATE_READY = 2;
-   */
-  READY = 2,
-}
-// Retrieve enum metadata with: proto3.getEnumType(InstanceRunningReadyState)
-proto3.util.setEnumType(InstanceRunningReadyState, "api.v1.capsule.InstanceRunningReadyState", [
-  { no: 0, name: "INSTANCE_RUNNING_READY_STATE_UNSPECIFIED" },
-  { no: 1, name: "INSTANCE_RUNNING_READY_STATE_NOT_READY" },
-  { no: 2, name: "INSTANCE_RUNNING_READY_STATE_READY" },
-]);
-
-/**
  * @generated from message api.v1.capsule.Instance
  */
 export class Instance extends Message<Instance> {
@@ -224,34 +134,24 @@ export class Instance extends Message<Instance> {
  */
 export class InstanceStatus extends Message<InstanceStatus> {
   /**
-   * @generated from field: string instance_id = 1;
-   */
-  instanceId = "";
-
-  /**
-   * @generated from field: string message = 2;
+   * @generated from field: string message = 1;
    */
   message = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp timestamp = 3;
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
    */
-  timestamp?: Timestamp;
+  timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 4;
+   * @generated from field: api.v1.capsule.InstanceStatusData data = 3;
    */
-  schedule?: InstanceStatusScheduling;
+  data?: InstanceStatusData;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 5;
+   * @generated from field: api.v1.capsule.InstanceStatusStages stages = 4;
    */
-  preparing?: InstanceStatusPreparing;
-
-  /**
-   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 6;
-   */
-  running?: InstanceStatusRunning;
+  stages?: InstanceStatusStages;
 
   constructor(data?: PartialMessage<InstanceStatus>) {
     super();
@@ -261,12 +161,10 @@ export class InstanceStatus extends Message<InstanceStatus> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.InstanceStatus";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 4, name: "schedule", kind: "message", T: InstanceStatusScheduling },
-    { no: 5, name: "preparing", kind: "message", T: InstanceStatusPreparing },
-    { no: 6, name: "running", kind: "message", T: InstanceStatusRunning },
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+    { no: 3, name: "data", kind: "message", T: InstanceStatusData },
+    { no: 4, name: "stages", kind: "message", T: InstanceStatusStages },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatus {
@@ -287,6 +185,112 @@ export class InstanceStatus extends Message<InstanceStatus> {
 }
 
 /**
+ * @generated from message api.v1.capsule.InstanceStatusData
+ */
+export class InstanceStatusData extends Message<InstanceStatusData> {
+  /**
+   * @generated from field: string instance_id = 1;
+   */
+  instanceId = "";
+
+  /**
+   * @generated from field: uint64 rollout_id = 2;
+   */
+  rolloutId = protoInt64.zero;
+
+  /**
+   * @generated from field: string image_name = 3;
+   */
+  imageName = "";
+
+  /**
+   * @generated from field: string node = 4;
+   */
+  node = "";
+
+  constructor(data?: PartialMessage<InstanceStatusData>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusData";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "image_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "node", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusData {
+    return new InstanceStatusData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusData {
+    return new InstanceStatusData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusData {
+    return new InstanceStatusData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusData | PlainMessage<InstanceStatusData> | undefined, b: InstanceStatusData | PlainMessage<InstanceStatusData> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusData, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.InstanceStatusStages
+ */
+export class InstanceStatusStages extends Message<InstanceStatusStages> {
+  /**
+   * @generated from field: api.v1.capsule.InstanceStatusScheduling schedule = 1;
+   */
+  schedule?: InstanceStatusScheduling;
+
+  /**
+   * @generated from field: api.v1.capsule.InstanceStatusPreparing preparing = 2;
+   */
+  preparing?: InstanceStatusPreparing;
+
+  /**
+   * @generated from field: api.v1.capsule.InstanceStatusRunning running = 3;
+   */
+  running?: InstanceStatusRunning;
+
+  constructor(data?: PartialMessage<InstanceStatusStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schedule", kind: "message", T: InstanceStatusScheduling },
+    { no: 2, name: "preparing", kind: "message", T: InstanceStatusPreparing },
+    { no: 3, name: "running", kind: "message", T: InstanceStatusRunning },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusStages {
+    return new InstanceStatusStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusStages {
+    return new InstanceStatusStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusStages {
+    return new InstanceStatusStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusStages | PlainMessage<InstanceStatusStages> | undefined, b: InstanceStatusStages | PlainMessage<InstanceStatusStages> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusStages, a, b);
+  }
+}
+
+/**
+ * ====================== SCHEDULING ====================
+ *
  * @generated from message api.v1.capsule.InstanceStatusScheduling
  */
 export class InstanceStatusScheduling extends Message<InstanceStatusScheduling> {
@@ -301,9 +305,9 @@ export class InstanceStatusScheduling extends Message<InstanceStatusScheduling> 
   timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.ScheduleState state = 3;
+   * @generated from field: api.v1.capsule.InstanceStatusSchedulingStages stages = 3;
    */
-  state = ScheduleState.UNSPECIFIED;
+  stages?: InstanceStatusSchedulingStages;
 
   constructor(data?: PartialMessage<InstanceStatusScheduling>) {
     super();
@@ -315,7 +319,7 @@ export class InstanceStatusScheduling extends Message<InstanceStatusScheduling> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(ScheduleState) },
+    { no: 3, name: "stages", kind: "message", T: InstanceStatusSchedulingStages },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusScheduling {
@@ -336,6 +340,137 @@ export class InstanceStatusScheduling extends Message<InstanceStatusScheduling> 
 }
 
 /**
+ * @generated from message api.v1.capsule.InstanceStatusSchedulingStages
+ */
+export class InstanceStatusSchedulingStages extends Message<InstanceStatusSchedulingStages> {
+  /**
+   * @generated from field: api.v1.capsule.CurrentlyUnscheduleable currently_unscheduleable = 1;
+   */
+  currentlyUnscheduleable?: CurrentlyUnscheduleable;
+
+  /**
+   * @generated from field: api.v1.capsule.DoneScheduling done = 2;
+   */
+  done?: DoneScheduling;
+
+  constructor(data?: PartialMessage<InstanceStatusSchedulingStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusSchedulingStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "currently_unscheduleable", kind: "message", T: CurrentlyUnscheduleable },
+    { no: 2, name: "done", kind: "message", T: DoneScheduling },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusSchedulingStages {
+    return new InstanceStatusSchedulingStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusSchedulingStages {
+    return new InstanceStatusSchedulingStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusSchedulingStages {
+    return new InstanceStatusSchedulingStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusSchedulingStages | PlainMessage<InstanceStatusSchedulingStages> | undefined, b: InstanceStatusSchedulingStages | PlainMessage<InstanceStatusSchedulingStages> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusSchedulingStages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.CurrentlyUnscheduleable
+ */
+export class CurrentlyUnscheduleable extends Message<CurrentlyUnscheduleable> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<CurrentlyUnscheduleable>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.CurrentlyUnscheduleable";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CurrentlyUnscheduleable {
+    return new CurrentlyUnscheduleable().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CurrentlyUnscheduleable {
+    return new CurrentlyUnscheduleable().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CurrentlyUnscheduleable {
+    return new CurrentlyUnscheduleable().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CurrentlyUnscheduleable | PlainMessage<CurrentlyUnscheduleable> | undefined, b: CurrentlyUnscheduleable | PlainMessage<CurrentlyUnscheduleable> | undefined): boolean {
+    return proto3.util.equals(CurrentlyUnscheduleable, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.DoneScheduling
+ */
+export class DoneScheduling extends Message<DoneScheduling> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<DoneScheduling>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.DoneScheduling";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoneScheduling {
+    return new DoneScheduling().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoneScheduling {
+    return new DoneScheduling().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoneScheduling {
+    return new DoneScheduling().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoneScheduling | PlainMessage<DoneScheduling> | undefined, b: DoneScheduling | PlainMessage<DoneScheduling> | undefined): boolean {
+    return proto3.util.equals(DoneScheduling, a, b);
+  }
+}
+
+/**
+ * ======================= PREPARING =====================
+ *
  * @generated from message api.v1.capsule.InstanceStatusPreparing
  */
 export class InstanceStatusPreparing extends Message<InstanceStatusPreparing> {
@@ -350,9 +485,9 @@ export class InstanceStatusPreparing extends Message<InstanceStatusPreparing> {
   timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.ImagePulling pulling = 3;
+   * @generated from field: api.v1.capsule.InstanceStatusPreparingStages stages = 3;
    */
-  pulling?: ImagePulling;
+  stages?: InstanceStatusPreparingStages;
 
   constructor(data?: PartialMessage<InstanceStatusPreparing>) {
     super();
@@ -364,7 +499,7 @@ export class InstanceStatusPreparing extends Message<InstanceStatusPreparing> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 3, name: "pulling", kind: "message", T: ImagePulling },
+    { no: 3, name: "stages", kind: "message", T: InstanceStatusPreparingStages },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusPreparing {
@@ -385,6 +520,43 @@ export class InstanceStatusPreparing extends Message<InstanceStatusPreparing> {
 }
 
 /**
+ * @generated from message api.v1.capsule.InstanceStatusPreparingStages
+ */
+export class InstanceStatusPreparingStages extends Message<InstanceStatusPreparingStages> {
+  /**
+   * @generated from field: api.v1.capsule.ImagePulling pulling = 1;
+   */
+  pulling?: ImagePulling;
+
+  constructor(data?: PartialMessage<InstanceStatusPreparingStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusPreparingStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pulling", kind: "message", T: ImagePulling },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusPreparingStages {
+    return new InstanceStatusPreparingStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusPreparingStages {
+    return new InstanceStatusPreparingStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusPreparingStages {
+    return new InstanceStatusPreparingStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusPreparingStages | PlainMessage<InstanceStatusPreparingStages> | undefined, b: InstanceStatusPreparingStages | PlainMessage<InstanceStatusPreparingStages> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusPreparingStages, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.capsule.ImagePulling
  */
 export class ImagePulling extends Message<ImagePulling> {
@@ -399,9 +571,9 @@ export class ImagePulling extends Message<ImagePulling> {
   timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.ImagePullingState state = 3;
+   * @generated from field: api.v1.capsule.ImagePullingStages stages = 3;
    */
-  state = ImagePullingState.UNSPECIFIED;
+  stages?: ImagePullingStages;
 
   constructor(data?: PartialMessage<ImagePulling>) {
     super();
@@ -413,7 +585,7 @@ export class ImagePulling extends Message<ImagePulling> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(ImagePullingState) },
+    { no: 3, name: "stages", kind: "message", T: ImagePullingStages },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePulling {
@@ -434,9 +606,64 @@ export class ImagePulling extends Message<ImagePulling> {
 }
 
 /**
- * @generated from message api.v1.capsule.CrashLoopBackoff
+ * @generated from message api.v1.capsule.ImagePullingStages
  */
-export class CrashLoopBackoff extends Message<CrashLoopBackoff> {
+export class ImagePullingStages extends Message<ImagePullingStages> {
+  /**
+   * @generated from field: api.v1.capsule.ImagePullingPulling pulling = 1;
+   */
+  pulling?: ImagePullingPulling;
+
+  /**
+   * @generated from field: api.v1.capsule.ImagePullingError error = 2;
+   */
+  error?: ImagePullingError;
+
+  /**
+   * @generated from field: api.v1.capsule.ImagePullingBackOff back_off = 3;
+   */
+  backOff?: ImagePullingBackOff;
+
+  /**
+   * @generated from field: api.v1.capsule.ImagePullingDone done = 4;
+   */
+  done?: ImagePullingDone;
+
+  constructor(data?: PartialMessage<ImagePullingStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ImagePullingStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pulling", kind: "message", T: ImagePullingPulling },
+    { no: 2, name: "error", kind: "message", T: ImagePullingError },
+    { no: 3, name: "back_off", kind: "message", T: ImagePullingBackOff },
+    { no: 4, name: "done", kind: "message", T: ImagePullingDone },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingStages {
+    return new ImagePullingStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingStages {
+    return new ImagePullingStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingStages {
+    return new ImagePullingStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ImagePullingStages | PlainMessage<ImagePullingStages> | undefined, b: ImagePullingStages | PlainMessage<ImagePullingStages> | undefined): boolean {
+    return proto3.util.equals(ImagePullingStages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ImagePullingPulling
+ */
+export class ImagePullingPulling extends Message<ImagePullingPulling> {
   /**
    * @generated from field: string message = 1;
    */
@@ -447,48 +674,167 @@ export class CrashLoopBackoff extends Message<CrashLoopBackoff> {
    */
   timestamps?: StatusTimestamps;
 
-  /**
-   * @generated from field: api.v1.capsule.ContainerStateTerminated terminated = 3;
-   */
-  terminated?: ContainerStateTerminated;
-
-  /**
-   * @generated from field: uint32 restarts = 4;
-   */
-  restarts = 0;
-
-  constructor(data?: PartialMessage<CrashLoopBackoff>) {
+  constructor(data?: PartialMessage<ImagePullingPulling>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.CrashLoopBackoff";
+  static readonly typeName = "api.v1.capsule.ImagePullingPulling";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 3, name: "terminated", kind: "message", T: ContainerStateTerminated },
-    { no: 4, name: "restarts", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CrashLoopBackoff {
-    return new CrashLoopBackoff().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingPulling {
+    return new ImagePullingPulling().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CrashLoopBackoff {
-    return new CrashLoopBackoff().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingPulling {
+    return new ImagePullingPulling().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CrashLoopBackoff {
-    return new CrashLoopBackoff().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingPulling {
+    return new ImagePullingPulling().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CrashLoopBackoff | PlainMessage<CrashLoopBackoff> | undefined, b: CrashLoopBackoff | PlainMessage<CrashLoopBackoff> | undefined): boolean {
-    return proto3.util.equals(CrashLoopBackoff, a, b);
+  static equals(a: ImagePullingPulling | PlainMessage<ImagePullingPulling> | undefined, b: ImagePullingPulling | PlainMessage<ImagePullingPulling> | undefined): boolean {
+    return proto3.util.equals(ImagePullingPulling, a, b);
   }
 }
 
 /**
+ * @generated from message api.v1.capsule.ImagePullingError
+ */
+export class ImagePullingError extends Message<ImagePullingError> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<ImagePullingError>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ImagePullingError";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingError {
+    return new ImagePullingError().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingError {
+    return new ImagePullingError().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingError {
+    return new ImagePullingError().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ImagePullingError | PlainMessage<ImagePullingError> | undefined, b: ImagePullingError | PlainMessage<ImagePullingError> | undefined): boolean {
+    return proto3.util.equals(ImagePullingError, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ImagePullingBackOff
+ */
+export class ImagePullingBackOff extends Message<ImagePullingBackOff> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<ImagePullingBackOff>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ImagePullingBackOff";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingBackOff {
+    return new ImagePullingBackOff().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingBackOff {
+    return new ImagePullingBackOff().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingBackOff {
+    return new ImagePullingBackOff().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ImagePullingBackOff | PlainMessage<ImagePullingBackOff> | undefined, b: ImagePullingBackOff | PlainMessage<ImagePullingBackOff> | undefined): boolean {
+    return proto3.util.equals(ImagePullingBackOff, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ImagePullingDone
+ */
+export class ImagePullingDone extends Message<ImagePullingDone> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<ImagePullingDone>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ImagePullingDone";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingDone {
+    return new ImagePullingDone().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingDone {
+    return new ImagePullingDone().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingDone {
+    return new ImagePullingDone().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ImagePullingDone | PlainMessage<ImagePullingDone> | undefined, b: ImagePullingDone | PlainMessage<ImagePullingDone> | undefined): boolean {
+    return proto3.util.equals(ImagePullingDone, a, b);
+  }
+}
+
+/**
+ * ======================== RUNNING ======================
+ *
  * @generated from message api.v1.capsule.InstanceStatusRunning
  */
 export class InstanceStatusRunning extends Message<InstanceStatusRunning> {
@@ -503,19 +849,14 @@ export class InstanceStatusRunning extends Message<InstanceStatusRunning> {
   timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.CrashLoopBackoff crash_loop_backoff = 3;
+   * @generated from field: api.v1.capsule.InstanceStatusRunningStages stages = 3;
    */
-  crashLoopBackoff?: CrashLoopBackoff;
+  stages?: InstanceStatusRunningStages;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceRunningReady ready = 4;
+   * @generated from field: api.v1.capsule.InstanceStatusRunningData data = 4;
    */
-  ready?: InstanceRunningReady;
-
-  /**
-   * @generated from field: api.v1.capsule.Running running = 5;
-   */
-  running?: Running;
+  data?: InstanceStatusRunningData;
 
   constructor(data?: PartialMessage<InstanceStatusRunning>) {
     super();
@@ -527,9 +868,8 @@ export class InstanceStatusRunning extends Message<InstanceStatusRunning> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 3, name: "crash_loop_backoff", kind: "message", T: CrashLoopBackoff },
-    { no: 4, name: "ready", kind: "message", T: InstanceRunningReady },
-    { no: 5, name: "running", kind: "message", T: Running },
+    { no: 3, name: "stages", kind: "message", T: InstanceStatusRunningStages },
+    { no: 4, name: "data", kind: "message", T: InstanceStatusRunningData },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusRunning {
@@ -550,11 +890,188 @@ export class InstanceStatusRunning extends Message<InstanceStatusRunning> {
 }
 
 /**
+ * @generated from message api.v1.capsule.InstanceStatusRunningData
+ */
+export class InstanceStatusRunningData extends Message<InstanceStatusRunningData> {
+  /**
+   * @generated from field: uint32 restarts = 1;
+   */
+  restarts = 0;
+
+  constructor(data?: PartialMessage<InstanceStatusRunningData>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusRunningData";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "restarts", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusRunningData {
+    return new InstanceStatusRunningData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusRunningData {
+    return new InstanceStatusRunningData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusRunningData {
+    return new InstanceStatusRunningData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusRunningData | PlainMessage<InstanceStatusRunningData> | undefined, b: InstanceStatusRunningData | PlainMessage<InstanceStatusRunningData> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusRunningData, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.InstanceStatusRunningStages
+ */
+export class InstanceStatusRunningStages extends Message<InstanceStatusRunningStages> {
+  /**
+   * @generated from field: api.v1.capsule.CrashLoopBackoff crash_loop_backoff = 1;
+   */
+  crashLoopBackoff?: CrashLoopBackoff;
+
+  /**
+   * @generated from field: api.v1.capsule.Ready ready = 2;
+   */
+  ready?: Ready;
+
+  /**
+   * @generated from field: api.v1.capsule.Running running = 3;
+   */
+  running?: Running;
+
+  constructor(data?: PartialMessage<InstanceStatusRunningStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceStatusRunningStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "crash_loop_backoff", kind: "message", T: CrashLoopBackoff },
+    { no: 2, name: "ready", kind: "message", T: Ready },
+    { no: 3, name: "running", kind: "message", T: Running },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatusRunningStages {
+    return new InstanceStatusRunningStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceStatusRunningStages {
+    return new InstanceStatusRunningStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceStatusRunningStages {
+    return new InstanceStatusRunningStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceStatusRunningStages | PlainMessage<InstanceStatusRunningStages> | undefined, b: InstanceStatusRunningStages | PlainMessage<InstanceStatusRunningStages> | undefined): boolean {
+    return proto3.util.equals(InstanceStatusRunningStages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.CrashLoopBackoff
+ */
+export class CrashLoopBackoff extends Message<CrashLoopBackoff> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  /**
+   * @generated from field: api.v1.capsule.CrashLoopBackoffData data = 3;
+   */
+  data?: CrashLoopBackoffData;
+
+  constructor(data?: PartialMessage<CrashLoopBackoff>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.CrashLoopBackoff";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+    { no: 3, name: "data", kind: "message", T: CrashLoopBackoffData },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CrashLoopBackoff {
+    return new CrashLoopBackoff().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CrashLoopBackoff {
+    return new CrashLoopBackoff().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CrashLoopBackoff {
+    return new CrashLoopBackoff().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CrashLoopBackoff | PlainMessage<CrashLoopBackoff> | undefined, b: CrashLoopBackoff | PlainMessage<CrashLoopBackoff> | undefined): boolean {
+    return proto3.util.equals(CrashLoopBackoff, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.CrashLoopBackoffData
+ */
+export class CrashLoopBackoffData extends Message<CrashLoopBackoffData> {
+  /**
+   * @generated from field: api.v1.capsule.ContainerStateTerminated termination = 1;
+   */
+  termination?: ContainerStateTerminated;
+
+  constructor(data?: PartialMessage<CrashLoopBackoffData>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.CrashLoopBackoffData";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "termination", kind: "message", T: ContainerStateTerminated },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CrashLoopBackoffData {
+    return new CrashLoopBackoffData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CrashLoopBackoffData {
+    return new CrashLoopBackoffData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CrashLoopBackoffData {
+    return new CrashLoopBackoffData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CrashLoopBackoffData | PlainMessage<CrashLoopBackoffData> | undefined, b: CrashLoopBackoffData | PlainMessage<CrashLoopBackoffData> | undefined): boolean {
+    return proto3.util.equals(CrashLoopBackoffData, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.capsule.Running
  */
 export class Running extends Message<Running> {
   /**
-   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 1;
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
    */
   timestamps?: StatusTimestamps;
 
@@ -566,7 +1083,8 @@ export class Running extends Message<Running> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.Running";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "timestamps", kind: "message", T: StatusTimestamps },
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Running {
@@ -587,45 +1105,180 @@ export class Running extends Message<Running> {
 }
 
 /**
- * @generated from message api.v1.capsule.InstanceRunningReady
+ * @generated from message api.v1.capsule.Ready
  */
-export class InstanceRunningReady extends Message<InstanceRunningReady> {
+export class Ready extends Message<Ready> {
   /**
-   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 1;
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
    */
   timestamps?: StatusTimestamps;
 
   /**
-   * @generated from field: api.v1.capsule.InstanceRunningReadyState state = 2;
+   * @generated from field: api.v1.capsule.ReadyStages stages = 3;
    */
-  state = InstanceRunningReadyState.UNSPECIFIED;
+  stages?: ReadyStages;
 
-  constructor(data?: PartialMessage<InstanceRunningReady>) {
+  constructor(data?: PartialMessage<Ready>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.InstanceRunningReady";
+  static readonly typeName = "api.v1.capsule.Ready";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "timestamps", kind: "message", T: StatusTimestamps },
-    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(InstanceRunningReadyState) },
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+    { no: 3, name: "stages", kind: "message", T: ReadyStages },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceRunningReady {
-    return new InstanceRunningReady().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Ready {
+    return new Ready().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceRunningReady {
-    return new InstanceRunningReady().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Ready {
+    return new Ready().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceRunningReady {
-    return new InstanceRunningReady().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Ready {
+    return new Ready().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InstanceRunningReady | PlainMessage<InstanceRunningReady> | undefined, b: InstanceRunningReady | PlainMessage<InstanceRunningReady> | undefined): boolean {
-    return proto3.util.equals(InstanceRunningReady, a, b);
+  static equals(a: Ready | PlainMessage<Ready> | undefined, b: Ready | PlainMessage<Ready> | undefined): boolean {
+    return proto3.util.equals(Ready, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ReadyStages
+ */
+export class ReadyStages extends Message<ReadyStages> {
+  /**
+   * @generated from field: api.v1.capsule.NotReady not_ready = 1;
+   */
+  notReady?: NotReady;
+
+  /**
+   * @generated from field: api.v1.capsule.InstanceReady ready = 2;
+   */
+  ready?: InstanceReady;
+
+  constructor(data?: PartialMessage<ReadyStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ReadyStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "not_ready", kind: "message", T: NotReady },
+    { no: 2, name: "ready", kind: "message", T: InstanceReady },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReadyStages {
+    return new ReadyStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReadyStages {
+    return new ReadyStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReadyStages {
+    return new ReadyStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ReadyStages | PlainMessage<ReadyStages> | undefined, b: ReadyStages | PlainMessage<ReadyStages> | undefined): boolean {
+    return proto3.util.equals(ReadyStages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.NotReady
+ */
+export class NotReady extends Message<NotReady> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<NotReady>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.NotReady";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotReady {
+    return new NotReady().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotReady {
+    return new NotReady().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotReady {
+    return new NotReady().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: NotReady | PlainMessage<NotReady> | undefined, b: NotReady | PlainMessage<NotReady> | undefined): boolean {
+    return proto3.util.equals(NotReady, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.InstanceReady
+ */
+export class InstanceReady extends Message<InstanceReady> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: api.v1.capsule.StatusTimestamps timestamps = 2;
+   */
+  timestamps?: StatusTimestamps;
+
+  constructor(data?: PartialMessage<InstanceReady>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceReady";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamps", kind: "message", T: StatusTimestamps },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceReady {
+    return new InstanceReady().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceReady {
+    return new InstanceReady().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceReady {
+    return new InstanceReady().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceReady | PlainMessage<InstanceReady> | undefined, b: InstanceReady | PlainMessage<InstanceReady> | undefined): boolean {
+    return proto3.util.equals(InstanceReady, a, b);
   }
 }
 
