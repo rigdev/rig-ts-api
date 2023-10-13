@@ -10,7 +10,8 @@ import { Log } from "./log_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Build, Origin } from "./build_pb.js";
 import { Change, Rollout } from "./rollout_pb.js";
-import { Instance, InstanceStatus } from "./instance_pb.js";
+import { Instance } from "./instance_pb.js";
+import { Status } from "./instance/status_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics } from "./metrics_pb.js";
 
@@ -984,9 +985,9 @@ export class ListAllCurrentInstanceStatusesRequest extends Message<ListAllCurren
  */
 export class ListAllCurrentInstanceStatusesResponse extends Message<ListAllCurrentInstanceStatusesResponse> {
   /**
-   * @generated from field: repeated api.v1.capsule.InstanceStatus instances = 1;
+   * @generated from field: repeated api.v1.capsule.instance.Status instances = 1;
    */
-  instances: InstanceStatus[] = [];
+  instances: Status[] = [];
 
   /**
    * @generated from field: uint64 total = 2;
@@ -1001,7 +1002,7 @@ export class ListAllCurrentInstanceStatusesResponse extends Message<ListAllCurre
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ListAllCurrentInstanceStatusesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instances", kind: "message", T: InstanceStatus, repeated: true },
+    { no: 1, name: "instances", kind: "message", T: Status, repeated: true },
     { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
@@ -1070,9 +1071,9 @@ export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> 
  */
 export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse> {
   /**
-   * @generated from field: api.v1.capsule.InstanceStatus status = 1;
+   * @generated from field: api.v1.capsule.instance.Status status = 1;
    */
-  status?: InstanceStatus;
+  status?: Status;
 
   constructor(data?: PartialMessage<GetInstanceStatusResponse>) {
     super();
@@ -1082,7 +1083,7 @@ export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.GetInstanceStatusResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "message", T: InstanceStatus },
+    { no: 1, name: "status", kind: "message", T: Status },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetInstanceStatusResponse {
@@ -1156,9 +1157,9 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
  */
 export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesResponse> {
   /**
-   * @generated from field: repeated api.v1.capsule.InstanceStatus instances = 1;
+   * @generated from field: repeated api.v1.capsule.instance.Status instances = 1;
    */
-  instances: InstanceStatus[] = [];
+  instances: Status[] = [];
 
   /**
    * @generated from field: uint64 total = 2;
@@ -1173,7 +1174,7 @@ export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesRe
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ListInstanceStatusesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instances", kind: "message", T: InstanceStatus, repeated: true },
+    { no: 1, name: "instances", kind: "message", T: Status, repeated: true },
     { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
