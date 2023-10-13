@@ -7,6 +7,18 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * StateStatus is used to indicate the status of States and StateMachines.
+ *
+ * A State can be
+ *  - Failed: If it is a leaf-state representing a failure or a complex state with at least one failing sub-statemachine
+ *  - Ongoing: If it is a leaf-state representing an ongoing operation or a complex state with no failing sub-statemachines and at least one ongoing one
+ *  - Done: If it is a leaf-state representing a done operation or a complex state with only done sub-statemachines
+ *
+ * A StateMachine can be
+ *  - Failed: If at least one of its states are failed
+ *  - Ongoing: If none one of its states are failed and at least one is ongoing
+ *  - Done: If all its states are done
+ *
  * @generated from enum api.v1.capsule.instance.StateStatus
  */
 export enum StateStatus {
@@ -39,6 +51,9 @@ proto3.util.setEnumType(StateStatus, "api.v1.capsule.instance.StateStatus", [
 ]);
 
 /**
+ * StateID uniquely qualifes a State. That is, all states have a StateID and at most
+ * one State can have a specific StateID at a time.
+ *
  * @generated from enum api.v1.capsule.instance.StateID
  */
 export enum StateID {
@@ -125,6 +140,9 @@ proto3.util.setEnumType(StateID, "api.v1.capsule.instance.StateID", [
 ]);
 
 /**
+ * StateMachineID uniquely qualifes a StateMachine. That is, all statemachines have a StateMachineID and at most
+ * one StateMachine can have a specific StateMachineID at a time.
+ *
  * @generated from enum api.v1.capsule.instance.StateMachineID
  */
 export enum StateMachineID {
@@ -163,6 +181,8 @@ proto3.util.setEnumType(StateMachineID, "api.v1.capsule.instance.StateMachineID"
 ]);
 
 /**
+ * Status is a reprsentation of the current state of an instance
+ *
  * @generated from message api.v1.capsule.instance.Status
  */
 export class Status extends Message<Status> {
@@ -212,6 +232,12 @@ export class Status extends Message<Status> {
 }
 
 /**
+ * A State is a part of a StateMachine representing where in its lifecycle an instance is at the moment.
+ * Within the entire tree-structure of the Status, there is at most one state with a given StateID
+ * A State can represent fairly complicated parts of an instance lifecycle, thus they can in turn
+ * contain several sub-statemachines. Each sub-statemachine will run in parallel.
+ * States with no sub-statemachines are called leaf states. States with sub-statemachines are called complex States
+ *
  * @generated from message api.v1.capsule.instance.State
  */
 export class State extends Message<State> {
@@ -273,6 +299,12 @@ export class State extends Message<State> {
 }
 
 /**
+ * A StateMachine represents a set of States the instance cycles through.
+ * At any point in time a StateMachine is only actively in one state.
+ * The 'states' usually only contain a single State (the current state of the StateMachine),
+ * but in some cases contains previous states visited by the Machine. 
+ * Thus the linear order of 'states' is an incomplete historical view of the StateMachine's execution
+ *
  * @generated from message api.v1.capsule.instance.StateMachine
  */
 export class StateMachine extends Message<StateMachine> {
@@ -371,6 +403,9 @@ export class Timestamps extends Message<Timestamps> {
 }
 
 /**
+ * Extra data which is not common among all states.
+ * Each field is a set of data associated to one specific state
+ *
  * @generated from message api.v1.capsule.instance.Data
  */
 export class Data extends Message<Data> {
@@ -380,11 +415,15 @@ export class Data extends Message<Data> {
   topLevel?: TopLevelData;
 
   /**
+   * RunningData is associated to the RUNNING StateID
+   *
    * @generated from field: api.v1.capsule.instance.RunningData running = 2;
    */
   running?: RunningData;
 
   /**
+   * CrashLoopBackOffData is associated to the CRASH_LOOP_BACK_OFF StateID
+   *
    * @generated from field: api.v1.capsule.instance.CrashLoopBackOffData crash_loop_back_off = 3;
    */
   crashLoopBackOff?: CrashLoopBackOffData;
