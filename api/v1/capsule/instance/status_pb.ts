@@ -7,181 +7,161 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
- * StateStatus is used to indicate the status of States and StateMachines.
- *
- * A State can be
- *  - Failed: If it is a leaf-state representing a failure or a complex state with at least one failing sub-statemachine
- *  - Ongoing: If it is a leaf-state representing an ongoing operation or a complex state with no failing sub-statemachines and at least one ongoing one
- *  - Done: If it is a leaf-state representing a done operation or a complex state with only done sub-statemachines
- *
- * A StateMachine can be
- *  - Failed: If at least one of its states are failed
- *  - Ongoing: If none one of its states are failed and at least one is ongoing
- *  - Done: If all its states are done
- *
- * @generated from enum api.v1.capsule.instance.StateStatus
+ * @generated from enum api.v1.capsule.instance.StageState
  */
-export enum StateStatus {
+export enum StageState {
   /**
-   * @generated from enum value: STATE_STATUS_UNSPECIFIED = 0;
+   * @generated from enum value: STAGE_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: STATE_STATUS_ONGOING = 1;
+   * @generated from enum value: STAGE_STATE_ONGOING = 1;
    */
   ONGOING = 1,
 
   /**
-   * @generated from enum value: STATE_STATUS_FAILED = 2;
+   * @generated from enum value: STAGE_STATE_FAILED = 2;
    */
   FAILED = 2,
 
   /**
-   * @generated from enum value: STATE_STATUS_DONE = 3;
+   * @generated from enum value: STAGE_STATE_DONE = 3;
    */
   DONE = 3,
 }
-// Retrieve enum metadata with: proto3.getEnumType(StateStatus)
-proto3.util.setEnumType(StateStatus, "api.v1.capsule.instance.StateStatus", [
-  { no: 0, name: "STATE_STATUS_UNSPECIFIED" },
-  { no: 1, name: "STATE_STATUS_ONGOING" },
-  { no: 2, name: "STATE_STATUS_FAILED" },
-  { no: 3, name: "STATE_STATUS_DONE" },
+// Retrieve enum metadata with: proto3.getEnumType(StageState)
+proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
+  { no: 0, name: "STAGE_STATE_UNSPECIFIED" },
+  { no: 1, name: "STAGE_STATE_ONGOING" },
+  { no: 2, name: "STAGE_STATE_FAILED" },
+  { no: 3, name: "STAGE_STATE_DONE" },
 ]);
 
 /**
- * StateID uniquely qualifes a State. That is, all states have a StateID and at most
- * one State can have a specific StateID at a time.
- *
- * @generated from enum api.v1.capsule.instance.StateID
+ * @generated from enum api.v1.capsule.instance.StepState
  */
-export enum StateID {
+export enum StepState {
   /**
-   * @generated from enum value: STATE_ID_UNSPECIFIED = 0;
+   * @generated from enum value: STEP_STATE_UNSPECIFIED = 0;
    */
-  STATE_ID_UNSPECIFIED = 0,
+  UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: STATE_ID_SCHEDULING = 1;
+   * @generated from enum value: STEP_STATE_ONGOING = 1;
    */
-  STATE_ID_SCHEDULING = 1,
+  ONGOING = 1,
 
   /**
-   * @generated from enum value: STATE_ID_PREPARING = 2;
+   * @generated from enum value: STEP_STATE_FAILED = 2;
    */
-  STATE_ID_PREPARING = 2,
+  FAILED = 2,
 
   /**
-   * @generated from enum value: STATE_ID_RUNNING = 3;
+   * @generated from enum value: STEP_STATE_DONE = 3;
    */
-  STATE_ID_RUNNING = 3,
-
-  /**
-   * @generated from enum value: STATE_ID_UNSCHEDULEABLE = 4;
-   */
-  STATE_ID_UNSCHEDULEABLE = 4,
-
-  /**
-   * @generated from enum value: STATE_ID_SCHEDULING_DONE = 5;
-   */
-  STATE_ID_SCHEDULING_DONE = 5,
-
-  /**
-   * @generated from enum value: STATE_ID_IMAGE_PULLING = 6;
-   */
-  STATE_ID_IMAGE_PULLING = 6,
-
-  /**
-   * @generated from enum value: STATE_ID_IMAGE_PULLING_ERROR = 7;
-   */
-  STATE_ID_IMAGE_PULLING_ERROR = 7,
-
-  /**
-   * @generated from enum value: STATE_ID_IMAGE_PULLING_BACK_OFF = 8;
-   */
-  STATE_ID_IMAGE_PULLING_BACK_OFF = 8,
-
-  /**
-   * @generated from enum value: STATE_ID_IMAGE_PULLING_DONE = 9;
-   */
-  STATE_ID_IMAGE_PULLING_DONE = 9,
-
-  /**
-   * @generated from enum value: STATE_ID_CRASH_LOOP_BACK_OFF = 10;
-   */
-  STATE_ID_CRASH_LOOP_BACK_OFF = 10,
-
-  /**
-   * @generated from enum value: STATE_ID_WAITING = 11;
-   */
-  STATE_ID_WAITING = 11,
-
-  /**
-   * @generated from enum value: STATE_ID_RUNNING_RUNNING = 12;
-   */
-  STATE_ID_RUNNING_RUNNING = 12,
+  DONE = 3,
 }
-// Retrieve enum metadata with: proto3.getEnumType(StateID)
-proto3.util.setEnumType(StateID, "api.v1.capsule.instance.StateID", [
-  { no: 0, name: "STATE_ID_UNSPECIFIED" },
-  { no: 1, name: "STATE_ID_SCHEDULING" },
-  { no: 2, name: "STATE_ID_PREPARING" },
-  { no: 3, name: "STATE_ID_RUNNING" },
-  { no: 4, name: "STATE_ID_UNSCHEDULEABLE" },
-  { no: 5, name: "STATE_ID_SCHEDULING_DONE" },
-  { no: 6, name: "STATE_ID_IMAGE_PULLING" },
-  { no: 7, name: "STATE_ID_IMAGE_PULLING_ERROR" },
-  { no: 8, name: "STATE_ID_IMAGE_PULLING_BACK_OFF" },
-  { no: 9, name: "STATE_ID_IMAGE_PULLING_DONE" },
-  { no: 10, name: "STATE_ID_CRASH_LOOP_BACK_OFF" },
-  { no: 11, name: "STATE_ID_WAITING" },
-  { no: 12, name: "STATE_ID_RUNNING_RUNNING" },
+// Retrieve enum metadata with: proto3.getEnumType(StepState)
+proto3.util.setEnumType(StepState, "api.v1.capsule.instance.StepState", [
+  { no: 0, name: "STEP_STATE_UNSPECIFIED" },
+  { no: 1, name: "STEP_STATE_ONGOING" },
+  { no: 2, name: "STEP_STATE_FAILED" },
+  { no: 3, name: "STEP_STATE_DONE" },
 ]);
 
 /**
- * StateMachineID uniquely qualifes a StateMachine. That is, all statemachines have a StateMachineID and at most
- * one StateMachine can have a specific StateMachineID at a time.
- *
- * @generated from enum api.v1.capsule.instance.StateMachineID
+ * @generated from enum api.v1.capsule.instance.PlacementState
  */
-export enum StateMachineID {
+export enum PlacementState {
   /**
-   * @generated from enum value: STATE_MACHINE_ID_UNSPECIFIED = 0;
+   * @generated from enum value: SCHEDULING_STATE_UNSPECIFIED = 0;
    */
-  STATE_MACHINE_ID_UNSPECIFIED = 0,
+  SCHEDULING_STATE_UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: STATE_MACHINE_ID_BASE = 1;
+   * @generated from enum value: SCHEDULING_STATE_UNSCHEDULEABLE = 1;
    */
-  STATE_MACHINE_ID_BASE = 1,
+  SCHEDULING_STATE_UNSCHEDULEABLE = 1,
 
   /**
-   * @generated from enum value: STATE_MACHINE_ID_SCHEDULING = 2;
+   * @generated from enum value: SCHEDULING_STATE_DONE = 2;
    */
-  STATE_MACHINE_ID_SCHEDULING = 2,
-
-  /**
-   * @generated from enum value: STATE_MACHINE_ID_IMAGE_PULLING = 3;
-   */
-  STATE_MACHINE_ID_IMAGE_PULLING = 3,
-
-  /**
-   * @generated from enum value: STATE_MACHINE_ID_RUNNING = 4;
-   */
-  STATE_MACHINE_ID_RUNNING = 4,
+  SCHEDULING_STATE_DONE = 2,
 }
-// Retrieve enum metadata with: proto3.getEnumType(StateMachineID)
-proto3.util.setEnumType(StateMachineID, "api.v1.capsule.instance.StateMachineID", [
-  { no: 0, name: "STATE_MACHINE_ID_UNSPECIFIED" },
-  { no: 1, name: "STATE_MACHINE_ID_BASE" },
-  { no: 2, name: "STATE_MACHINE_ID_SCHEDULING" },
-  { no: 3, name: "STATE_MACHINE_ID_IMAGE_PULLING" },
-  { no: 4, name: "STATE_MACHINE_ID_RUNNING" },
+// Retrieve enum metadata with: proto3.getEnumType(PlacementState)
+proto3.util.setEnumType(PlacementState, "api.v1.capsule.instance.PlacementState", [
+  { no: 0, name: "SCHEDULING_STATE_UNSPECIFIED" },
+  { no: 1, name: "SCHEDULING_STATE_UNSCHEDULEABLE" },
+  { no: 2, name: "SCHEDULING_STATE_DONE" },
 ]);
 
 /**
- * Status is a reprsentation of the current state of an instance
+ * @generated from enum api.v1.capsule.instance.ImagePullingState
+ */
+export enum ImagePullingState {
+  /**
+   * @generated from enum value: IMAGE_PULLING_STATE_PULLING = 0;
+   */
+  PULLING = 0,
+
+  /**
+   * @generated from enum value: IMAGE_PULLING_STATE_ERROR = 1;
+   */
+  ERROR = 1,
+
+  /**
+   * @generated from enum value: IMAGE_PULLING_STATE_BACK_OFF = 2;
+   */
+  BACK_OFF = 2,
+
+  /**
+   * @generated from enum value: IMAGE_PULLING_STATE_DONE = 3;
+   */
+  DONE = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ImagePullingState)
+proto3.util.setEnumType(ImagePullingState, "api.v1.capsule.instance.ImagePullingState", [
+  { no: 0, name: "IMAGE_PULLING_STATE_PULLING" },
+  { no: 1, name: "IMAGE_PULLING_STATE_ERROR" },
+  { no: 2, name: "IMAGE_PULLING_STATE_BACK_OFF" },
+  { no: 3, name: "IMAGE_PULLING_STATE_DONE" },
+]);
+
+/**
+ * @generated from enum api.v1.capsule.instance.ReadyState
+ */
+export enum ReadyState {
+  /**
+   * @generated from enum value: READY_STATE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: READY_STATE_CRASH_LOOP_BACKOFF = 1;
+   */
+  CRASH_LOOP_BACKOFF = 1,
+
+  /**
+   * @generated from enum value: READY_STATE_NOT_READY = 2;
+   */
+  NOT_READY = 2,
+
+  /**
+   * @generated from enum value: READY_STATE_READY = 3;
+   */
+  READY = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ReadyState)
+proto3.util.setEnumType(ReadyState, "api.v1.capsule.instance.ReadyState", [
+  { no: 0, name: "READY_STATE_UNSPECIFIED" },
+  { no: 1, name: "READY_STATE_CRASH_LOOP_BACKOFF" },
+  { no: 2, name: "READY_STATE_NOT_READY" },
+  { no: 3, name: "READY_STATE_READY" },
+]);
+
+/**
+ * Status is a representation of the current state of an instance
  *
  * @generated from message api.v1.capsule.instance.Status
  */
@@ -192,14 +172,24 @@ export class Status extends Message<Status> {
   instanceId = "";
 
   /**
-   * @generated from field: api.v1.capsule.instance.StateMachine state_machine = 2;
+   * @generated from field: api.v1.capsule.instance.Stages stages = 2;
    */
-  stateMachine?: StateMachine;
+  stages?: Stages;
 
   /**
-   * @generated from field: api.v1.capsule.instance.Data data = 3;
+   * @generated from field: uint64 rollout_id = 3;
    */
-  data?: Data;
+  rolloutId = protoInt64.zero;
+
+  /**
+   * @generated from field: string image = 4;
+   */
+  image = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp;
 
   constructor(data?: PartialMessage<Status>) {
     super();
@@ -210,8 +200,10 @@ export class Status extends Message<Status> {
   static readonly typeName = "api.v1.capsule.instance.Status";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "state_machine", kind: "message", T: StateMachine },
-    { no: 3, name: "data", kind: "message", T: Data },
+    { no: 2, name: "stages", kind: "message", T: Stages },
+    { no: 3, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "created_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Status {
@@ -232,358 +224,668 @@ export class Status extends Message<Status> {
 }
 
 /**
- * A State is a part of a StateMachine representing where in its lifecycle an instance is at the moment.
- * Within the entire tree-structure of the Status, there is at most one state with a given StateID
- * A State can represent fairly complicated parts of an instance lifecycle, thus they can in turn
- * contain several sub-statemachines. Each sub-statemachine will run in parallel.
- * States with no sub-statemachines are called leaf states. States with sub-statemachines are called complex States
- *
- * @generated from message api.v1.capsule.instance.State
+ * @generated from message api.v1.capsule.instance.Stages
  */
-export class State extends Message<State> {
+export class Stages extends Message<Stages> {
   /**
-   * @generated from field: api.v1.capsule.instance.StateID id = 1;
+   * @generated from field: api.v1.capsule.instance.SchedulingStage schedule = 1;
    */
-  id = StateID.STATE_ID_UNSPECIFIED;
+  schedule?: SchedulingStage;
 
   /**
-   * @generated from field: api.v1.capsule.instance.StateStatus status = 2;
+   * @generated from field: api.v1.capsule.instance.PreparingStage preparing = 2;
    */
-  status = StateStatus.UNSPECIFIED;
+  preparing?: PreparingStage;
 
   /**
-   * @generated from field: string message = 3;
+   * @generated from field: api.v1.capsule.instance.RunningStage running = 3;
+   */
+  running?: RunningStage;
+
+  constructor(data?: PartialMessage<Stages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.Stages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schedule", kind: "message", T: SchedulingStage },
+    { no: 2, name: "preparing", kind: "message", T: PreparingStage },
+    { no: 3, name: "running", kind: "message", T: RunningStage },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Stages {
+    return new Stages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Stages {
+    return new Stages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Stages {
+    return new Stages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Stages | PlainMessage<Stages> | undefined, b: Stages | PlainMessage<Stages> | undefined): boolean {
+    return proto3.util.equals(Stages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.StageInfo
+ */
+export class StageInfo extends Message<StageInfo> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 2;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.capsule.instance.StageState state = 3;
+   */
+  state = StageState.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<StageInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.StageInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(StageState) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StageInfo {
+    return new StageInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StageInfo {
+    return new StageInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StageInfo {
+    return new StageInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StageInfo | PlainMessage<StageInfo> | undefined, b: StageInfo | PlainMessage<StageInfo> | undefined): boolean {
+    return proto3.util.equals(StageInfo, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.SchedulingStage
+ */
+export class SchedulingStage extends Message<SchedulingStage> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
+   */
+  info?: StageInfo;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.instance.SchedulingStep steps = 2;
+   */
+  steps: SchedulingStep[] = [];
+
+  constructor(data?: PartialMessage<SchedulingStage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.SchedulingStage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StageInfo },
+    { no: 2, name: "steps", kind: "message", T: SchedulingStep, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SchedulingStage {
+    return new SchedulingStage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SchedulingStage {
+    return new SchedulingStage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SchedulingStage {
+    return new SchedulingStage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SchedulingStage | PlainMessage<SchedulingStage> | undefined, b: SchedulingStage | PlainMessage<SchedulingStage> | undefined): boolean {
+    return proto3.util.equals(SchedulingStage, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.SchedulingStep
+ */
+export class SchedulingStep extends Message<SchedulingStep> {
+  /**
+   * @generated from oneof api.v1.capsule.instance.SchedulingStep.step
+   */
+  step: {
+    /**
+     * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
+     */
+    value: GenericStep;
+    case: "generic";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.instance.PlacementStep placement = 2;
+     */
+    value: PlacementStep;
+    case: "placement";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<SchedulingStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.SchedulingStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "generic", kind: "message", T: GenericStep, oneof: "step" },
+    { no: 2, name: "placement", kind: "message", T: PlacementStep, oneof: "step" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SchedulingStep {
+    return new SchedulingStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SchedulingStep {
+    return new SchedulingStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SchedulingStep {
+    return new SchedulingStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SchedulingStep | PlainMessage<SchedulingStep> | undefined, b: SchedulingStep | PlainMessage<SchedulingStep> | undefined): boolean {
+    return proto3.util.equals(SchedulingStep, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.PlacementStep
+ */
+export class PlacementStep extends Message<PlacementStep> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
+   */
+  info?: StepInfo;
+
+  /**
+   * @generated from field: string node = 2;
+   */
+  node = "";
+
+  constructor(data?: PartialMessage<PlacementStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.PlacementStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+    { no: 2, name: "node", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlacementStep {
+    return new PlacementStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PlacementStep {
+    return new PlacementStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PlacementStep {
+    return new PlacementStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PlacementStep | PlainMessage<PlacementStep> | undefined, b: PlacementStep | PlainMessage<PlacementStep> | undefined): boolean {
+    return proto3.util.equals(PlacementStep, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.GenericStep
+ */
+export class GenericStep extends Message<GenericStep> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
+   */
+  info?: StepInfo;
+
+  constructor(data?: PartialMessage<GenericStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.GenericStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenericStep {
+    return new GenericStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenericStep {
+    return new GenericStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenericStep {
+    return new GenericStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GenericStep | PlainMessage<GenericStep> | undefined, b: GenericStep | PlainMessage<GenericStep> | undefined): boolean {
+    return proto3.util.equals(GenericStep, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.StepInfo
+ */
+export class StepInfo extends Message<StepInfo> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string message = 2;
    */
   message = "";
 
   /**
-   * @generated from field: api.v1.capsule.instance.Timestamps timestamps = 4;
+   * @generated from field: google.protobuf.Timestamp updated_at = 3;
    */
-  timestamps?: Timestamps;
+  updatedAt?: Timestamp;
 
   /**
-   * @generated from field: repeated api.v1.capsule.instance.StateMachine sub_state_machines = 5;
+   * @generated from field: api.v1.capsule.instance.StepState state = 4;
    */
-  subStateMachines: StateMachine[] = [];
+  state = StepState.UNSPECIFIED;
 
-  constructor(data?: PartialMessage<State>) {
+  constructor(data?: PartialMessage<StepInfo>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.State";
+  static readonly typeName = "api.v1.capsule.instance.StepInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "enum", T: proto3.getEnumType(StateID) },
-    { no: 2, name: "status", kind: "enum", T: proto3.getEnumType(StateStatus) },
-    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "timestamps", kind: "message", T: Timestamps },
-    { no: 5, name: "sub_state_machines", kind: "message", T: StateMachine, repeated: true },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 4, name: "state", kind: "enum", T: proto3.getEnumType(StepState) },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): State {
-    return new State().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StepInfo {
+    return new StepInfo().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): State {
-    return new State().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StepInfo {
+    return new StepInfo().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): State {
-    return new State().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StepInfo {
+    return new StepInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: State | PlainMessage<State> | undefined, b: State | PlainMessage<State> | undefined): boolean {
-    return proto3.util.equals(State, a, b);
+  static equals(a: StepInfo | PlainMessage<StepInfo> | undefined, b: StepInfo | PlainMessage<StepInfo> | undefined): boolean {
+    return proto3.util.equals(StepInfo, a, b);
   }
 }
 
 /**
- * A StateMachine represents a set of States the instance cycles through.
- * At any point in time a StateMachine is only actively in one state.
- * The 'states' usually only contain a single State (the current state of the StateMachine),
- * but in some cases contains previous states visited by the Machine. 
- * Thus the linear order of 'states' is an incomplete historical view of the StateMachine's execution
- *
- * @generated from message api.v1.capsule.instance.StateMachine
+ * @generated from message api.v1.capsule.instance.PreparingStage
  */
-export class StateMachine extends Message<StateMachine> {
+export class PreparingStage extends Message<PreparingStage> {
   /**
-   * @generated from field: api.v1.capsule.instance.StateMachineID id = 1;
+   * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
    */
-  id = StateMachineID.STATE_MACHINE_ID_UNSPECIFIED;
+  info?: StageInfo;
 
   /**
-   * @generated from field: api.v1.capsule.instance.StateStatus status = 2;
+   * @generated from field: repeated api.v1.capsule.instance.PreparingStep steps = 2;
    */
-  status = StateStatus.UNSPECIFIED;
+  steps: PreparingStep[] = [];
 
-  /**
-   * @generated from field: repeated api.v1.capsule.instance.State states = 3;
-   */
-  states: State[] = [];
-
-  constructor(data?: PartialMessage<StateMachine>) {
+  constructor(data?: PartialMessage<PreparingStage>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.StateMachine";
+  static readonly typeName = "api.v1.capsule.instance.PreparingStage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "enum", T: proto3.getEnumType(StateMachineID) },
-    { no: 2, name: "status", kind: "enum", T: proto3.getEnumType(StateStatus) },
-    { no: 3, name: "states", kind: "message", T: State, repeated: true },
+    { no: 1, name: "info", kind: "message", T: StageInfo },
+    { no: 2, name: "steps", kind: "message", T: PreparingStep, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StateMachine {
-    return new StateMachine().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PreparingStage {
+    return new PreparingStage().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StateMachine {
-    return new StateMachine().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PreparingStage {
+    return new PreparingStage().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StateMachine {
-    return new StateMachine().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PreparingStage {
+    return new PreparingStage().fromJsonString(jsonString, options);
   }
 
-  static equals(a: StateMachine | PlainMessage<StateMachine> | undefined, b: StateMachine | PlainMessage<StateMachine> | undefined): boolean {
-    return proto3.util.equals(StateMachine, a, b);
+  static equals(a: PreparingStage | PlainMessage<PreparingStage> | undefined, b: PreparingStage | PlainMessage<PreparingStage> | undefined): boolean {
+    return proto3.util.equals(PreparingStage, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.capsule.instance.Timestamps
+ * @generated from message api.v1.capsule.instance.PreparingStep
  */
-export class Timestamps extends Message<Timestamps> {
+export class PreparingStep extends Message<PreparingStep> {
   /**
-   * @generated from field: google.protobuf.Timestamp entered = 1;
+   * @generated from oneof api.v1.capsule.instance.PreparingStep.step
    */
-  entered?: Timestamp;
+  step: {
+    /**
+     * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
+     */
+    value: GenericStep;
+    case: "generic";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.instance.ImagePullingStep image_pulling = 2;
+     */
+    value: ImagePullingStep;
+    case: "imagePulling";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
-  /**
-   * @generated from field: google.protobuf.Timestamp updated = 2;
-   */
-  updated?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp exited = 3;
-   */
-  exited?: Timestamp;
-
-  constructor(data?: PartialMessage<Timestamps>) {
+  constructor(data?: PartialMessage<PreparingStep>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.Timestamps";
+  static readonly typeName = "api.v1.capsule.instance.PreparingStep";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "entered", kind: "message", T: Timestamp },
-    { no: 2, name: "updated", kind: "message", T: Timestamp },
-    { no: 3, name: "exited", kind: "message", T: Timestamp },
+    { no: 1, name: "generic", kind: "message", T: GenericStep, oneof: "step" },
+    { no: 2, name: "image_pulling", kind: "message", T: ImagePullingStep, oneof: "step" },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Timestamps {
-    return new Timestamps().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PreparingStep {
+    return new PreparingStep().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Timestamps {
-    return new Timestamps().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PreparingStep {
+    return new PreparingStep().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Timestamps {
-    return new Timestamps().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PreparingStep {
+    return new PreparingStep().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Timestamps | PlainMessage<Timestamps> | undefined, b: Timestamps | PlainMessage<Timestamps> | undefined): boolean {
-    return proto3.util.equals(Timestamps, a, b);
+  static equals(a: PreparingStep | PlainMessage<PreparingStep> | undefined, b: PreparingStep | PlainMessage<PreparingStep> | undefined): boolean {
+    return proto3.util.equals(PreparingStep, a, b);
   }
 }
 
 /**
- * Extra data which is not common among all states.
- * Each field is a set of data associated to one specific state
- *
- * @generated from message api.v1.capsule.instance.Data
+ * @generated from message api.v1.capsule.instance.ImagePullingStep
  */
-export class Data extends Message<Data> {
+export class ImagePullingStep extends Message<ImagePullingStep> {
   /**
-   * @generated from field: api.v1.capsule.instance.TopLevelData top_level = 1;
+   * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
    */
-  topLevel?: TopLevelData;
+  info?: StepInfo;
 
   /**
-   * RunningData is associated to the RUNNING StateID
-   *
-   * @generated from field: api.v1.capsule.instance.RunningData running = 2;
+   * @generated from field: api.v1.capsule.instance.ImagePullingState state = 2;
    */
-  running?: RunningData;
+  state = ImagePullingState.PULLING;
 
   /**
-   * CrashLoopBackOffData is associated to the CRASH_LOOP_BACK_OFF StateID
-   *
-   * @generated from field: api.v1.capsule.instance.CrashLoopBackOffData crash_loop_back_off = 3;
-   */
-  crashLoopBackOff?: CrashLoopBackOffData;
-
-  constructor(data?: PartialMessage<Data>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.Data";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "top_level", kind: "message", T: TopLevelData },
-    { no: 2, name: "running", kind: "message", T: RunningData },
-    { no: 3, name: "crash_loop_back_off", kind: "message", T: CrashLoopBackOffData },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Data {
-    return new Data().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Data {
-    return new Data().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Data {
-    return new Data().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Data | PlainMessage<Data> | undefined, b: Data | PlainMessage<Data> | undefined): boolean {
-    return proto3.util.equals(Data, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.instance.TopLevelData
- */
-export class TopLevelData extends Message<TopLevelData> {
-  /**
-   * @generated from field: uint64 rollout_id = 1;
-   */
-  rolloutId = protoInt64.zero;
-
-  /**
-   * @generated from field: string image = 2;
+   * @generated from field: string image = 3;
    */
   image = "";
 
-  /**
-   * @generated from field: string node = 3;
-   */
-  node = "";
-
-  /**
-   * @generated from field: google.protobuf.Timestamp created_at = 4;
-   */
-  createdAt?: Timestamp;
-
-  constructor(data?: PartialMessage<TopLevelData>) {
+  constructor(data?: PartialMessage<ImagePullingStep>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.TopLevelData";
+  static readonly typeName = "api.v1.capsule.instance.ImagePullingStep";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "node", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "created_at", kind: "message", T: Timestamp },
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(ImagePullingState) },
+    { no: 3, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TopLevelData {
-    return new TopLevelData().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImagePullingStep {
+    return new ImagePullingStep().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TopLevelData {
-    return new TopLevelData().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImagePullingStep {
+    return new ImagePullingStep().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TopLevelData {
-    return new TopLevelData().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImagePullingStep {
+    return new ImagePullingStep().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TopLevelData | PlainMessage<TopLevelData> | undefined, b: TopLevelData | PlainMessage<TopLevelData> | undefined): boolean {
-    return proto3.util.equals(TopLevelData, a, b);
+  static equals(a: ImagePullingStep | PlainMessage<ImagePullingStep> | undefined, b: ImagePullingStep | PlainMessage<ImagePullingStep> | undefined): boolean {
+    return proto3.util.equals(ImagePullingStep, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.capsule.instance.RunningData
+ * @generated from message api.v1.capsule.instance.RunningStage
  */
-export class RunningData extends Message<RunningData> {
+export class RunningStage extends Message<RunningStage> {
   /**
-   * @generated from field: uint32 restarts = 1;
+   * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
+   */
+  info?: StageInfo;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.instance.RunningStep steps = 2;
+   */
+  steps: RunningStep[] = [];
+
+  /**
+   * @generated from field: uint32 restarts = 3;
    */
   restarts = 0;
 
-  constructor(data?: PartialMessage<RunningData>) {
+  /**
+   * @generated from field: api.v1.capsule.instance.ContainerTermination last_container_termination = 4;
+   */
+  lastContainerTermination?: ContainerTermination;
+
+  constructor(data?: PartialMessage<RunningStage>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.RunningData";
+  static readonly typeName = "api.v1.capsule.instance.RunningStage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "restarts", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: "info", kind: "message", T: StageInfo },
+    { no: 2, name: "steps", kind: "message", T: RunningStep, repeated: true },
+    { no: 3, name: "restarts", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "last_container_termination", kind: "message", T: ContainerTermination },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RunningData {
-    return new RunningData().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RunningStage {
+    return new RunningStage().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RunningData {
-    return new RunningData().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RunningStage {
+    return new RunningStage().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RunningData {
-    return new RunningData().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RunningStage {
+    return new RunningStage().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RunningData | PlainMessage<RunningData> | undefined, b: RunningData | PlainMessage<RunningData> | undefined): boolean {
-    return proto3.util.equals(RunningData, a, b);
+  static equals(a: RunningStage | PlainMessage<RunningStage> | undefined, b: RunningStage | PlainMessage<RunningStage> | undefined): boolean {
+    return proto3.util.equals(RunningStage, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.capsule.instance.CrashLoopBackOffData
+ * @generated from message api.v1.capsule.instance.RunningStep
  */
-export class CrashLoopBackOffData extends Message<CrashLoopBackOffData> {
+export class RunningStep extends Message<RunningStep> {
   /**
-   * @generated from field: api.v1.capsule.instance.ContainerTermination termination = 1;
+   * @generated from oneof api.v1.capsule.instance.RunningStep.step
    */
-  termination?: ContainerTermination;
+  step: {
+    /**
+     * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
+     */
+    value: GenericStep;
+    case: "generic";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.instance.ReadyStep ready = 2;
+     */
+    value: ReadyStep;
+    case: "ready";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.instance.ExecutingStep executing = 3;
+     */
+    value: ExecutingStep;
+    case: "executing";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
-  constructor(data?: PartialMessage<CrashLoopBackOffData>) {
+  constructor(data?: PartialMessage<RunningStep>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.instance.CrashLoopBackOffData";
+  static readonly typeName = "api.v1.capsule.instance.RunningStep";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "termination", kind: "message", T: ContainerTermination },
+    { no: 1, name: "generic", kind: "message", T: GenericStep, oneof: "step" },
+    { no: 2, name: "ready", kind: "message", T: ReadyStep, oneof: "step" },
+    { no: 3, name: "executing", kind: "message", T: ExecutingStep, oneof: "step" },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CrashLoopBackOffData {
-    return new CrashLoopBackOffData().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RunningStep {
+    return new RunningStep().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CrashLoopBackOffData {
-    return new CrashLoopBackOffData().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RunningStep {
+    return new RunningStep().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CrashLoopBackOffData {
-    return new CrashLoopBackOffData().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RunningStep {
+    return new RunningStep().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CrashLoopBackOffData | PlainMessage<CrashLoopBackOffData> | undefined, b: CrashLoopBackOffData | PlainMessage<CrashLoopBackOffData> | undefined): boolean {
-    return proto3.util.equals(CrashLoopBackOffData, a, b);
+  static equals(a: RunningStep | PlainMessage<RunningStep> | undefined, b: RunningStep | PlainMessage<RunningStep> | undefined): boolean {
+    return proto3.util.equals(RunningStep, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.ReadyStep
+ */
+export class ReadyStep extends Message<ReadyStep> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
+   */
+  info?: StepInfo;
+
+  /**
+   * @generated from field: api.v1.capsule.instance.ReadyState state = 2;
+   */
+  state = ReadyState.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<ReadyStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.ReadyStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(ReadyState) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReadyStep {
+    return new ReadyStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReadyStep {
+    return new ReadyStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReadyStep {
+    return new ReadyStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ReadyStep | PlainMessage<ReadyStep> | undefined, b: ReadyStep | PlainMessage<ReadyStep> | undefined): boolean {
+    return proto3.util.equals(ReadyStep, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.ExecutingStep
+ */
+export class ExecutingStep extends Message<ExecutingStep> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
+   */
+  info?: StepInfo;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp started_at = 2;
+   */
+  startedAt?: Timestamp;
+
+  constructor(data?: PartialMessage<ExecutingStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.ExecutingStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+    { no: 2, name: "started_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecutingStep {
+    return new ExecutingStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecutingStep {
+    return new ExecutingStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecutingStep {
+    return new ExecutingStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecutingStep | PlainMessage<ExecutingStep> | undefined, b: ExecutingStep | PlainMessage<ExecutingStep> | undefined): boolean {
+    return proto3.util.equals(ExecutingStep, a, b);
   }
 }
 
