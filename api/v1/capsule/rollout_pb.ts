@@ -27,14 +27,19 @@ export enum RolloutState {
   PREPARING = 6,
 
   /**
-   * @generated from enum value: ROLLOUT_STATE_DEPLOYING = 2;
+   * @generated from enum value: ROLLOUT_STATE_APPLYING = 2;
    */
-  DEPLOYING = 2,
+  APPLYING = 2,
 
   /**
-   * @generated from enum value: ROLLOUT_STATE_OBSERVING = 7;
+   * @generated from enum value: ROLLOUT_STATE_RESOURCE_CREATION = 8;
    */
-  OBSERVING = 7,
+  RESOURCE_CREATION = 8,
+
+  /**
+   * @generated from enum value: ROLLOUT_STATE_INSTANCE_ROLL_OUT = 7;
+   */
+  INSTANCE_ROLL_OUT = 7,
 
   /**
    * @generated from enum value: ROLLOUT_STATE_DONE = 3;
@@ -56,8 +61,9 @@ proto3.util.setEnumType(RolloutState, "api.v1.capsule.RolloutState", [
   { no: 0, name: "ROLLOUT_STATE_UNSPECIFIED" },
   { no: 1, name: "ROLLOUT_STATE_PENDING" },
   { no: 6, name: "ROLLOUT_STATE_PREPARING" },
-  { no: 2, name: "ROLLOUT_STATE_DEPLOYING" },
-  { no: 7, name: "ROLLOUT_STATE_OBSERVING" },
+  { no: 2, name: "ROLLOUT_STATE_APPLYING" },
+  { no: 8, name: "ROLLOUT_STATE_RESOURCE_CREATION" },
+  { no: 7, name: "ROLLOUT_STATE_INSTANCE_ROLL_OUT" },
   { no: 3, name: "ROLLOUT_STATE_DONE" },
   { no: 4, name: "ROLLOUT_STATE_ABORTED" },
   { no: 5, name: "ROLLOUT_STATE_FAILED" },
