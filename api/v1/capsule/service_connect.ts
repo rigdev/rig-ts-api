@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListAllCurrentInstanceStatusesRequest, ListAllCurrentInstanceStatusesResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -205,17 +205,6 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Lists the current instance status for each instance of the capsule.
-     *
-     * @generated from rpc api.v1.capsule.Service.ListAllCurrentInstanceStatuses
-     */
-    listAllCurrentInstanceStatuses: {
-      name: "ListAllCurrentInstanceStatuses",
-      I: ListAllCurrentInstanceStatusesRequest,
-      O: ListAllCurrentInstanceStatusesResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * GetInstanceStatus returns the current status for the given instance
      *
      * @generated from rpc api.v1.capsule.Service.GetInstanceStatus
@@ -227,7 +216,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * ListInstanceStatuses lists all the historical statuses for the instance
+     * ListInstanceStatuses lists the status of all instances.
      *
      * @generated from rpc api.v1.capsule.Service.ListInstanceStatuses
      */

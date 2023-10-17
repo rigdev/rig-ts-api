@@ -938,92 +938,6 @@ export class ListInstancesResponse extends Message<ListInstancesResponse> {
 }
 
 /**
- * @generated from message api.v1.capsule.ListAllCurrentInstanceStatusesRequest
- */
-export class ListAllCurrentInstanceStatusesRequest extends Message<ListAllCurrentInstanceStatusesRequest> {
-  /**
-   * @generated from field: string capsule_id = 1;
-   */
-  capsuleId = "";
-
-  /**
-   * @generated from field: model.Pagination pagination = 2;
-   */
-  pagination?: Pagination;
-
-  constructor(data?: PartialMessage<ListAllCurrentInstanceStatusesRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ListAllCurrentInstanceStatusesRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pagination", kind: "message", T: Pagination },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAllCurrentInstanceStatusesRequest {
-    return new ListAllCurrentInstanceStatusesRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAllCurrentInstanceStatusesRequest {
-    return new ListAllCurrentInstanceStatusesRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAllCurrentInstanceStatusesRequest {
-    return new ListAllCurrentInstanceStatusesRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ListAllCurrentInstanceStatusesRequest | PlainMessage<ListAllCurrentInstanceStatusesRequest> | undefined, b: ListAllCurrentInstanceStatusesRequest | PlainMessage<ListAllCurrentInstanceStatusesRequest> | undefined): boolean {
-    return proto3.util.equals(ListAllCurrentInstanceStatusesRequest, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.ListAllCurrentInstanceStatusesResponse
- */
-export class ListAllCurrentInstanceStatusesResponse extends Message<ListAllCurrentInstanceStatusesResponse> {
-  /**
-   * @generated from field: repeated api.v1.capsule.instance.Status instances = 1;
-   */
-  instances: Status[] = [];
-
-  /**
-   * @generated from field: uint64 total = 2;
-   */
-  total = protoInt64.zero;
-
-  constructor(data?: PartialMessage<ListAllCurrentInstanceStatusesResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ListAllCurrentInstanceStatusesResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instances", kind: "message", T: Status, repeated: true },
-    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAllCurrentInstanceStatusesResponse {
-    return new ListAllCurrentInstanceStatusesResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAllCurrentInstanceStatusesResponse {
-    return new ListAllCurrentInstanceStatusesResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAllCurrentInstanceStatusesResponse {
-    return new ListAllCurrentInstanceStatusesResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ListAllCurrentInstanceStatusesResponse | PlainMessage<ListAllCurrentInstanceStatusesResponse> | undefined, b: ListAllCurrentInstanceStatusesResponse | PlainMessage<ListAllCurrentInstanceStatusesResponse> | undefined): boolean {
-    return proto3.util.equals(ListAllCurrentInstanceStatusesResponse, a, b);
-  }
-}
-
-/**
  * @generated from message api.v1.capsule.GetInstanceStatusRequest
  */
 export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> {
@@ -1113,12 +1027,7 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
   capsuleId = "";
 
   /**
-   * @generated from field: string instance_id = 2;
-   */
-  instanceId = "";
-
-  /**
-   * @generated from field: model.Pagination pagination = 3;
+   * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
@@ -1131,8 +1040,7 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
   static readonly typeName = "api.v1.capsule.ListInstanceStatusesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pagination", kind: "message", T: Pagination },
+    { no: 2, name: "pagination", kind: "message", T: Pagination },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstanceStatusesRequest {
