@@ -202,6 +202,11 @@ export class Change_ConfigFile extends Message<Change_ConfigFile> {
    */
   content = new Uint8Array(0);
 
+  /**
+   * @generated from field: bool is_secret = 3;
+   */
+  isSecret = false;
+
   constructor(data?: PartialMessage<Change_ConfigFile>) {
     super();
     proto3.util.initPartial(data, this);
@@ -212,6 +217,7 @@ export class Change_ConfigFile extends Message<Change_ConfigFile> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "is_secret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_ConfigFile {
@@ -397,6 +403,11 @@ export class ConfigFile extends Message<ConfigFile> {
    */
   updatedAt?: Timestamp;
 
+  /**
+   * @generated from field: bool is_secret = 5;
+   */
+  isSecret = false;
+
   constructor(data?: PartialMessage<ConfigFile>) {
     super();
     proto3.util.initPartial(data, this);
@@ -409,6 +420,7 @@ export class ConfigFile extends Message<ConfigFile> {
     { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 3, name: "updated_by", kind: "message", T: Author },
     { no: 4, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 5, name: "is_secret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFile {
