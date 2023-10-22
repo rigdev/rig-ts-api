@@ -29,6 +29,11 @@ export enum StageState {
    * @generated from enum value: STAGE_STATE_DONE = 3;
    */
   DONE = 3,
+
+  /**
+   * @generated from enum value: STAGE_STATE_RUNNING = 4;
+   */
+  RUNNING = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(StageState)
 proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
@@ -36,6 +41,7 @@ proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
   { no: 1, name: "STAGE_STATE_ONGOING" },
   { no: 2, name: "STAGE_STATE_FAILED" },
   { no: 3, name: "STAGE_STATE_DONE" },
+  { no: 4, name: "STAGE_STATE_RUNNING" },
 ]);
 
 /**
@@ -61,6 +67,11 @@ export enum StepState {
    * @generated from enum value: STEP_STATE_DONE = 3;
    */
   DONE = 3,
+
+  /**
+   * @generated from enum value: STEP_STATE_RUNNING = 4;
+   */
+  RUNNING = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(StepState)
 proto3.util.setEnumType(StepState, "api.v1.capsule.instance.StepState", [
@@ -68,6 +79,7 @@ proto3.util.setEnumType(StepState, "api.v1.capsule.instance.StepState", [
   { no: 1, name: "STEP_STATE_ONGOING" },
   { no: 2, name: "STEP_STATE_FAILED" },
   { no: 3, name: "STEP_STATE_DONE" },
+  { no: 4, name: "STEP_STATE_RUNNING" },
 ]);
 
 /**
@@ -101,31 +113,37 @@ proto3.util.setEnumType(PlacementState, "api.v1.capsule.instance.PlacementState"
  */
 export enum ImagePullingState {
   /**
-   * @generated from enum value: IMAGE_PULLING_STATE_PULLING = 0;
+   * @generated from enum value: IMAGE_PULLING_STATE_UNSPECIFIED = 0;
    */
-  PULLING = 0,
+  UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: IMAGE_PULLING_STATE_ERROR = 1;
+   * @generated from enum value: IMAGE_PULLING_STATE_PULLING = 1;
    */
-  ERROR = 1,
+  PULLING = 1,
 
   /**
-   * @generated from enum value: IMAGE_PULLING_STATE_BACK_OFF = 2;
+   * @generated from enum value: IMAGE_PULLING_STATE_ERROR = 2;
    */
-  BACK_OFF = 2,
+  ERROR = 2,
 
   /**
-   * @generated from enum value: IMAGE_PULLING_STATE_DONE = 3;
+   * @generated from enum value: IMAGE_PULLING_STATE_BACK_OFF = 3;
    */
-  DONE = 3,
+  BACK_OFF = 3,
+
+  /**
+   * @generated from enum value: IMAGE_PULLING_STATE_DONE = 4;
+   */
+  DONE = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ImagePullingState)
 proto3.util.setEnumType(ImagePullingState, "api.v1.capsule.instance.ImagePullingState", [
-  { no: 0, name: "IMAGE_PULLING_STATE_PULLING" },
-  { no: 1, name: "IMAGE_PULLING_STATE_ERROR" },
-  { no: 2, name: "IMAGE_PULLING_STATE_BACK_OFF" },
-  { no: 3, name: "IMAGE_PULLING_STATE_DONE" },
+  { no: 0, name: "IMAGE_PULLING_STATE_UNSPECIFIED" },
+  { no: 1, name: "IMAGE_PULLING_STATE_PULLING" },
+  { no: 2, name: "IMAGE_PULLING_STATE_ERROR" },
+  { no: 3, name: "IMAGE_PULLING_STATE_BACK_OFF" },
+  { no: 4, name: "IMAGE_PULLING_STATE_DONE" },
 ]);
 
 /**
@@ -654,7 +672,7 @@ export class ImagePullingStep extends Message<ImagePullingStep> {
   /**
    * @generated from field: api.v1.capsule.instance.ImagePullingState state = 2;
    */
-  state = ImagePullingState.PULLING;
+  state = ImagePullingState.UNSPECIFIED;
 
   /**
    * @generated from field: string image = 3;
