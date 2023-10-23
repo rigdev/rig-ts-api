@@ -7,6 +7,38 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum api.v1.project.Plan
+ */
+export enum Plan {
+  /**
+   * @generated from enum value: PLAN_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: PLAN_FREE = 1;
+   */
+  FREE = 1,
+
+  /**
+   * @generated from enum value: PLAN_TEAM = 2;
+   */
+  TEAM = 2,
+
+  /**
+   * @generated from enum value: PLAN_ENTERPRISE = 3;
+   */
+  ENTERPRISE = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(Plan)
+proto3.util.setEnumType(Plan, "api.v1.project.Plan", [
+  { no: 0, name: "PLAN_UNSPECIFIED" },
+  { no: 1, name: "PLAN_FREE" },
+  { no: 2, name: "PLAN_TEAM" },
+  { no: 3, name: "PLAN_ENTERPRISE" },
+]);
+
+/**
  * @generated from message api.v1.project.Project
  */
 export class Project extends Message<Project> {

@@ -4,8 +4,8 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Project, Update } from "./project_pb.js";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Plan, Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 
 /**
@@ -529,6 +529,80 @@ export class UseResponse extends Message<UseResponse> {
 
   static equals(a: UseResponse | PlainMessage<UseResponse> | undefined, b: UseResponse | PlainMessage<UseResponse> | undefined): boolean {
     return proto3.util.equals(UseResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetLicenseInfoRequest
+ */
+export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
+  constructor(data?: PartialMessage<GetLicenseInfoRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetLicenseInfoRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoRequest {
+    return new GetLicenseInfoRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetLicenseInfoRequest {
+    return new GetLicenseInfoRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLicenseInfoRequest {
+    return new GetLicenseInfoRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetLicenseInfoRequest | PlainMessage<GetLicenseInfoRequest> | undefined, b: GetLicenseInfoRequest | PlainMessage<GetLicenseInfoRequest> | undefined): boolean {
+    return proto3.util.equals(GetLicenseInfoRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetLicenseInfoResponse
+ */
+export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
+  /**
+   * @generated from field: api.v1.project.Plan plan = 1;
+   */
+  plan = Plan.UNSPECIFIED;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp expires_at = 2;
+   */
+  expiresAt?: Timestamp;
+
+  constructor(data?: PartialMessage<GetLicenseInfoResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetLicenseInfoResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "plan", kind: "enum", T: proto3.getEnumType(Plan) },
+    { no: 2, name: "expires_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoResponse {
+    return new GetLicenseInfoResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetLicenseInfoResponse {
+    return new GetLicenseInfoResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLicenseInfoResponse {
+    return new GetLicenseInfoResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetLicenseInfoResponse | PlainMessage<GetLicenseInfoResponse> | undefined, b: GetLicenseInfoResponse | PlainMessage<GetLicenseInfoResponse> | undefined): boolean {
+    return proto3.util.equals(GetLicenseInfoResponse, a, b);
   }
 }
 

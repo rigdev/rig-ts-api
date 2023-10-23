@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse, UseRequest, UseResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetLicenseInfoRequest, GetLicenseInfoResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse, UseRequest, UseResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -90,6 +90,17 @@ export const Service = {
       name: "Use",
       I: UseRequest,
       O: UseResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Get License Information
+     *
+     * @generated from rpc api.v1.project.Service.GetLicenseInfo
+     */
+    getLicenseInfo: {
+      name: "GetLicenseInfo",
+      I: GetLicenseInfoRequest,
+      O: GetLicenseInfoResponse,
       kind: MethodKind.Unary,
     },
   }
