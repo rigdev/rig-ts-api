@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Status } from "./rollout/status_pb.js";
 import { Author } from "../../../model/author_pb.js";
 
 /**
@@ -256,6 +257,11 @@ export class Rollout extends Message<Rollout> {
    */
   status?: RolloutStatus;
 
+  /**
+   * @generated from field: api.v1.capsule.rollout.Status status2 = 4;
+   */
+  status2?: Status;
+
   constructor(data?: PartialMessage<Rollout>) {
     super();
     proto3.util.initPartial(data, this);
@@ -267,6 +273,7 @@ export class Rollout extends Message<Rollout> {
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "config", kind: "message", T: RolloutConfig },
     { no: 3, name: "status", kind: "message", T: RolloutStatus },
+    { no: 4, name: "status2", kind: "message", T: Status },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rollout {
