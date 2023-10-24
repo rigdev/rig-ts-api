@@ -565,6 +565,11 @@ export class Resources extends Message<Resources> {
    */
   limits?: ResourceList;
 
+  /**
+   * @generated from field: api.v1.capsule.GpuLimits gpu_limits = 3;
+   */
+  gpuLimits?: GpuLimits;
+
   constructor(data?: PartialMessage<Resources>) {
     super();
     proto3.util.initPartial(data, this);
@@ -575,6 +580,7 @@ export class Resources extends Message<Resources> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "requests", kind: "message", T: ResourceList },
     { no: 2, name: "limits", kind: "message", T: ResourceList },
+    { no: 3, name: "gpu_limits", kind: "message", T: GpuLimits },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Resources {
@@ -638,6 +644,53 @@ export class ResourceList extends Message<ResourceList> {
 
   static equals(a: ResourceList | PlainMessage<ResourceList> | undefined, b: ResourceList | PlainMessage<ResourceList> | undefined): boolean {
     return proto3.util.equals(ResourceList, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GpuLimits
+ */
+export class GpuLimits extends Message<GpuLimits> {
+  /**
+   * gpu resource type - fx. nvidia.com/gpu
+   *
+   * @generated from field: string type = 1;
+   */
+  type = "";
+
+  /**
+   * number of gpus
+   *
+   * @generated from field: uint32 count = 2;
+   */
+  count = 0;
+
+  constructor(data?: PartialMessage<GpuLimits>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GpuLimits";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GpuLimits {
+    return new GpuLimits().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GpuLimits {
+    return new GpuLimits().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GpuLimits {
+    return new GpuLimits().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GpuLimits | PlainMessage<GpuLimits> | undefined, b: GpuLimits | PlainMessage<GpuLimits> | undefined): boolean {
+    return proto3.util.equals(GpuLimits, a, b);
   }
 }
 
