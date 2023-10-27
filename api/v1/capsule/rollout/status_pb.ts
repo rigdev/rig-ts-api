@@ -228,6 +228,11 @@ export class StageInfo extends Message<StageInfo> {
    */
   state = StageState.UNSPECIFIED;
 
+  /**
+   * @generated from field: google.protobuf.Timestamp started_at = 4;
+   */
+  startedAt?: Timestamp;
+
   constructor(data?: PartialMessage<StageInfo>) {
     super();
     proto3.util.initPartial(data, this);
@@ -239,6 +244,7 @@ export class StageInfo extends Message<StageInfo> {
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "updated_at", kind: "message", T: Timestamp },
     { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(StageState) },
+    { no: 4, name: "started_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StageInfo {
@@ -319,6 +325,11 @@ export class StepInfo extends Message<StepInfo> {
    */
   state = StepState.UNSPECIFIED;
 
+  /**
+   * @generated from field: google.protobuf.Timestamp started_at = 5;
+   */
+  startedAt?: Timestamp;
+
   constructor(data?: PartialMessage<StepInfo>) {
     super();
     proto3.util.initPartial(data, this);
@@ -331,6 +342,7 @@ export class StepInfo extends Message<StepInfo> {
     { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "updated_at", kind: "message", T: Timestamp },
     { no: 4, name: "state", kind: "enum", T: proto3.getEnumType(StepState) },
+    { no: 5, name: "started_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StepInfo {
