@@ -16,6 +16,173 @@ import { Event } from "./event_pb.js";
 import { InstanceMetrics } from "./metrics_pb.js";
 
 /**
+ * @generated from message api.v1.capsule.ExecuteRequest
+ */
+export class ExecuteRequest extends Message<ExecuteRequest> {
+  /**
+   * @generated from oneof api.v1.capsule.ExecuteRequest.request
+   */
+  request: {
+    /**
+     * @generated from field: api.v1.capsule.ExecuteRequest.Start start = 1;
+     */
+    value: ExecuteRequest_Start;
+    case: "start";
+  } | {
+    /**
+     * @generated from field: bytes stdin = 2;
+     */
+    value: Uint8Array;
+    case: "stdin";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<ExecuteRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ExecuteRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "start", kind: "message", T: ExecuteRequest_Start, oneof: "request" },
+    { no: 2, name: "stdin", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "request" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest {
+    return new ExecuteRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecuteRequest {
+    return new ExecuteRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecuteRequest {
+    return new ExecuteRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecuteRequest | PlainMessage<ExecuteRequest> | undefined, b: ExecuteRequest | PlainMessage<ExecuteRequest> | undefined): boolean {
+    return proto3.util.equals(ExecuteRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ExecuteRequest.Start
+ */
+export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
+  /**
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: string instance_id = 2;
+   */
+  instanceId = "";
+
+  /**
+   * @generated from field: string command = 3;
+   */
+  command = "";
+
+  /**
+   * @generated from field: repeated string arguments = 4;
+   */
+  arguments: string[] = [];
+
+  /**
+   * @generated from field: bool tty = 5;
+   */
+  tty = false;
+
+  /**
+   * @generated from field: bool interactive = 6;
+   */
+  interactive = false;
+
+  constructor(data?: PartialMessage<ExecuteRequest_Start>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ExecuteRequest.Start";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "arguments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "tty", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "interactive", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest_Start {
+    return new ExecuteRequest_Start().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecuteRequest_Start {
+    return new ExecuteRequest_Start().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecuteRequest_Start {
+    return new ExecuteRequest_Start().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecuteRequest_Start | PlainMessage<ExecuteRequest_Start> | undefined, b: ExecuteRequest_Start | PlainMessage<ExecuteRequest_Start> | undefined): boolean {
+    return proto3.util.equals(ExecuteRequest_Start, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ExecuteResponse
+ */
+export class ExecuteResponse extends Message<ExecuteResponse> {
+  /**
+   * @generated from oneof api.v1.capsule.ExecuteResponse.response
+   */
+  response: {
+    /**
+     * @generated from field: bytes stdout = 1;
+     */
+    value: Uint8Array;
+    case: "stdout";
+  } | {
+    /**
+     * @generated from field: bytes stderr = 2;
+     */
+    value: Uint8Array;
+    case: "stderr";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<ExecuteResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ExecuteResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "stdout", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "response" },
+    { no: 2, name: "stderr", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "response" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteResponse {
+    return new ExecuteResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecuteResponse {
+    return new ExecuteResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecuteResponse {
+    return new ExecuteResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecuteResponse | PlainMessage<ExecuteResponse> | undefined, b: ExecuteResponse | PlainMessage<ExecuteResponse> | undefined): boolean {
+    return proto3.util.equals(ExecuteResponse, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.capsule.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
