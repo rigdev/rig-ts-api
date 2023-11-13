@@ -16,6 +16,49 @@ import { Event } from "./event_pb.js";
 import { InstanceMetrics } from "./metrics_pb.js";
 
 /**
+ * @generated from message api.v1.capsule.StreamData
+ */
+export class StreamData extends Message<StreamData> {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data = new Uint8Array(0);
+
+  /**
+   * @generated from field: bool closed = 2;
+   */
+  closed = false;
+
+  constructor(data?: PartialMessage<StreamData>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.StreamData";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "closed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StreamData {
+    return new StreamData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StreamData {
+    return new StreamData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StreamData {
+    return new StreamData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StreamData | PlainMessage<StreamData> | undefined, b: StreamData | PlainMessage<StreamData> | undefined): boolean {
+    return proto3.util.equals(StreamData, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.capsule.ExecuteRequest
  */
 export class ExecuteRequest extends Message<ExecuteRequest> {
@@ -30,9 +73,9 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
     case: "start";
   } | {
     /**
-     * @generated from field: bytes stdin = 2;
+     * @generated from field: api.v1.capsule.StreamData stdin = 2;
      */
-    value: Uint8Array;
+    value: StreamData;
     case: "stdin";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
@@ -45,7 +88,7 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
   static readonly typeName = "api.v1.capsule.ExecuteRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "start", kind: "message", T: ExecuteRequest_Start, oneof: "request" },
-    { no: 2, name: "stdin", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "request" },
+    { no: 2, name: "stdin", kind: "message", T: StreamData, oneof: "request" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest {
@@ -141,16 +184,22 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
    */
   response: {
     /**
-     * @generated from field: bytes stdout = 1;
+     * @generated from field: api.v1.capsule.StreamData stdout = 1;
      */
-    value: Uint8Array;
+    value: StreamData;
     case: "stdout";
   } | {
     /**
-     * @generated from field: bytes stderr = 2;
+     * @generated from field: api.v1.capsule.StreamData stderr = 2;
      */
-    value: Uint8Array;
+    value: StreamData;
     case: "stderr";
+  } | {
+    /**
+     * @generated from field: int32 exit_code = 3;
+     */
+    value: number;
+    case: "exitCode";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<ExecuteResponse>) {
@@ -161,8 +210,9 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ExecuteResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "stdout", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "response" },
-    { no: 2, name: "stderr", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "response" },
+    { no: 1, name: "stdout", kind: "message", T: StreamData, oneof: "response" },
+    { no: 2, name: "stderr", kind: "message", T: StreamData, oneof: "response" },
+    { no: 3, name: "exit_code", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "response" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteResponse {
