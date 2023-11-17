@@ -77,6 +77,12 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
      */
     value: StreamData;
     case: "stdin";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.ExecuteRequest.Resize resize = 3;
+     */
+    value: ExecuteRequest_Resize;
+    case: "resize";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<ExecuteRequest>) {
@@ -89,6 +95,7 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "start", kind: "message", T: ExecuteRequest_Start, oneof: "request" },
     { no: 2, name: "stdin", kind: "message", T: StreamData, oneof: "request" },
+    { no: 3, name: "resize", kind: "message", T: ExecuteRequest_Resize, oneof: "request" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest {
@@ -133,9 +140,9 @@ export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
   arguments: string[] = [];
 
   /**
-   * @generated from field: bool tty = 5;
+   * @generated from field: api.v1.capsule.ExecuteRequest.Resize tty = 5;
    */
-  tty = false;
+  tty?: ExecuteRequest_Resize;
 
   /**
    * @generated from field: bool interactive = 6;
@@ -154,7 +161,7 @@ export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "arguments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "tty", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "tty", kind: "message", T: ExecuteRequest_Resize },
     { no: 6, name: "interactive", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
@@ -172,6 +179,49 @@ export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
 
   static equals(a: ExecuteRequest_Start | PlainMessage<ExecuteRequest_Start> | undefined, b: ExecuteRequest_Start | PlainMessage<ExecuteRequest_Start> | undefined): boolean {
     return proto3.util.equals(ExecuteRequest_Start, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ExecuteRequest.Resize
+ */
+export class ExecuteRequest_Resize extends Message<ExecuteRequest_Resize> {
+  /**
+   * @generated from field: uint32 height = 1;
+   */
+  height = 0;
+
+  /**
+   * @generated from field: uint32 width = 2;
+   */
+  width = 0;
+
+  constructor(data?: PartialMessage<ExecuteRequest_Resize>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ExecuteRequest.Resize";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "height", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "width", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest_Resize {
+    return new ExecuteRequest_Resize().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecuteRequest_Resize {
+    return new ExecuteRequest_Resize().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecuteRequest_Resize {
+    return new ExecuteRequest_Resize().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecuteRequest_Resize | PlainMessage<ExecuteRequest_Resize> | undefined, b: ExecuteRequest_Resize | PlainMessage<ExecuteRequest_Resize> | undefined): boolean {
+    return proto3.util.equals(ExecuteRequest_Resize, a, b);
   }
 }
 
