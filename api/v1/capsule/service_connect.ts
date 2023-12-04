@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -227,7 +227,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Execute executes a command in a given in instance, 
+     * Execute executes a command in a given in instance,
      * and returns the output along with an exit code.
      *
      * @generated from rpc api.v1.capsule.Service.Execute
@@ -237,6 +237,15 @@ export const Service = {
       I: ExecuteRequest,
       O: ExecuteResponse,
       kind: MethodKind.BiDiStreaming,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.GetCustomInstanceMetrics
+     */
+    getCustomInstanceMetrics: {
+      name: "GetCustomInstanceMetrics",
+      I: GetCustomInstanceMetricsRequest,
+      O: GetCustomInstanceMetricsResponse,
+      kind: MethodKind.Unary,
     },
   }
 } as const;

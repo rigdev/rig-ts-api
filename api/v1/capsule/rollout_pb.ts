@@ -91,6 +91,44 @@ proto3.util.setEnumType(EventType, "api.v1.capsule.EventType", [
 ]);
 
 /**
+ * @generated from enum api.v1.capsule.LabelSelectorOperator
+ */
+export enum LabelSelectorOperator {
+  /**
+   * @generated from enum value: OPERATOR_UNSPECIFIED = 0;
+   */
+  OPERATOR_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: OPERATOR_IN = 1;
+   */
+  OPERATOR_IN = 1,
+
+  /**
+   * @generated from enum value: OPERATOR_NOT_IN = 2;
+   */
+  OPERATOR_NOT_IN = 2,
+
+  /**
+   * @generated from enum value: OPERATOR_EXISTS = 3;
+   */
+  OPERATOR_EXISTS = 3,
+
+  /**
+   * @generated from enum value: OPERATOR_DOES_NOT_EXIST = 4;
+   */
+  OPERATOR_DOES_NOT_EXIST = 4,
+}
+// Retrieve enum metadata with: proto3.getEnumType(LabelSelectorOperator)
+proto3.util.setEnumType(LabelSelectorOperator, "api.v1.capsule.LabelSelectorOperator", [
+  { no: 0, name: "OPERATOR_UNSPECIFIED" },
+  { no: 1, name: "OPERATOR_IN" },
+  { no: 2, name: "OPERATOR_NOT_IN" },
+  { no: 3, name: "OPERATOR_EXISTS" },
+  { no: 4, name: "OPERATOR_DOES_NOT_EXIST" },
+]);
+
+/**
  * @generated from message api.v1.capsule.Change
  */
 export class Change extends Message<Change> {
@@ -1683,6 +1721,11 @@ export class HorizontalScale extends Message<HorizontalScale> {
    */
   cpuTarget?: CPUTarget;
 
+  /**
+   * @generated from field: repeated api.v1.capsule.CustomMetric custom_metrics = 4;
+   */
+  customMetrics: CustomMetric[] = [];
+
   constructor(data?: PartialMessage<HorizontalScale>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1694,6 +1737,7 @@ export class HorizontalScale extends Message<HorizontalScale> {
     { no: 1, name: "max_replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 2, name: "min_replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 3, name: "cpu_target", kind: "message", T: CPUTarget },
+    { no: 4, name: "custom_metrics", kind: "message", T: CustomMetric, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HorizontalScale {
@@ -1784,6 +1828,215 @@ export class Rollback extends Message<Rollback> {
 
   static equals(a: Rollback | PlainMessage<Rollback> | undefined, b: Rollback | PlainMessage<Rollback> | undefined): boolean {
     return proto3.util.equals(Rollback, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.CustomMetric
+ */
+export class CustomMetric extends Message<CustomMetric> {
+  /**
+   * @generated from oneof api.v1.capsule.CustomMetric.metric
+   */
+  metric: {
+    /**
+     * @generated from field: api.v1.capsule.InstanceMetric instance = 1;
+     */
+    value: InstanceMetric;
+    case: "instance";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.ObjectMetric object = 2;
+     */
+    value: ObjectMetric;
+    case: "object";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<CustomMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.CustomMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instance", kind: "message", T: InstanceMetric, oneof: "metric" },
+    { no: 2, name: "object", kind: "message", T: ObjectMetric, oneof: "metric" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomMetric {
+    return new CustomMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomMetric {
+    return new CustomMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomMetric {
+    return new CustomMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CustomMetric | PlainMessage<CustomMetric> | undefined, b: CustomMetric | PlainMessage<CustomMetric> | undefined): boolean {
+    return proto3.util.equals(CustomMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.InstanceMetric
+ */
+export class InstanceMetric extends Message<InstanceMetric> {
+  /**
+   * @generated from field: string metric_name = 1;
+   */
+  metricName = "";
+
+  /**
+   * @generated from field: map<string, string> match_labels = 2;
+   */
+  matchLabels: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: string average_value = 3;
+   */
+  averageValue = "";
+
+  constructor(data?: PartialMessage<InstanceMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.InstanceMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metric_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "match_labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "average_value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceMetric | PlainMessage<InstanceMetric> | undefined, b: InstanceMetric | PlainMessage<InstanceMetric> | undefined): boolean {
+    return proto3.util.equals(InstanceMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ObjectMetric
+ */
+export class ObjectMetric extends Message<ObjectMetric> {
+  /**
+   * @generated from field: string metric_name = 1;
+   */
+  metricName = "";
+
+  /**
+   * @generated from field: map<string, string> match_labels = 2;
+   */
+  matchLabels: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: string average_value = 3;
+   */
+  averageValue = "";
+
+  /**
+   * @generated from field: string value = 4;
+   */
+  value = "";
+
+  /**
+   * @generated from field: api.v1.capsule.ObjectReference object_reference = 5;
+   */
+  objectReference?: ObjectReference;
+
+  constructor(data?: PartialMessage<ObjectMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ObjectMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metric_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "match_labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "average_value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "object_reference", kind: "message", T: ObjectReference },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectMetric | PlainMessage<ObjectMetric> | undefined, b: ObjectMetric | PlainMessage<ObjectMetric> | undefined): boolean {
+    return proto3.util.equals(ObjectMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ObjectReference
+ */
+export class ObjectReference extends Message<ObjectReference> {
+  /**
+   * @generated from field: string kind = 1;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string api_version = 3;
+   */
+  apiVersion = "";
+
+  constructor(data?: PartialMessage<ObjectReference>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ObjectReference";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "api_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectReference {
+    return new ObjectReference().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectReference {
+    return new ObjectReference().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectReference {
+    return new ObjectReference().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectReference | PlainMessage<ObjectReference> | undefined, b: ObjectReference | PlainMessage<ObjectReference> | undefined): boolean {
+    return proto3.util.equals(ObjectReference, a, b);
   }
 }
 

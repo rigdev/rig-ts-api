@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Plan, Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
+import { ObjectReference } from "../capsule/rollout_pb.js";
 
 /**
  * The request of a Namespace.Create RPC
@@ -603,6 +604,129 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
 
   static equals(a: GetLicenseInfoResponse | PlainMessage<GetLicenseInfoResponse> | undefined, b: GetLicenseInfoResponse | PlainMessage<GetLicenseInfoResponse> | undefined): boolean {
     return proto3.util.equals(GetLicenseInfoResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetCustomMetricsRequest
+ */
+export class GetCustomMetricsRequest extends Message<GetCustomMetricsRequest> {
+  constructor(data?: PartialMessage<GetCustomMetricsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetCustomMetricsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomMetricsRequest {
+    return new GetCustomMetricsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomMetricsRequest {
+    return new GetCustomMetricsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomMetricsRequest {
+    return new GetCustomMetricsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetCustomMetricsRequest | PlainMessage<GetCustomMetricsRequest> | undefined, b: GetCustomMetricsRequest | PlainMessage<GetCustomMetricsRequest> | undefined): boolean {
+    return proto3.util.equals(GetCustomMetricsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetCustomMetricsResponse
+ */
+export class GetCustomMetricsResponse extends Message<GetCustomMetricsResponse> {
+  /**
+   * @generated from field: repeated api.v1.project.Metric metrics = 1;
+   */
+  metrics: Metric[] = [];
+
+  constructor(data?: PartialMessage<GetCustomMetricsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetCustomMetricsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metrics", kind: "message", T: Metric, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomMetricsResponse {
+    return new GetCustomMetricsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomMetricsResponse {
+    return new GetCustomMetricsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomMetricsResponse {
+    return new GetCustomMetricsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetCustomMetricsResponse | PlainMessage<GetCustomMetricsResponse> | undefined, b: GetCustomMetricsResponse | PlainMessage<GetCustomMetricsResponse> | undefined): boolean {
+    return proto3.util.equals(GetCustomMetricsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.Metric
+ */
+export class Metric extends Message<Metric> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: api.v1.capsule.ObjectReference object = 2;
+   */
+  object?: ObjectReference;
+
+  /**
+   * @generated from field: double latest_value = 3;
+   */
+  latestValue = 0;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp latest_timestamp = 4;
+   */
+  latestTimestamp?: Timestamp;
+
+  constructor(data?: PartialMessage<Metric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.Metric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "object", kind: "message", T: ObjectReference },
+    { no: 3, name: "latest_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 4, name: "latest_timestamp", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Metric {
+    return new Metric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Metric {
+    return new Metric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Metric {
+    return new Metric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Metric | PlainMessage<Metric> | undefined, b: Metric | PlainMessage<Metric> | undefined): boolean {
+    return proto3.util.equals(Metric, a, b);
   }
 }
 
