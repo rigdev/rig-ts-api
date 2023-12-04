@@ -520,6 +520,11 @@ export class ContainerSettings extends Message<ContainerSettings> {
    */
   resources?: Resources;
 
+  /**
+   * @generated from field: repeated api.v1.capsule.EnvironmentSource environment_sources = 5;
+   */
+  environmentSources: EnvironmentSource[] = [];
+
   constructor(data?: PartialMessage<ContainerSettings>) {
     super();
     proto3.util.initPartial(data, this);
@@ -532,6 +537,7 @@ export class ContainerSettings extends Message<ContainerSettings> {
     { no: 2, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 4, name: "resources", kind: "message", T: Resources },
+    { no: 5, name: "environment_sources", kind: "message", T: EnvironmentSource, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerSettings {
@@ -550,6 +556,75 @@ export class ContainerSettings extends Message<ContainerSettings> {
     return proto3.util.equals(ContainerSettings, a, b);
   }
 }
+
+/**
+ * @generated from message api.v1.capsule.EnvironmentSource
+ */
+export class EnvironmentSource extends Message<EnvironmentSource> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: api.v1.capsule.EnvironmentSource.Kind kind = 2;
+   */
+  kind = EnvironmentSource_Kind.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<EnvironmentSource>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.EnvironmentSource";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "kind", kind: "enum", T: proto3.getEnumType(EnvironmentSource_Kind) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnvironmentSource {
+    return new EnvironmentSource().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnvironmentSource {
+    return new EnvironmentSource().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnvironmentSource {
+    return new EnvironmentSource().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EnvironmentSource | PlainMessage<EnvironmentSource> | undefined, b: EnvironmentSource | PlainMessage<EnvironmentSource> | undefined): boolean {
+    return proto3.util.equals(EnvironmentSource, a, b);
+  }
+}
+
+/**
+ * @generated from enum api.v1.capsule.EnvironmentSource.Kind
+ */
+export enum EnvironmentSource_Kind {
+  /**
+   * @generated from enum value: KIND_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: KIND_CONFIG_MAP = 1;
+   */
+  CONFIG_MAP = 1,
+
+  /**
+   * @generated from enum value: KIND_SECRET = 2;
+   */
+  SECRET = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(EnvironmentSource_Kind)
+proto3.util.setEnumType(EnvironmentSource_Kind, "api.v1.capsule.EnvironmentSource.Kind", [
+  { no: 0, name: "KIND_UNSPECIFIED" },
+  { no: 1, name: "KIND_CONFIG_MAP" },
+  { no: 2, name: "KIND_SECRET" },
+]);
 
 /**
  * @generated from message api.v1.capsule.Resources
