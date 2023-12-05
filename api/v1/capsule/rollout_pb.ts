@@ -91,44 +91,6 @@ proto3.util.setEnumType(EventType, "api.v1.capsule.EventType", [
 ]);
 
 /**
- * @generated from enum api.v1.capsule.LabelSelectorOperator
- */
-export enum LabelSelectorOperator {
-  /**
-   * @generated from enum value: OPERATOR_UNSPECIFIED = 0;
-   */
-  OPERATOR_UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: OPERATOR_IN = 1;
-   */
-  OPERATOR_IN = 1,
-
-  /**
-   * @generated from enum value: OPERATOR_NOT_IN = 2;
-   */
-  OPERATOR_NOT_IN = 2,
-
-  /**
-   * @generated from enum value: OPERATOR_EXISTS = 3;
-   */
-  OPERATOR_EXISTS = 3,
-
-  /**
-   * @generated from enum value: OPERATOR_DOES_NOT_EXIST = 4;
-   */
-  OPERATOR_DOES_NOT_EXIST = 4,
-}
-// Retrieve enum metadata with: proto3.getEnumType(LabelSelectorOperator)
-proto3.util.setEnumType(LabelSelectorOperator, "api.v1.capsule.LabelSelectorOperator", [
-  { no: 0, name: "OPERATOR_UNSPECIFIED" },
-  { no: 1, name: "OPERATOR_IN" },
-  { no: 2, name: "OPERATOR_NOT_IN" },
-  { no: 3, name: "OPERATOR_EXISTS" },
-  { no: 4, name: "OPERATOR_DOES_NOT_EXIST" },
-]);
-
-/**
  * @generated from message api.v1.capsule.Change
  */
 export class Change extends Message<Change> {
