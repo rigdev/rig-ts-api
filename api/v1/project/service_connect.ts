@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomMetricsRequest, GetCustomMetricsResponse, GetLicenseInfoRequest, GetLicenseInfoResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse, UseRequest, UseResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomObjectMetricsRequest, GetCustomObjectMetricsResponse, GetLicenseInfoRequest, GetLicenseInfoResponse, GetObjectsByKindRequest, GetObjectsByKindResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse, UseRequest, UseResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -104,12 +104,21 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc api.v1.project.Service.GetCustomMetrics
+     * @generated from rpc api.v1.project.Service.GetObjectsByKind
      */
-    getCustomMetrics: {
-      name: "GetCustomMetrics",
-      I: GetCustomMetricsRequest,
-      O: GetCustomMetricsResponse,
+    getObjectsByKind: {
+      name: "GetObjectsByKind",
+      I: GetObjectsByKindRequest,
+      O: GetObjectsByKindResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.project.Service.GetCustomObjectMetrics
+     */
+    getCustomObjectMetrics: {
+      name: "GetCustomObjectMetrics",
+      I: GetCustomObjectMetricsRequest,
+      O: GetCustomObjectMetricsResponse,
       kind: MethodKind.Unary,
     },
   }

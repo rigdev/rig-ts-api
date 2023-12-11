@@ -8,6 +8,7 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Plan, Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { ObjectReference } from "../capsule/rollout_pb.js";
+import { Metric } from "../capsule/service_pb.js";
 
 /**
  * The request of a Namespace.Create RPC
@@ -608,125 +609,199 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
 }
 
 /**
- * @generated from message api.v1.project.GetCustomMetricsRequest
+ * @generated from message api.v1.project.GetCustomObjectMetricsRequest
  */
-export class GetCustomMetricsRequest extends Message<GetCustomMetricsRequest> {
-  constructor(data?: PartialMessage<GetCustomMetricsRequest>) {
+export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetricsRequest> {
+  /**
+   * @generated from field: api.v1.capsule.ObjectReference object_reference = 1;
+   */
+  objectReference?: ObjectReference;
+
+  constructor(data?: PartialMessage<GetCustomObjectMetricsRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.project.GetCustomMetricsRequest";
+  static readonly typeName = "api.v1.project.GetCustomObjectMetricsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "object_reference", kind: "message", T: ObjectReference },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomMetricsRequest {
-    return new GetCustomMetricsRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomObjectMetricsRequest {
+    return new GetCustomObjectMetricsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomMetricsRequest {
-    return new GetCustomMetricsRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomObjectMetricsRequest {
+    return new GetCustomObjectMetricsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomMetricsRequest {
-    return new GetCustomMetricsRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomObjectMetricsRequest {
+    return new GetCustomObjectMetricsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetCustomMetricsRequest | PlainMessage<GetCustomMetricsRequest> | undefined, b: GetCustomMetricsRequest | PlainMessage<GetCustomMetricsRequest> | undefined): boolean {
-    return proto3.util.equals(GetCustomMetricsRequest, a, b);
+  static equals(a: GetCustomObjectMetricsRequest | PlainMessage<GetCustomObjectMetricsRequest> | undefined, b: GetCustomObjectMetricsRequest | PlainMessage<GetCustomObjectMetricsRequest> | undefined): boolean {
+    return proto3.util.equals(GetCustomObjectMetricsRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.project.GetCustomMetricsResponse
+ * @generated from message api.v1.project.GetCustomObjectMetricsResponse
  */
-export class GetCustomMetricsResponse extends Message<GetCustomMetricsResponse> {
+export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetricsResponse> {
   /**
-   * @generated from field: repeated api.v1.project.Metric metrics = 1;
+   * @generated from field: repeated api.v1.capsule.Metric metrics = 1;
    */
   metrics: Metric[] = [];
 
-  constructor(data?: PartialMessage<GetCustomMetricsResponse>) {
+  constructor(data?: PartialMessage<GetCustomObjectMetricsResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.project.GetCustomMetricsResponse";
+  static readonly typeName = "api.v1.project.GetCustomObjectMetricsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metrics", kind: "message", T: Metric, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomMetricsResponse {
-    return new GetCustomMetricsResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomObjectMetricsResponse {
+    return new GetCustomObjectMetricsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomMetricsResponse {
-    return new GetCustomMetricsResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomObjectMetricsResponse {
+    return new GetCustomObjectMetricsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomMetricsResponse {
-    return new GetCustomMetricsResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomObjectMetricsResponse {
+    return new GetCustomObjectMetricsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetCustomMetricsResponse | PlainMessage<GetCustomMetricsResponse> | undefined, b: GetCustomMetricsResponse | PlainMessage<GetCustomMetricsResponse> | undefined): boolean {
-    return proto3.util.equals(GetCustomMetricsResponse, a, b);
+  static equals(a: GetCustomObjectMetricsResponse | PlainMessage<GetCustomObjectMetricsResponse> | undefined, b: GetCustomObjectMetricsResponse | PlainMessage<GetCustomObjectMetricsResponse> | undefined): boolean {
+    return proto3.util.equals(GetCustomObjectMetricsResponse, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.project.Metric
+ * @generated from message api.v1.project.KubernetesObject
  */
-export class Metric extends Message<Metric> {
+export class KubernetesObject extends Message<KubernetesObject> {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: string kind = 1;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: string name = 2;
    */
   name = "";
 
-  /**
-   * @generated from field: api.v1.capsule.ObjectReference object = 2;
-   */
-  object?: ObjectReference;
-
-  /**
-   * @generated from field: double latest_value = 3;
-   */
-  latestValue = 0;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp latest_timestamp = 4;
-   */
-  latestTimestamp?: Timestamp;
-
-  constructor(data?: PartialMessage<Metric>) {
+  constructor(data?: PartialMessage<KubernetesObject>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.project.Metric";
+  static readonly typeName = "api.v1.project.KubernetesObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "object", kind: "message", T: ObjectReference },
-    { no: 3, name: "latest_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 4, name: "latest_timestamp", kind: "message", T: Timestamp },
+    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Metric {
-    return new Metric().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): KubernetesObject {
+    return new KubernetesObject().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Metric {
-    return new Metric().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): KubernetesObject {
+    return new KubernetesObject().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Metric {
-    return new Metric().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): KubernetesObject {
+    return new KubernetesObject().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Metric | PlainMessage<Metric> | undefined, b: Metric | PlainMessage<Metric> | undefined): boolean {
-    return proto3.util.equals(Metric, a, b);
+  static equals(a: KubernetesObject | PlainMessage<KubernetesObject> | undefined, b: KubernetesObject | PlainMessage<KubernetesObject> | undefined): boolean {
+    return proto3.util.equals(KubernetesObject, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetObjectsByKindRequest
+ */
+export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
+  /**
+   * @generated from field: string kind = 1;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: string api_version = 2;
+   */
+  apiVersion = "";
+
+  constructor(data?: PartialMessage<GetObjectsByKindRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetObjectsByKindRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "api_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetObjectsByKindRequest {
+    return new GetObjectsByKindRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetObjectsByKindRequest {
+    return new GetObjectsByKindRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetObjectsByKindRequest {
+    return new GetObjectsByKindRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetObjectsByKindRequest | PlainMessage<GetObjectsByKindRequest> | undefined, b: GetObjectsByKindRequest | PlainMessage<GetObjectsByKindRequest> | undefined): boolean {
+    return proto3.util.equals(GetObjectsByKindRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetObjectsByKindResponse
+ */
+export class GetObjectsByKindResponse extends Message<GetObjectsByKindResponse> {
+  /**
+   * @generated from field: repeated api.v1.project.KubernetesObject objects = 1;
+   */
+  objects: KubernetesObject[] = [];
+
+  constructor(data?: PartialMessage<GetObjectsByKindResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetObjectsByKindResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "objects", kind: "message", T: KubernetesObject, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetObjectsByKindResponse {
+    return new GetObjectsByKindResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetObjectsByKindResponse {
+    return new GetObjectsByKindResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetObjectsByKindResponse {
+    return new GetObjectsByKindResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetObjectsByKindResponse | PlainMessage<GetObjectsByKindResponse> | undefined, b: GetObjectsByKindResponse | PlainMessage<GetObjectsByKindResponse> | undefined): boolean {
+    return proto3.util.equals(GetObjectsByKindResponse, a, b);
   }
 }
 
