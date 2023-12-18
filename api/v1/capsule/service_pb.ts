@@ -2230,6 +2230,16 @@ export class GetJobExecutionsRequest extends Message<GetJobExecutionsRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 8;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 9;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetJobExecutionsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2244,6 +2254,8 @@ export class GetJobExecutionsRequest extends Message<GetJobExecutionsRequest> {
     { no: 5, name: "created_from", kind: "message", T: Timestamp },
     { no: 6, name: "created_to", kind: "message", T: Timestamp },
     { no: 7, name: "pagination", kind: "message", T: Pagination },
+    { no: 8, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetJobExecutionsRequest {

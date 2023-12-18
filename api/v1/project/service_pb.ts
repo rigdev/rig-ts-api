@@ -702,6 +702,16 @@ export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetri
    */
   metrics: Metric[] = [];
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 3;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetCustomObjectMetricsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -711,6 +721,8 @@ export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetri
   static readonly typeName = "api.v1.project.GetCustomObjectMetricsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metrics", kind: "message", T: Metric, repeated: true },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomObjectMetricsResponse {
@@ -787,6 +799,16 @@ export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
    */
   apiVersion = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetObjectsByKindRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -797,6 +819,8 @@ export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "api_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetObjectsByKindRequest {
