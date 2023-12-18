@@ -362,6 +362,11 @@ export class RolloutConfig extends Message<RolloutConfig> {
    */
   cronJobs: CronJob[] = [];
 
+  /**
+   * @generated from field: string environment_id = 12;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<RolloutConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -381,6 +386,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 9, name: "config_files", kind: "message", T: ConfigFile, repeated: true },
     { no: 10, name: "horizontal_scale", kind: "message", T: HorizontalScale },
     { no: 11, name: "cron_jobs", kind: "message", T: CronJob, repeated: true },
+    { no: 12, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutConfig {

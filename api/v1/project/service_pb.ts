@@ -100,6 +100,11 @@ export class CreateResponse extends Message<CreateResponse> {
  * @generated from message api.v1.project.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<DeleteRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -108,6 +113,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.DeleteRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRequest {
@@ -171,6 +177,11 @@ export class UpdateRequest extends Message<UpdateRequest> {
    */
   updates: Update[] = [];
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<UpdateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -180,6 +191,7 @@ export class UpdateRequest extends Message<UpdateRequest> {
   static readonly typeName = "api.v1.project.UpdateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "updates", kind: "message", T: Update, repeated: true },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateRequest {
@@ -238,6 +250,11 @@ export class UpdateResponse extends Message<UpdateResponse> {
  * @generated from message api.v1.project.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<GetRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -246,6 +263,7 @@ export class GetRequest extends Message<GetRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.GetRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
@@ -315,6 +333,11 @@ export class ListRequest extends Message<ListRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -324,6 +347,7 @@ export class ListRequest extends Message<ListRequest> {
   static readonly typeName = "api.v1.project.ListRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "pagination", kind: "message", T: Pagination },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
@@ -392,6 +416,11 @@ export class ListResponse extends Message<ListResponse> {
  * @generated from message api.v1.project.PublicKeyRequest
  */
 export class PublicKeyRequest extends Message<PublicKeyRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<PublicKeyRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -400,6 +429,7 @@ export class PublicKeyRequest extends Message<PublicKeyRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.PublicKeyRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicKeyRequest {
@@ -538,6 +568,11 @@ export class UseResponse extends Message<UseResponse> {
  * @generated from message api.v1.project.GetLicenseInfoRequest
  */
 export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<GetLicenseInfoRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -546,6 +581,7 @@ export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.GetLicenseInfoRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoRequest {
@@ -617,6 +653,16 @@ export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetric
    */
   objectReference?: ObjectReference;
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 3;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetCustomObjectMetricsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -626,6 +672,8 @@ export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetric
   static readonly typeName = "api.v1.project.GetCustomObjectMetricsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "object_reference", kind: "message", T: ObjectReference },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomObjectMetricsRequest {

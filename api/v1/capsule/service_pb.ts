@@ -86,6 +86,16 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
     case: "resize";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
+  /**
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 5;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<ExecuteRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -97,6 +107,8 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
     { no: 1, name: "start", kind: "message", T: ExecuteRequest_Start, oneof: "request" },
     { no: 2, name: "stdin", kind: "message", T: StreamData, oneof: "request" },
     { no: 3, name: "resize", kind: "message", T: ExecuteRequest_Resize, oneof: "request" },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteRequest {
@@ -303,6 +315,11 @@ export class CreateRequest extends Message<CreateRequest> {
    */
   initializers: Update[] = [];
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<CreateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -313,6 +330,7 @@ export class CreateRequest extends Message<CreateRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "initializers", kind: "message", T: Update, repeated: true },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
@@ -378,6 +396,11 @@ export class GetRequest extends Message<GetRequest> {
    */
   capsuleId = "";
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<GetRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -387,6 +410,7 @@ export class GetRequest extends Message<GetRequest> {
   static readonly typeName = "api.v1.capsule.GetRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
@@ -454,6 +478,11 @@ export class DeleteRequest extends Message<DeleteRequest> {
    */
   capsuleId = "";
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<DeleteRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -463,6 +492,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
   static readonly typeName = "api.v1.capsule.DeleteRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRequest {
@@ -545,6 +575,16 @@ export class LogsRequest extends Message<LogsRequest> {
    */
   since?: Duration;
 
+  /**
+   * @generated from field: string project_id = 5;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 6;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<LogsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -557,6 +597,8 @@ export class LogsRequest extends Message<LogsRequest> {
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "follow", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "since", kind: "message", T: Duration },
+    { no: 5, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogsRequest {
@@ -633,6 +675,11 @@ export class UpdateRequest extends Message<UpdateRequest> {
    */
   updates: Update[] = [];
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<UpdateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -643,6 +690,7 @@ export class UpdateRequest extends Message<UpdateRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "updates", kind: "message", T: Update, repeated: true },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateRequest {
@@ -702,6 +750,11 @@ export class ListRequest extends Message<ListRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -711,6 +764,7 @@ export class ListRequest extends Message<ListRequest> {
   static readonly typeName = "api.v1.capsule.ListRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
@@ -809,6 +863,11 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
    */
   skipImageCheck = false;
 
+  /**
+   * @generated from field: string project_id = 7;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<CreateBuildRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -823,6 +882,7 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
     { no: 4, name: "origin", kind: "message", T: Origin },
     { no: 5, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 6, name: "skip_image_check", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateBuildRequest {
@@ -899,6 +959,11 @@ export class ListBuildsRequest extends Message<ListBuildsRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<ListBuildsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -909,6 +974,7 @@ export class ListBuildsRequest extends Message<ListBuildsRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListBuildsRequest {
@@ -985,6 +1051,11 @@ export class DeleteBuildRequest extends Message<DeleteBuildRequest> {
    */
   buildId = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<DeleteBuildRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -995,6 +1066,7 @@ export class DeleteBuildRequest extends Message<DeleteBuildRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteBuildRequest {
@@ -1068,6 +1140,16 @@ export class DeployRequest extends Message<DeployRequest> {
    */
   force = false;
 
+  /**
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 5;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1079,6 +1161,8 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 3, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
@@ -1149,6 +1233,16 @@ export class ListInstancesRequest extends Message<ListInstancesRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<ListInstancesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1159,6 +1253,8 @@ export class ListInstancesRequest extends Message<ListInstancesRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstancesRequest {
@@ -1235,6 +1331,16 @@ export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> 
    */
   instanceId = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetInstanceStatusRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1245,6 +1351,8 @@ export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetInstanceStatusRequest {
@@ -1315,6 +1423,16 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<ListInstanceStatusesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1325,6 +1443,8 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstanceStatusesRequest {
@@ -1401,6 +1521,16 @@ export class RestartInstanceRequest extends Message<RestartInstanceRequest> {
    */
   instanceId = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<RestartInstanceRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1411,6 +1541,8 @@ export class RestartInstanceRequest extends Message<RestartInstanceRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RestartInstanceRequest {
@@ -1475,6 +1607,16 @@ export class ListRolloutsRequest extends Message<ListRolloutsRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<ListRolloutsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1485,6 +1627,8 @@ export class ListRolloutsRequest extends Message<ListRolloutsRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRolloutsRequest {
@@ -1561,6 +1705,11 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
    */
   rolloutId = protoInt64.zero;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<GetRolloutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1571,6 +1720,7 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutRequest {
@@ -1641,6 +1791,11 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
    */
   rolloutId = protoInt64.zero;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<AbortRolloutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1651,6 +1806,7 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AbortRolloutRequest {
@@ -1720,6 +1876,16 @@ export class ListEventsRequest extends Message<ListEventsRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 5;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<ListEventsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1731,6 +1897,8 @@ export class ListEventsRequest extends Message<ListEventsRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 3, name: "pagination", kind: "message", T: Pagination },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEventsRequest {
@@ -1814,6 +1982,16 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 5;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<CapsuleMetricsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1825,6 +2003,8 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "pagination", kind: "message", T: Pagination },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleMetricsRequest {
@@ -1890,6 +2070,16 @@ export class GetCustomInstanceMetricsRequest extends Message<GetCustomInstanceMe
    */
   capsuleId = "";
 
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 3;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetCustomInstanceMetricsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1899,6 +2089,8 @@ export class GetCustomInstanceMetricsRequest extends Message<GetCustomInstanceMe
   static readonly typeName = "api.v1.capsule.GetCustomInstanceMetricsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomInstanceMetricsRequest {
