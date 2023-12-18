@@ -1206,9 +1206,9 @@ export class RoutingMethod_Ingress extends Message<RoutingMethod_Ingress> {
   tls = false;
 
   /**
-   * @generated from field: string path_prefix = 3;
+   * @generated from field: repeated string paths = 3;
    */
-  pathPrefix = "";
+  paths: string[] = [];
 
   constructor(data?: PartialMessage<RoutingMethod_Ingress>) {
     super();
@@ -1220,7 +1220,7 @@ export class RoutingMethod_Ingress extends Message<RoutingMethod_Ingress> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "tls", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "path_prefix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RoutingMethod_Ingress {
