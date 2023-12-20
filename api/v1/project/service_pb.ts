@@ -7,7 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Plan, Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
-import { ObjectReference } from "../capsule/rollout_pb.js";
+import { ObjectReference } from "../capsule/change_pb.js";
 import { Metric } from "../capsule/service_pb.js";
 
 /**
