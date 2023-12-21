@@ -5,91 +5,9 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Group, Update } from "./group_pb.js";
+import { Group, MemberID, Update } from "./group_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { MemberEntry } from "../../../model/user_pb.js";
-
-/**
- * The request of a Groups.Lookup RPC
- *
- * @generated from message api.v1.group.GetByNameRequest
- */
-export class GetByNameRequest extends Message<GetByNameRequest> {
-  /**
-   * The group name
-   *
-   * @generated from field: string name = 1;
-   */
-  name = "";
-
-  constructor(data?: PartialMessage<GetByNameRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.group.GetByNameRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetByNameRequest {
-    return new GetByNameRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetByNameRequest {
-    return new GetByNameRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetByNameRequest {
-    return new GetByNameRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetByNameRequest | PlainMessage<GetByNameRequest> | undefined, b: GetByNameRequest | PlainMessage<GetByNameRequest> | undefined): boolean {
-    return proto3.util.equals(GetByNameRequest, a, b);
-  }
-}
-
-/**
- * The response of a Groups.Lookup RPC
- *
- * @generated from message api.v1.group.GetByNameResponse
- */
-export class GetByNameResponse extends Message<GetByNameResponse> {
-  /**
-   * The group
-   *
-   * @generated from field: api.v1.group.Group group = 1;
-   */
-  group?: Group;
-
-  constructor(data?: PartialMessage<GetByNameResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.group.GetByNameResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "group", kind: "message", T: Group },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetByNameResponse {
-    return new GetByNameResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetByNameResponse {
-    return new GetByNameResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetByNameResponse {
-    return new GetByNameResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetByNameResponse | PlainMessage<GetByNameResponse> | undefined, b: GetByNameResponse | PlainMessage<GetByNameResponse> | undefined): boolean {
-    return proto3.util.equals(GetByNameResponse, a, b);
-  }
-}
 
 /**
  * The request of a Groups.Create RPC
@@ -507,9 +425,9 @@ export class AddMemberRequest extends Message<AddMemberRequest> {
   groupId = "";
 
   /**
-   * @generated from field: repeated string user_ids = 2;
+   * @generated from field: repeated api.v1.group.MemberID member_ids = 2;
    */
-  userIds: string[] = [];
+  memberIds: MemberID[] = [];
 
   constructor(data?: PartialMessage<AddMemberRequest>) {
     super();
@@ -520,7 +438,7 @@ export class AddMemberRequest extends Message<AddMemberRequest> {
   static readonly typeName = "api.v1.group.AddMemberRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "user_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "member_ids", kind: "message", T: MemberID, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AddMemberRequest {
@@ -581,9 +499,9 @@ export class RemoveMemberRequest extends Message<RemoveMemberRequest> {
   groupId = "";
 
   /**
-   * @generated from field: string user_id = 2;
+   * @generated from field: api.v1.group.MemberID member_id = 2;
    */
-  userId = "";
+  memberId?: MemberID;
 
   constructor(data?: PartialMessage<RemoveMemberRequest>) {
     super();
@@ -594,7 +512,7 @@ export class RemoveMemberRequest extends Message<RemoveMemberRequest> {
   static readonly typeName = "api.v1.group.RemoveMemberRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "member_id", kind: "message", T: MemberID },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveMemberRequest {
@@ -732,52 +650,52 @@ export class ListMembersResponse extends Message<ListMembersResponse> {
 }
 
 /**
- * @generated from message api.v1.group.ListGroupsForUserRequest
+ * @generated from message api.v1.group.ListGroupsForMemberRequest
  */
-export class ListGroupsForUserRequest extends Message<ListGroupsForUserRequest> {
+export class ListGroupsForMemberRequest extends Message<ListGroupsForMemberRequest> {
   /**
-   * @generated from field: string user_id = 1;
+   * @generated from field: api.v1.group.MemberID member_id = 1;
    */
-  userId = "";
+  memberId?: MemberID;
 
   /**
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
-  constructor(data?: PartialMessage<ListGroupsForUserRequest>) {
+  constructor(data?: PartialMessage<ListGroupsForMemberRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.group.ListGroupsForUserRequest";
+  static readonly typeName = "api.v1.group.ListGroupsForMemberRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "member_id", kind: "message", T: MemberID },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListGroupsForUserRequest {
-    return new ListGroupsForUserRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListGroupsForMemberRequest {
+    return new ListGroupsForMemberRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListGroupsForUserRequest {
-    return new ListGroupsForUserRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListGroupsForMemberRequest {
+    return new ListGroupsForMemberRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListGroupsForUserRequest {
-    return new ListGroupsForUserRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListGroupsForMemberRequest {
+    return new ListGroupsForMemberRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListGroupsForUserRequest | PlainMessage<ListGroupsForUserRequest> | undefined, b: ListGroupsForUserRequest | PlainMessage<ListGroupsForUserRequest> | undefined): boolean {
-    return proto3.util.equals(ListGroupsForUserRequest, a, b);
+  static equals(a: ListGroupsForMemberRequest | PlainMessage<ListGroupsForMemberRequest> | undefined, b: ListGroupsForMemberRequest | PlainMessage<ListGroupsForMemberRequest> | undefined): boolean {
+    return proto3.util.equals(ListGroupsForMemberRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.group.ListGroupsForUserResponse
+ * @generated from message api.v1.group.ListGroupsForMemberResponse
  */
-export class ListGroupsForUserResponse extends Message<ListGroupsForUserResponse> {
+export class ListGroupsForMemberResponse extends Message<ListGroupsForMemberResponse> {
   /**
    * @generated from field: repeated api.v1.group.Group groups = 1;
    */
@@ -788,32 +706,32 @@ export class ListGroupsForUserResponse extends Message<ListGroupsForUserResponse
    */
   total = protoInt64.zero;
 
-  constructor(data?: PartialMessage<ListGroupsForUserResponse>) {
+  constructor(data?: PartialMessage<ListGroupsForMemberResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.group.ListGroupsForUserResponse";
+  static readonly typeName = "api.v1.group.ListGroupsForMemberResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "groups", kind: "message", T: Group, repeated: true },
     { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListGroupsForUserResponse {
-    return new ListGroupsForUserResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListGroupsForMemberResponse {
+    return new ListGroupsForMemberResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListGroupsForUserResponse {
-    return new ListGroupsForUserResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListGroupsForMemberResponse {
+    return new ListGroupsForMemberResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListGroupsForUserResponse {
-    return new ListGroupsForUserResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListGroupsForMemberResponse {
+    return new ListGroupsForMemberResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListGroupsForUserResponse | PlainMessage<ListGroupsForUserResponse> | undefined, b: ListGroupsForUserResponse | PlainMessage<ListGroupsForUserResponse> | undefined): boolean {
-    return proto3.util.equals(ListGroupsForUserResponse, a, b);
+  static equals(a: ListGroupsForMemberResponse | PlainMessage<ListGroupsForMemberResponse> | undefined, b: ListGroupsForMemberResponse | PlainMessage<ListGroupsForMemberResponse> | undefined): boolean {
+    return proto3.util.equals(ListGroupsForMemberResponse, a, b);
   }
 }
 

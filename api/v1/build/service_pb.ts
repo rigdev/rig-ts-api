@@ -279,9 +279,9 @@ export class Tag extends Message<Tag> {
 }
 
 /**
- * @generated from message api.v1.build.CreateBuildRequest
+ * @generated from message api.v1.build.CreateRequest
  */
-export class CreateBuildRequest extends Message<CreateBuildRequest> {
+export class CreateRequest extends Message<CreateRequest> {
   /**
    * @generated from field: string capsule_id = 1;
    */
@@ -312,13 +312,13 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
    */
   skipImageCheck = false;
 
-  constructor(data?: PartialMessage<CreateBuildRequest>) {
+  constructor(data?: PartialMessage<CreateRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.CreateBuildRequest";
+  static readonly typeName = "api.v1.build.CreateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -328,27 +328,27 @@ export class CreateBuildRequest extends Message<CreateBuildRequest> {
     { no: 6, name: "skip_image_check", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateBuildRequest {
-    return new CreateBuildRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
+    return new CreateRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateBuildRequest {
-    return new CreateBuildRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateRequest {
+    return new CreateRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateBuildRequest {
-    return new CreateBuildRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRequest {
+    return new CreateRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateBuildRequest | PlainMessage<CreateBuildRequest> | undefined, b: CreateBuildRequest | PlainMessage<CreateBuildRequest> | undefined): boolean {
-    return proto3.util.equals(CreateBuildRequest, a, b);
+  static equals(a: CreateRequest | PlainMessage<CreateRequest> | undefined, b: CreateRequest | PlainMessage<CreateRequest> | undefined): boolean {
+    return proto3.util.equals(CreateRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.CreateBuildResponse
+ * @generated from message api.v1.build.CreateResponse
  */
-export class CreateBuildResponse extends Message<CreateBuildResponse> {
+export class CreateResponse extends Message<CreateResponse> {
   /**
    * @generated from field: string build_id = 1;
    */
@@ -359,39 +359,39 @@ export class CreateBuildResponse extends Message<CreateBuildResponse> {
    */
   createdNewBuild = false;
 
-  constructor(data?: PartialMessage<CreateBuildResponse>) {
+  constructor(data?: PartialMessage<CreateResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.CreateBuildResponse";
+  static readonly typeName = "api.v1.build.CreateResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "created_new_build", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateBuildResponse {
-    return new CreateBuildResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateResponse {
+    return new CreateResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateBuildResponse {
-    return new CreateBuildResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateResponse {
+    return new CreateResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateBuildResponse {
-    return new CreateBuildResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateResponse {
+    return new CreateResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateBuildResponse | PlainMessage<CreateBuildResponse> | undefined, b: CreateBuildResponse | PlainMessage<CreateBuildResponse> | undefined): boolean {
-    return proto3.util.equals(CreateBuildResponse, a, b);
+  static equals(a: CreateResponse | PlainMessage<CreateResponse> | undefined, b: CreateResponse | PlainMessage<CreateResponse> | undefined): boolean {
+    return proto3.util.equals(CreateResponse, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.ListBuildsRequest
+ * @generated from message api.v1.build.ListRequest
  */
-export class ListBuildsRequest extends Message<ListBuildsRequest> {
+export class ListRequest extends Message<ListRequest> {
   /**
    * @generated from field: string capsule_id = 1;
    */
@@ -402,39 +402,39 @@ export class ListBuildsRequest extends Message<ListBuildsRequest> {
    */
   pagination?: Pagination;
 
-  constructor(data?: PartialMessage<ListBuildsRequest>) {
+  constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.ListBuildsRequest";
+  static readonly typeName = "api.v1.build.ListRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListBuildsRequest {
-    return new ListBuildsRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
+    return new ListRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListBuildsRequest {
-    return new ListBuildsRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListRequest {
+    return new ListRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListBuildsRequest {
-    return new ListBuildsRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRequest {
+    return new ListRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListBuildsRequest | PlainMessage<ListBuildsRequest> | undefined, b: ListBuildsRequest | PlainMessage<ListBuildsRequest> | undefined): boolean {
-    return proto3.util.equals(ListBuildsRequest, a, b);
+  static equals(a: ListRequest | PlainMessage<ListRequest> | undefined, b: ListRequest | PlainMessage<ListRequest> | undefined): boolean {
+    return proto3.util.equals(ListRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.ListBuildsResponse
+ * @generated from message api.v1.build.ListResponse
  */
-export class ListBuildsResponse extends Message<ListBuildsResponse> {
+export class ListResponse extends Message<ListResponse> {
   /**
    * @generated from field: repeated api.v1.capsule.Build builds = 1;
    */
@@ -445,39 +445,39 @@ export class ListBuildsResponse extends Message<ListBuildsResponse> {
    */
   total = protoInt64.zero;
 
-  constructor(data?: PartialMessage<ListBuildsResponse>) {
+  constructor(data?: PartialMessage<ListResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.ListBuildsResponse";
+  static readonly typeName = "api.v1.build.ListResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "builds", kind: "message", T: Build, repeated: true },
     { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListBuildsResponse {
-    return new ListBuildsResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListResponse {
+    return new ListResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListBuildsResponse {
-    return new ListBuildsResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListResponse {
+    return new ListResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListBuildsResponse {
-    return new ListBuildsResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListResponse {
+    return new ListResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListBuildsResponse | PlainMessage<ListBuildsResponse> | undefined, b: ListBuildsResponse | PlainMessage<ListBuildsResponse> | undefined): boolean {
-    return proto3.util.equals(ListBuildsResponse, a, b);
+  static equals(a: ListResponse | PlainMessage<ListResponse> | undefined, b: ListResponse | PlainMessage<ListResponse> | undefined): boolean {
+    return proto3.util.equals(ListResponse, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.DeleteBuildRequest
+ * @generated from message api.v1.build.DeleteRequest
  */
-export class DeleteBuildRequest extends Message<DeleteBuildRequest> {
+export class DeleteRequest extends Message<DeleteRequest> {
   /**
    * @generated from field: string capsule_id = 1;
    */
@@ -488,70 +488,70 @@ export class DeleteBuildRequest extends Message<DeleteBuildRequest> {
    */
   buildId = "";
 
-  constructor(data?: PartialMessage<DeleteBuildRequest>) {
+  constructor(data?: PartialMessage<DeleteRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.DeleteBuildRequest";
+  static readonly typeName = "api.v1.build.DeleteRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteBuildRequest {
-    return new DeleteBuildRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRequest {
+    return new DeleteRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteBuildRequest {
-    return new DeleteBuildRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteRequest {
+    return new DeleteRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteBuildRequest {
-    return new DeleteBuildRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteRequest {
+    return new DeleteRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DeleteBuildRequest | PlainMessage<DeleteBuildRequest> | undefined, b: DeleteBuildRequest | PlainMessage<DeleteBuildRequest> | undefined): boolean {
-    return proto3.util.equals(DeleteBuildRequest, a, b);
+  static equals(a: DeleteRequest | PlainMessage<DeleteRequest> | undefined, b: DeleteRequest | PlainMessage<DeleteRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.DeleteBuildResponse
+ * @generated from message api.v1.build.DeleteResponse
  */
-export class DeleteBuildResponse extends Message<DeleteBuildResponse> {
-  constructor(data?: PartialMessage<DeleteBuildResponse>) {
+export class DeleteResponse extends Message<DeleteResponse> {
+  constructor(data?: PartialMessage<DeleteResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.DeleteBuildResponse";
+  static readonly typeName = "api.v1.build.DeleteResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteBuildResponse {
-    return new DeleteBuildResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteResponse {
+    return new DeleteResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteBuildResponse {
-    return new DeleteBuildResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteResponse {
+    return new DeleteResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteBuildResponse {
-    return new DeleteBuildResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteResponse {
+    return new DeleteResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DeleteBuildResponse | PlainMessage<DeleteBuildResponse> | undefined, b: DeleteBuildResponse | PlainMessage<DeleteBuildResponse> | undefined): boolean {
-    return proto3.util.equals(DeleteBuildResponse, a, b);
+  static equals(a: DeleteResponse | PlainMessage<DeleteResponse> | undefined, b: DeleteResponse | PlainMessage<DeleteResponse> | undefined): boolean {
+    return proto3.util.equals(DeleteResponse, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.GetBuildRequest
+ * @generated from message api.v1.build.GetRequest
  */
-export class GetBuildRequest extends Message<GetBuildRequest> {
+export class GetRequest extends Message<GetRequest> {
   /**
    * @generated from field: string capsule_id = 1;
    */
@@ -562,69 +562,69 @@ export class GetBuildRequest extends Message<GetBuildRequest> {
    */
   buildId = "";
 
-  constructor(data?: PartialMessage<GetBuildRequest>) {
+  constructor(data?: PartialMessage<GetRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.GetBuildRequest";
+  static readonly typeName = "api.v1.build.GetRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetBuildRequest {
-    return new GetBuildRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
+    return new GetRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetBuildRequest {
-    return new GetBuildRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRequest {
+    return new GetRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetBuildRequest {
-    return new GetBuildRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRequest {
+    return new GetRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetBuildRequest | PlainMessage<GetBuildRequest> | undefined, b: GetBuildRequest | PlainMessage<GetBuildRequest> | undefined): boolean {
-    return proto3.util.equals(GetBuildRequest, a, b);
+  static equals(a: GetRequest | PlainMessage<GetRequest> | undefined, b: GetRequest | PlainMessage<GetRequest> | undefined): boolean {
+    return proto3.util.equals(GetRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.build.GetBuildResponse
+ * @generated from message api.v1.build.GetResponse
  */
-export class GetBuildResponse extends Message<GetBuildResponse> {
+export class GetResponse extends Message<GetResponse> {
   /**
    * @generated from field: api.v1.capsule.Build build = 1;
    */
   build?: Build;
 
-  constructor(data?: PartialMessage<GetBuildResponse>) {
+  constructor(data?: PartialMessage<GetResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.build.GetBuildResponse";
+  static readonly typeName = "api.v1.build.GetResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "build", kind: "message", T: Build },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetBuildResponse {
-    return new GetBuildResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
+    return new GetResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetBuildResponse {
-    return new GetBuildResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetResponse {
+    return new GetResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetBuildResponse {
-    return new GetBuildResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetResponse {
+    return new GetResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetBuildResponse | PlainMessage<GetBuildResponse> | undefined, b: GetBuildResponse | PlainMessage<GetBuildResponse> | undefined): boolean {
-    return proto3.util.equals(GetBuildResponse, a, b);
+  static equals(a: GetResponse | PlainMessage<GetResponse> | undefined, b: GetResponse | PlainMessage<GetResponse> | undefined): boolean {
+    return proto3.util.equals(GetResponse, a, b);
   }
 }
 

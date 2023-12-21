@@ -17,11 +17,6 @@ export class Group extends Message<Group> {
   groupId = "";
 
   /**
-   * @generated from field: string name = 2;
-   */
-  name = "";
-
-  /**
    * @generated from field: uint64 num_members = 5;
    */
   numMembers = protoInt64.zero;
@@ -50,7 +45,6 @@ export class Group extends Message<Group> {
   static readonly typeName = "api.v1.group.Group";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "num_members", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 6, name: "metadata", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 12 /* ScalarType.BYTES */} },
     { no: 7, name: "created_at", kind: "message", T: Timestamp },
@@ -83,10 +77,10 @@ export class Update extends Message<Update> {
    */
   field: {
     /**
-     * @generated from field: string name = 1;
+     * @generated from field: string group_id = 1;
      */
     value: string;
-    case: "name";
+    case: "groupId";
   } | {
     /**
      * @generated from field: model.Metadata set_metadata = 2;
@@ -109,7 +103,7 @@ export class Update extends Message<Update> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.group.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 1, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 2, name: "set_metadata", kind: "message", T: Metadata, oneof: "field" },
     { no: 3, name: "delete_metadata_key", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
@@ -128,6 +122,56 @@ export class Update extends Message<Update> {
 
   static equals(a: Update | PlainMessage<Update> | undefined, b: Update | PlainMessage<Update> | undefined): boolean {
     return proto3.util.equals(Update, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.group.MemberID
+ */
+export class MemberID extends Message<MemberID> {
+  /**
+   * @generated from oneof api.v1.group.MemberID.kind
+   */
+  kind: {
+    /**
+     * @generated from field: string service_account_id = 1;
+     */
+    value: string;
+    case: "serviceAccountId";
+  } | {
+    /**
+     * @generated from field: string user_id = 2;
+     */
+    value: string;
+    case: "userId";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<MemberID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.group.MemberID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "service_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MemberID {
+    return new MemberID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MemberID {
+    return new MemberID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MemberID {
+    return new MemberID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MemberID | PlainMessage<MemberID> | undefined, b: MemberID | PlainMessage<MemberID> | undefined): boolean {
+    return proto3.util.equals(MemberID, a, b);
   }
 }
 

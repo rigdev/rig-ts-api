@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AddMemberRequest, AddMemberResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetByNameRequest, GetByNameResponse, GetRequest, GetResponse, ListGroupsForUserRequest, ListGroupsForUserResponse, ListMembersRequest, ListMembersResponse, ListRequest, ListResponse, RemoveMemberRequest, RemoveMemberResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AddMemberRequest, AddMemberResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetRequest, GetResponse, ListGroupsForMemberRequest, ListGroupsForMemberResponse, ListMembersRequest, ListMembersResponse, ListRequest, ListResponse, RemoveMemberRequest, RemoveMemberResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -70,18 +70,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get a group by name
-     *
-     * @generated from rpc api.v1.group.Service.GetByName
-     */
-    getByName: {
-      name: "GetByName",
-      I: GetByNameRequest,
-      O: GetByNameResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Add User to Group
+     * Add a member to a group
      *
      * @generated from rpc api.v1.group.Service.AddMember
      */
@@ -92,7 +81,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Remove User from Group
+     * Remove member from Group
      *
      * @generated from rpc api.v1.group.Service.RemoveMember
      */
@@ -116,12 +105,12 @@ export const Service = {
     /**
      * Get Groups
      *
-     * @generated from rpc api.v1.group.Service.ListGroupsForUser
+     * @generated from rpc api.v1.group.Service.ListGroupsForMember
      */
-    listGroupsForUser: {
-      name: "ListGroupsForUser",
-      I: ListGroupsForUserRequest,
-      O: ListGroupsForUserResponse,
+    listGroupsForMember: {
+      name: "ListGroupsForMember",
+      I: ListGroupsForMemberRequest,
+      O: ListGroupsForMemberResponse,
       kind: MethodKind.Unary,
     },
   }

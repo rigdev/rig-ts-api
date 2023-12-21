@@ -5,7 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { Entry, ServiceAccount } from "./service_account_pb.js";
+import { ServiceAccount } from "./service_account_pb.js";
+import { ServiceAccountEntry } from "../../../model/user_pb.js";
 
 /**
  * @generated from message api.v1.service_account.CreateRequest
@@ -129,9 +130,9 @@ export class ListRequest extends Message<ListRequest> {
  */
 export class ListResponse extends Message<ListResponse> {
   /**
-   * @generated from field: repeated api.v1.service_account.Entry service_accounts = 1;
+   * @generated from field: repeated model.ServiceAccountEntry service_accounts = 1;
    */
-  serviceAccounts: Entry[] = [];
+  serviceAccounts: ServiceAccountEntry[] = [];
 
   constructor(data?: PartialMessage<ListResponse>) {
     super();
@@ -141,7 +142,7 @@ export class ListResponse extends Message<ListResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.service_account.ListResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_accounts", kind: "message", T: Entry, repeated: true },
+    { no: 1, name: "service_accounts", kind: "message", T: ServiceAccountEntry, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListResponse {

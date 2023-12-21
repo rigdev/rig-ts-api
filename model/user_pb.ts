@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Author } from "./author_pb.js";
 import { LoginType, OauthProvider } from "./auth_pb.js";
 
 /**
@@ -193,13 +194,92 @@ export class UserEntry extends Message<UserEntry> {
 }
 
 /**
+ * @generated from message model.ServiceAccountEntry
+ */
+export class ServiceAccountEntry extends Message<ServiceAccountEntry> {
+  /**
+   * @generated from field: string service_account_id = 1;
+   */
+  serviceAccountId = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string client_id = 3;
+   */
+  clientId = "";
+
+  /**
+   * @generated from field: repeated string group_ids = 4;
+   */
+  groupIds: string[] = [];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 5;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: model.Author created_by = 6;
+   */
+  createdBy?: Author;
+
+  constructor(data?: PartialMessage<ServiceAccountEntry>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.ServiceAccountEntry";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "service_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "group_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "created_at", kind: "message", T: Timestamp },
+    { no: 6, name: "created_by", kind: "message", T: Author },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceAccountEntry {
+    return new ServiceAccountEntry().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ServiceAccountEntry {
+    return new ServiceAccountEntry().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServiceAccountEntry {
+    return new ServiceAccountEntry().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ServiceAccountEntry | PlainMessage<ServiceAccountEntry> | undefined, b: ServiceAccountEntry | PlainMessage<ServiceAccountEntry> | undefined): boolean {
+    return proto3.util.equals(ServiceAccountEntry, a, b);
+  }
+}
+
+/**
  * @generated from message model.MemberEntry
  */
 export class MemberEntry extends Message<MemberEntry> {
   /**
-   * @generated from field: model.UserEntry user = 1;
+   * @generated from oneof model.MemberEntry.entry
    */
-  user?: UserEntry;
+  entry: {
+    /**
+     * @generated from field: model.UserEntry user = 1;
+     */
+    value: UserEntry;
+    case: "user";
+  } | {
+    /**
+     * @generated from field: model.ServiceAccountEntry service_account = 2;
+     */
+    value: ServiceAccountEntry;
+    case: "serviceAccount";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
    * @generated from field: google.protobuf.Timestamp joined_at = 5;
@@ -214,7 +294,8 @@ export class MemberEntry extends Message<MemberEntry> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "model.MemberEntry";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user", kind: "message", T: UserEntry },
+    { no: 1, name: "user", kind: "message", T: UserEntry, oneof: "entry" },
+    { no: 2, name: "service_account", kind: "message", T: ServiceAccountEntry, oneof: "entry" },
     { no: 5, name: "joined_at", kind: "message", T: Timestamp },
   ]);
 

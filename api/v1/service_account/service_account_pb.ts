@@ -8,55 +8,6 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
- * @generated from message api.v1.service_account.Entry
- */
-export class Entry extends Message<Entry> {
-  /**
-   * @generated from field: string service_account_id = 1;
-   */
-  serviceAccountId = "";
-
-  /**
-   * @generated from field: api.v1.service_account.ServiceAccount service_account = 2;
-   */
-  serviceAccount?: ServiceAccount;
-
-  /**
-   * @generated from field: string client_id = 3;
-   */
-  clientId = "";
-
-  constructor(data?: PartialMessage<Entry>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.service_account.Entry";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_account", kind: "message", T: ServiceAccount },
-    { no: 3, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Entry {
-    return new Entry().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Entry {
-    return new Entry().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Entry {
-    return new Entry().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Entry | PlainMessage<Entry> | undefined, b: Entry | PlainMessage<Entry> | undefined): boolean {
-    return proto3.util.equals(Entry, a, b);
-  }
-}
-
-/**
  * @generated from message api.v1.service_account.ServiceAccount
  */
 export class ServiceAccount extends Message<ServiceAccount> {

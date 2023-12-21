@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateBuildRequest, CreateBuildResponse, DeleteBuildRequest, DeleteBuildResponse, GetBuildRequest, GetBuildResponse, GetImageInfoRequest, GetImageInfoResponse, GetRepositoryInfoRequest, GetRepositoryInfoResponse, ListBuildsRequest, ListBuildsResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetImageInfoRequest, GetImageInfoResponse, GetRepositoryInfoRequest, GetRepositoryInfoResponse, GetRequest, GetResponse, ListRequest, ListResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -31,12 +31,12 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc api.v1.build.Service.GetBuild
+     * @generated from rpc api.v1.build.Service.Get
      */
-    getBuild: {
-      name: "GetBuild",
-      I: GetBuildRequest,
-      O: GetBuildResponse,
+    get: {
+      name: "Get",
+      I: GetRequest,
+      O: GetResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -44,34 +44,34 @@ export const Service = {
      * Builds are immutable and cannot change. Create a new build to make
      * changes from an existing one.
      *
-     * @generated from rpc api.v1.build.Service.CreateBuild
+     * @generated from rpc api.v1.build.Service.Create
      */
-    createBuild: {
-      name: "CreateBuild",
-      I: CreateBuildRequest,
-      O: CreateBuildResponse,
+    create: {
+      name: "Create",
+      I: CreateRequest,
+      O: CreateResponse,
       kind: MethodKind.Unary,
     },
     /**
      * List builds for a capsule.
      *
-     * @generated from rpc api.v1.build.Service.ListBuilds
+     * @generated from rpc api.v1.build.Service.List
      */
-    listBuilds: {
-      name: "ListBuilds",
-      I: ListBuildsRequest,
-      O: ListBuildsResponse,
+    list: {
+      name: "List",
+      I: ListRequest,
+      O: ListResponse,
       kind: MethodKind.Unary,
     },
     /**
      * Delete a build.
      *
-     * @generated from rpc api.v1.build.Service.DeleteBuild
+     * @generated from rpc api.v1.build.Service.Delete
      */
-    deleteBuild: {
-      name: "DeleteBuild",
-      I: DeleteBuildRequest,
-      O: DeleteBuildResponse,
+    delete: {
+      name: "Delete",
+      I: DeleteRequest,
+      O: DeleteResponse,
       kind: MethodKind.Unary,
     },
   }
