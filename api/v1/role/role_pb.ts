@@ -73,9 +73,9 @@ export class Role extends Message<Role> {
  */
 export class EntityID extends Message<EntityID> {
   /**
-   * @generated from oneof api.v1.role.EntityID.entity_id
+   * @generated from oneof api.v1.role.EntityID.kind
    */
-  entityId: {
+  kind: {
     /**
      * @generated from field: string user_id = 1;
      */
@@ -103,9 +103,9 @@ export class EntityID extends Message<EntityID> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.role.EntityID";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "entity_id" },
-    { no: 2, name: "service_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "entity_id" },
-    { no: 3, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "entity_id" },
+    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 2, name: "service_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 3, name: "group_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EntityID {
