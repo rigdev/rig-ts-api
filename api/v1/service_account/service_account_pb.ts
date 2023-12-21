@@ -31,6 +31,11 @@ export class ServiceAccount extends Message<ServiceAccount> {
    */
   managed = false;
 
+  /**
+   * @generated from field: repeated string group_ids = 5;
+   */
+  groupIds: string[] = [];
+
   constructor(data?: PartialMessage<ServiceAccount>) {
     super();
     proto3.util.initPartial(data, this);
@@ -43,6 +48,7 @@ export class ServiceAccount extends Message<ServiceAccount> {
     { no: 2, name: "created_at", kind: "message", T: Timestamp },
     { no: 3, name: "created_by", kind: "message", T: Author },
     { no: 4, name: "managed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "group_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceAccount {
