@@ -232,9 +232,9 @@ export class Update extends Message<Update> {
     case: "addPermission";
   } | {
     /**
-     * @generated from field: api.v1.role.Update.Permissions remove_permission = 2;
+     * @generated from field: api.v1.role.Permission remove_permission = 2;
      */
-    value: Update_Permissions;
+    value: Permission;
     case: "removePermission";
   } | {
     /**
@@ -259,7 +259,7 @@ export class Update extends Message<Update> {
   static readonly typeName = "api.v1.role.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "add_permission", kind: "message", T: Permission, oneof: "update" },
-    { no: 2, name: "remove_permission", kind: "message", T: Update_Permissions, oneof: "update" },
+    { no: 2, name: "remove_permission", kind: "message", T: Permission, oneof: "update" },
     { no: 3, name: "set_metadata", kind: "message", T: Metadata, oneof: "update" },
     { no: 4, name: "delete_metadata_key", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "update" },
   ]);
@@ -278,43 +278,6 @@ export class Update extends Message<Update> {
 
   static equals(a: Update | PlainMessage<Update> | undefined, b: Update | PlainMessage<Update> | undefined): boolean {
     return proto3.util.equals(Update, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.role.Update.Permissions
- */
-export class Update_Permissions extends Message<Update_Permissions> {
-  /**
-   * @generated from field: repeated api.v1.role.Permission permissions = 1;
-   */
-  permissions: Permission[] = [];
-
-  constructor(data?: PartialMessage<Update_Permissions>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.role.Update.Permissions";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permissions", kind: "message", T: Permission, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update_Permissions {
-    return new Update_Permissions().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Update_Permissions {
-    return new Update_Permissions().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Update_Permissions {
-    return new Update_Permissions().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Update_Permissions | PlainMessage<Update_Permissions> | undefined, b: Update_Permissions | PlainMessage<Update_Permissions> | undefined): boolean {
-    return proto3.util.equals(Update_Permissions, a, b);
   }
 }
 
