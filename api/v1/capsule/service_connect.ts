@@ -248,6 +248,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * Get list of job executions performed by the Capsule.
+     *
      * @generated from rpc api.v1.capsule.Service.GetJobExecutions
      */
     getJobExecutions: {
