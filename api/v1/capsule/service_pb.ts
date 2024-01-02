@@ -1711,11 +1711,6 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
    */
   projectId = "";
 
-  /**
-   * @generated from field: string environment_id = 4;
-   */
-  environmentId = "";
-
   constructor(data?: PartialMessage<GetRolloutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1727,7 +1722,6 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutRequest {
@@ -1803,11 +1797,6 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
    */
   projectId = "";
 
-  /**
-   * @generated from field: string environment_id = 4;
-   */
-  environmentId = "";
-
   constructor(data?: PartialMessage<AbortRolloutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1819,7 +1808,6 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AbortRolloutRequest {
