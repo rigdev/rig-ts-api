@@ -8,7 +8,7 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { HashingInstance } from "../../../model/common_pb.js";
 import { RegisterInfo, UserInfo } from "../../../model/user_pb.js";
 import { Metadata } from "../../../model/metadata_pb.js";
-import { LoginType, OauthProvider } from "../../../model/auth_pb.js";
+import { LoginType } from "../../../model/auth_pb.js";
 
 /**
  * @generated from enum api.v1.user.VerificationType
@@ -40,88 +40,6 @@ proto3.util.setEnumType(VerificationType, "api.v1.user.VerificationType", [
   { no: 1, name: "VERIFICATION_TYPE_EMAIL" },
   { no: 2, name: "VERIFICATION_TYPE_TEXT" },
   { no: 3, name: "VERIFICATION_TYPE_RESET_PASSWORD" },
-]);
-
-/**
- * @generated from enum api.v1.user.DeviceInfo
- */
-export enum DeviceInfo {
-  /**
-   * @generated from enum value: DEVICE_INFO_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_IOS = 1;
-   */
-  IOS = 1,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_MACOS = 2;
-   */
-  MACOS = 2,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_WINDOWS = 3;
-   */
-  WINDOWS = 3,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_WEB = 4;
-   */
-  WEB = 4,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_LINUX = 5;
-   */
-  LINUX = 5,
-
-  /**
-   * @generated from enum value: DEVICE_INFO_ANDROID = 6;
-   */
-  ANDROID = 6,
-}
-// Retrieve enum metadata with: proto3.getEnumType(DeviceInfo)
-proto3.util.setEnumType(DeviceInfo, "api.v1.user.DeviceInfo", [
-  { no: 0, name: "DEVICE_INFO_UNSPECIFIED" },
-  { no: 1, name: "DEVICE_INFO_IOS" },
-  { no: 2, name: "DEVICE_INFO_MACOS" },
-  { no: 3, name: "DEVICE_INFO_WINDOWS" },
-  { no: 4, name: "DEVICE_INFO_WEB" },
-  { no: 5, name: "DEVICE_INFO_LINUX" },
-  { no: 6, name: "DEVICE_INFO_ANDROID" },
-]);
-
-/**
- * @generated from enum api.v1.user.Permissionship
- */
-export enum Permissionship {
-  /**
-   * @generated from enum value: PERMISSIONSHIP_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: PERMISSIONSHIP_NO_PERMISSION = 1;
-   */
-  NO_PERMISSION = 1,
-
-  /**
-   * @generated from enum value: PERMISSIONSHIP_HAS_PERMISSION = 2;
-   */
-  HAS_PERMISSION = 2,
-
-  /**
-   * @generated from enum value: PERMISSIONSHIP_CONDITIONAL_PERMISSION = 3;
-   */
-  CONDITIONAL_PERMISSION = 3,
-}
-// Retrieve enum metadata with: proto3.getEnumType(Permissionship)
-proto3.util.setEnumType(Permissionship, "api.v1.user.Permissionship", [
-  { no: 0, name: "PERMISSIONSHIP_UNSPECIFIED" },
-  { no: 1, name: "PERMISSIONSHIP_NO_PERMISSION" },
-  { no: 2, name: "PERMISSIONSHIP_HAS_PERMISSION" },
-  { no: 3, name: "PERMISSIONSHIP_CONDITIONAL_PERMISSION" },
 ]);
 
 /**
@@ -211,16 +129,6 @@ export class Profile extends Message<Profile> {
    */
   lastName = "";
 
-  /**
-   * @generated from field: string preferred_language = 3;
-   */
-  preferredLanguage = "";
-
-  /**
-   * @generated from field: string country = 4;
-   */
-  country = "";
-
   constructor(data?: PartialMessage<Profile>) {
     super();
     proto3.util.initPartial(data, this);
@@ -231,8 +139,6 @@ export class Profile extends Message<Profile> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "preferred_language", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Profile {
@@ -494,12 +400,6 @@ export class AuthMethod extends Message<AuthMethod> {
      */
     value: LoginType;
     case: "loginType";
-  } | {
-    /**
-     * @generated from field: model.OauthProvider oauth_provider = 2;
-     */
-    value: OauthProvider;
-    case: "oauthProvider";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<AuthMethod>) {
@@ -511,7 +411,6 @@ export class AuthMethod extends Message<AuthMethod> {
   static readonly typeName = "api.v1.user.AuthMethod";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "login_type", kind: "enum", T: proto3.getEnumType(LoginType), oneof: "method" },
-    { no: 2, name: "oauth_provider", kind: "enum", T: proto3.getEnumType(OauthProvider), oneof: "method" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AuthMethod {
@@ -618,11 +517,6 @@ export class Session extends Message<Session> {
    */
   postalCode = 0;
 
-  /**
-   * @generated from field: api.v1.user.DeviceInfo device = 9;
-   */
-  device = DeviceInfo.UNSPECIFIED;
-
   constructor(data?: PartialMessage<Session>) {
     super();
     proto3.util.initPartial(data, this);
@@ -639,7 +533,6 @@ export class Session extends Message<Session> {
     { no: 6, name: "renewed_at", kind: "message", T: Timestamp },
     { no: 7, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "postal_code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 9, name: "device", kind: "enum", T: proto3.getEnumType(DeviceInfo) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Session {

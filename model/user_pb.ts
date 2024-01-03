@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "./author_pb.js";
-import { LoginType, OauthProvider } from "./auth_pb.js";
+import { LoginType } from "./auth_pb.js";
 
 /**
  * @generated from message model.UserIdentifier
@@ -378,18 +378,6 @@ export class RegisterMethod extends Message<RegisterMethod> {
      */
     value: RegisterMethod_Signup;
     case: "signup";
-  } | {
-    /**
-     * @generated from field: model.OauthProvider oauth_provider = 3;
-     */
-    value: OauthProvider;
-    case: "oauthProvider";
-  } | {
-    /**
-     * @generated from field: model.RegisterMethod.Migration migration = 4;
-     */
-    value: RegisterMethod_Migration;
-    case: "migration";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<RegisterMethod>) {
@@ -402,8 +390,6 @@ export class RegisterMethod extends Message<RegisterMethod> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "system", kind: "message", T: RegisterMethod_System, oneof: "method" },
     { no: 2, name: "signup", kind: "message", T: RegisterMethod_Signup, oneof: "method" },
-    { no: 3, name: "oauth_provider", kind: "enum", T: proto3.getEnumType(OauthProvider), oneof: "method" },
-    { no: 4, name: "migration", kind: "message", T: RegisterMethod_Migration, oneof: "method" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisterMethod {
@@ -488,43 +474,6 @@ export class RegisterMethod_Signup extends Message<RegisterMethod_Signup> {
 
   static equals(a: RegisterMethod_Signup | PlainMessage<RegisterMethod_Signup> | undefined, b: RegisterMethod_Signup | PlainMessage<RegisterMethod_Signup> | undefined): boolean {
     return proto3.util.equals(RegisterMethod_Signup, a, b);
-  }
-}
-
-/**
- * @generated from message model.RegisterMethod.Migration
- */
-export class RegisterMethod_Migration extends Message<RegisterMethod_Migration> {
-  /**
-   * @generated from field: string from = 1;
-   */
-  from = "";
-
-  constructor(data?: PartialMessage<RegisterMethod_Migration>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "model.RegisterMethod.Migration";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisterMethod_Migration {
-    return new RegisterMethod_Migration().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RegisterMethod_Migration {
-    return new RegisterMethod_Migration().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RegisterMethod_Migration {
-    return new RegisterMethod_Migration().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: RegisterMethod_Migration | PlainMessage<RegisterMethod_Migration> | undefined, b: RegisterMethod_Migration | PlainMessage<RegisterMethod_Migration> | undefined): boolean {
-    return proto3.util.equals(RegisterMethod_Migration, a, b);
   }
 }
 

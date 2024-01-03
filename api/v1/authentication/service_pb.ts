@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { UserIdentifier, UserInfo } from "../../../model/user_pb.js";
-import { OauthProvider, Token } from "./user_pb.js";
+import { Token } from "./user_pb.js";
 import { LoginType } from "../../../model/auth_pb.js";
 
 /**
@@ -25,11 +25,6 @@ export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
    */
   email = "";
 
-  /**
-   * @generated from field: string project_id = 3;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<VerifyEmailRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -40,7 +35,6 @@ export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerifyEmailRequest {
@@ -109,11 +103,6 @@ export class VerifyPhoneNumberRequest extends Message<VerifyPhoneNumberRequest> 
    */
   phoneNumber = "";
 
-  /**
-   * @generated from field: string project_id = 3;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<VerifyPhoneNumberRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -124,7 +113,6 @@ export class VerifyPhoneNumberRequest extends Message<VerifyPhoneNumberRequest> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "phone_number", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerifyPhoneNumberRequest {
@@ -191,11 +179,6 @@ export class UserPassword extends Message<UserPassword> {
    */
   password = "";
 
-  /**
-   * @generated from field: string project_id = 3;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<UserPassword>) {
     super();
     proto3.util.initPartial(data, this);
@@ -206,7 +189,6 @@ export class UserPassword extends Message<UserPassword> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "identifier", kind: "message", T: UserIdentifier },
     { no: 2, name: "password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserPassword {
@@ -621,11 +603,6 @@ export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> 
    */
   identifier?: UserIdentifier;
 
-  /**
-   * @generated from field: string project_id = 2;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<SendPasswordResetRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -635,7 +612,6 @@ export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> 
   static readonly typeName = "api.v1.authentication.SendPasswordResetRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "identifier", kind: "message", T: UserIdentifier },
-    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendPasswordResetRequest {
@@ -707,11 +683,6 @@ export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
    */
   identifier?: UserIdentifier;
 
-  /**
-   * @generated from field: string project_id = 4;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<ResetPasswordRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -723,7 +694,6 @@ export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
     { no: 1, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "new_password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "identifier", kind: "message", T: UserIdentifier },
-    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResetPasswordRequest {
@@ -928,18 +898,6 @@ export class RefreshTokenResponse extends Message<RefreshTokenResponse> {
  * @generated from message api.v1.authentication.GetAuthConfigRequest
  */
 export class GetAuthConfigRequest extends Message<GetAuthConfigRequest> {
-  /**
-   * Optional redirect address for OAuth2
-   *
-   * @generated from field: string redirect_addr = 1;
-   */
-  redirectAddr = "";
-
-  /**
-   * @generated from field: string project_id = 2;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<GetAuthConfigRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -948,8 +906,6 @@ export class GetAuthConfigRequest extends Message<GetAuthConfigRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.authentication.GetAuthConfigRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "redirect_addr", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAuthConfigRequest {
@@ -1004,13 +960,6 @@ export class GetAuthConfigResponse extends Message<GetAuthConfigResponse> {
   loginTypes: LoginType[] = [];
 
   /**
-   * Array of supported oauth providers.
-   *
-   * @generated from field: repeated api.v1.authentication.OauthProvider oauth_providers = 5;
-   */
-  oauthProviders: OauthProvider[] = [];
-
-  /**
    * True if new users can sign up.
    *
    * @generated from field: bool allows_register = 7;
@@ -1029,7 +978,6 @@ export class GetAuthConfigResponse extends Message<GetAuthConfigResponse> {
     { no: 2, name: "logo_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "validate_password", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "login_types", kind: "enum", T: proto3.getEnumType(LoginType), repeated: true },
-    { no: 5, name: "oauth_providers", kind: "message", T: OauthProvider, repeated: true },
     { no: 7, name: "allows_register", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 

@@ -4,10 +4,60 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { HashingConfig } from "../../../../model/common_pb.js";
-import { LoginType, OauthProvider } from "../../../../model/auth_pb.js";
+import { LoginType } from "../../../../model/auth_pb.js";
 import { ProviderCredentials } from "../../../../model/credentials_pb.js";
+
+/**
+ * @generated from enum api.v1.user.settings.TemplateType
+ */
+export enum TemplateType {
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_WELCOME_EMAIL = 1;
+   */
+  WELCOME_EMAIL = 1,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_EMAIL_VERIFICATION = 2;
+   */
+  EMAIL_VERIFICATION = 2,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_EMAIL_RESET_PASSWORD = 3;
+   */
+  EMAIL_RESET_PASSWORD = 3,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_WELCOME_TEXT = 4;
+   */
+  WELCOME_TEXT = 4,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_TEXT_VERIFICATION = 5;
+   */
+  TEXT_VERIFICATION = 5,
+
+  /**
+   * @generated from enum value: TEMPLATE_TYPE_TEXT_RESET_PASSWORD = 6;
+   */
+  TEXT_RESET_PASSWORD = 6,
+}
+// Retrieve enum metadata with: proto3.getEnumType(TemplateType)
+proto3.util.setEnumType(TemplateType, "api.v1.user.settings.TemplateType", [
+  { no: 0, name: "TEMPLATE_TYPE_UNSPECIFIED" },
+  { no: 1, name: "TEMPLATE_TYPE_WELCOME_EMAIL" },
+  { no: 2, name: "TEMPLATE_TYPE_EMAIL_VERIFICATION" },
+  { no: 3, name: "TEMPLATE_TYPE_EMAIL_RESET_PASSWORD" },
+  { no: 4, name: "TEMPLATE_TYPE_WELCOME_TEXT" },
+  { no: 5, name: "TEMPLATE_TYPE_TEXT_VERIFICATION" },
+  { no: 6, name: "TEMPLATE_TYPE_TEXT_RESET_PASSWORD" },
+]);
 
 /**
  * @generated from message api.v1.user.settings.Update
@@ -66,16 +116,22 @@ export class Update extends Message<Update> {
     case: "loginMechanisms";
   } | {
     /**
-     * @generated from field: api.v1.user.settings.Update.CallbackUrls callback_urls = 9;
+     * @generated from field: api.v1.user.settings.EmailProvider email_provider = 9;
      */
-    value: Update_CallbackUrls;
-    case: "callbackUrls";
+    value: EmailProvider;
+    case: "emailProvider";
   } | {
     /**
-     * @generated from field: api.v1.user.settings.OauthProviderUpdate oauth_provider = 10;
+     * @generated from field: api.v1.user.settings.TextProvider text_provider = 10;
      */
-    value: OauthProviderUpdate;
-    case: "oauthProvider";
+    value: TextProvider;
+    case: "textProvider";
+  } | {
+    /**
+     * @generated from field: api.v1.user.settings.Template template = 11;
+     */
+    value: Template;
+    case: "template";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Update>) {
@@ -94,8 +150,9 @@ export class Update extends Message<Update> {
     { no: 6, name: "verification_code_ttl", kind: "message", T: Duration, oneof: "field" },
     { no: 7, name: "password_hashing", kind: "message", T: HashingConfig, oneof: "field" },
     { no: 8, name: "login_mechanisms", kind: "message", T: Update_LoginMechanisms, oneof: "field" },
-    { no: 9, name: "callback_urls", kind: "message", T: Update_CallbackUrls, oneof: "field" },
-    { no: 10, name: "oauth_provider", kind: "message", T: OauthProviderUpdate, oneof: "field" },
+    { no: 9, name: "email_provider", kind: "message", T: EmailProvider, oneof: "field" },
+    { no: 10, name: "text_provider", kind: "message", T: TextProvider, oneof: "field" },
+    { no: 11, name: "template", kind: "message", T: Template, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
@@ -153,43 +210,6 @@ export class Update_LoginMechanisms extends Message<Update_LoginMechanisms> {
 }
 
 /**
- * @generated from message api.v1.user.settings.Update.CallbackUrls
- */
-export class Update_CallbackUrls extends Message<Update_CallbackUrls> {
-  /**
-   * @generated from field: repeated string callback_urls = 1;
-   */
-  callbackUrls: string[] = [];
-
-  constructor(data?: PartialMessage<Update_CallbackUrls>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.user.settings.Update.CallbackUrls";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "callback_urls", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update_CallbackUrls {
-    return new Update_CallbackUrls().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Update_CallbackUrls {
-    return new Update_CallbackUrls().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Update_CallbackUrls {
-    return new Update_CallbackUrls().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Update_CallbackUrls | PlainMessage<Update_CallbackUrls> | undefined, b: Update_CallbackUrls | PlainMessage<Update_CallbackUrls> | undefined): boolean {
-    return proto3.util.equals(Update_CallbackUrls, a, b);
-  }
-}
-
-/**
  * @generated from message api.v1.user.settings.RegisterMethod
  */
 export class RegisterMethod extends Message<RegisterMethod> {
@@ -208,12 +228,6 @@ export class RegisterMethod extends Message<RegisterMethod> {
      */
     value: RegisterMethod_Signup;
     case: "signup";
-  } | {
-    /**
-     * @generated from field: model.OauthProvider oauth_provider = 3;
-     */
-    value: OauthProvider;
-    case: "oauthProvider";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<RegisterMethod>) {
@@ -226,7 +240,6 @@ export class RegisterMethod extends Message<RegisterMethod> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "system", kind: "message", T: RegisterMethod_System, oneof: "method" },
     { no: 2, name: "signup", kind: "message", T: RegisterMethod_Signup, oneof: "method" },
-    { no: 3, name: "oauth_provider", kind: "enum", T: proto3.getEnumType(OauthProvider), oneof: "method" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisterMethod {
@@ -327,12 +340,6 @@ export class AuthMethod extends Message<AuthMethod> {
      */
     value: LoginType;
     case: "loginType";
-  } | {
-    /**
-     * @generated from field: model.OauthProvider oauth_provider = 2;
-     */
-    value: OauthProvider;
-    case: "oauthProvider";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<AuthMethod>) {
@@ -344,7 +351,6 @@ export class AuthMethod extends Message<AuthMethod> {
   static readonly typeName = "api.v1.user.settings.AuthMethod";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "login_type", kind: "enum", T: proto3.getEnumType(LoginType), oneof: "method" },
-    { no: 2, name: "oauth_provider", kind: "enum", T: proto3.getEnumType(OauthProvider), oneof: "method" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AuthMethod {
@@ -409,14 +415,24 @@ export class Settings extends Message<Settings> {
   loginMechanisms: LoginType[] = [];
 
   /**
-   * @generated from field: api.v1.user.settings.OauthSettings oauth_settings = 9;
-   */
-  oauthSettings?: OauthSettings;
-
-  /**
    * @generated from field: bool send_welcome_mail = 10;
    */
   sendWelcomeMail = false;
+
+  /**
+   * @generated from field: api.v1.user.settings.EmailProviderEntry email_provider = 11;
+   */
+  emailProvider?: EmailProviderEntry;
+
+  /**
+   * @generated from field: api.v1.user.settings.TextProviderEntry text_provider = 12;
+   */
+  textProvider?: TextProviderEntry;
+
+  /**
+   * @generated from field: api.v1.user.settings.Templates templates = 13;
+   */
+  templates?: Templates;
 
   constructor(data?: PartialMessage<Settings>) {
     super();
@@ -434,8 +450,10 @@ export class Settings extends Message<Settings> {
     { no: 6, name: "verification_code_ttl", kind: "message", T: Duration },
     { no: 7, name: "password_hashing", kind: "message", T: HashingConfig },
     { no: 8, name: "login_mechanisms", kind: "enum", T: proto3.getEnumType(LoginType), repeated: true },
-    { no: 9, name: "oauth_settings", kind: "message", T: OauthSettings },
     { no: 10, name: "send_welcome_mail", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: "email_provider", kind: "message", T: EmailProviderEntry },
+    { no: 12, name: "text_provider", kind: "message", T: TextProviderEntry },
+    { no: 13, name: "templates", kind: "message", T: Templates },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Settings {
@@ -456,74 +474,256 @@ export class Settings extends Message<Settings> {
 }
 
 /**
- * @generated from message api.v1.user.settings.OauthProviderSettings
+ * @generated from message api.v1.user.settings.DefaultInstance
  */
-export class OauthProviderSettings extends Message<OauthProviderSettings> {
-  /**
-   * @generated from field: string secret_id = 1;
-   */
-  secretId = "";
-
-  /**
-   * @generated from field: string client_id = 2;
-   */
-  clientId = "";
-
-  /**
-   * @generated from field: string issuer = 3;
-   */
-  issuer = "";
-
-  /**
-   * @generated from field: bool allow_login = 4;
-   */
-  allowLogin = false;
-
-  /**
-   * @generated from field: bool allow_register = 5;
-   */
-  allowRegister = false;
-
-  constructor(data?: PartialMessage<OauthProviderSettings>) {
+export class DefaultInstance extends Message<DefaultInstance> {
+  constructor(data?: PartialMessage<DefaultInstance>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.user.settings.OauthProviderSettings";
+  static readonly typeName = "api.v1.user.settings.DefaultInstance";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "secret_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "allow_login", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "allow_register", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OauthProviderSettings {
-    return new OauthProviderSettings().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DefaultInstance {
+    return new DefaultInstance().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OauthProviderSettings {
-    return new OauthProviderSettings().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DefaultInstance {
+    return new DefaultInstance().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OauthProviderSettings {
-    return new OauthProviderSettings().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DefaultInstance {
+    return new DefaultInstance().fromJsonString(jsonString, options);
   }
 
-  static equals(a: OauthProviderSettings | PlainMessage<OauthProviderSettings> | undefined, b: OauthProviderSettings | PlainMessage<OauthProviderSettings> | undefined): boolean {
-    return proto3.util.equals(OauthProviderSettings, a, b);
+  static equals(a: DefaultInstance | PlainMessage<DefaultInstance> | undefined, b: DefaultInstance | PlainMessage<DefaultInstance> | undefined): boolean {
+    return proto3.util.equals(DefaultInstance, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.user.settings.OauthProviderUpdate
+ * @generated from message api.v1.user.settings.MailjetInstance
  */
-export class OauthProviderUpdate extends Message<OauthProviderUpdate> {
+export class MailjetInstance extends Message<MailjetInstance> {
+  constructor(data?: PartialMessage<MailjetInstance>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.MailjetInstance";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MailjetInstance {
+    return new MailjetInstance().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MailjetInstance {
+    return new MailjetInstance().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MailjetInstance {
+    return new MailjetInstance().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MailjetInstance | PlainMessage<MailjetInstance> | undefined, b: MailjetInstance | PlainMessage<MailjetInstance> | undefined): boolean {
+    return proto3.util.equals(MailjetInstance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.TwilioInstance
+ */
+export class TwilioInstance extends Message<TwilioInstance> {
+  constructor(data?: PartialMessage<TwilioInstance>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.TwilioInstance";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TwilioInstance {
+    return new TwilioInstance().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TwilioInstance {
+    return new TwilioInstance().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TwilioInstance {
+    return new TwilioInstance().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TwilioInstance | PlainMessage<TwilioInstance> | undefined, b: TwilioInstance | PlainMessage<TwilioInstance> | undefined): boolean {
+    return proto3.util.equals(TwilioInstance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.SmtpInstance
+ */
+export class SmtpInstance extends Message<SmtpInstance> {
   /**
-   * @generated from field: model.OauthProvider provider = 1;
+   * @generated from field: string host = 1;
    */
-  provider = OauthProvider.UNSPECIFIED;
+  host = "";
+
+  /**
+   * @generated from field: int64 port = 2;
+   */
+  port = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SmtpInstance>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.SmtpInstance";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SmtpInstance {
+    return new SmtpInstance().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SmtpInstance {
+    return new SmtpInstance().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SmtpInstance {
+    return new SmtpInstance().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SmtpInstance | PlainMessage<SmtpInstance> | undefined, b: SmtpInstance | PlainMessage<SmtpInstance> | undefined): boolean {
+    return proto3.util.equals(SmtpInstance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.EmailInstance
+ */
+export class EmailInstance extends Message<EmailInstance> {
+  /**
+   * @generated from oneof api.v1.user.settings.EmailInstance.instance
+   */
+  instance: {
+    /**
+     * @generated from field: api.v1.user.settings.DefaultInstance default = 1;
+     */
+    value: DefaultInstance;
+    case: "default";
+  } | {
+    /**
+     * @generated from field: api.v1.user.settings.MailjetInstance mailjet = 2;
+     */
+    value: MailjetInstance;
+    case: "mailjet";
+  } | {
+    /**
+     * @generated from field: api.v1.user.settings.SmtpInstance smtp = 3;
+     */
+    value: SmtpInstance;
+    case: "smtp";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<EmailInstance>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.EmailInstance";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "default", kind: "message", T: DefaultInstance, oneof: "instance" },
+    { no: 2, name: "mailjet", kind: "message", T: MailjetInstance, oneof: "instance" },
+    { no: 3, name: "smtp", kind: "message", T: SmtpInstance, oneof: "instance" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmailInstance {
+    return new EmailInstance().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmailInstance {
+    return new EmailInstance().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmailInstance {
+    return new EmailInstance().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EmailInstance | PlainMessage<EmailInstance> | undefined, b: EmailInstance | PlainMessage<EmailInstance> | undefined): boolean {
+    return proto3.util.equals(EmailInstance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.TextInstance
+ */
+export class TextInstance extends Message<TextInstance> {
+  /**
+   * @generated from oneof api.v1.user.settings.TextInstance.instance
+   */
+  instance: {
+    /**
+     * @generated from field: api.v1.user.settings.DefaultInstance default = 1;
+     */
+    value: DefaultInstance;
+    case: "default";
+  } | {
+    /**
+     * @generated from field: api.v1.user.settings.TwilioInstance twilio = 2;
+     */
+    value: TwilioInstance;
+    case: "twilio";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<TextInstance>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.TextInstance";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "default", kind: "message", T: DefaultInstance, oneof: "instance" },
+    { no: 2, name: "twilio", kind: "message", T: TwilioInstance, oneof: "instance" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TextInstance {
+    return new TextInstance().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TextInstance {
+    return new TextInstance().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TextInstance {
+    return new TextInstance().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TextInstance | PlainMessage<TextInstance> | undefined, b: TextInstance | PlainMessage<TextInstance> | undefined): boolean {
+    return proto3.util.equals(TextInstance, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.EmailProvider
+ */
+export class EmailProvider extends Message<EmailProvider> {
+  /**
+   * @generated from field: string from = 1;
+   */
+  from = "";
 
   /**
    * @generated from field: model.ProviderCredentials credentials = 2;
@@ -531,98 +731,318 @@ export class OauthProviderUpdate extends Message<OauthProviderUpdate> {
   credentials?: ProviderCredentials;
 
   /**
-   * @generated from field: bool allow_login = 3;
+   * @generated from field: api.v1.user.settings.EmailInstance instance = 3;
    */
-  allowLogin = false;
+  instance?: EmailInstance;
 
-  /**
-   * @generated from field: bool allow_register = 4;
-   */
-  allowRegister = false;
-
-  constructor(data?: PartialMessage<OauthProviderUpdate>) {
+  constructor(data?: PartialMessage<EmailProvider>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.user.settings.OauthProviderUpdate";
+  static readonly typeName = "api.v1.user.settings.EmailProvider";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "provider", kind: "enum", T: proto3.getEnumType(OauthProvider) },
+    { no: 1, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "credentials", kind: "message", T: ProviderCredentials },
-    { no: 3, name: "allow_login", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "allow_register", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "instance", kind: "message", T: EmailInstance },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OauthProviderUpdate {
-    return new OauthProviderUpdate().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmailProvider {
+    return new EmailProvider().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OauthProviderUpdate {
-    return new OauthProviderUpdate().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmailProvider {
+    return new EmailProvider().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OauthProviderUpdate {
-    return new OauthProviderUpdate().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmailProvider {
+    return new EmailProvider().fromJsonString(jsonString, options);
   }
 
-  static equals(a: OauthProviderUpdate | PlainMessage<OauthProviderUpdate> | undefined, b: OauthProviderUpdate | PlainMessage<OauthProviderUpdate> | undefined): boolean {
-    return proto3.util.equals(OauthProviderUpdate, a, b);
+  static equals(a: EmailProvider | PlainMessage<EmailProvider> | undefined, b: EmailProvider | PlainMessage<EmailProvider> | undefined): boolean {
+    return proto3.util.equals(EmailProvider, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.user.settings.OauthSettings
+ * @generated from message api.v1.user.settings.EmailProviderEntry
  */
-export class OauthSettings extends Message<OauthSettings> {
+export class EmailProviderEntry extends Message<EmailProviderEntry> {
   /**
-   * @generated from field: repeated string callback_urls = 2;
+   * @generated from field: string from = 1;
    */
-  callbackUrls: string[] = [];
+  from = "";
 
   /**
-   * @generated from field: api.v1.user.settings.OauthProviderSettings google = 3;
+   * @generated from field: string client_id = 2;
    */
-  google?: OauthProviderSettings;
+  clientId = "";
 
   /**
-   * @generated from field: api.v1.user.settings.OauthProviderSettings github = 4;
+   * @generated from field: string secret_id = 3;
    */
-  github?: OauthProviderSettings;
+  secretId = "";
 
   /**
-   * @generated from field: api.v1.user.settings.OauthProviderSettings facebook = 5;
+   * @generated from field: api.v1.user.settings.EmailInstance instance = 4;
    */
-  facebook?: OauthProviderSettings;
+  instance?: EmailInstance;
 
-  constructor(data?: PartialMessage<OauthSettings>) {
+  constructor(data?: PartialMessage<EmailProviderEntry>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.user.settings.OauthSettings";
+  static readonly typeName = "api.v1.user.settings.EmailProviderEntry";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "callback_urls", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "google", kind: "message", T: OauthProviderSettings },
-    { no: 4, name: "github", kind: "message", T: OauthProviderSettings },
-    { no: 5, name: "facebook", kind: "message", T: OauthProviderSettings },
+    { no: 1, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "secret_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "instance", kind: "message", T: EmailInstance },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OauthSettings {
-    return new OauthSettings().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmailProviderEntry {
+    return new EmailProviderEntry().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OauthSettings {
-    return new OauthSettings().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmailProviderEntry {
+    return new EmailProviderEntry().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OauthSettings {
-    return new OauthSettings().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmailProviderEntry {
+    return new EmailProviderEntry().fromJsonString(jsonString, options);
   }
 
-  static equals(a: OauthSettings | PlainMessage<OauthSettings> | undefined, b: OauthSettings | PlainMessage<OauthSettings> | undefined): boolean {
-    return proto3.util.equals(OauthSettings, a, b);
+  static equals(a: EmailProviderEntry | PlainMessage<EmailProviderEntry> | undefined, b: EmailProviderEntry | PlainMessage<EmailProviderEntry> | undefined): boolean {
+    return proto3.util.equals(EmailProviderEntry, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.TextProvider
+ */
+export class TextProvider extends Message<TextProvider> {
+  /**
+   * @generated from field: string from = 1;
+   */
+  from = "";
+
+  /**
+   * @generated from field: model.ProviderCredentials credentials = 2;
+   */
+  credentials?: ProviderCredentials;
+
+  /**
+   * @generated from field: api.v1.user.settings.TextInstance instance = 3;
+   */
+  instance?: TextInstance;
+
+  constructor(data?: PartialMessage<TextProvider>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.TextProvider";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "credentials", kind: "message", T: ProviderCredentials },
+    { no: 3, name: "instance", kind: "message", T: TextInstance },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TextProvider {
+    return new TextProvider().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TextProvider {
+    return new TextProvider().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TextProvider {
+    return new TextProvider().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TextProvider | PlainMessage<TextProvider> | undefined, b: TextProvider | PlainMessage<TextProvider> | undefined): boolean {
+    return proto3.util.equals(TextProvider, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.TextProviderEntry
+ */
+export class TextProviderEntry extends Message<TextProviderEntry> {
+  /**
+   * @generated from field: string from = 1;
+   */
+  from = "";
+
+  /**
+   * @generated from field: string client_id = 2;
+   */
+  clientId = "";
+
+  /**
+   * @generated from field: string secret_id = 3;
+   */
+  secretId = "";
+
+  /**
+   * @generated from field: api.v1.user.settings.TextInstance instance = 4;
+   */
+  instance?: TextInstance;
+
+  constructor(data?: PartialMessage<TextProviderEntry>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.TextProviderEntry";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "secret_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "instance", kind: "message", T: TextInstance },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TextProviderEntry {
+    return new TextProviderEntry().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TextProviderEntry {
+    return new TextProviderEntry().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TextProviderEntry {
+    return new TextProviderEntry().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TextProviderEntry | PlainMessage<TextProviderEntry> | undefined, b: TextProviderEntry | PlainMessage<TextProviderEntry> | undefined): boolean {
+    return proto3.util.equals(TextProviderEntry, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.Template
+ */
+export class Template extends Message<Template> {
+  /**
+   * @generated from field: string body = 1;
+   */
+  body = "";
+
+  /**
+   * @generated from field: string subject = 2;
+   */
+  subject = "";
+
+  /**
+   * @generated from field: api.v1.user.settings.TemplateType type = 3;
+   */
+  type = TemplateType.UNSPECIFIED;
+
+  /**
+   * @generated from field: repeated string format = 4;
+   */
+  format: string[] = [];
+
+  constructor(data?: PartialMessage<Template>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.Template";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "type", kind: "enum", T: proto3.getEnumType(TemplateType) },
+    { no: 4, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Template {
+    return new Template().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Template {
+    return new Template().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Template {
+    return new Template().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Template | PlainMessage<Template> | undefined, b: Template | PlainMessage<Template> | undefined): boolean {
+    return proto3.util.equals(Template, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.user.settings.Templates
+ */
+export class Templates extends Message<Templates> {
+  /**
+   * @generated from field: api.v1.user.settings.Template welcome_email = 1;
+   */
+  welcomeEmail?: Template;
+
+  /**
+   * @generated from field: api.v1.user.settings.Template welcome_text = 2;
+   */
+  welcomeText?: Template;
+
+  /**
+   * @generated from field: api.v1.user.settings.Template reset_password_email = 3;
+   */
+  resetPasswordEmail?: Template;
+
+  /**
+   * @generated from field: api.v1.user.settings.Template reset_password_text = 4;
+   */
+  resetPasswordText?: Template;
+
+  /**
+   * @generated from field: api.v1.user.settings.Template verify_email = 5;
+   */
+  verifyEmail?: Template;
+
+  /**
+   * @generated from field: api.v1.user.settings.Template verify_phone_number = 6;
+   */
+  verifyPhoneNumber?: Template;
+
+  constructor(data?: PartialMessage<Templates>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.user.settings.Templates";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "welcome_email", kind: "message", T: Template },
+    { no: 2, name: "welcome_text", kind: "message", T: Template },
+    { no: 3, name: "reset_password_email", kind: "message", T: Template },
+    { no: 4, name: "reset_password_text", kind: "message", T: Template },
+    { no: 5, name: "verify_email", kind: "message", T: Template },
+    { no: 6, name: "verify_phone_number", kind: "message", T: Template },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Templates {
+    return new Templates().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Templates {
+    return new Templates().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Templates {
+    return new Templates().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Templates | PlainMessage<Templates> | undefined, b: Templates | PlainMessage<Templates> | undefined): boolean {
+    return proto3.util.equals(Templates, a, b);
   }
 }
 

@@ -37,35 +37,3 @@ proto3.util.setEnumType(LoginType, "model.LoginType", [
   { no: 3, name: "LOGIN_TYPE_USERNAME_PASSWORD" },
 ]);
 
-/**
- * @generated from enum model.OauthProvider
- */
-export enum OauthProvider {
-  /**
-   * @generated from enum value: OAUTH_PROVIDER_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: OAUTH_PROVIDER_GOOGLE = 1;
-   */
-  GOOGLE = 1,
-
-  /**
-   * @generated from enum value: OAUTH_PROVIDER_GITHUB = 2;
-   */
-  GITHUB = 2,
-
-  /**
-   * @generated from enum value: OAUTH_PROVIDER_FACEBOOK = 3;
-   */
-  FACEBOOK = 3,
-}
-// Retrieve enum metadata with: proto3.getEnumType(OauthProvider)
-proto3.util.setEnumType(OauthProvider, "model.OauthProvider", [
-  { no: 0, name: "OAUTH_PROVIDER_UNSPECIFIED" },
-  { no: 1, name: "OAUTH_PROVIDER_GOOGLE" },
-  { no: 2, name: "OAUTH_PROVIDER_GITHUB" },
-  { no: 3, name: "OAUTH_PROVIDER_FACEBOOK" },
-]);
-

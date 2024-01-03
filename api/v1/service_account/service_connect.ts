@@ -7,7 +7,7 @@ import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, ListReque
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * The service to manage your project Service Accounts
+ * The service to manage your Service Accounts
  *
  * @generated from service api.v1.service_account.Service
  */
@@ -28,7 +28,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * List all service accounts for the current project.
+     * List all service accounts.
      *
      * @generated from rpc api.v1.service_account.Service.List
      */

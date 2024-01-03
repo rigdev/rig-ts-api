@@ -7,49 +7,6 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message api.v1.authentication.OauthProvider
- */
-export class OauthProvider extends Message<OauthProvider> {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name = "";
-
-  /**
-   * @generated from field: string provider_url = 2;
-   */
-  providerUrl = "";
-
-  constructor(data?: PartialMessage<OauthProvider>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.authentication.OauthProvider";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "provider_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OauthProvider {
-    return new OauthProvider().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OauthProvider {
-    return new OauthProvider().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OauthProvider {
-    return new OauthProvider().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: OauthProvider | PlainMessage<OauthProvider> | undefined, b: OauthProvider | PlainMessage<OauthProvider> | undefined): boolean {
-    return proto3.util.equals(OauthProvider, a, b);
-  }
-}
-
-/**
  * @generated from message api.v1.authentication.Token
  */
 export class Token extends Message<Token> {
