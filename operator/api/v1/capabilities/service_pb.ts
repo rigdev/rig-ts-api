@@ -46,6 +46,16 @@ export class GetResponse extends Message<GetResponse> {
    */
   ingress = false;
 
+  /**
+   * @generated from field: bool has_prometheus_service_monitor = 2;
+   */
+  hasPrometheusServiceMonitor = false;
+
+  /**
+   * @generated from field: bool has_custom_metrics = 3;
+   */
+  hasCustomMetrics = false;
+
   constructor(data?: PartialMessage<GetResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -55,6 +65,8 @@ export class GetResponse extends Message<GetResponse> {
   static readonly typeName = "api.v1.capabilities.GetResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "ingress", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "has_prometheus_service_monitor", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "has_custom_metrics", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
