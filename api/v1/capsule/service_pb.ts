@@ -1151,6 +1151,11 @@ export class DeployRequest extends Message<DeployRequest> {
    */
   environmentId = "";
 
+  /**
+   * @generated from field: string message = 6;
+   */
+  message = "";
+
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1164,6 +1169,7 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 3, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
