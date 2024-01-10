@@ -213,6 +213,11 @@ export class RolloutConfig extends Message<RolloutConfig> {
    */
   environmentId = "";
 
+  /**
+   * @generated from field: string message = 13;
+   */
+  message = "";
+
   constructor(data?: PartialMessage<RolloutConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -233,6 +238,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 10, name: "horizontal_scale", kind: "message", T: HorizontalScale },
     { no: 11, name: "cron_jobs", kind: "message", T: CronJob, repeated: true },
     { no: 12, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutConfig {
@@ -327,11 +333,6 @@ export class RolloutStatus extends Message<RolloutStatus> {
    */
   updatedAt?: Timestamp;
 
-  /**
-   * @generated from field: string message = 3;
-   */
-  message = "";
-
   constructor(data?: PartialMessage<RolloutStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -342,7 +343,6 @@ export class RolloutStatus extends Message<RolloutStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "state", kind: "enum", T: proto3.getEnumType(RolloutState) },
     { no: 2, name: "updated_at", kind: "message", T: Timestamp },
-    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutStatus {
