@@ -835,6 +835,16 @@ export class ReadyStep extends Message<ReadyStep> {
    */
   state = ReadyState.UNSPECIFIED;
 
+  /**
+   * @generated from field: google.protobuf.Timestamp failed_at = 3;
+   */
+  failedAt?: Timestamp;
+
+  /**
+   * @generated from field: uint32 fail_count = 4;
+   */
+  failCount = 0;
+
   constructor(data?: PartialMessage<ReadyStep>) {
     super();
     proto3.util.initPartial(data, this);
@@ -845,6 +855,8 @@ export class ReadyStep extends Message<ReadyStep> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "info", kind: "message", T: StepInfo },
     { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(ReadyState) },
+    { no: 3, name: "failed_at", kind: "message", T: Timestamp },
+    { no: 4, name: "fail_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReadyStep {

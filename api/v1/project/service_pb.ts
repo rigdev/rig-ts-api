@@ -333,11 +333,6 @@ export class ListRequest extends Message<ListRequest> {
    */
   pagination?: Pagination;
 
-  /**
-   * @generated from field: string project_id = 2;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -347,7 +342,6 @@ export class ListRequest extends Message<ListRequest> {
   static readonly typeName = "api.v1.project.ListRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "pagination", kind: "message", T: Pagination },
-    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
