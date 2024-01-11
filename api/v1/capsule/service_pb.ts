@@ -1156,6 +1156,19 @@ export class DeployRequest extends Message<DeployRequest> {
    */
   message = "";
 
+  /**
+   * @generated from field: bool dry_run = 7;
+   */
+  dryRun = false;
+
+  /**
+   * If not zero, this will constrain the rollout only to be created if the currently running rollout matches this
+   * identifier. If this check fails, the request will return an `Aborted` error.
+   *
+   * @generated from field: uint64 current_rollout_id = 8;
+   */
+  currentRolloutId = protoInt64.zero;
+
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1170,6 +1183,8 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "current_rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
@@ -1198,6 +1213,11 @@ export class DeployResponse extends Message<DeployResponse> {
    */
   rolloutId = protoInt64.zero;
 
+  /**
+   * @generated from field: map<string, string> resource_yaml = 2;
+   */
+  resourceYaml: { [key: string]: string } = {};
+
   constructor(data?: PartialMessage<DeployResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1207,6 +1227,7 @@ export class DeployResponse extends Message<DeployResponse> {
   static readonly typeName = "api.v1.capsule.DeployResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployResponse {
