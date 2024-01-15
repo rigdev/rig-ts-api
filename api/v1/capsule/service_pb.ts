@@ -10,9 +10,9 @@ import { Log } from "./log_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Build, Origin } from "./build_pb.js";
 import { Change } from "./change_pb.js";
+import { Rollout, RolloutConfig } from "./rollout_pb.js";
 import { Instance } from "./instance_pb.js";
 import { Status } from "./instance/status_pb.js";
-import { Rollout } from "./rollout_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics } from "./metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
@@ -1162,8 +1162,9 @@ export class DeployRequest extends Message<DeployRequest> {
   dryRun = false;
 
   /**
-   * If not zero, this will constrain the rollout only to be created if the currently running rollout matches this
-   * identifier. If this check fails, the request will return an `Aborted` error.
+   * If not zero, this will constrain the rollout only to be created if the
+   * currently running rollout matches this identifier. If this check fails, the
+   * request will return an `Aborted` error.
    *
    * @generated from field: uint64 current_rollout_id = 8;
    */
@@ -1218,6 +1219,11 @@ export class DeployResponse extends Message<DeployResponse> {
    */
   resourceYaml: { [key: string]: string } = {};
 
+  /**
+   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 3;
+   */
+  rolloutConfig?: RolloutConfig;
+
   constructor(data?: PartialMessage<DeployResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1228,6 +1234,7 @@ export class DeployResponse extends Message<DeployResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "rollout_config", kind: "message", T: RolloutConfig },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployResponse {
