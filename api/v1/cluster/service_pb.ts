@@ -132,6 +132,74 @@ export class GetConfigResponse extends Message<GetConfigResponse> {
 }
 
 /**
+ * @generated from message api.v1.cluster.GetConfigsRequest
+ */
+export class GetConfigsRequest extends Message<GetConfigsRequest> {
+  constructor(data?: PartialMessage<GetConfigsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.cluster.GetConfigsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigsRequest {
+    return new GetConfigsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetConfigsRequest {
+    return new GetConfigsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetConfigsRequest {
+    return new GetConfigsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetConfigsRequest | PlainMessage<GetConfigsRequest> | undefined, b: GetConfigsRequest | PlainMessage<GetConfigsRequest> | undefined): boolean {
+    return proto3.util.equals(GetConfigsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.cluster.GetConfigsResponse
+ */
+export class GetConfigsResponse extends Message<GetConfigsResponse> {
+  /**
+   * @generated from field: repeated api.v1.cluster.GetConfigResponse clusters = 1;
+   */
+  clusters: GetConfigResponse[] = [];
+
+  constructor(data?: PartialMessage<GetConfigsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.cluster.GetConfigsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "clusters", kind: "message", T: GetConfigResponse, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigsResponse {
+    return new GetConfigsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetConfigsResponse {
+    return new GetConfigsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetConfigsResponse {
+    return new GetConfigsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetConfigsResponse | PlainMessage<GetConfigsResponse> | undefined, b: GetConfigsResponse | PlainMessage<GetConfigsResponse> | undefined): boolean {
+    return proto3.util.equals(GetConfigsResponse, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.cluster.DockerDaemon
  */
 export class DockerDaemon extends Message<DockerDaemon> {

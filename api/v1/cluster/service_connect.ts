@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetConfigRequest, GetConfigResponse } from "./service_pb.js";
+import { GetConfigRequest, GetConfigResponse, GetConfigsRequest, GetConfigsResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -23,6 +23,17 @@ export const Service = {
       name: "GetConfig",
       I: GetConfigRequest,
       O: GetConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * GetConfigs returns the configs for all clusters
+     *
+     * @generated from rpc api.v1.cluster.Service.GetConfigs
+     */
+    getConfigs: {
+      name: "GetConfigs",
+      I: GetConfigsRequest,
+      O: GetConfigsResponse,
       kind: MethodKind.Unary,
     },
   }
