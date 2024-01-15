@@ -36,6 +36,11 @@ proto3.util.setEnumType(ClusterType, "api.v1.cluster.ClusterType", [
  * @generated from message api.v1.cluster.GetConfigRequest
  */
 export class GetConfigRequest extends Message<GetConfigRequest> {
+  /**
+   * @generated from field: string environment_id = 1;
+   */
+  environmentId = "";
+
   constructor(data?: PartialMessage<GetConfigRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -44,6 +49,7 @@ export class GetConfigRequest extends Message<GetConfigRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.cluster.GetConfigRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigRequest {
