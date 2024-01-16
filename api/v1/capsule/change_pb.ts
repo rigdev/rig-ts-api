@@ -70,12 +70,6 @@ export class Change extends Message<Change> {
     case: "rollback";
   } | {
     /**
-     * @generated from field: api.v1.capsule.Change.CronJobs cron_jobs = 10;
-     */
-    value: Change_CronJobs;
-    case: "cronJobs";
-  } | {
-    /**
      * @generated from field: api.v1.capsule.Change.EnvironmentVariable set_environment_variable = 11;
      */
     value: Change_EnvironmentVariable;
@@ -104,6 +98,18 @@ export class Change extends Message<Change> {
      */
     value: Change_CommandArguments;
     case: "commandArguments";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.CronJob add_cron_job = 16;
+     */
+    value: CronJob;
+    case: "addCronJob";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.Change.RemoveCronJob remove_cron_job = 17;
+     */
+    value: Change_RemoveCronJob;
+    case: "removeCronJob";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -123,12 +129,13 @@ export class Change extends Message<Change> {
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 8, name: "horizontal_scale", kind: "message", T: HorizontalScale, oneof: "field" },
     { no: 9, name: "rollback", kind: "message", T: Change_Rollback, oneof: "field" },
-    { no: 10, name: "cron_jobs", kind: "message", T: Change_CronJobs, oneof: "field" },
     { no: 11, name: "set_environment_variable", kind: "message", T: Change_EnvironmentVariable, oneof: "field" },
     { no: 12, name: "remove_environment_variable", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 13, name: "set_environment_source", kind: "message", T: EnvironmentSource, oneof: "field" },
     { no: 14, name: "remove_environment_source", kind: "message", T: EnvironmentSource, oneof: "field" },
     { no: 15, name: "command_arguments", kind: "message", T: Change_CommandArguments, oneof: "field" },
+    { no: 16, name: "add_cron_job", kind: "message", T: CronJob, oneof: "field" },
+    { no: 17, name: "remove_cron_job", kind: "message", T: Change_RemoveCronJob, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -354,6 +361,43 @@ export class Change_CommandArguments extends Message<Change_CommandArguments> {
 
   static equals(a: Change_CommandArguments | PlainMessage<Change_CommandArguments> | undefined, b: Change_CommandArguments | PlainMessage<Change_CommandArguments> | undefined): boolean {
     return proto3.util.equals(Change_CommandArguments, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Change.RemoveCronJob
+ */
+export class Change_RemoveCronJob extends Message<Change_RemoveCronJob> {
+  /**
+   * @generated from field: string job_name = 1;
+   */
+  jobName = "";
+
+  constructor(data?: PartialMessage<Change_RemoveCronJob>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Change.RemoveCronJob";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "job_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_RemoveCronJob {
+    return new Change_RemoveCronJob().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_RemoveCronJob {
+    return new Change_RemoveCronJob().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_RemoveCronJob {
+    return new Change_RemoveCronJob().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Change_RemoveCronJob | PlainMessage<Change_RemoveCronJob> | undefined, b: Change_RemoveCronJob | PlainMessage<Change_RemoveCronJob> | undefined): boolean {
+    return proto3.util.equals(Change_RemoveCronJob, a, b);
   }
 }
 
