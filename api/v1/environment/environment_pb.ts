@@ -20,6 +20,11 @@ export class Environment extends Message<Environment> {
    */
   default = false;
 
+  /**
+   * @generated from field: string operator_version = 3;
+   */
+  operatorVersion = "";
+
   constructor(data?: PartialMessage<Environment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -30,6 +35,7 @@ export class Environment extends Message<Environment> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "operator_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {

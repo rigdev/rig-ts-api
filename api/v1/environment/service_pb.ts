@@ -54,6 +54,11 @@ export class ListResponse extends Message<ListResponse> {
    */
   environments: Environment[] = [];
 
+  /**
+   * @generated from field: string platform_verison = 2;
+   */
+  platformVerison = "";
+
   constructor(data?: PartialMessage<ListResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -63,6 +68,7 @@ export class ListResponse extends Message<ListResponse> {
   static readonly typeName = "api.v1.environment.ListResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environments", kind: "message", T: Environment, repeated: true },
+    { no: 2, name: "platform_verison", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListResponse {
