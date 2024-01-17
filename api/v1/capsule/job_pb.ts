@@ -88,6 +88,11 @@ export class JobExecution extends Message<JobExecution> {
    */
   projectId = "";
 
+  /**
+   * @generated from field: string execution_id = 9;
+   */
+  executionId = "";
+
   constructor(data?: PartialMessage<JobExecution>) {
     super();
     proto3.util.initPartial(data, this);
@@ -104,6 +109,7 @@ export class JobExecution extends Message<JobExecution> {
     { no: 6, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 7, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "execution_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JobExecution {
