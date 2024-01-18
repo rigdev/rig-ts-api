@@ -56,6 +56,11 @@ export class GetResponse extends Message<GetResponse> {
    */
   hasCustomMetrics = false;
 
+  /**
+   * @generated from field: bool has_vertical_pod_autoscaler = 4;
+   */
+  hasVerticalPodAutoscaler = false;
+
   constructor(data?: PartialMessage<GetResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -67,6 +72,7 @@ export class GetResponse extends Message<GetResponse> {
     { no: 1, name: "ingress", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 2, name: "has_prometheus_service_monitor", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "has_custom_metrics", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "has_vertical_pod_autoscaler", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
