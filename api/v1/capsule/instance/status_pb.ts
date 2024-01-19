@@ -260,6 +260,11 @@ export class Stages extends Message<Stages> {
    */
   running?: RunningStage;
 
+  /**
+   * @generated from field: api.v1.capsule.instance.DeletedStage deleted = 4;
+   */
+  deleted?: DeletedStage;
+
   constructor(data?: PartialMessage<Stages>) {
     super();
     proto3.util.initPartial(data, this);
@@ -271,6 +276,7 @@ export class Stages extends Message<Stages> {
     { no: 1, name: "schedule", kind: "message", T: SchedulingStage },
     { no: 2, name: "preparing", kind: "message", T: PreparingStage },
     { no: 3, name: "running", kind: "message", T: RunningStage },
+    { no: 4, name: "deleted", kind: "message", T: DeletedStage },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Stages {
@@ -1009,6 +1015,92 @@ export class ContainerTermination extends Message<ContainerTermination> {
 
   static equals(a: ContainerTermination | PlainMessage<ContainerTermination> | undefined, b: ContainerTermination | PlainMessage<ContainerTermination> | undefined): boolean {
     return proto3.util.equals(ContainerTermination, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.DeletedStage
+ */
+export class DeletedStage extends Message<DeletedStage> {
+  /**
+   * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
+   */
+  info?: StageInfo;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.instance.DeletedStep steps = 2;
+   */
+  steps: DeletedStep[] = [];
+
+  constructor(data?: PartialMessage<DeletedStage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.DeletedStage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StageInfo },
+    { no: 2, name: "steps", kind: "message", T: DeletedStep, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeletedStage {
+    return new DeletedStage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeletedStage {
+    return new DeletedStage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeletedStage {
+    return new DeletedStage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeletedStage | PlainMessage<DeletedStage> | undefined, b: DeletedStage | PlainMessage<DeletedStage> | undefined): boolean {
+    return proto3.util.equals(DeletedStage, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.DeletedStep
+ */
+export class DeletedStep extends Message<DeletedStep> {
+  /**
+   * @generated from oneof api.v1.capsule.instance.DeletedStep.step
+   */
+  step: {
+    /**
+     * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
+     */
+    value: GenericStep;
+    case: "generic";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<DeletedStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.DeletedStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "generic", kind: "message", T: GenericStep, oneof: "step" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeletedStep {
+    return new DeletedStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeletedStep {
+    return new DeletedStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeletedStep {
+    return new DeletedStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeletedStep | PlainMessage<DeletedStep> | undefined, b: DeletedStep | PlainMessage<DeletedStep> | undefined): boolean {
+    return proto3.util.equals(DeletedStep, a, b);
   }
 }
 

@@ -1278,6 +1278,16 @@ export class ListInstancesRequest extends Message<ListInstancesRequest> {
    */
   environmentId = "";
 
+  /**
+   * @generated from field: bool include_deleted = 5;
+   */
+  includeDeleted = false;
+
+  /**
+   * @generated from field: bool exclude_existing = 6;
+   */
+  excludeExisting = false;
+
   constructor(data?: PartialMessage<ListInstancesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1290,6 +1300,8 @@ export class ListInstancesRequest extends Message<ListInstancesRequest> {
     { no: 2, name: "pagination", kind: "message", T: Pagination },
     { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "include_deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "exclude_existing", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstancesRequest {
@@ -1468,6 +1480,16 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
    */
   environmentId = "";
 
+  /**
+   * @generated from field: bool include_deleted = 5;
+   */
+  includeDeleted = false;
+
+  /**
+   * @generated from field: bool exclude_existing = 6;
+   */
+  excludeExisting = false;
+
   constructor(data?: PartialMessage<ListInstanceStatusesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1480,6 +1502,8 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
     { no: 2, name: "pagination", kind: "message", T: Pagination },
     { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "include_deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "exclude_existing", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListInstanceStatusesRequest {
