@@ -110,6 +110,18 @@ export class Change extends Message<Change> {
      */
     value: Change_RemoveCronJob;
     case: "removeCronJob";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.Interface add_interface = 18;
+     */
+    value: Interface;
+    case: "addInterface";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.Change.RemoveInterface remove_interface = 19;
+     */
+    value: Change_RemoveInterface;
+    case: "removeInterface";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -136,6 +148,8 @@ export class Change extends Message<Change> {
     { no: 15, name: "command_arguments", kind: "message", T: Change_CommandArguments, oneof: "field" },
     { no: 16, name: "add_cron_job", kind: "message", T: CronJob, oneof: "field" },
     { no: 17, name: "remove_cron_job", kind: "message", T: Change_RemoveCronJob, oneof: "field" },
+    { no: 18, name: "add_interface", kind: "message", T: Interface, oneof: "field" },
+    { no: 19, name: "remove_interface", kind: "message", T: Change_RemoveInterface, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -398,6 +412,43 @@ export class Change_RemoveCronJob extends Message<Change_RemoveCronJob> {
 
   static equals(a: Change_RemoveCronJob | PlainMessage<Change_RemoveCronJob> | undefined, b: Change_RemoveCronJob | PlainMessage<Change_RemoveCronJob> | undefined): boolean {
     return proto3.util.equals(Change_RemoveCronJob, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Change.RemoveInterface
+ */
+export class Change_RemoveInterface extends Message<Change_RemoveInterface> {
+  /**
+   * @generated from field: string interface_name = 1;
+   */
+  interfaceName = "";
+
+  constructor(data?: PartialMessage<Change_RemoveInterface>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Change.RemoveInterface";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_RemoveInterface {
+    return new Change_RemoveInterface().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_RemoveInterface {
+    return new Change_RemoveInterface().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_RemoveInterface {
+    return new Change_RemoveInterface().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Change_RemoveInterface | PlainMessage<Change_RemoveInterface> | undefined, b: Change_RemoveInterface | PlainMessage<Change_RemoveInterface> | undefined): boolean {
+    return proto3.util.equals(Change_RemoveInterface, a, b);
   }
 }
 
