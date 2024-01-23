@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateBuildRequest, CreateBuildResponse, CreateRequest, CreateResponse, DeleteBuildRequest, DeleteBuildResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListBuildsRequest, ListBuildsResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -78,41 +78,6 @@ export const Service = {
       name: "List",
       I: ListRequest,
       O: ListResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Create a new build.
-     * Builds are immutable and cannot change. Create a new build to make
-     * changes from an existing one.
-     *
-     * @generated from rpc api.v1.capsule.Service.CreateBuild
-     */
-    createBuild: {
-      name: "CreateBuild",
-      I: CreateBuildRequest,
-      O: CreateBuildResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * List builds for a capsule.
-     *
-     * @generated from rpc api.v1.capsule.Service.ListBuilds
-     */
-    listBuilds: {
-      name: "ListBuilds",
-      I: ListBuildsRequest,
-      O: ListBuildsResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Delete a build.
-     *
-     * @generated from rpc api.v1.capsule.Service.DeleteBuild
-     */
-    deleteBuild: {
-      name: "DeleteBuild",
-      I: DeleteBuildRequest,
-      O: DeleteBuildResponse,
       kind: MethodKind.Unary,
     },
     /**
