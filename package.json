@@ -1,6 +1,6 @@
 {
     "name": "@rigdev/api",
-    "version": "0.0.2-dev.105",
+    "version": "0.0.2-dev.106",
     "main": "./index.js",
     "types": "./index.d.ts",
     "description": "",
