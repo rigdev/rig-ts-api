@@ -312,6 +312,11 @@ export class CreateRequest extends Message<CreateRequest> {
    */
   skipImageCheck = false;
 
+  /**
+   * @generated from field: string project_id = 7;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<CreateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -326,6 +331,7 @@ export class CreateRequest extends Message<CreateRequest> {
     { no: 4, name: "origin", kind: "message", T: Origin },
     { no: 5, name: "labels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 6, name: "skip_image_check", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
@@ -402,6 +408,11 @@ export class ListRequest extends Message<ListRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -412,6 +423,7 @@ export class ListRequest extends Message<ListRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
@@ -488,6 +500,11 @@ export class DeleteRequest extends Message<DeleteRequest> {
    */
   buildId = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<DeleteRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -498,6 +515,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRequest {
@@ -562,6 +580,11 @@ export class GetRequest extends Message<GetRequest> {
    */
   buildId = "";
 
+  /**
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<GetRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -572,6 +595,7 @@ export class GetRequest extends Message<GetRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
