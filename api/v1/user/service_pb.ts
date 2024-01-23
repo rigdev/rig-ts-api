@@ -10,10 +10,14 @@ import { SessionEntry, Update, User } from "./user_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 
 /**
+ * Request to get a user by an identifier.
+ *
  * @generated from message api.v1.user.GetByIdentifierRequest
  */
 export class GetByIdentifierRequest extends Message<GetByIdentifierRequest> {
   /**
+   * The identifier to lookup.
+   *
    * @generated from field: model.UserIdentifier identifier = 1;
    */
   identifier?: UserIdentifier;
@@ -47,10 +51,14 @@ export class GetByIdentifierRequest extends Message<GetByIdentifierRequest> {
 }
 
 /**
+ * Response to get a user by an identifier.
+ *
  * @generated from message api.v1.user.GetByIdentifierResponse
  */
 export class GetByIdentifierResponse extends Message<GetByIdentifierResponse> {
   /**
+   * The user.
+   *
    * @generated from field: api.v1.user.User user = 1;
    */
   user?: User;
@@ -84,7 +92,7 @@ export class GetByIdentifierResponse extends Message<GetByIdentifierResponse> {
 }
 
 /**
- * The request of a Users.Create RPC
+ * The request to create a user.
  *
  * @generated from message api.v1.user.CreateRequest
  */
@@ -97,6 +105,8 @@ export class CreateRequest extends Message<CreateRequest> {
   initializers: Update[] = [];
 
   /**
+   * If set, the user will be added to this group upon creation.
+   *
    * @generated from field: string initial_group_id = 2;
    */
   initialGroupId = "";
@@ -131,7 +141,7 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
- * The response of a Users.Create RPC
+ * The response of creating a user.
  *
  * @generated from message api.v1.user.CreateResponse
  */
@@ -172,19 +182,21 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
- * The request of a Users.Update RPC
+ * The request of updating a user.
  *
  * @generated from message api.v1.user.UpdateRequest
  */
 export class UpdateRequest extends Message<UpdateRequest> {
   /**
-   * The user identifier to fetch the user
+   * The user identifier of the user to update.
    *
    * @generated from field: string user_id = 1;
    */
   userId = "";
 
   /**
+   * The updates to apply to the user.
+   *
    * @generated from field: repeated api.v1.user.Update updates = 2;
    */
   updates: Update[] = [];
@@ -219,7 +231,7 @@ export class UpdateRequest extends Message<UpdateRequest> {
 }
 
 /**
- * The response of a Users.Update RPC
+ * Empty update response.
  *
  * @generated from message api.v1.user.UpdateResponse
  */
@@ -252,13 +264,13 @@ export class UpdateResponse extends Message<UpdateResponse> {
 }
 
 /**
- * The request of an Users.Get RPC
+ * Get request for retrieving a user.
  *
  * @generated from message api.v1.user.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
-   * The user identifier to fetch the user
+   * The user identifier to fetch the user.
    *
    * @generated from field: string user_id = 1;
    */
@@ -293,12 +305,14 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
- * The response of an Users.Get RPC
+ * The response of getting a user.
  *
  * @generated from message api.v1.user.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The retrieved user.
+   *
    * @generated from field: api.v1.user.User user = 1;
    */
   user?: User;
@@ -332,17 +346,21 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
- * The request of an Users.ListSessions RPC
+ * Request to list a users login sessions.
  *
  * @generated from message api.v1.user.ListSessionsRequest
  */
 export class ListSessionsRequest extends Message<ListSessionsRequest> {
   /**
+   * The user to retrieve sessions for.
+   *
    * @generated from field: string user_id = 1;
    */
   userId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
@@ -377,17 +395,21 @@ export class ListSessionsRequest extends Message<ListSessionsRequest> {
 }
 
 /**
- * The response of a Users.ListSessions RPC
+ * The response of listing a users login sessions.
  *
  * @generated from message api.v1.user.ListSessionsResponse
  */
 export class ListSessionsResponse extends Message<ListSessionsResponse> {
   /**
+   * The retrieved sessions.
+   *
    * @generated from field: repeated api.v1.user.SessionEntry sessions = 1;
    */
   sessions: SessionEntry[] = [];
 
   /**
+   * The total number of sessions.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -422,13 +444,13 @@ export class ListSessionsResponse extends Message<ListSessionsResponse> {
 }
 
 /**
- * The request of an Users.Delete RPC
+ * Request for deleting a user.
  *
  * @generated from message api.v1.user.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
-   * The user identifier to fetch the user
+   * The user identifier to fetch the user.
    *
    * @generated from field: string user_id = 1;
    */
@@ -463,7 +485,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
- * The response of an Users.Delete RPC
+ * Empty response for deleting a user.
  *
  * @generated from message api.v1.user.DeleteResponse
  */
@@ -496,17 +518,21 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
- * The request of a Users.List RPC
+ * Request for listing users.
  *
  * @generated from message api.v1.user.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 1;
    */
   pagination?: Pagination;
 
   /**
+   * Search string.
+   *
    * @generated from field: string search = 2;
    */
   search = "";
@@ -541,20 +567,20 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
- * The response of a Users.List RPC
+ * Response for listing users.
  *
  * @generated from message api.v1.user.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
-   * The users returned
+   * The users returned.
    *
    * @generated from field: repeated model.UserEntry users = 1;
    */
   users: UserEntry[] = [];
 
   /**
-   * Return number of users in database
+   * total number of users.
    *
    * @generated from field: uint64 total = 2;
    */

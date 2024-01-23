@@ -8,30 +8,42 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Metadata } from "../../../model/metadata_pb.js";
 
 /**
+ * Role model for Role based access control.
+ *
  * @generated from message api.v1.role.Role
  */
 export class Role extends Message<Role> {
   /**
+   * Unique ID of the role.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
 
   /**
+   * The permissions granted to the role.
+   *
    * @generated from field: repeated api.v1.role.Permission permissions = 2;
    */
   permissions: Permission[] = [];
 
   /**
+   * Metadata associated with the role.
+   *
    * @generated from field: map<string, bytes> metadata = 3;
    */
   metadata: { [key: string]: Uint8Array } = {};
 
   /**
+   * Timestamp when the role was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
   /**
+   * Timestamp when the role was last updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 5;
    */
   updatedAt?: Timestamp;
@@ -69,26 +81,36 @@ export class Role extends Message<Role> {
 }
 
 /**
+ * EntityID is a oneof type that can be used to represent a user, service account or group.
+ *
  * @generated from message api.v1.role.EntityID
  */
 export class EntityID extends Message<EntityID> {
   /**
+   * The type of entity that has a role.
+   *
    * @generated from oneof api.v1.role.EntityID.kind
    */
   kind: {
     /**
+     * User entity.
+     *
      * @generated from field: string user_id = 1;
      */
     value: string;
     case: "userId";
   } | {
     /**
+     * Service account entity.
+     *
      * @generated from field: string service_account_id = 2;
      */
     value: string;
     case: "serviceAccountId";
   } | {
     /**
+     * Group entity.
+     *
      * @generated from field: string group_id = 3;
      */
     value: string;
@@ -126,15 +148,21 @@ export class EntityID extends Message<EntityID> {
 }
 
 /**
+ * A permission that is granted to a role.
+ *
  * @generated from message api.v1.role.Permission
  */
 export class Permission extends Message<Permission> {
   /**
+   * The action that is action permission to perform.
+   *
    * @generated from field: string action = 1;
    */
   action = "";
 
   /**
+   * The scope in which the action can be performed.
+   *
    * @generated from field: api.v1.role.Scope scope = 2;
    */
   scope?: Scope;
@@ -169,20 +197,28 @@ export class Permission extends Message<Permission> {
 }
 
 /**
+ * Scope for permissions.
+ *
  * @generated from message api.v1.role.Scope
  */
 export class Scope extends Message<Scope> {
   /**
+   * The resource on which the action can be performed. This consists of a type, and an optional ID. fx. "user/*", "group/admin"
+   *
    * @generated from field: string resource = 1;
    */
   resource = "";
 
   /**
+   * The environment in which the action can be performed. This can be a wildcard.
+   *
    * @generated from field: string environment = 2;
    */
   environment = "";
 
   /**
+   * The project in which the action can be performed. This can be a wildcard.
+   *
    * @generated from field: string project = 3;
    */
   project = "";
@@ -218,6 +254,8 @@ export class Scope extends Message<Scope> {
 }
 
 /**
+ * Update message to update a field of a role.
+ *
  * @generated from message api.v1.role.Update
  */
 export class Update extends Message<Update> {
@@ -226,24 +264,32 @@ export class Update extends Message<Update> {
    */
   update: {
     /**
+     * Adding a permission to the role.
+     *
      * @generated from field: api.v1.role.Permission add_permission = 1;
      */
     value: Permission;
     case: "addPermission";
   } | {
     /**
+     * Removing a permission from the role.
+     *
      * @generated from field: api.v1.role.Permission remove_permission = 2;
      */
     value: Permission;
     case: "removePermission";
   } | {
     /**
+     * Update or create a metadata field on the role.
+     *
      * @generated from field: model.Metadata set_metadata = 3;
      */
     value: Metadata;
     case: "setMetadata";
   } | {
     /**
+     * Delete a metadata field on the role.
+     *
      * @generated from field: string delete_metadata_key = 4;
      */
     value: string;

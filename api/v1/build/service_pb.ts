@@ -9,10 +9,14 @@ import { Build, Origin } from "../capsule/build_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 
 /**
+ * Request to get information about an image.
+ *
  * @generated from message api.v1.build.GetImageInfoRequest
  */
 export class GetImageInfoRequest extends Message<GetImageInfoRequest> {
   /**
+   * The image to get information about.
+   *
    * @generated from field: string image = 1;
    */
   image = "";
@@ -46,25 +50,35 @@ export class GetImageInfoRequest extends Message<GetImageInfoRequest> {
 }
 
 /**
+ * Reponse to GetImageInfo request, containing information about an image.
+ *
  * @generated from message api.v1.build.GetImageInfoResponse
  */
 export class GetImageInfoResponse extends Message<GetImageInfoResponse> {
   /**
+   * Image ID.
+   *
    * @generated from field: api.v1.build.ImageId image_id = 1;
    */
   imageId?: ImageId;
 
   /**
+   * Image from the request.
+   *
    * @generated from field: string image_string = 2;
    */
   imageString = "";
 
   /**
+   * When the image was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: Timestamp;
 
   /**
+   * Origin of the image.
+   *
    * @generated from field: api.v1.capsule.Origin origin = 4;
    */
   origin?: Origin;
@@ -101,25 +115,35 @@ export class GetImageInfoResponse extends Message<GetImageInfoResponse> {
 }
 
 /**
+ * A collection of image properties that uniquely identifies an image.
+ *
  * @generated from message api.v1.build.ImageId
  */
 export class ImageId extends Message<ImageId> {
   /**
+   * Docker Registry.
+   *
    * @generated from field: string registry = 1;
    */
   registry = "";
 
   /**
+   * Docker Repository.
+   *
    * @generated from field: string repository = 2;
    */
   repository = "";
 
   /**
+   * Tag of the image.
+   *
    * @generated from field: string tag = 3;
    */
   tag = "";
 
   /**
+   * Digest of the image.
+   *
    * @generated from field: string digest = 4;
    */
   digest = "";
@@ -156,15 +180,21 @@ export class ImageId extends Message<ImageId> {
 }
 
 /**
+ * Get repository information request.
+ *
  * @generated from message api.v1.build.GetRepositoryInfoRequest
  */
 export class GetRepositoryInfoRequest extends Message<GetRepositoryInfoRequest> {
   /**
+   * Docker Registry
+   *
    * @generated from field: string registry = 1;
    */
   registry = "";
 
   /**
+   * Docker Repository
+   *
    * @generated from field: string repository = 2;
    */
   repository = "";
@@ -199,10 +229,14 @@ export class GetRepositoryInfoRequest extends Message<GetRepositoryInfoRequest> 
 }
 
 /**
+ * Get repository information response.
+ *
  * @generated from message api.v1.build.GetRepositoryInfoResponse
  */
 export class GetRepositoryInfoResponse extends Message<GetRepositoryInfoResponse> {
   /**
+   * Image Tags in the repository.
+   *
    * @generated from field: repeated api.v1.build.Tag tags = 1;
    */
   tags: Tag[] = [];
@@ -236,15 +270,21 @@ export class GetRepositoryInfoResponse extends Message<GetRepositoryInfoResponse
 }
 
 /**
+ * A docker image tag.
+ *
  * @generated from message api.v1.build.Tag
  */
 export class Tag extends Message<Tag> {
   /**
+   * Tag of the image.
+   *
    * @generated from field: string tag = 1;
    */
   tag = "";
 
   /**
+   * When the image was created.
+   *
    * @generated from field: google.protobuf.Timestamp image_created_at = 2;
    */
   imageCreatedAt?: Timestamp;
@@ -279,40 +319,56 @@ export class Tag extends Message<Tag> {
 }
 
 /**
+ * Request to create a new build in a capsule.
+ *
  * @generated from message api.v1.build.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
+   * Capsule to create the build in.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Image to create the build from.
+   *
    * @generated from field: string image = 2;
    */
   image = "";
 
   /**
+   * Digest of the image.
+   *
    * @generated from field: string digest = 3;
    */
   digest = "";
 
   /**
+   * Origin of the image
+   *
    * @generated from field: api.v1.capsule.Origin origin = 4;
    */
   origin?: Origin;
 
   /**
+   * Meta data to attach to the build.
+   *
    * @generated from field: map<string, string> labels = 5;
    */
   labels: { [key: string]: string } = {};
 
   /**
+   * if true skip check if image exists.
+   *
    * @generated from field: bool skip_image_check = 6;
    */
   skipImageCheck = false;
 
   /**
+   * Project ID.
+   *
    * @generated from field: string project_id = 7;
    */
   projectId = "";
@@ -352,15 +408,21 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
+ * Response to create a new build in a capsule.
+ *
  * @generated from message api.v1.build.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * ID of the build.
+   *
    * @generated from field: string build_id = 1;
    */
   buildId = "";
 
   /**
+   * True if a new build was created.
+   *
    * @generated from field: bool created_new_build = 2;
    */
   createdNewBuild = false;
@@ -395,20 +457,28 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
+ * Request to list builds.
+ *
  * @generated from message api.v1.build.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Capsule to list builds in.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
   /**
+   * Project ID.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -444,15 +514,21 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * Reponse to list builds.
+ *
  * @generated from message api.v1.build.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
+   * Builds in the capsule.
+   *
    * @generated from field: repeated api.v1.capsule.Build builds = 1;
    */
   builds: Build[] = [];
 
   /**
+   * Total number of builds in the capsule.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -487,20 +563,28 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
+ * Request to delete a build.
+ *
  * @generated from message api.v1.build.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
+   * Capsule to delete the build from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Build to delete.
+   *
    * @generated from field: string build_id = 2;
    */
   buildId = "";
 
   /**
+   * Project ID.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -536,6 +620,8 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
+ * Empty response to delete a build.
+ *
  * @generated from message api.v1.build.DeleteResponse
  */
 export class DeleteResponse extends Message<DeleteResponse> {
@@ -567,20 +653,28 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
+ * Request to get a build.
+ *
  * @generated from message api.v1.build.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
+   * Capsule to get the build from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Build to get.
+   *
    * @generated from field: string build_id = 2;
    */
   buildId = "";
 
   /**
+   * Project ID.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -616,10 +710,14 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
+ * Response to get a build.
+ *
  * @generated from message api.v1.build.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The build to retrieve
+   *
    * @generated from field: api.v1.capsule.Build build = 1;
    */
   build?: Build;

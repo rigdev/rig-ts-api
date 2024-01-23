@@ -17,15 +17,21 @@ import { InstanceMetrics } from "./metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
 
 /**
+ * StreamData for Execute RPC.
+ *
  * @generated from message api.v1.capsule.StreamData
  */
 export class StreamData extends Message<StreamData> {
   /**
+   * Stream data.
+   *
    * @generated from field: bytes data = 1;
    */
   data = new Uint8Array(0);
 
   /**
+   * If the stream is closed.
+   *
    * @generated from field: bool closed = 2;
    */
   closed = false;
@@ -60,6 +66,8 @@ export class StreamData extends Message<StreamData> {
 }
 
 /**
+ * Execute request. This can either be a request to start a request, a terminal resize msg or a stream data msg.
+ *
  * @generated from message api.v1.capsule.ExecuteRequest
  */
 export class ExecuteRequest extends Message<ExecuteRequest> {
@@ -68,18 +76,24 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
    */
   request: {
     /**
+     * Start request.
+     *
      * @generated from field: api.v1.capsule.ExecuteRequest.Start start = 1;
      */
     value: ExecuteRequest_Start;
     case: "start";
   } | {
     /**
+     * Stream stdin request
+     *
      * @generated from field: api.v1.capsule.StreamData stdin = 2;
      */
     value: StreamData;
     case: "stdin";
   } | {
     /**
+     * Resize request
+     *
      * @generated from field: api.v1.capsule.ExecuteRequest.Resize resize = 3;
      */
     value: ExecuteRequest_Resize;
@@ -87,11 +101,15 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
+   * The project ID.
+   *
    * @generated from field: string project_id = 4;
    */
   projectId = "";
 
   /**
+   * The environment ID.
+   *
    * @generated from field: string environment_id = 5;
    */
   environmentId = "";
@@ -129,35 +147,49 @@ export class ExecuteRequest extends Message<ExecuteRequest> {
 }
 
 /**
+ * Exec start request
+ *
  * @generated from message api.v1.capsule.ExecuteRequest.Start
  */
 export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
   /**
+   * The capsule to execute in.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The instance to execute in.
+   *
    * @generated from field: string instance_id = 2;
    */
   instanceId = "";
 
   /**
+   * The command to execute.
+   *
    * @generated from field: string command = 3;
    */
   command = "";
 
   /**
+   * The arguments to the command.
+   *
    * @generated from field: repeated string arguments = 4;
    */
   arguments: string[] = [];
 
   /**
+   * The initial terminal size.
+   *
    * @generated from field: api.v1.capsule.ExecuteRequest.Resize tty = 5;
    */
   tty?: ExecuteRequest_Resize;
 
   /**
+   * If the command is interactive.
+   *
    * @generated from field: bool interactive = 6;
    */
   interactive = false;
@@ -196,15 +228,21 @@ export class ExecuteRequest_Start extends Message<ExecuteRequest_Start> {
 }
 
 /**
+ * Terminal resize request.
+ *
  * @generated from message api.v1.capsule.ExecuteRequest.Resize
  */
 export class ExecuteRequest_Resize extends Message<ExecuteRequest_Resize> {
   /**
+   * The new terminal height.
+   *
    * @generated from field: uint32 height = 1;
    */
   height = 0;
 
   /**
+   * The new terminal width.
+   *
    * @generated from field: uint32 width = 2;
    */
   width = 0;
@@ -239,6 +277,8 @@ export class ExecuteRequest_Resize extends Message<ExecuteRequest_Resize> {
 }
 
 /**
+ * Execute response.
+ *
  * @generated from message api.v1.capsule.ExecuteResponse
  */
 export class ExecuteResponse extends Message<ExecuteResponse> {
@@ -247,18 +287,24 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
    */
   response: {
     /**
+     * Stdout of the execute.
+     *
      * @generated from field: api.v1.capsule.StreamData stdout = 1;
      */
     value: StreamData;
     case: "stdout";
   } | {
     /**
+     * Stderr in case of an error. 
+     *
      * @generated from field: api.v1.capsule.StreamData stderr = 2;
      */
     value: StreamData;
     case: "stderr";
   } | {
     /**
+     * Exit code of the execute.
+     *
      * @generated from field: int32 exit_code = 3;
      */
     value: number;
@@ -296,11 +342,13 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
 }
 
 /**
+ * Create capsule request.
+ *
  * @generated from message api.v1.capsule.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
-   * The name of the capsule. This property must be unique and cannot be changed
+   * The name of the capsule. This property must be unique for a project and cannot be changed
    * after creation.
    * Resources created in associating with the capsule will use this name.
    *
@@ -309,13 +357,15 @@ export class CreateRequest extends Message<CreateRequest> {
   name = "";
 
   /**
-   * The initial properties of the capsule.
+   * Deprecated field: The initial properties of the capsule.
    *
    * @generated from field: repeated api.v1.capsule.Update initializers = 2;
    */
   initializers: Update[] = [];
 
   /**
+   * The project to create the capsule in.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -351,10 +401,14 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
+ * Create capsule response.
+ *
  * @generated from message api.v1.capsule.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * ID of the capsule. This is the same as the name.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
@@ -388,15 +442,21 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
+ * Request to get a capsule.
+ *
  * @generated from message api.v1.capsule.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
+   * Capsule to get.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Project in which the capsule is.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
@@ -431,10 +491,14 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
+ * Response to get a capsule.
+ *
  * @generated from message api.v1.capsule.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The capsule.
+   *
    * @generated from field: api.v1.capsule.Capsule capsule = 1;
    */
   capsule?: Capsule;
@@ -468,6 +532,8 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
+ * Request to delete a capsule.
+ *
  * @generated from message api.v1.capsule.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
@@ -479,6 +545,8 @@ export class DeleteRequest extends Message<DeleteRequest> {
   capsuleId = "";
 
   /**
+   * The project in which the capsule is to be deleted.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
@@ -513,6 +581,8 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
+ * Empty delete response.
+ *
  * @generated from message api.v1.capsule.DeleteResponse
  */
 export class DeleteResponse extends Message<DeleteResponse> {
@@ -544,6 +614,8 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
+ * Request to get instance logs from a capsule.
+ *
  * @generated from message api.v1.capsule.LogsRequest
  */
 export class LogsRequest extends Message<LogsRequest> {
@@ -576,11 +648,15 @@ export class LogsRequest extends Message<LogsRequest> {
   since?: Duration;
 
   /**
+   * The project in which the capsule is.
+   *
    * @generated from field: string project_id = 5;
    */
   projectId = "";
 
   /**
+   * Environment to get logs from.
+   *
    * @generated from field: string environment_id = 6;
    */
   environmentId = "";
@@ -625,6 +701,8 @@ export class LogsRequest extends Message<LogsRequest> {
  */
 export class LogsResponse extends Message<LogsResponse> {
   /**
+   * The actual logs
+   *
    * @generated from field: api.v1.capsule.Log log = 1;
    */
   log?: Log;
@@ -658,6 +736,8 @@ export class LogsResponse extends Message<LogsResponse> {
 }
 
 /**
+ * Deprecated update - This is now a no-op
+ *
  * @generated from message api.v1.capsule.UpdateRequest
  */
 export class UpdateRequest extends Message<UpdateRequest> {
@@ -711,6 +791,8 @@ export class UpdateRequest extends Message<UpdateRequest> {
 }
 
 /**
+ * Deprecated: Empty update response.
+ *
  * @generated from message api.v1.capsule.UpdateResponse
  */
 export class UpdateResponse extends Message<UpdateResponse> {
@@ -742,15 +824,21 @@ export class UpdateResponse extends Message<UpdateResponse> {
 }
 
 /**
+ * List capsule request.
+ *
  * @generated from message api.v1.capsule.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
   /**
+   * Project in which to list capsules.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -785,6 +873,8 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * List capsule response.
+ *
  * @generated from message api.v1.capsule.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
@@ -796,6 +886,8 @@ export class ListResponse extends Message<ListResponse> {
   capsules: Capsule[] = [];
 
   /**
+   * Total number of capsules in the project.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -830,10 +922,14 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
+ * Deploy request. This will deploy a number of changes which results in a new rollout.
+ *
  * @generated from message api.v1.capsule.DeployRequest
  */
 export class DeployRequest extends Message<DeployRequest> {
   /**
+   * Capsule to deploy to.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
@@ -853,21 +949,29 @@ export class DeployRequest extends Message<DeployRequest> {
   force = false;
 
   /**
+   * Project in which the capsule lives.
+   *
    * @generated from field: string project_id = 4;
    */
   projectId = "";
 
   /**
+   * Environment in which to deploy.
+   *
    * @generated from field: string environment_id = 5;
    */
   environmentId = "";
 
   /**
+   * Deploy message.
+   *
    * @generated from field: string message = 6;
    */
   message = "";
 
   /**
+   * if true, the deploy will not be executed, but the request will return the rollout config.
+   *
    * @generated from field: bool dry_run = 7;
    */
   dryRun = false;
@@ -917,20 +1021,28 @@ export class DeployRequest extends Message<DeployRequest> {
 }
 
 /**
+ * Deploy response.
+ *
  * @generated from message api.v1.capsule.DeployResponse
  */
 export class DeployResponse extends Message<DeployResponse> {
   /**
+   * ID of the new rollout.
+   *
    * @generated from field: uint64 rollout_id = 1;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * The YAML of the resources that will be deployed.
+   *
    * @generated from field: map<string, string> resource_yaml = 2;
    */
   resourceYaml: { [key: string]: string } = {};
 
   /**
+   * The rollout config.
+   *
    * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 3;
    */
   rolloutConfig?: RolloutConfig;
@@ -966,35 +1078,49 @@ export class DeployResponse extends Message<DeployResponse> {
 }
 
 /**
+ * List instances request.
+ *
  * @generated from message api.v1.capsule.ListInstancesRequest
  */
 export class ListInstancesRequest extends Message<ListInstancesRequest> {
   /**
+   * Capsule to list instances from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
   /**
+   * Project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * Environment to list instances from.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
 
   /**
+   * if true, deleted instances will be included in the response.
+   *
    * @generated from field: bool include_deleted = 5;
    */
   includeDeleted = false;
 
   /**
+   * if true, existing instances will be excluded from the response.
+   *
    * @generated from field: bool exclude_existing = 6;
    */
   excludeExisting = false;
@@ -1033,15 +1159,21 @@ export class ListInstancesRequest extends Message<ListInstancesRequest> {
 }
 
 /**
+ * List instances response.
+ *
  * @generated from message api.v1.capsule.ListInstancesResponse
  */
 export class ListInstancesResponse extends Message<ListInstancesResponse> {
   /**
+   * The instances.
+   *
    * @generated from field: repeated api.v1.capsule.Instance instances = 1;
    */
   instances: Instance[] = [];
 
   /**
+   * Total number of instances in the capsule for the given environment.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -1076,25 +1208,35 @@ export class ListInstancesResponse extends Message<ListInstancesResponse> {
 }
 
 /**
+ * Get status of an instance.
+ *
  * @generated from message api.v1.capsule.GetInstanceStatusRequest
  */
 export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> {
   /**
+   * The capsule to get the instance status from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The instance to get.
+   *
    * @generated from field: string instance_id = 2;
    */
   instanceId = "";
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * The environment to get the instance from.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
@@ -1131,10 +1273,14 @@ export class GetInstanceStatusRequest extends Message<GetInstanceStatusRequest> 
 }
 
 /**
+ * Get instance status response.
+ *
  * @generated from message api.v1.capsule.GetInstanceStatusResponse
  */
 export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse> {
   /**
+   * The instance status.
+   *
    * @generated from field: api.v1.capsule.instance.Status status = 1;
    */
   status?: Status;
@@ -1168,35 +1314,49 @@ export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse
 }
 
 /**
+ * List multiple instance statuses
+ *
  * @generated from message api.v1.capsule.ListInstanceStatusesRequest
  */
 export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesRequest> {
   /**
+   * The capsule to get the instance statuses from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
   /**
+   * The project in which the capsule is.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * The environment to get the instance statuses from.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
 
   /**
+   * if true, deleted instances will be included in the response.
+   *
    * @generated from field: bool include_deleted = 5;
    */
   includeDeleted = false;
 
   /**
+   * if true, existing instances will be excluded from the response.
+   *
    * @generated from field: bool exclude_existing = 6;
    */
   excludeExisting = false;
@@ -1235,15 +1395,21 @@ export class ListInstanceStatusesRequest extends Message<ListInstanceStatusesReq
 }
 
 /**
+ * Response for listing multiple instance statuses
+ *
  * @generated from message api.v1.capsule.ListInstanceStatusesResponse
  */
 export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesResponse> {
   /**
+   * The instance statuses.
+   *
    * @generated from field: repeated api.v1.capsule.instance.Status instances = 1;
    */
   instances: Status[] = [];
 
   /**
+   * Total number of instances in the capsule for the given environment.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -1278,25 +1444,35 @@ export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesRe
 }
 
 /**
+ * RestartInstanceRequest restarts a single instance.
+ *
  * @generated from message api.v1.capsule.RestartInstanceRequest
  */
 export class RestartInstanceRequest extends Message<RestartInstanceRequest> {
   /**
+   * The capsule to restart the instance in.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The instance to restart.
+   *
    * @generated from field: string instance_id = 2;
    */
   instanceId = "";
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * The environment to restart the instance in.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
@@ -1333,6 +1509,8 @@ export class RestartInstanceRequest extends Message<RestartInstanceRequest> {
 }
 
 /**
+ * RestartInstanceResponse is an empty response.
+ *
  * @generated from message api.v1.capsule.RestartInstanceResponse
  */
 export class RestartInstanceResponse extends Message<RestartInstanceResponse> {
@@ -1364,25 +1542,35 @@ export class RestartInstanceResponse extends Message<RestartInstanceResponse> {
 }
 
 /**
+ * ListRolloutsRequest lists rollouts for a capsule.
+ *
  * @generated from message api.v1.capsule.ListRolloutsRequest
  */
 export class ListRolloutsRequest extends Message<ListRolloutsRequest> {
   /**
+   * The capsule to list rollouts for.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * The environment to list rollouts for.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
@@ -1419,15 +1607,21 @@ export class ListRolloutsRequest extends Message<ListRolloutsRequest> {
 }
 
 /**
+ * ListRolloutsResponse lists rollouts for a capsule and an environment.
+ *
  * @generated from message api.v1.capsule.ListRolloutsResponse
  */
 export class ListRolloutsResponse extends Message<ListRolloutsResponse> {
   /**
+   * The rollouts.
+   *
    * @generated from field: repeated api.v1.capsule.Rollout rollouts = 1;
    */
   rollouts: Rollout[] = [];
 
   /**
+   * Total number of rollouts in the capsule for the given environment.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -1462,20 +1656,28 @@ export class ListRolloutsResponse extends Message<ListRolloutsResponse> {
 }
 
 /**
+ * GetRolloutRequest gets a single rollout.
+ *
  * @generated from message api.v1.capsule.GetRolloutRequest
  */
 export class GetRolloutRequest extends Message<GetRolloutRequest> {
   /**
+   * The capsule to get the rollout from.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The rollout to get.
+   *
    * @generated from field: uint64 rollout_id = 2;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -1511,10 +1713,14 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
 }
 
 /**
+ * GetRolloutResponse returns a single rollout for a capsule and an environment in a project.
+ *
  * @generated from message api.v1.capsule.GetRolloutResponse
  */
 export class GetRolloutResponse extends Message<GetRolloutResponse> {
   /**
+   * The rollout.
+   *
    * @generated from field: api.v1.capsule.Rollout rollout = 1;
    */
   rollout?: Rollout;
@@ -1548,20 +1754,28 @@ export class GetRolloutResponse extends Message<GetRolloutResponse> {
 }
 
 /**
+ * AbortRolloutRequest aborts a rollout.
+ *
  * @generated from message api.v1.capsule.AbortRolloutRequest
  */
 export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
   /**
+   * The capsule to abort the rollout in.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The rollout to abort.
+   *
    * @generated from field: uint64 rollout_id = 2;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
@@ -1597,6 +1811,8 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
 }
 
 /**
+ * AbortRolloutResponse is an empty response.
+ *
  * @generated from message api.v1.capsule.AbortRolloutResponse
  */
 export class AbortRolloutResponse extends Message<AbortRolloutResponse> {
@@ -1628,30 +1844,42 @@ export class AbortRolloutResponse extends Message<AbortRolloutResponse> {
 }
 
 /**
+ * ListEvents request for listing rollout events for a given rollout in a capsule and environment.
+ *
  * @generated from message api.v1.capsule.ListEventsRequest
  */
 export class ListEventsRequest extends Message<ListEventsRequest> {
   /**
+   * The capsule to list events for.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The rollout to list events for.
+   *
    * @generated from field: uint64 rollout_id = 2;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 3;
    */
   pagination?: Pagination;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 4;
    */
   projectId = "";
 
   /**
+   * The environment to list events for.
+   *
    * @generated from field: string environment_id = 5;
    */
   environmentId = "";
@@ -1689,15 +1917,21 @@ export class ListEventsRequest extends Message<ListEventsRequest> {
 }
 
 /**
+ * Response to List Events
+ *
  * @generated from message api.v1.capsule.ListEventsResponse
  */
 export class ListEventsResponse extends Message<ListEventsResponse> {
   /**
+   * The events for a rollout in a capsule and environment for a given project.
+   *
    * @generated from field: repeated api.v1.capsule.Event events = 1;
    */
   events: Event[] = [];
 
   /**
+   * Total number of events in the capsule for the given environment.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -1732,10 +1966,14 @@ export class ListEventsResponse extends Message<ListEventsResponse> {
 }
 
 /**
+ * Request for getting metrics for a capsule and optionally a single instance.
+ *
  * @generated from message api.v1.capsule.CapsuleMetricsRequest
  */
 export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
   /**
+   * The capsule to get metrics for.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
@@ -1748,16 +1986,22 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
   instanceId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 3;
    */
   pagination?: Pagination;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 4;
    */
   projectId = "";
 
   /**
+   * The environment to get metrics for.
+   *
    * @generated from field: string environment_id = 5;
    */
   environmentId = "";
@@ -1795,10 +2039,14 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
 }
 
 /**
+ * Response to getting capsule metrics.
+ *
  * @generated from message api.v1.capsule.CapsuleMetricsResponse
  */
 export class CapsuleMetricsResponse extends Message<CapsuleMetricsResponse> {
   /**
+   * Metrics
+   *
    * @generated from field: repeated api.v1.capsule.InstanceMetrics instance_metrics = 1;
    */
   instanceMetrics: InstanceMetrics[] = [];
@@ -1832,20 +2080,28 @@ export class CapsuleMetricsResponse extends Message<CapsuleMetricsResponse> {
 }
 
 /**
+ * Request for getting custom metrics for a capsule in an environment.
+ *
  * @generated from message api.v1.capsule.GetCustomInstanceMetricsRequest
  */
 export class GetCustomInstanceMetricsRequest extends Message<GetCustomInstanceMetricsRequest> {
   /**
+   * The capsule to get metrics for.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
 
   /**
+   * The environment to get metrics for.
+   *
    * @generated from field: string environment_id = 3;
    */
   environmentId = "";
@@ -1881,10 +2137,14 @@ export class GetCustomInstanceMetricsRequest extends Message<GetCustomInstanceMe
 }
 
 /**
+ * Response to getting custom metrics for a capsule in an environment.
+ *
  * @generated from message api.v1.capsule.GetCustomInstanceMetricsResponse
  */
 export class GetCustomInstanceMetricsResponse extends Message<GetCustomInstanceMetricsResponse> {
   /**
+   * Custom Metrics.
+   *
    * @generated from field: repeated api.v1.capsule.Metric metrics = 1;
    */
   metrics: Metric[] = [];
@@ -1918,20 +2178,28 @@ export class GetCustomInstanceMetricsResponse extends Message<GetCustomInstanceM
 }
 
 /**
+ * Custom metrics
+ *
  * @generated from message api.v1.capsule.Metric
  */
 export class Metric extends Message<Metric> {
   /**
+   * Name of the metric.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Latest value of the metric.
+   *
    * @generated from field: double latest_value = 2;
    */
   latestValue = 0;
 
   /**
+   * Timestamp of the latest value.
+   *
    * @generated from field: google.protobuf.Timestamp latest_timestamp = 3;
    */
   latestTimestamp?: Timestamp;
@@ -1967,45 +2235,63 @@ export class Metric extends Message<Metric> {
 }
 
 /**
+ * Request for getting job executions from cron jobs.
+ *
  * @generated from message api.v1.capsule.GetJobExecutionsRequest
  */
 export class GetJobExecutionsRequest extends Message<GetJobExecutionsRequest> {
   /**
+   * The capsule to get job executions for.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * The name of the job to get executions for.
+   *
    * @generated from field: string job_name = 2;
    */
   jobName = "";
 
   /**
+   * Filtering executions by job state.
+   *
    * @generated from field: repeated api.v1.capsule.JobState states = 4;
    */
   states: JobState[] = [];
 
   /**
+   * Filtering executions created before this timestamp.
+   *
    * @generated from field: google.protobuf.Timestamp created_from = 5;
    */
   createdFrom?: Timestamp;
 
   /**
+   * Filtering executions created after this timestamp.
+   *
    * @generated from field: google.protobuf.Timestamp created_to = 6;
    */
   createdTo?: Timestamp;
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 7;
    */
   pagination?: Pagination;
 
   /**
+   * The project in which the capsule lives.
+   *
    * @generated from field: string project_id = 8;
    */
   projectId = "";
 
   /**
+   * The environment to get job executions for.
+   *
    * @generated from field: string environment_id = 9;
    */
   environmentId = "";
@@ -2046,10 +2332,14 @@ export class GetJobExecutionsRequest extends Message<GetJobExecutionsRequest> {
 }
 
 /**
+ * Response to getting job executions.
+ *
  * @generated from message api.v1.capsule.GetJobExecutionsResponse
  */
 export class GetJobExecutionsResponse extends Message<GetJobExecutionsResponse> {
   /**
+   * Job executions.
+   *
    * @generated from field: repeated api.v1.capsule.JobExecution job_executions = 1;
    */
   jobExecutions: JobExecution[] = [];

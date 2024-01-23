@@ -8,45 +8,63 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
+ * Build is an environment wide abstraction of an image along with metadata for a capsule.
+ *
  * @generated from message api.v1.capsule.Build
  */
 export class Build extends Message<Build> {
   /**
+   * unique identifier for the build
+   *
    * @generated from field: string build_id = 2;
    */
   buildId = "";
 
   /**
+   * digest of the image
+   *
    * @generated from field: string digest = 7;
    */
   digest = "";
 
   /**
+   * repository of the image
+   *
    * @generated from field: string repository = 8;
    */
   repository = "";
 
   /**
+   * tag of the image
+   *
    * @generated from field: string tag = 9;
    */
   tag = "";
 
   /**
+   * user who created the build
+   *
    * @generated from field: model.Author created_by = 3;
    */
   createdBy?: Author;
 
   /**
+   * time the build was created
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
   /**
+   * origin of the build
+   *
    * @generated from field: api.v1.capsule.Origin origin = 5;
    */
   origin?: Origin;
 
   /**
+   * labels of the build
+   *
    * @generated from field: map<string, string> labels = 6;
    */
   labels: { [key: string]: string } = {};
@@ -87,20 +105,28 @@ export class Build extends Message<Build> {
 }
 
 /**
+ * GitReference is an origin of a build.
+ *
  * @generated from message api.v1.capsule.GitReference
  */
 export class GitReference extends Message<GitReference> {
   /**
+   * The url of the git repository
+   *
    * @generated from field: string repository_url = 1;
    */
   repositoryUrl = "";
 
   /**
+   * The commit sha of the git repository
+   *
    * @generated from field: string commit_sha = 2;
    */
   commitSha = "";
 
   /**
+   * The commit url of the git repository
+   *
    * @generated from field: string commit_url = 3;
    */
   commitUrl = "";
@@ -136,6 +162,8 @@ export class GitReference extends Message<GitReference> {
 }
 
 /**
+ * Where the build came from
+ *
  * @generated from message api.v1.capsule.Origin
  */
 export class Origin extends Message<Origin> {
@@ -144,6 +172,8 @@ export class Origin extends Message<Origin> {
    */
   kind: {
     /**
+     * The build came from a git repository
+     *
      * @generated from field: api.v1.capsule.GitReference git_reference = 1;
      */
     value: GitReference;

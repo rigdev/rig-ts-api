@@ -9,10 +9,14 @@ import { ServiceAccount } from "./service_account_pb.js";
 import { ServiceAccountEntry } from "../../../model/user_pb.js";
 
 /**
+ * Request o create a service account.
+ *
  * @generated from message api.v1.service_account.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
+   * Name of the service account to create.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
@@ -46,20 +50,28 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
+ * Response of creating a service account.
+ *
  * @generated from message api.v1.service_account.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * The created service account.
+   *
    * @generated from field: api.v1.service_account.ServiceAccount service_account = 1;
    */
   serviceAccount?: ServiceAccount;
 
   /**
+   * The client id of the service account.
+   *
    * @generated from field: string client_id = 2;
    */
   clientId = "";
 
   /**
+   * The client secret of the service account.
+   *
    * @generated from field: string client_secret = 3;
    */
   clientSecret = "";
@@ -95,6 +107,8 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
+ * Request to list service accounts.
+ *
  * @generated from message api.v1.service_account.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
@@ -126,10 +140,14 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * Response for listing service accounts.
+ *
  * @generated from message api.v1.service_account.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
+   * the retrieved service accounts.
+   *
    * @generated from field: repeated model.ServiceAccountEntry service_accounts = 1;
    */
   serviceAccounts: ServiceAccountEntry[] = [];
@@ -163,10 +181,14 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
+ * Request to delete a service account.
+ *
  * @generated from message api.v1.service_account.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
+   * The id of the service account to delete.
+   *
    * @generated from field: string service_account_id = 1;
    */
   serviceAccountId = "";
@@ -200,6 +222,8 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
+ * Empty response for deleting a service account.
+ *
  * @generated from message api.v1.service_account.DeleteResponse
  */
 export class DeleteResponse extends Message<DeleteResponse> {

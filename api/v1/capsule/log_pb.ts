@@ -7,20 +7,28 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Log of an instance
+ *
  * @generated from message api.v1.capsule.Log
  */
 export class Log extends Message<Log> {
   /**
+   * Timestamp of the log
+   *
    * @generated from field: google.protobuf.Timestamp timestamp = 1;
    */
   timestamp?: Timestamp;
 
   /**
+   * Message of the log
+   *
    * @generated from field: api.v1.capsule.LogMessage message = 2;
    */
   message?: LogMessage;
 
   /**
+   * Instance ID of the log
+   *
    * @generated from field: string instance_id = 3;
    */
   instanceId = "";
@@ -56,6 +64,8 @@ export class Log extends Message<Log> {
 }
 
 /**
+ * The actual log message
+ *
  * @generated from message api.v1.capsule.LogMessage
  */
 export class LogMessage extends Message<LogMessage> {
@@ -64,12 +74,16 @@ export class LogMessage extends Message<LogMessage> {
    */
   message: {
     /**
+     * If the log is stdout
+     *
      * @generated from field: bytes stdout = 1;
      */
     value: Uint8Array;
     case: "stdout";
   } | {
     /**
+     * If the log is stderr
+     *
      * @generated from field: bytes stderr = 2;
      */
     value: Uint8Array;

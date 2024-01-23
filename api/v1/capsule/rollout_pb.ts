@@ -11,50 +11,70 @@ import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb
 import { CronJob } from "./job_pb.js";
 
 /**
+ * Different states a rollout can be in.
+ *
  * @generated from enum api.v1.capsule.RolloutState
  */
 export enum RolloutState {
   /**
+   * Default value.
+   *
    * @generated from enum value: ROLLOUT_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Pending rollout.
+   *
    * @generated from enum value: ROLLOUT_STATE_PENDING = 1;
    */
   PENDING = 1,
 
   /**
+   * Preparing rollout.
+   *
    * @generated from enum value: ROLLOUT_STATE_PREPARING = 6;
    */
   PREPARING = 6,
 
   /**
+   * Applying rollout.
+   *
    * @generated from enum value: ROLLOUT_STATE_APPLYING = 2;
    */
   APPLYING = 2,
 
   /**
+   * Creating resources.
+   *
    * @generated from enum value: ROLLOUT_STATE_RESOURCE_CREATION = 8;
    */
   RESOURCE_CREATION = 8,
 
   /**
+   * Rolling out instances.
+   *
    * @generated from enum value: ROLLOUT_STATE_INSTANCE_ROLL_OUT = 7;
    */
   INSTANCE_ROLL_OUT = 7,
 
   /**
+   * Rollout is done.
+   *
    * @generated from enum value: ROLLOUT_STATE_DONE = 3;
    */
   DONE = 3,
 
   /**
+   * Rollout is aborted.
+   *
    * @generated from enum value: ROLLOUT_STATE_ABORTED = 4;
    */
   ABORTED = 4,
 
   /**
+   * Rollout failed.
+   *
    * @generated from enum value: ROLLOUT_STATE_FAILED = 5;
    */
   FAILED = 5,
@@ -93,25 +113,35 @@ proto3.util.setEnumType(EventType, "api.v1.capsule.EventType", [
 ]);
 
 /**
+ * The rollout model.
+ *
  * @generated from message api.v1.capsule.Rollout
  */
 export class Rollout extends Message<Rollout> {
   /**
+   * Unique indentifier for the rollout.
+   *
    * @generated from field: uint64 rollout_id = 1;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * The rollout config.
+   *
    * @generated from field: api.v1.capsule.RolloutConfig config = 2;
    */
   config?: RolloutConfig;
 
   /**
+   * The rollout status.
+   *
    * @generated from field: api.v1.capsule.RolloutStatus status = 3;
    */
   status?: RolloutStatus;
 
   /**
+   * The rollout status.
+   *
    * @generated from field: api.v1.capsule.rollout.Status rollout_status = 4;
    */
   rolloutStatus?: Status;

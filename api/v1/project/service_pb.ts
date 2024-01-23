@@ -11,17 +11,21 @@ import { ObjectReference } from "../capsule/change_pb.js";
 import { Metric } from "../capsule/service_pb.js";
 
 /**
- * The request of a Namespace.Create RPC
+ * The request to create a project.
  *
  * @generated from message api.v1.project.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
+   * The initializers of the project.
+   *
    * @generated from field: repeated api.v1.project.Update initializers = 1;
    */
   initializers: Update[] = [];
 
   /**
+   * ID of the project to create.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
@@ -56,12 +60,14 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
- * The response of a Namespace.Create RPC
+ * The response to Create a project.
  *
  * @generated from message api.v1.project.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * The created project.
+   *
    * @generated from field: api.v1.project.Project project = 1;
    */
   project?: Project;
@@ -95,12 +101,14 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
- * The request of a Namespace.Delete RPC
+ * Request to delete a project.
  *
  * @generated from message api.v1.project.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
+   * Id of the project to delete
+   *
    * @generated from field: string project_id = 1;
    */
   projectId = "";
@@ -134,7 +142,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
- * The response of a Namespace.Delete RPC
+ * Empty response for deleting a project.
  *
  * @generated from message api.v1.project.DeleteResponse
  */
@@ -167,17 +175,21 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
- * The request of a Namespace.Update RPC
+ * Update the name field of a project.
  *
  * @generated from message api.v1.project.UpdateRequest
  */
 export class UpdateRequest extends Message<UpdateRequest> {
   /**
+   * the updates to apply.
+   *
    * @generated from field: repeated api.v1.project.Update updates = 1;
    */
   updates: Update[] = [];
 
   /**
+   * The project to update.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
@@ -212,7 +224,7 @@ export class UpdateRequest extends Message<UpdateRequest> {
 }
 
 /**
- * The response of a Namespace.Update RPC
+ * Empty response for updating a project.
  *
  * @generated from message api.v1.project.UpdateResponse
  */
@@ -245,12 +257,14 @@ export class UpdateResponse extends Message<UpdateResponse> {
 }
 
 /**
- * The request of a Namespace.Get RPC
+ * Request for getting a project.
  *
  * @generated from message api.v1.project.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
+   * The project to get.
+   *
    * @generated from field: string project_id = 1;
    */
   projectId = "";
@@ -284,12 +298,14 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
- * The response of a Namespace.Get RPC
+ * Response for getting a project.
  *
  * @generated from message api.v1.project.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The retrieved project.
+   *
    * @generated from field: api.v1.project.Project project = 1;
    */
   project?: Project;
@@ -323,12 +339,14 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
- * The request of a Namespace.List RPC
+ * Request for listing projects.
  *
  * @generated from message api.v1.project.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 1;
    */
   pagination?: Pagination;
@@ -362,15 +380,21 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * Response for listing projects.
+ *
  * @generated from message api.v1.project.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
+   * The retrieved projects.
+   *
    * @generated from field: repeated api.v1.project.Project projects = 1;
    */
   projects: Project[] = [];
 
   /**
+   * Total number of projects.
+   *
    * @generated from field: int64 total = 2;
    */
   total = protoInt64.zero;
@@ -405,12 +429,14 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
- * The request of a Namespace.PublicKey RPC
+ * Request to get the public key of a project.
  *
  * @generated from message api.v1.project.PublicKeyRequest
  */
 export class PublicKeyRequest extends Message<PublicKeyRequest> {
   /**
+   * The project to get the key from.
+   *
    * @generated from field: string project_id = 1;
    */
   projectId = "";
@@ -444,13 +470,13 @@ export class PublicKeyRequest extends Message<PublicKeyRequest> {
 }
 
 /**
- * The response of a Namespace.PublicKey RPC
+ * Response for getting a projects public key.
  *
  * @generated from message api.v1.project.PublicKeyResponse
  */
 export class PublicKeyResponse extends Message<PublicKeyResponse> {
   /**
-   * The id of the project
+   * the retrieved public key.
    *
    * @generated from field: string public_key = 1;
    */
@@ -485,10 +511,14 @@ export class PublicKeyResponse extends Message<PublicKeyResponse> {
 }
 
 /**
+ * Request to get the license information of the Rig installation.
+ *
  * @generated from message api.v1.project.GetLicenseInfoRequest
  */
 export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
   /**
+   * Deprecated: Only the Rig-Project has license information.
+   *
    * @generated from field: string project_id = 1;
    */
   projectId = "";
@@ -522,15 +552,21 @@ export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
 }
 
 /**
+ * Response for getting the license information of the Rig installation.
+ *
  * @generated from message api.v1.project.GetLicenseInfoResponse
  */
 export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
   /**
+   * The plan of the rig installation.
+   *
    * @generated from field: api.v1.project.Plan plan = 1;
    */
   plan = Plan.UNSPECIFIED;
 
   /**
+   * The expiration date of the license.
+   *
    * @generated from field: google.protobuf.Timestamp expires_at = 2;
    */
   expiresAt?: Timestamp;
@@ -565,20 +601,28 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
 }
 
 /**
+ * Request to get custom metrics for a project and environment.
+ *
  * @generated from message api.v1.project.GetCustomObjectMetricsRequest
  */
 export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetricsRequest> {
   /**
+   * The object to get metrics for.
+   *
    * @generated from field: api.v1.capsule.ObjectReference object_reference = 1;
    */
   objectReference?: ObjectReference;
 
   /**
+   * The project to get metrics for.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
 
   /**
+   * The environment to get metrics for.
+   *
    * @generated from field: string environment_id = 3;
    */
   environmentId = "";
@@ -614,20 +658,28 @@ export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetric
 }
 
 /**
+ * Response for getting custom metrics for a project and environment.
+ *
  * @generated from message api.v1.project.GetCustomObjectMetricsResponse
  */
 export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetricsResponse> {
   /**
+   * The metrics for the given object.
+   *
    * @generated from field: repeated api.v1.capsule.Metric metrics = 1;
    */
   metrics: Metric[] = [];
 
   /**
+   * The project the metrics are for.
+   *
    * @generated from field: string project_id = 2;
    */
   projectId = "";
 
   /**
+   * The environment the metrics are for.
+   *
    * @generated from field: string environment_id = 3;
    */
   environmentId = "";
@@ -663,15 +715,21 @@ export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetri
 }
 
 /**
+ * Model of a kubernetes object.
+ *
  * @generated from message api.v1.project.KubernetesObject
  */
 export class KubernetesObject extends Message<KubernetesObject> {
   /**
+   * Type / kind of the object.
+   *
    * @generated from field: string kind = 1;
    */
   kind = "";
 
   /**
+   * Name of the object.
+   *
    * @generated from field: string name = 2;
    */
   name = "";
@@ -706,25 +764,35 @@ export class KubernetesObject extends Message<KubernetesObject> {
 }
 
 /**
+ * Request to get all objects of a given kind in a project and environment.
+ *
  * @generated from message api.v1.project.GetObjectsByKindRequest
  */
 export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
   /**
+   * The kind of the objects to get.
+   *
    * @generated from field: string kind = 1;
    */
   kind = "";
 
   /**
+   * The api version of the objects to get.
+   *
    * @generated from field: string api_version = 2;
    */
   apiVersion = "";
 
   /**
+   * The project to get the objects for.
+   *
    * @generated from field: string project_id = 3;
    */
   projectId = "";
 
   /**
+   * The environment to get the objects for.
+   *
    * @generated from field: string environment_id = 4;
    */
   environmentId = "";
@@ -761,10 +829,14 @@ export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
 }
 
 /**
+ * Response for getting all objects of a given kind in a project and environment.
+ *
  * @generated from message api.v1.project.GetObjectsByKindResponse
  */
 export class GetObjectsByKindResponse extends Message<GetObjectsByKindResponse> {
   /**
+   * The objects of the given kind.
+   *
    * @generated from field: repeated api.v1.project.KubernetesObject objects = 1;
    */
   objects: KubernetesObject[] = [];

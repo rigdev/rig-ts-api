@@ -7,15 +7,21 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Generic credentials model.
+ *
  * @generated from message model.ProviderCredentials
  */
 export class ProviderCredentials extends Message<ProviderCredentials> {
   /**
+   * Public key. 
+   *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
+   * Private key.
+   *
    * @generated from field: string private_key = 2;
    */
   privateKey = "";

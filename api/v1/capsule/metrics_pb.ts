@@ -7,25 +7,35 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Metrics for a container.
+ *
  * @generated from message api.v1.capsule.ContainerMetrics
  */
 export class ContainerMetrics extends Message<ContainerMetrics> {
   /**
+   * Timestamp of the metrics.
+   *
    * @generated from field: google.protobuf.Timestamp timestamp = 1;
    */
   timestamp?: Timestamp;
 
   /**
+   * Memory usage in bytes.
+   *
    * @generated from field: uint64 memory_bytes = 2;
    */
   memoryBytes = protoInt64.zero;
 
   /**
+   * CPU usage in milliseconds.
+   *
    * @generated from field: uint64 cpu_ms = 3;
    */
   cpuMs = protoInt64.zero;
 
   /**
+   * Storage usage in bytes.
+   *
    * @generated from field: uint64 storage_bytes = 4;
    */
   storageBytes = protoInt64.zero;
@@ -62,25 +72,35 @@ export class ContainerMetrics extends Message<ContainerMetrics> {
 }
 
 /**
+ * Metrics for an instance
+ *
  * @generated from message api.v1.capsule.InstanceMetrics
  */
 export class InstanceMetrics extends Message<InstanceMetrics> {
   /**
+   * Capsule of the instance.
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Instance ID.
+   *
    * @generated from field: string instance_id = 2;
    */
   instanceId = "";
 
   /**
+   * Main container metrics.
+   *
    * @generated from field: api.v1.capsule.ContainerMetrics main_container = 3;
    */
   mainContainer?: ContainerMetrics;
 
   /**
+   * Proxy container metrics.
+   *
    * @generated from field: api.v1.capsule.ContainerMetrics proxy_container = 4;
    */
   proxyContainer?: ContainerMetrics;

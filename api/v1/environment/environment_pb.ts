@@ -7,20 +7,28 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Environment model.
+ *
  * @generated from message api.v1.environment.Environment
  */
 export class Environment extends Message<Environment> {
   /**
+   * ID of the environment.
+   *
    * @generated from field: string environment_id = 1;
    */
   environmentId = "";
 
   /**
+   * If true, this is the default environment.
+   *
    * @generated from field: bool default = 2;
    */
   default = false;
 
   /**
+   * The version of the Rig-operator CRD for this environment.
+   *
    * @generated from field: string operator_version = 3;
    */
   operatorVersion = "";

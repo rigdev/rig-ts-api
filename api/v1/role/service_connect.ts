@@ -7,13 +7,15 @@ import { AssignRequest, AssignResponse, CreateRequest, CreateResponse, DeleteReq
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
+ * Service to manage roles that controls the RBAC.
+ *
  * @generated from service api.v1.role.Service
  */
 export const Service = {
   typeName: "api.v1.role.Service",
   methods: {
     /**
-     * Create a new role
+     * Create a new role.
      *
      * @generated from rpc api.v1.role.Service.Create
      */
@@ -24,7 +26,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Delete role
+     * Delete role.
      *
      * @generated from rpc api.v1.role.Service.Delete
      */
@@ -35,7 +37,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * List roles
+     * List roles.
      *
      * @generated from rpc api.v1.role.Service.List
      */
@@ -57,7 +59,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get role
+     * Get role.
      *
      * @generated from rpc api.v1.role.Service.Get
      */
@@ -68,7 +70,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Assign a role
+     * Assign a role.
      *
      * @generated from rpc api.v1.role.Service.Assign
      */
@@ -79,7 +81,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Retract a role
+     * Revoke a role.
      *
      * @generated from rpc api.v1.role.Service.Revoke
      */

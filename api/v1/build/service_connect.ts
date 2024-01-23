@@ -13,6 +13,8 @@ export const Service = {
   typeName: "api.v1.build.Service",
   methods: {
     /**
+     * Get Information about an image in a build.
+     *
      * @generated from rpc api.v1.build.Service.GetImageInfo
      */
     getImageInfo: {
@@ -22,6 +24,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * Get Information about a docker registry repository.
+     *
      * @generated from rpc api.v1.build.Service.GetRepositoryInfo
      */
     getRepositoryInfo: {
@@ -31,6 +35,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * Get a build.
+     *
      * @generated from rpc api.v1.build.Service.Get
      */
     get: {

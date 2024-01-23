@@ -8,30 +8,42 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
+ * Service account model.
+ *
  * @generated from message api.v1.service_account.ServiceAccount
  */
 export class ServiceAccount extends Message<ServiceAccount> {
   /**
+   * Unique name of the service account.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Creation date.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 2;
    */
   createdAt?: Timestamp;
 
   /**
+   * Author of the service account.
+   *
    * @generated from field: model.Author created_by = 3;
    */
   createdBy?: Author;
 
   /**
+   * Whether the service account is managed by the system.
+   *
    * @generated from field: bool managed = 4;
    */
   managed = false;
 
   /**
+   * List of group IDs the service account belongs to.
+   *
    * @generated from field: repeated string group_ids = 5;
    */
   groupIds: string[] = [];

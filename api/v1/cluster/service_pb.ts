@@ -7,6 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Cluster type - Docker or kubernetes.
+ *
  * @generated from enum api.v1.cluster.ClusterType
  */
 export enum ClusterType {
@@ -33,10 +35,14 @@ proto3.util.setEnumType(ClusterType, "api.v1.cluster.ClusterType", [
 ]);
 
 /**
+ * request for getting cluster config for an environment.
+ *
  * @generated from message api.v1.cluster.GetConfigRequest
  */
 export class GetConfigRequest extends Message<GetConfigRequest> {
   /**
+   * The environment to get cluster config for.
+   *
    * @generated from field: string environment_id = 1;
    */
   environmentId = "";
@@ -70,25 +76,35 @@ export class GetConfigRequest extends Message<GetConfigRequest> {
 }
 
 /**
+ * response for getting cluster config for an environment.
+ *
  * @generated from message api.v1.cluster.GetConfigResponse
  */
 export class GetConfigResponse extends Message<GetConfigResponse> {
   /**
+   * Type of the cluster.
+   *
    * @generated from field: api.v1.cluster.ClusterType cluster_type = 1;
    */
   clusterType = ClusterType.UNSPECIFIED;
 
   /**
+   * dev registry of the cluster. This is either a Docker daemon or a registry.
+   *
    * @generated from oneof api.v1.cluster.GetConfigResponse.dev_registry
    */
   devRegistry: {
     /**
+     * Docker.
+     *
      * @generated from field: api.v1.cluster.DockerDaemon docker = 2;
      */
     value: DockerDaemon;
     case: "docker";
   } | {
     /**
+     * Registry.
+     *
      * @generated from field: api.v1.cluster.Registry registry = 3;
      */
     value: Registry;
@@ -96,6 +112,8 @@ export class GetConfigResponse extends Message<GetConfigResponse> {
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
+   * if true, the cluster has an ingress controller.
+   *
    * @generated from field: bool ingress = 4;
    */
   ingress = false;
@@ -132,6 +150,8 @@ export class GetConfigResponse extends Message<GetConfigResponse> {
 }
 
 /**
+ * Empty Request for getting the configs of all clusters.
+ *
  * @generated from message api.v1.cluster.GetConfigsRequest
  */
 export class GetConfigsRequest extends Message<GetConfigsRequest> {
@@ -163,6 +183,8 @@ export class GetConfigsRequest extends Message<GetConfigsRequest> {
 }
 
 /**
+ * Empty Response for getting the configs of all clusters.
+ *
  * @generated from message api.v1.cluster.GetConfigsResponse
  */
 export class GetConfigsResponse extends Message<GetConfigsResponse> {
@@ -200,6 +222,8 @@ export class GetConfigsResponse extends Message<GetConfigsResponse> {
 }
 
 /**
+ * Docker daemon dev registry
+ *
  * @generated from message api.v1.cluster.DockerDaemon
  */
 export class DockerDaemon extends Message<DockerDaemon> {
@@ -231,6 +255,8 @@ export class DockerDaemon extends Message<DockerDaemon> {
 }
 
 /**
+ * Registry dev registry
+ *
  * @generated from message api.v1.cluster.Registry
  */
 export class Registry extends Message<Registry> {

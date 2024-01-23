@@ -7,30 +7,42 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Different states a job execution can be in
+ *
  * @generated from enum api.v1.capsule.JobState
  */
 export enum JobState {
   /**
+   * Default value.
+   *
    * @generated from enum value: JOB_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The job is running.
+   *
    * @generated from enum value: JOB_STATE_ONGOING = 1;
    */
   ONGOING = 1,
 
   /**
+   * The job completed successfully.
+   *
    * @generated from enum value: JOB_STATE_COMPLETED = 2;
    */
   COMPLETED = 2,
 
   /**
+   * The job failed.
+   *
    * @generated from enum value: JOB_STATE_FAILED = 3;
    */
   FAILED = 3,
 
   /**
+   * The job was terminated.
+   *
    * @generated from enum value: JOB_STATE_TERMINATED = 4;
    */
   TERMINATED = 4,
@@ -45,55 +57,77 @@ proto3.util.setEnumType(JobState, "api.v1.capsule.JobState", [
 ]);
 
 /**
+ * An execution of a cron job.
+ *
  * @generated from message api.v1.capsule.JobExecution
  */
 export class JobExecution extends Message<JobExecution> {
   /**
+   * Name of the job.
+   *
    * @generated from field: string job_name = 1;
    */
   jobName = "";
 
   /**
+   * When the job started running.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 2;
    */
   createdAt?: Timestamp;
 
   /**
+   * When the job finished.
+   *
    * @generated from field: google.protobuf.Timestamp finished_at = 3;
    */
   finishedAt?: Timestamp;
 
   /**
+   * The state of the job.
+   *
    * @generated from field: api.v1.capsule.JobState state = 4;
    */
   state = JobState.UNSPECIFIED;
 
   /**
+   * Number of retries.
+   *
    * @generated from field: int32 retries = 5;
    */
   retries = 0;
 
   /**
+   * ID of the rollout.
+   *
    * @generated from field: uint64 rollout_id = 6;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * ID of the capsule.
+   *
    * @generated from field: string capsule_id = 7;
    */
   capsuleId = "";
 
   /**
+   * ID of the project.
+   *
    * @generated from field: string project_id = 8;
    */
   projectId = "";
 
   /**
+   * ID of the execution.
+   *
    * @generated from field: string execution_id = 9;
    */
   executionId = "";
 
   /**
+   * ID of the environment.
+   *
    * @generated from field: string environment_id = 10;
    */
   environmentId = "";
@@ -136,40 +170,56 @@ export class JobExecution extends Message<JobExecution> {
 }
 
 /**
+ * Specification for a cron job.
+ *
  * @generated from message api.v1.capsule.CronJob
  */
 export class CronJob extends Message<CronJob> {
   /**
+   * Name of the job.
+   *
    * @generated from field: string job_name = 1;
    */
   jobName = "";
 
   /**
+   * Cron schedule.
+   *
    * @generated from field: string schedule = 2;
    */
   schedule = "";
 
   /**
+   * Maximum number of retries.
+   *
    * @generated from field: int32 max_retries = 3;
    */
   maxRetries = 0;
 
   /**
+   * Maximum duration of the job.
+   *
    * @generated from field: google.protobuf.Duration timeout = 4;
    */
   timeout?: Duration;
 
   /**
+   * The type of the job
+   *
    * @generated from oneof api.v1.capsule.CronJob.job_type
    */
   jobType: {
     /**
+     * URL job.
+     *
      * @generated from field: api.v1.capsule.JobURL url = 5;
      */
     value: JobURL;
     case: "url";
   } | {
     /**
+     * Command job.
+     *
      * @generated from field: api.v1.capsule.JobCommand command = 6;
      */
     value: JobCommand;
@@ -210,20 +260,28 @@ export class CronJob extends Message<CronJob> {
 }
 
 /**
+ * Run a job by making a HTTP request to a URL.
+ *
  * @generated from message api.v1.capsule.JobURL
  */
 export class JobURL extends Message<JobURL> {
   /**
+   * Port to make the request to.
+   *
    * @generated from field: uint64 port = 1;
    */
   port = protoInt64.zero;
 
   /**
+   * Path to make the request to.
+   *
    * @generated from field: string path = 2;
    */
   path = "";
 
   /**
+   * Query parameters to add to the request.
+   *
    * @generated from field: map<string, string> query_parameters = 3;
    */
   queryParameters: { [key: string]: string } = {};
@@ -259,15 +317,21 @@ export class JobURL extends Message<JobURL> {
 }
 
 /**
+ * Run a job by running a command in an instance of a capsule
+ *
  * @generated from message api.v1.capsule.JobCommand
  */
 export class JobCommand extends Message<JobCommand> {
   /**
+   * Command to run.
+   *
    * @generated from field: string command = 1;
    */
   command = "";
 
   /**
+   * Arguments to pass to the command.
+   *
    * @generated from field: repeated string args = 2;
    */
   args: string[] = [];

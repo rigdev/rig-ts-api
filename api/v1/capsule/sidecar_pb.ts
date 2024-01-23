@@ -7,6 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Deprecated: sidecar configuration
+ *
  * @generated from message api.v1.capsule.Sidecar
  */
 export class Sidecar extends Message<Sidecar> {
@@ -44,6 +46,8 @@ export class Sidecar extends Message<Sidecar> {
 }
 
 /**
+ * Deprecated: sidecar interface configuration
+ *
  * @generated from message api.v1.capsule.SidecarInterface
  */
 export class SidecarInterface extends Message<SidecarInterface> {

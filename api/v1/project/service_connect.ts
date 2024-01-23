@@ -7,7 +7,7 @@ import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustom
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * The service to manage your project in Users
+ * The service to manage your projects.
  *
  * @generated from service api.v1.project.Service
  */
@@ -15,7 +15,7 @@ export const Service = {
   typeName: "api.v1.project.Service",
   methods: {
     /**
-     * Create project
+     * Create project.
      *
      * @generated from rpc api.v1.project.Service.Create
      */
@@ -26,7 +26,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Delete project (everything in Users)
+     * Delete project.
      *
      * @generated from rpc api.v1.project.Service.Delete
      */
@@ -37,7 +37,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get project
+     * Get project.
      *
      * @generated from rpc api.v1.project.Service.Get
      */
@@ -48,7 +48,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get project list
+     * Get project list.
      *
      * @generated from rpc api.v1.project.Service.List
      */
@@ -59,7 +59,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Update updates the profile of the project
+     * Update updates the profile of the project.
      *
      * @generated from rpc api.v1.project.Service.Update
      */
@@ -70,7 +70,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get public key of system
+     * Get public key.
      *
      * @generated from rpc api.v1.project.Service.PublicKey
      */
@@ -81,7 +81,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get License Information
+     * Get License Information.
      *
      * @generated from rpc api.v1.project.Service.GetLicenseInfo
      */
@@ -92,6 +92,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * Returns all objects of a given kind.
+     *
      * @generated from rpc api.v1.project.Service.GetObjectsByKind
      */
     getObjectsByKind: {
@@ -101,6 +103,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * Returns all metrics of a given custom object.
+     *
      * @generated from rpc api.v1.project.Service.GetCustomObjectMetrics
      */
     getCustomObjectMetrics: {

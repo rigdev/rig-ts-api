@@ -5,22 +5,26 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { ClientCredentials, Token, UserPassword } from "./user_pb.js";
 import { UserIdentifier, UserInfo } from "../../../model/user_pb.js";
-import { Token } from "./user_pb.js";
 import { LoginType } from "../../../model/auth_pb.js";
 
 /**
- * the request of a Public.VerifyEmail RPC
+ * Request to verify the email of a user with a verification code sent to the email.
  *
  * @generated from message api.v1.authentication.VerifyEmailRequest
  */
 export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
   /**
+   * The verification code.
+   *
    * @generated from field: string code = 1;
    */
   code = "";
 
   /**
+   * The email of the user.
+   *
    * @generated from field: string email = 2;
    */
   email = "";
@@ -55,7 +59,7 @@ export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
 }
 
 /**
- * the response of a Public.VerifyEmail RPC
+ * Empty response to the Verify Email Request.
  *
  * @generated from message api.v1.authentication.VerifyEmailResponse
  */
@@ -88,7 +92,7 @@ export class VerifyEmailResponse extends Message<VerifyEmailResponse> {
 }
 
 /**
- * the request of a Public.VerifyPhoneNumber RPC
+ * Request to verify the phone number of a user with a verification code sent to the phone number.
  *
  * @generated from message api.v1.authentication.VerifyPhoneNumberRequest
  */
@@ -133,7 +137,7 @@ export class VerifyPhoneNumberRequest extends Message<VerifyPhoneNumberRequest> 
 }
 
 /**
- * the response of a Public.VerifyPhoneNumber RPC
+ * Empty response to the Verify Phone Number Request.
  *
  * @generated from message api.v1.authentication.VerifyPhoneNumberResponse
  */
@@ -166,93 +170,7 @@ export class VerifyPhoneNumberResponse extends Message<VerifyPhoneNumberResponse
 }
 
 /**
- * @generated from message api.v1.authentication.UserPassword
- */
-export class UserPassword extends Message<UserPassword> {
-  /**
-   * @generated from field: model.UserIdentifier identifier = 1;
-   */
-  identifier?: UserIdentifier;
-
-  /**
-   * @generated from field: string password = 2;
-   */
-  password = "";
-
-  constructor(data?: PartialMessage<UserPassword>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.authentication.UserPassword";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "identifier", kind: "message", T: UserIdentifier },
-    { no: 2, name: "password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserPassword {
-    return new UserPassword().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UserPassword {
-    return new UserPassword().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserPassword {
-    return new UserPassword().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: UserPassword | PlainMessage<UserPassword> | undefined, b: UserPassword | PlainMessage<UserPassword> | undefined): boolean {
-    return proto3.util.equals(UserPassword, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.authentication.ClientCredentials
- */
-export class ClientCredentials extends Message<ClientCredentials> {
-  /**
-   * @generated from field: string client_id = 1;
-   */
-  clientId = "";
-
-  /**
-   * @generated from field: string client_secret = 2;
-   */
-  clientSecret = "";
-
-  constructor(data?: PartialMessage<ClientCredentials>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.authentication.ClientCredentials";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ClientCredentials {
-    return new ClientCredentials().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ClientCredentials {
-    return new ClientCredentials().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ClientCredentials {
-    return new ClientCredentials().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ClientCredentials | PlainMessage<ClientCredentials> | undefined, b: ClientCredentials | PlainMessage<ClientCredentials> | undefined): boolean {
-    return proto3.util.equals(ClientCredentials, a, b);
-  }
-}
-
-/**
- * The request of a Public.Login RPC
+ * Login request with either user identifier & email or client credentials.
  *
  * @generated from message api.v1.authentication.LoginRequest
  */
@@ -262,12 +180,16 @@ export class LoginRequest extends Message<LoginRequest> {
    */
   method: {
     /**
+     * User identifier & password.
+     *
      * @generated from field: api.v1.authentication.UserPassword user_password = 1;
      */
     value: UserPassword;
     case: "userPassword";
   } | {
     /**
+     * Client credentials from service account.
+     *
      * @generated from field: api.v1.authentication.ClientCredentials client_credentials = 3;
      */
     value: ClientCredentials;
@@ -304,22 +226,28 @@ export class LoginRequest extends Message<LoginRequest> {
 }
 
 /**
- * The response of a Public.Login RPC
+ * Login response with tokens and user information.
  *
  * @generated from message api.v1.authentication.LoginResponse
  */
 export class LoginResponse extends Message<LoginResponse> {
   /**
+   * The access token and refresh token.
+   *
    * @generated from field: api.v1.authentication.Token token = 1;
    */
   token?: Token;
 
   /**
+   * ID of the user.
+   *
    * @generated from field: string user_id = 2;
    */
   userId = "";
 
   /**
+   * User information.
+   *
    * @generated from field: model.UserInfo user_info = 3;
    */
   userInfo?: UserInfo;
@@ -355,7 +283,7 @@ export class LoginResponse extends Message<LoginResponse> {
 }
 
 /**
- * The request of a Public.Logout RPC
+ * Empty logout request. The user ID etc. is taken from the token. 
  *
  * @generated from message api.v1.authentication.LogoutRequest
  */
@@ -388,7 +316,7 @@ export class LogoutRequest extends Message<LogoutRequest> {
 }
 
 /**
- * The response of a Public.Logout RPC
+ * Empty response to the logout request.
  *
  * @generated from message api.v1.authentication.LogoutResponse
  */
@@ -421,7 +349,7 @@ export class LogoutResponse extends Message<LogoutResponse> {
 }
 
 /**
- * The request of a Public.Get RPC
+ * Get request to get the logged in user. The user ID etc. is taken from the token.
  *
  * @generated from message api.v1.authentication.GetRequest
  */
@@ -454,17 +382,21 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
- * The response of a Public.Get RPC
+ * Response with user information to the get request.
  *
  * @generated from message api.v1.authentication.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * Information about the user.
+   *
    * @generated from field: model.UserInfo user_info = 1;
    */
   userInfo?: UserInfo;
 
   /**
+   * ID of the user
+   *
    * @generated from field: string user_id = 2;
    */
   userId = "";
@@ -499,7 +431,7 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
- * The request of a Public.Create RPC
+ * Register request for users to self-register. This is only possible with the register bool set in users settings.
  *
  * @generated from message api.v1.authentication.RegisterRequest
  */
@@ -509,6 +441,8 @@ export class RegisterRequest extends Message<RegisterRequest> {
    */
   method: {
     /**
+     * User identifier & password for the new user.
+     *
      * @generated from field: api.v1.authentication.UserPassword user_password = 1;
      */
     value: UserPassword;
@@ -544,22 +478,28 @@ export class RegisterRequest extends Message<RegisterRequest> {
 }
 
 /**
- * The response of a Public.Create RPC
+ * Register response with tokens and user information.
  *
  * @generated from message api.v1.authentication.RegisterResponse
  */
 export class RegisterResponse extends Message<RegisterResponse> {
   /**
+   * Access and refresh token for the new logged in user.
+   *
    * @generated from field: api.v1.authentication.Token token = 1;
    */
   token?: Token;
 
   /**
+   * User ID of the new user.
+   *
    * @generated from field: string user_id = 2;
    */
   userId = "";
 
   /**
+   * Information about the new user.
+   *
    * @generated from field: model.UserInfo user_info = 3;
    */
   userInfo?: UserInfo;
@@ -595,10 +535,14 @@ export class RegisterResponse extends Message<RegisterResponse> {
 }
 
 /**
+ * Request to send a reset password email to the user. This is only possible if an email provider is configured, and the user has an email.
+ *
  * @generated from message api.v1.authentication.SendPasswordResetRequest
  */
 export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> {
   /**
+   * User identifier of the user.
+   *
    * @generated from field: model.UserIdentifier identifier = 1;
    */
   identifier?: UserIdentifier;
@@ -632,6 +576,8 @@ export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> 
 }
 
 /**
+ * Empty response to the send password reset request
+ *
  * @generated from message api.v1.authentication.SendPasswordResetResponse
  */
 export class SendPasswordResetResponse extends Message<SendPasswordResetResponse> {
@@ -663,22 +609,28 @@ export class SendPasswordResetResponse extends Message<SendPasswordResetResponse
 }
 
 /**
- * The request of a Public.ResetPassword RPC
+ * Request to reset the password of a user with a verification code sent to the email.
  *
  * @generated from message api.v1.authentication.ResetPasswordRequest
  */
 export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
   /**
+   * The 6 digit verification code
+   *
    * @generated from field: string code = 1;
    */
   code = "";
 
   /**
+   * The new password
+   *
    * @generated from field: string new_password = 2;
    */
   newPassword = "";
 
   /**
+   * Identifier of the user
+   *
    * @generated from field: model.UserIdentifier identifier = 3;
    */
   identifier?: UserIdentifier;
@@ -714,7 +666,7 @@ export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
 }
 
 /**
- * The response of a Public.ResetPassword RPC
+ * Empty response to the reset password request
  *
  * @generated from message api.v1.authentication.ResetPasswordResponse
  */
@@ -747,7 +699,7 @@ export class ResetPasswordResponse extends Message<ResetPasswordResponse> {
 }
 
 /**
- * The request of a Public.Delete RPC
+ * Request to delete the logged in user. The user ID etc. is taken from the token.
  *
  * @generated from message api.v1.authentication.DeleteRequest
  */
@@ -780,7 +732,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
- * The response of a Public.Delete RPC
+ * Empty response to the delete request.
  *
  * @generated from message api.v1.authentication.DeleteResponse
  */
@@ -813,13 +765,15 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
- * The request of a Public.Delete RPC
+ * Request to refresh the access and refresh token of the logged in user.
  *
  * @generated from message api.v1.authentication.RefreshTokenRequest
  */
 export class RefreshTokenRequest extends Message<RefreshTokenRequest> {
   /**
    * The access token of the user
+   *
+   * Refresh token matching the access token.
    *
    * @generated from field: string refresh_token = 1;
    */
@@ -854,12 +808,14 @@ export class RefreshTokenRequest extends Message<RefreshTokenRequest> {
 }
 
 /**
- * The response of a Public.Delete RPC
+ * Response with new access and refresh token.
  *
  * @generated from message api.v1.authentication.RefreshTokenResponse
  */
 export class RefreshTokenResponse extends Message<RefreshTokenResponse> {
   /**
+   * New refresh and access tokens
+   *
    * @generated from field: api.v1.authentication.Token token = 1;
    */
   token?: Token;
@@ -893,7 +849,7 @@ export class RefreshTokenResponse extends Message<RefreshTokenResponse> {
 }
 
 /**
- * The request of a Public.AuthenticationServiceGetAuthConfigRequest RPC
+ * Empty Request to get the auth config containing the available login mechanisms and if self-registering is enabled.
  *
  * @generated from message api.v1.authentication.GetAuthConfigRequest
  */
@@ -926,7 +882,7 @@ export class GetAuthConfigRequest extends Message<GetAuthConfigRequest> {
 }
 
 /**
- * The response of a Public.AuthenticationServiceGetAuthConfigRequest RPC
+ * Response with the auth config containing the available login mechanisms and if self-registering is enabled.
  *
  * @generated from message api.v1.authentication.GetAuthConfigResponse
  */

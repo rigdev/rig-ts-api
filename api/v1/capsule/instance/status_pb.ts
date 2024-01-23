@@ -7,30 +7,42 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Different states a stage can be in.
+ *
  * @generated from enum api.v1.capsule.instance.StageState
  */
 export enum StageState {
   /**
+   * Unspecified state.
+   *
    * @generated from enum value: STAGE_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Stage is ongoing.
+   *
    * @generated from enum value: STAGE_STATE_ONGOING = 1;
    */
   ONGOING = 1,
 
   /**
+   * Stage has failed.
+   *
    * @generated from enum value: STAGE_STATE_FAILED = 2;
    */
   FAILED = 2,
 
   /**
+   * Stage is done.
+   *
    * @generated from enum value: STAGE_STATE_DONE = 3;
    */
   DONE = 3,
 
   /**
+   * Stage is running.
+   *
    * @generated from enum value: STAGE_STATE_RUNNING = 4;
    */
   RUNNING = 4,
@@ -45,30 +57,42 @@ proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
 ]);
 
 /**
+ * Different states a step can be in.
+ *
  * @generated from enum api.v1.capsule.instance.StepState
  */
 export enum StepState {
   /**
+   * Unspecified state.
+   *
    * @generated from enum value: STEP_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Step is ongoing.
+   *
    * @generated from enum value: STEP_STATE_ONGOING = 1;
    */
   ONGOING = 1,
 
   /**
+   * Step has failed.
+   *
    * @generated from enum value: STEP_STATE_FAILED = 2;
    */
   FAILED = 2,
 
   /**
+   * Step is done.
+   *
    * @generated from enum value: STEP_STATE_DONE = 3;
    */
   DONE = 3,
 
   /**
+   * Step is running.
+   *
    * @generated from enum value: STEP_STATE_RUNNING = 4;
    */
   RUNNING = 4,
@@ -83,20 +107,28 @@ proto3.util.setEnumType(StepState, "api.v1.capsule.instance.StepState", [
 ]);
 
 /**
+ * Different states of a placement step
+ *
  * @generated from enum api.v1.capsule.instance.PlacementState
  */
 export enum PlacementState {
   /**
+   * Unspecified state.
+   *
    * @generated from enum value: SCHEDULING_STATE_UNSPECIFIED = 0;
    */
   SCHEDULING_STATE_UNSPECIFIED = 0,
 
   /**
+   * If the instance is unschedulable. 
+   *
    * @generated from enum value: SCHEDULING_STATE_UNSCHEDULEABLE = 1;
    */
   SCHEDULING_STATE_UNSCHEDULEABLE = 1,
 
   /**
+   * If the instance is scheduled.
+   *
    * @generated from enum value: SCHEDULING_STATE_DONE = 2;
    */
   SCHEDULING_STATE_DONE = 2,
@@ -109,30 +141,42 @@ proto3.util.setEnumType(PlacementState, "api.v1.capsule.instance.PlacementState"
 ]);
 
 /**
+ * Different states of an image pulling step.
+ *
  * @generated from enum api.v1.capsule.instance.ImagePullingState
  */
 export enum ImagePullingState {
   /**
+   * Unspecified state.
+   *
    * @generated from enum value: IMAGE_PULLING_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Image is being pulled.
+   *
    * @generated from enum value: IMAGE_PULLING_STATE_PULLING = 1;
    */
   PULLING = 1,
 
   /**
+   * Image pulling has failed.
+   *
    * @generated from enum value: IMAGE_PULLING_STATE_ERROR = 2;
    */
   ERROR = 2,
 
   /**
+   * Image pulling is in back off.
+   *
    * @generated from enum value: IMAGE_PULLING_STATE_BACK_OFF = 3;
    */
   BACK_OFF = 3,
 
   /**
+   * Image pulling is done.
+   *
    * @generated from enum value: IMAGE_PULLING_STATE_DONE = 4;
    */
   DONE = 4,
@@ -147,25 +191,35 @@ proto3.util.setEnumType(ImagePullingState, "api.v1.capsule.instance.ImagePulling
 ]);
 
 /**
+ * Different states of a ready step.
+ *
  * @generated from enum api.v1.capsule.instance.ReadyState
  */
 export enum ReadyState {
   /**
+   * Unspecified state.
+   *
    * @generated from enum value: READY_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * If the instance is in crash loop backoff.
+   *
    * @generated from enum value: READY_STATE_CRASH_LOOP_BACKOFF = 1;
    */
   CRASH_LOOP_BACKOFF = 1,
 
   /**
+   * If the instance is not ready.
+   *
    * @generated from enum value: READY_STATE_NOT_READY = 2;
    */
   NOT_READY = 2,
 
   /**
+   * If the instance is ready.
+   *
    * @generated from enum value: READY_STATE_READY = 3;
    */
   READY = 3,
@@ -179,32 +233,42 @@ proto3.util.setEnumType(ReadyState, "api.v1.capsule.instance.ReadyState", [
 ]);
 
 /**
- * Status is a representation of the current state of an instance
+ * Status is a representation of the current state of an instance.
  *
  * @generated from message api.v1.capsule.instance.Status
  */
 export class Status extends Message<Status> {
   /**
+   * Instance ID.
+   *
    * @generated from field: string instance_id = 1;
    */
   instanceId = "";
 
   /**
+   * Stages of the instance.
+   *
    * @generated from field: api.v1.capsule.instance.Stages stages = 2;
    */
   stages?: Stages;
 
   /**
+   * Rollout ID.
+   *
    * @generated from field: uint64 rollout_id = 3;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * Image of the instance.
+   *
    * @generated from field: string image = 4;
    */
   image = "";
 
   /**
+   * Creation time of the instance.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
   createdAt?: Timestamp;
@@ -242,25 +306,35 @@ export class Status extends Message<Status> {
 }
 
 /**
+ * The different stages of the instance.
+ *
  * @generated from message api.v1.capsule.instance.Stages
  */
 export class Stages extends Message<Stages> {
   /**
+   * Scheduling stage.
+   *
    * @generated from field: api.v1.capsule.instance.SchedulingStage schedule = 1;
    */
   schedule?: SchedulingStage;
 
   /**
+   * Preparing stage.
+   *
    * @generated from field: api.v1.capsule.instance.PreparingStage preparing = 2;
    */
   preparing?: PreparingStage;
 
   /**
+   * Running stage.
+   *
    * @generated from field: api.v1.capsule.instance.RunningStage running = 3;
    */
   running?: RunningStage;
 
   /**
+   * Deleted stage.
+   *
    * @generated from field: api.v1.capsule.instance.DeletedStage deleted = 4;
    */
   deleted?: DeletedStage;
@@ -297,20 +371,28 @@ export class Stages extends Message<Stages> {
 }
 
 /**
+ * Meta information about a stage.
+ *
  * @generated from message api.v1.capsule.instance.StageInfo
  */
 export class StageInfo extends Message<StageInfo> {
   /**
+   * Name of the stage.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Last update time of the stage.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 2;
    */
   updatedAt?: Timestamp;
 
   /**
+   * State of the stage.
+   *
    * @generated from field: api.v1.capsule.instance.StageState state = 3;
    */
   state = StageState.UNSPECIFIED;
@@ -346,15 +428,21 @@ export class StageInfo extends Message<StageInfo> {
 }
 
 /**
+ * The scheduling stage.
+ *
  * @generated from message api.v1.capsule.instance.SchedulingStage
  */
 export class SchedulingStage extends Message<SchedulingStage> {
   /**
+   * Meta information about the stage.
+   *
    * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * Steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.instance.SchedulingStep steps = 2;
    */
   steps: SchedulingStep[] = [];
@@ -389,6 +477,8 @@ export class SchedulingStage extends Message<SchedulingStage> {
 }
 
 /**
+ * A step of the scheduling stage.
+ *
  * @generated from message api.v1.capsule.instance.SchedulingStep
  */
 export class SchedulingStep extends Message<SchedulingStep> {
@@ -397,12 +487,16 @@ export class SchedulingStep extends Message<SchedulingStep> {
    */
   step: {
     /**
+     * Generic step.
+     *
      * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * Placement step - On what node should the instance run.
+     *
      * @generated from field: api.v1.capsule.instance.PlacementStep placement = 2;
      */
     value: PlacementStep;
@@ -439,15 +533,21 @@ export class SchedulingStep extends Message<SchedulingStep> {
 }
 
 /**
+ * Placement step.
+ *
  * @generated from message api.v1.capsule.instance.PlacementStep
  */
 export class PlacementStep extends Message<PlacementStep> {
   /**
+   * Meta information about the step.
+   *
    * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * Node on which the instance should run.
+   *
    * @generated from field: string node = 2;
    */
   node = "";
@@ -482,6 +582,8 @@ export class PlacementStep extends Message<PlacementStep> {
 }
 
 /**
+ * A generic step.
+ *
  * @generated from message api.v1.capsule.instance.GenericStep
  */
 export class GenericStep extends Message<GenericStep> {
@@ -519,25 +621,35 @@ export class GenericStep extends Message<GenericStep> {
 }
 
 /**
+ * Meta data about a step.
+ *
  * @generated from message api.v1.capsule.instance.StepInfo
  */
 export class StepInfo extends Message<StepInfo> {
   /**
+   * Name of the step.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Message of the step.
+   *
    * @generated from field: string message = 2;
    */
   message = "";
 
   /**
+   * Last update time of the step.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 3;
    */
   updatedAt?: Timestamp;
 
   /**
+   * State of the step.
+   *
    * @generated from field: api.v1.capsule.instance.StepState state = 4;
    */
   state = StepState.UNSPECIFIED;
@@ -574,15 +686,21 @@ export class StepInfo extends Message<StepInfo> {
 }
 
 /**
+ * The preparing stage
+ *
  * @generated from message api.v1.capsule.instance.PreparingStage
  */
 export class PreparingStage extends Message<PreparingStage> {
   /**
+   * Meta information about the stage.
+   *
    * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * Steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.instance.PreparingStep steps = 2;
    */
   steps: PreparingStep[] = [];
@@ -617,6 +735,8 @@ export class PreparingStage extends Message<PreparingStage> {
 }
 
 /**
+ * A step of the preparing stage.
+ *
  * @generated from message api.v1.capsule.instance.PreparingStep
  */
 export class PreparingStep extends Message<PreparingStep> {
@@ -625,12 +745,16 @@ export class PreparingStep extends Message<PreparingStep> {
    */
   step: {
     /**
+     * Generic step.
+     *
      * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * Image pulling step.
+     *
      * @generated from field: api.v1.capsule.instance.ImagePullingStep image_pulling = 2;
      */
     value: ImagePullingStep;
@@ -667,20 +791,28 @@ export class PreparingStep extends Message<PreparingStep> {
 }
 
 /**
+ * An image pulling step of the preparing stage.
+ *
  * @generated from message api.v1.capsule.instance.ImagePullingStep
  */
 export class ImagePullingStep extends Message<ImagePullingStep> {
   /**
+   * Meta information about the step.
+   *
    * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * State of the step.
+   *
    * @generated from field: api.v1.capsule.instance.ImagePullingState state = 2;
    */
   state = ImagePullingState.UNSPECIFIED;
 
   /**
+   * Image that is being pulled.
+   *
    * @generated from field: string image = 3;
    */
   image = "";
@@ -716,25 +848,35 @@ export class ImagePullingStep extends Message<ImagePullingStep> {
 }
 
 /**
+ * The running stage of the instance
+ *
  * @generated from message api.v1.capsule.instance.RunningStage
  */
 export class RunningStage extends Message<RunningStage> {
   /**
+   * Meta information about the stage.
+   *
    * @generated from field: api.v1.capsule.instance.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * Steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.instance.RunningStep steps = 2;
    */
   steps: RunningStep[] = [];
 
   /**
+   * Number of restarts of the instance.
+   *
    * @generated from field: uint32 restarts = 3;
    */
   restarts = 0;
 
   /**
+   * Information about the last container termination.
+   *
    * @generated from field: api.v1.capsule.instance.ContainerTermination last_container_termination = 4;
    */
   lastContainerTermination?: ContainerTermination;
@@ -771,6 +913,8 @@ export class RunningStage extends Message<RunningStage> {
 }
 
 /**
+ * A step of the running stage.
+ *
  * @generated from message api.v1.capsule.instance.RunningStep
  */
 export class RunningStep extends Message<RunningStep> {
@@ -779,18 +923,24 @@ export class RunningStep extends Message<RunningStep> {
    */
   step: {
     /**
+     * Generic step.
+     *
      * @generated from field: api.v1.capsule.instance.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * Ready step.
+     *
      * @generated from field: api.v1.capsule.instance.ReadyStep ready = 2;
      */
     value: ReadyStep;
     case: "ready";
   } | {
     /**
+     * Executing step.
+     *
      * @generated from field: api.v1.capsule.instance.ExecutingStep executing = 3;
      */
     value: ExecutingStep;
@@ -828,25 +978,35 @@ export class RunningStep extends Message<RunningStep> {
 }
 
 /**
+ * A ready step of the running stage.
+ *
  * @generated from message api.v1.capsule.instance.ReadyStep
  */
 export class ReadyStep extends Message<ReadyStep> {
   /**
+   * Meta information about the step.
+   *
    * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * State of the step.
+   *
    * @generated from field: api.v1.capsule.instance.ReadyState state = 2;
    */
   state = ReadyState.UNSPECIFIED;
 
   /**
+   * Time at which the step failed.
+   *
    * @generated from field: google.protobuf.Timestamp failed_at = 3;
    */
   failedAt?: Timestamp;
 
   /**
+   * Number of times the step has failed.
+   *
    * @generated from field: uint32 fail_count = 4;
    */
   failCount = 0;
@@ -883,15 +1043,21 @@ export class ReadyStep extends Message<ReadyStep> {
 }
 
 /**
+ * An executing step of the running stage.
+ *
  * @generated from message api.v1.capsule.instance.ExecutingStep
  */
 export class ExecutingStep extends Message<ExecutingStep> {
   /**
+   * Meta information about the step.
+   *
    * @generated from field: api.v1.capsule.instance.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * Time at which the step started.
+   *
    * @generated from field: google.protobuf.Timestamp started_at = 2;
    */
   startedAt?: Timestamp;
@@ -926,6 +1092,8 @@ export class ExecutingStep extends Message<ExecutingStep> {
 }
 
 /**
+ * Information about the last container termination.
+ *
  * @generated from message api.v1.capsule.instance.ContainerTermination
  */
 export class ContainerTermination extends Message<ContainerTermination> {
@@ -977,7 +1145,7 @@ export class ContainerTermination extends Message<ContainerTermination> {
   finishedAt?: Timestamp;
 
   /**
-   * Container's ID in the format '<type>://<container_id>'
+   * Container's ID in the format 'type://container_id'
    * +optional
    *
    * @generated from field: string container_id = 7;

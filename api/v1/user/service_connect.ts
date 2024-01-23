@@ -7,7 +7,7 @@ import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetByIden
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * The service to manage users in Users
+ * The service to manage users in Users.
  *
  * @generated from service api.v1.user.Service
  */
@@ -15,7 +15,7 @@ export const Service = {
   typeName: "api.v1.user.Service",
   methods: {
     /**
-     * Create a new user
+     * Create a new user.
      *
      * @generated from rpc api.v1.user.Service.Create
      */
@@ -26,7 +26,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Update a users profile and info
+     * Update a users profile and info.
      *
      * @generated from rpc api.v1.user.Service.Update
      */
@@ -70,7 +70,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * List users
+     * List users.
      *
      * @generated from rpc api.v1.user.Service.List
      */
@@ -81,7 +81,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Delete a specific user
+     * Delete a specific user.
      *
      * @generated from rpc api.v1.user.Service.Delete
      */

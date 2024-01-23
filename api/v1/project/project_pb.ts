@@ -7,25 +7,35 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * The plan for a rig installation
+ *
  * @generated from enum api.v1.project.Plan
  */
 export enum Plan {
   /**
+   * Unspecified / unactivated plan.
+   *
    * @generated from enum value: PLAN_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Free tier.
+   *
    * @generated from enum value: PLAN_FREE = 1;
    */
   FREE = 1,
 
   /**
+   * Team / Pro tier.
+   *
    * @generated from enum value: PLAN_TEAM = 2;
    */
   TEAM = 2,
 
   /**
+   * Enterprise tier.
+   *
    * @generated from enum value: PLAN_ENTERPRISE = 3;
    */
   ENTERPRISE = 3,
@@ -39,30 +49,42 @@ proto3.util.setEnumType(Plan, "api.v1.project.Plan", [
 ]);
 
 /**
+ * The top most model that capsules etc belong to.
+ *
  * @generated from message api.v1.project.Project
  */
 export class Project extends Message<Project> {
   /**
+   * The unique id of the project.
+   *
    * @generated from field: string project_id = 1;
    */
   projectId = "";
 
   /**
+   * Deprecated: Name of the project.
+   *
    * @generated from field: string name = 2;
    */
   name = "";
 
   /**
+   * When the project was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: Timestamp;
 
   /**
+   * When the project was last updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
   updatedAt?: Timestamp;
 
   /**
+   * The installation id of the project.
+   *
    * @generated from field: string installation_id = 5;
    */
   installationId = "";
@@ -100,6 +122,8 @@ export class Project extends Message<Project> {
 }
 
 /**
+ * Update msg for a project.
+ *
  * @generated from message api.v1.project.Update
  */
 export class Update extends Message<Update> {
@@ -108,6 +132,8 @@ export class Update extends Message<Update> {
    */
   field: {
     /**
+     * Update the name of the project.
+     *
      * @generated from field: string name = 1;
      */
     value: string;

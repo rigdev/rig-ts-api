@@ -150,6 +150,8 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * List capsule events.
+     *
      * @generated from rpc api.v1.capsule.Service.ListEvents
      */
     listEvents: {
@@ -170,7 +172,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * GetInstanceStatus returns the current status for the given instance
+     * GetInstanceStatus returns the current status for the given instance.
      *
      * @generated from rpc api.v1.capsule.Service.GetInstanceStatus
      */

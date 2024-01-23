@@ -7,10 +7,14 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Project wide settings.
+ *
  * @generated from message api.v1.project.settings.Settings
  */
 export class Settings extends Message<Settings> {
   /**
+   * Docker registries for images.
+   *
    * @generated from field: repeated api.v1.project.settings.DockerRegistry docker_registries = 4;
    */
   dockerRegistries: DockerRegistry[] = [];
@@ -44,15 +48,21 @@ export class Settings extends Message<Settings> {
 }
 
 /**
+ * Docker registry.
+ *
  * @generated from message api.v1.project.settings.DockerRegistry
  */
 export class DockerRegistry extends Message<DockerRegistry> {
   /**
+   * The secret id of the docker registry.
+   *
    * @generated from field: string secret_id = 1;
    */
   secretId = "";
 
   /**
+   * Host of the docker registry/
+   *
    * @generated from field: string host = 2;
    */
   host = "";
@@ -87,10 +97,14 @@ export class DockerRegistry extends Message<DockerRegistry> {
 }
 
 /**
+ * Message for adding a docker registry
+ *
  * @generated from message api.v1.project.settings.AddDockerRegistry
  */
 export class AddDockerRegistry extends Message<AddDockerRegistry> {
   /**
+   * The host of the docker registry.
+   *
    * @generated from field: string host = 1;
    */
   host = "";
@@ -100,12 +114,16 @@ export class AddDockerRegistry extends Message<AddDockerRegistry> {
    */
   field: {
     /**
+     * authentication string to the docker registry.
+     *
      * @generated from field: string auth = 2;
      */
     value: string;
     case: "auth";
   } | {
     /**
+     * Credentials for the docker registry.
+     *
      * @generated from field: api.v1.project.settings.DockerRegistryCredentials credentials = 3;
      */
     value: DockerRegistryCredentials;
@@ -143,20 +161,28 @@ export class AddDockerRegistry extends Message<AddDockerRegistry> {
 }
 
 /**
+ * Credentials for a docker registry.
+ *
  * @generated from message api.v1.project.settings.DockerRegistryCredentials
  */
 export class DockerRegistryCredentials extends Message<DockerRegistryCredentials> {
   /**
+   * Username for the docker registry.
+   *
    * @generated from field: string username = 1;
    */
   username = "";
 
   /**
+   * Password for the docker registry.
+   *
    * @generated from field: string password = 2;
    */
   password = "";
 
   /**
+   * Email for the docker registry.
+   *
    * @generated from field: string email = 3;
    */
   email = "";
@@ -192,20 +218,28 @@ export class DockerRegistryCredentials extends Message<DockerRegistryCredentials
 }
 
 /**
+ * Update message for project settings.
+ *
  * @generated from message api.v1.project.settings.Update
  */
 export class Update extends Message<Update> {
   /**
+   * A number of updates to apply to the project settings.
+   *
    * @generated from oneof api.v1.project.settings.Update.field
    */
   field: {
     /**
+     * Add a docker registry.
+     *
      * @generated from field: api.v1.project.settings.AddDockerRegistry add_docker_registry = 4;
      */
     value: AddDockerRegistry;
     case: "addDockerRegistry";
   } | {
     /**
+     * Delete a docker registry.
+     *
      * @generated from field: string delete_docker_registry = 5;
      */
     value: string;

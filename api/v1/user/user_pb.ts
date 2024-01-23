@@ -11,25 +11,35 @@ import { Metadata } from "../../../model/metadata_pb.js";
 import { LoginType } from "../../../model/auth_pb.js";
 
 /**
+ * Type of verification code
+ *
  * @generated from enum api.v1.user.VerificationType
  */
 export enum VerificationType {
   /**
+   * Default value
+   *
    * @generated from enum value: VERIFICATION_TYPE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Email verification code.
+   *
    * @generated from enum value: VERIFICATION_TYPE_EMAIL = 1;
    */
   EMAIL = 1,
 
   /**
+   * Deprecated: text is not supported - text verification code.
+   *
    * @generated from enum value: VERIFICATION_TYPE_TEXT = 2;
    */
   TEXT = 2,
 
   /**
+   * reset password verification code.
+   *
    * @generated from enum value: VERIFICATION_TYPE_RESET_PASSWORD = 3;
    */
   RESET_PASSWORD = 3,
@@ -43,40 +53,56 @@ proto3.util.setEnumType(VerificationType, "api.v1.user.VerificationType", [
 ]);
 
 /**
+ * short-lived verification code.
+ *
  * @generated from message api.v1.user.VerificationCode
  */
 export class VerificationCode extends Message<VerificationCode> {
   /**
+   * Hashed verification code.
+   *
    * @generated from field: model.HashingInstance code = 1;
    */
   code?: HashingInstance;
 
   /**
+   * Timestamp when the verification code was sent.
+   *
    * @generated from field: google.protobuf.Timestamp sent_at = 2;
    */
   sentAt?: Timestamp;
 
   /**
+   * Timestamp when the verification code expires.
+   *
    * @generated from field: google.protobuf.Timestamp expires_at = 3;
    */
   expiresAt?: Timestamp;
 
   /**
+   * Number of attempts to verify the code.
+   *
    * @generated from field: int32 attempts = 4;
    */
   attempts = 0;
 
   /**
+   * Timestamp of the last attempt to verify the code.
+   *
    * @generated from field: google.protobuf.Timestamp last_attempt = 5;
    */
   lastAttempt?: Timestamp;
 
   /**
+   * Type of verification code.
+   *
    * @generated from field: api.v1.user.VerificationType type = 6;
    */
   type = VerificationType.UNSPECIFIED;
 
   /**
+   * User ID of the user who the code was sent to.
+   *
    * @generated from field: string user_id = 7;
    */
   userId = "";
@@ -116,15 +142,21 @@ export class VerificationCode extends Message<VerificationCode> {
 }
 
 /**
+ * User profile
+ *
  * @generated from message api.v1.user.Profile
  */
 export class Profile extends Message<Profile> {
   /**
+   * First name of the user.
+   *
    * @generated from field: string first_name = 1;
    */
   firstName = "";
 
   /**
+   * Last name of the user.
+   *
    * @generated from field: string last_name = 2;
    */
   lastName = "";
@@ -159,50 +191,70 @@ export class Profile extends Message<Profile> {
 }
 
 /**
+ * The user model.
+ *
  * @generated from message api.v1.user.User
  */
 export class User extends Message<User> {
   /**
+   * User ID of the user.
+   *
    * @generated from field: string user_id = 1;
    */
   userId = "";
 
   /**
+   * User info of the user.
+   *
    * @generated from field: model.UserInfo user_info = 2;
    */
   userInfo?: UserInfo;
 
   /**
+   * Profile of the user.
+   *
    * @generated from field: api.v1.user.Profile profile = 3;
    */
   profile?: Profile;
 
   /**
+   * Timestamp when the user was last updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
   updatedAt?: Timestamp;
 
   /**
+   * Register info of the user.
+   *
    * @generated from field: model.RegisterInfo register_info = 5;
    */
   registerInfo?: RegisterInfo;
 
   /**
+   * Deprecated: text is not supported - Whether the user's phone number is verified.
+   *
    * @generated from field: bool is_phone_verified = 6;
    */
   isPhoneVerified = false;
 
   /**
+   * Whether the user's email is verified.
+   *
    * @generated from field: bool is_email_verified = 7;
    */
   isEmailVerified = false;
 
   /**
+   * Timestamp when the user last created a new session.
+   *
    * @generated from field: google.protobuf.Timestamp new_sessions_since = 8;
    */
   newSessionsSince?: Timestamp;
 
   /**
+   * Metadata of the user.
+   *
    * @generated from field: map<string, bytes> metadata = 9;
    */
   metadata: { [key: string]: Uint8Array } = {};
@@ -244,74 +296,100 @@ export class User extends Message<User> {
 }
 
 /**
+ * Update message to update a user.
+ *
  * @generated from message api.v1.user.Update
  */
 export class Update extends Message<Update> {
   /**
+   * field of the user to update./
+   *
    * @generated from oneof api.v1.user.Update.field
    */
   field: {
     /**
+     * Email of the user.
+     *
      * @generated from field: string email = 1;
      */
     value: string;
     case: "email";
   } | {
     /**
+     * Username of the user.
+     *
      * @generated from field: string username = 2;
      */
     value: string;
     case: "username";
   } | {
     /**
+     * Deprecated: text is not supported - Phone number of the user.
+     *
      * @generated from field: string phone_number = 3;
      */
     value: string;
     case: "phoneNumber";
   } | {
     /**
+     * Password of the user.
+     *
      * @generated from field: string password = 4;
      */
     value: string;
     case: "password";
   } | {
     /**
+     * Profile of the user.
+     *
      * @generated from field: api.v1.user.Profile profile = 5;
      */
     value: Profile;
     case: "profile";
   } | {
     /**
+     * Whether the user's email is verified.
+     *
      * @generated from field: bool is_email_verified = 6;
      */
     value: boolean;
     case: "isEmailVerified";
   } | {
     /**
+     * Deprecated: text is not supported - Whether the user's phone number is verified.
+     *
      * @generated from field: bool is_phone_verified = 7;
      */
     value: boolean;
     case: "isPhoneVerified";
   } | {
     /**
+     * Reset sessions of the user.
+     *
      * @generated from field: api.v1.user.Update.ResetSessions reset_sessions = 8;
      */
     value: Update_ResetSessions;
     case: "resetSessions";
   } | {
     /**
+     * Set metadata of the user.
+     *
      * @generated from field: model.Metadata set_metadata = 9;
      */
     value: Metadata;
     case: "setMetadata";
   } | {
     /**
+     * Delete metadata of the user.
+     *
      * @generated from field: string delete_metadata_key = 10;
      */
     value: string;
     case: "deleteMetadataKey";
   } | {
     /**
+     * Hashed password of the user.
+     *
      * @generated from field: model.HashingInstance hashed_password = 12;
      */
     value: HashingInstance;
@@ -357,6 +435,8 @@ export class Update extends Message<Update> {
 }
 
 /**
+ * if sessions are reset, all sessions will be invalidated and a new session will be created.
+ *
  * @generated from message api.v1.user.Update.ResetSessions
  */
 export class Update_ResetSessions extends Message<Update_ResetSessions> {
@@ -388,6 +468,8 @@ export class Update_ResetSessions extends Message<Update_ResetSessions> {
 }
 
 /**
+ * how a user is authenticated.
+ *
  * @generated from message api.v1.user.AuthMethod
  */
 export class AuthMethod extends Message<AuthMethod> {
@@ -396,6 +478,8 @@ export class AuthMethod extends Message<AuthMethod> {
    */
   method: {
     /**
+     * Login type of the user.
+     *
      * @generated from field: model.LoginType login_type = 1;
      */
     value: LoginType;
@@ -431,15 +515,21 @@ export class AuthMethod extends Message<AuthMethod> {
 }
 
 /**
+ * Session entry
+ *
  * @generated from message api.v1.user.SessionEntry
  */
 export class SessionEntry extends Message<SessionEntry> {
   /**
+   * Session ID of the session.
+   *
    * @generated from field: string session_id = 1;
    */
   sessionId = "";
 
   /**
+   * Session of the session.
+   *
    * @generated from field: api.v1.user.Session session = 2;
    */
   session?: Session;
@@ -474,45 +564,63 @@ export class SessionEntry extends Message<SessionEntry> {
 }
 
 /**
+ * A user's sessions.
+ *
  * @generated from message api.v1.user.Session
  */
 export class Session extends Message<Session> {
   /**
+   * how the user is authenticated.
+   *
    * @generated from field: api.v1.user.AuthMethod auth_method = 1;
    */
   authMethod?: AuthMethod;
 
   /**
+   * if the session is invalidated
+   *
    * @generated from field: bool is_invalidated = 2;
    */
   isInvalidated = false;
 
   /**
+   * Timestamp when the session was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: Timestamp;
 
   /**
+   * Timestamp when the session was invalidated.
+   *
    * @generated from field: google.protobuf.Timestamp invalidated_at = 4;
    */
   invalidatedAt?: Timestamp;
 
   /**
+   * Timestamp when the session expires.
+   *
    * @generated from field: google.protobuf.Timestamp expires_at = 5;
    */
   expiresAt?: Timestamp;
 
   /**
+   * Timestamp when the session was renewed.
+   *
    * @generated from field: google.protobuf.Timestamp renewed_at = 6;
    */
   renewedAt?: Timestamp;
 
   /**
+   * Country of the session.
+   *
    * @generated from field: string country = 7;
    */
   country = "";
 
   /**
+   * Postal code of the session.
+   *
    * @generated from field: int32 postal_code = 8;
    */
   postalCode = 0;

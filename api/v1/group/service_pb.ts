@@ -10,12 +10,14 @@ import { Pagination } from "../../../model/common_pb.js";
 import { MemberEntry } from "../../../model/user_pb.js";
 
 /**
- * The request of a Groups.Create RPC
+ * The request of a Groups.Create RPC.
  *
  * @generated from message api.v1.group.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
+   * The group to create.
+   *
    * @generated from field: repeated api.v1.group.Update initializers = 1;
    */
   initializers: Update[] = [];
@@ -49,12 +51,14 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
- * The response of a Groups.Create RPC
+ * The response of a Groups.Create RPC.
  *
  * @generated from message api.v1.group.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * The created group.
+   *
    * @generated from field: api.v1.group.Group group = 1;
    */
   group?: Group;
@@ -88,17 +92,21 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
- * The request of a Groups.List RPC
+ * The request of a Groups.List RPC.
  *
  * @generated from message api.v1.group.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 1;
    */
   pagination?: Pagination;
 
   /**
+   * Search string.
+   *
    * @generated from field: string search = 2;
    */
   search = "";
@@ -133,20 +141,20 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
- * The response of a Groups.List RPC
+ * The response of a Groups.List RPC.
  *
  * @generated from message api.v1.group.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
-   * list of groups
+   * list of groups.
    *
    * @generated from field: repeated api.v1.group.Group groups = 1;
    */
   groups: Group[] = [];
 
   /**
-   * count of total amount of groups
+   * total amount of groups.
    *
    * @generated from field: uint64 total = 2;
    */
@@ -182,13 +190,13 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
- * The request of a Group.Delete RPC
+ * The request of a Group.Delete RPC.
  *
  * @generated from message api.v1.group.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
-   * The group to delete
+   * The group to delete.
    *
    * @generated from field: string group_id = 1;
    */
@@ -223,7 +231,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
- * The response of a Group.Delete RPC
+ * The response of a Group.Delete RPC.
  *
  * @generated from message api.v1.group.DeleteResponse
  */
@@ -256,18 +264,20 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
- * The request of a Groups.Update RPC
+ * The request of a Groups.Update RPC.
  *
  * @generated from message api.v1.group.UpdateRequest
  */
 export class UpdateRequest extends Message<UpdateRequest> {
   /**
+   * The updates to apply.
+   *
    * @generated from field: repeated api.v1.group.Update updates = 1;
    */
   updates: Update[] = [];
 
   /**
-   * The group id
+   * The group id.
    *
    * @generated from field: string group_id = 2;
    */
@@ -303,7 +313,7 @@ export class UpdateRequest extends Message<UpdateRequest> {
 }
 
 /**
- * The response of a Groups.Update RPC
+ * The response of a Groups.Update RPC.
  *
  * @generated from message api.v1.group.UpdateResponse
  */
@@ -336,13 +346,13 @@ export class UpdateResponse extends Message<UpdateResponse> {
 }
 
 /**
- * The request of a Groups.Get RPC
+ * The request of a Groups.Get RPC.
  *
  * @generated from message api.v1.group.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
-   * The group id
+   * The group id.
    *
    * @generated from field: string group_id = 1;
    */
@@ -383,6 +393,8 @@ export class GetRequest extends Message<GetRequest> {
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The group.
+   *
    * @generated from field: api.v1.group.Group group = 1;
    */
   group?: Group;
@@ -416,15 +428,21 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
+ * Request for adding one or more members to a group.
+ *
  * @generated from message api.v1.group.AddMemberRequest
  */
 export class AddMemberRequest extends Message<AddMemberRequest> {
   /**
+   * The group to add members to.
+   *
    * @generated from field: string group_id = 1;
    */
   groupId = "";
 
   /**
+   * The members to add.
+   *
    * @generated from field: repeated api.v1.group.MemberID member_ids = 2;
    */
   memberIds: MemberID[] = [];
@@ -459,6 +477,8 @@ export class AddMemberRequest extends Message<AddMemberRequest> {
 }
 
 /**
+ * Empty response for adding one or more members to a group.
+ *
  * @generated from message api.v1.group.AddMemberResponse
  */
 export class AddMemberResponse extends Message<AddMemberResponse> {
@@ -490,15 +510,21 @@ export class AddMemberResponse extends Message<AddMemberResponse> {
 }
 
 /**
+ * Request for removing a member from a group.
+ *
  * @generated from message api.v1.group.RemoveMemberRequest
  */
 export class RemoveMemberRequest extends Message<RemoveMemberRequest> {
   /**
+   * The group to remove the member from.
+   *
    * @generated from field: string group_id = 1;
    */
   groupId = "";
 
   /**
+   * The member to remove.
+   *
    * @generated from field: api.v1.group.MemberID member_id = 2;
    */
   memberId?: MemberID;
@@ -533,6 +559,8 @@ export class RemoveMemberRequest extends Message<RemoveMemberRequest> {
 }
 
 /**
+ * Empty response for removing a member from a group.
+ *
  * @generated from message api.v1.group.RemoveMemberResponse
  */
 export class RemoveMemberResponse extends Message<RemoveMemberResponse> {
@@ -564,15 +592,21 @@ export class RemoveMemberResponse extends Message<RemoveMemberResponse> {
 }
 
 /**
+ * Reqyest for listing members of a group.
+ *
  * @generated from message api.v1.group.ListMembersRequest
  */
 export class ListMembersRequest extends Message<ListMembersRequest> {
   /**
+   * The group to list members of.
+   *
    * @generated from field: string group_id = 1;
    */
   groupId = "";
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
@@ -607,15 +641,21 @@ export class ListMembersRequest extends Message<ListMembersRequest> {
 }
 
 /**
+ * Response for listing members of a group.
+ *
  * @generated from message api.v1.group.ListMembersResponse
  */
 export class ListMembersResponse extends Message<ListMembersResponse> {
   /**
+   * The members in the group.
+   *
    * @generated from field: repeated model.MemberEntry members = 1;
    */
   members: MemberEntry[] = [];
 
   /**
+   * The total amount of members in the group.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;
@@ -650,15 +690,21 @@ export class ListMembersResponse extends Message<ListMembersResponse> {
 }
 
 /**
+ * Request for listing the groups a member is in.
+ *
  * @generated from message api.v1.group.ListGroupsForMemberRequest
  */
 export class ListGroupsForMemberRequest extends Message<ListGroupsForMemberRequest> {
   /**
+   * The member to list groups for.
+   *
    * @generated from field: api.v1.group.MemberID member_id = 1;
    */
   memberId?: MemberID;
 
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
@@ -693,15 +739,21 @@ export class ListGroupsForMemberRequest extends Message<ListGroupsForMemberReque
 }
 
 /**
+ * Response for listing the groups a member is in.
+ *
  * @generated from message api.v1.group.ListGroupsForMemberResponse
  */
 export class ListGroupsForMemberResponse extends Message<ListGroupsForMemberResponse> {
   /**
+   * The groups the member is in.
+   *
    * @generated from field: repeated api.v1.group.Group groups = 1;
    */
   groups: Group[] = [];
 
   /**
+   * The total amount of groups the member is in.
+   *
    * @generated from field: uint64 total = 2;
    */
   total = protoInt64.zero;

@@ -7,6 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Author of a change.
+ *
  * @generated from message model.Author
  */
 export class Author extends Message<Author> {
@@ -34,12 +36,16 @@ export class Author extends Message<Author> {
    */
   account: {
     /**
+     * if a user did the change
+     *
      * @generated from field: string user_id = 3;
      */
     value: string;
     case: "userId";
   } | {
     /**
+     * if a service account did the change
+     *
      * @generated from field: string service_account_id = 4;
      */
     value: string;

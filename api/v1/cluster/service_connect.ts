@@ -15,7 +15,7 @@ export const Service = {
   typeName: "api.v1.cluster.Service",
   methods: {
     /**
-     * GetConfig returns the config for the cluster
+     * GetConfig returns the config for the cluster.
      *
      * @generated from rpc api.v1.cluster.Service.GetConfig
      */
@@ -26,7 +26,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * GetConfigs returns the configs for all clusters
+     * GetConfigs returns the configs for all clusters.
      *
      * @generated from rpc api.v1.cluster.Service.GetConfigs
      */

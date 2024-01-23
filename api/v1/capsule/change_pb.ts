@@ -8,116 +8,156 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { CronJob } from "./job_pb.js";
 
 /**
+ * Change to a capsule that ultimately results in a new rollout.
+ *
  * @generated from message api.v1.capsule.Change
  */
 export class Change extends Message<Change> {
   /**
+   * Different types of changes.
+   *
    * @generated from oneof api.v1.capsule.Change.field
    */
   field: {
     /**
+     * Number of replicas changed.
+     *
      * @generated from field: uint32 replicas = 1;
      */
     value: number;
     case: "replicas";
   } | {
     /**
+     * New build change.
+     *
      * @generated from field: string build_id = 2;
      */
     value: string;
     case: "buildId";
   } | {
     /**
+     * Network interfaces change.
+     *
      * @generated from field: api.v1.capsule.Network network = 3;
      */
     value: Network;
     case: "network";
   } | {
     /**
+     * Container settings of the instances.
+     *
      * @generated from field: api.v1.capsule.ContainerSettings container_settings = 4;
      */
     value: ContainerSettings;
     case: "containerSettings";
   } | {
     /**
+     * Automatically add a rig-service account.
+     *
      * @generated from field: bool auto_add_rig_service_accounts = 5;
      */
     value: boolean;
     case: "autoAddRigServiceAccounts";
   } | {
     /**
+     * Set a config file - either update or add.
+     *
      * @generated from field: api.v1.capsule.Change.ConfigFile set_config_file = 6;
      */
     value: Change_ConfigFile;
     case: "setConfigFile";
   } | {
     /**
+     * Path of a config file to remove.
+     *
      * @generated from field: string remove_config_file = 7;
      */
     value: string;
     case: "removeConfigFile";
   } | {
     /**
+     * Horizontal scaling settings.
+     *
      * @generated from field: api.v1.capsule.HorizontalScale horizontal_scale = 8;
      */
     value: HorizontalScale;
     case: "horizontalScale";
   } | {
     /**
+     * Rollback to a previous rollout.
+     *
      * @generated from field: api.v1.capsule.Change.Rollback rollback = 9;
      */
     value: Change_Rollback;
     case: "rollback";
   } | {
     /**
+     * Update or add an environment variable.
+     *
      * @generated from field: api.v1.capsule.Change.EnvironmentVariable set_environment_variable = 11;
      */
     value: Change_EnvironmentVariable;
     case: "setEnvironmentVariable";
   } | {
     /**
+     * Name of an environment variable to remove.
+     *
      * @generated from field: string remove_environment_variable = 12;
      */
     value: string;
     case: "removeEnvironmentVariable";
   } | {
     /**
+     * Set or update an environment source.
+     *
      * @generated from field: api.v1.capsule.EnvironmentSource set_environment_source = 13;
      */
     value: EnvironmentSource;
     case: "setEnvironmentSource";
   } | {
     /**
+     * Remove an environment source.
+     *
      * @generated from field: api.v1.capsule.EnvironmentSource remove_environment_source = 14;
      */
     value: EnvironmentSource;
     case: "removeEnvironmentSource";
   } | {
     /**
+     * Entrypoint for capsule instances.
+     *
      * @generated from field: api.v1.capsule.Change.CommandArguments command_arguments = 15;
      */
     value: Change_CommandArguments;
     case: "commandArguments";
   } | {
     /**
+     * Add a cron job.
+     *
      * @generated from field: api.v1.capsule.CronJob add_cron_job = 16;
      */
     value: CronJob;
     case: "addCronJob";
   } | {
     /**
+     * Remove a cron job.
+     *
      * @generated from field: api.v1.capsule.Change.RemoveCronJob remove_cron_job = 17;
      */
     value: Change_RemoveCronJob;
     case: "removeCronJob";
   } | {
     /**
+     * Add a network interface.
+     *
      * @generated from field: api.v1.capsule.Interface add_interface = 18;
      */
     value: Interface;
     case: "addInterface";
   } | {
     /**
+     * Remove a network interface.
+     *
      * @generated from field: api.v1.capsule.Change.RemoveInterface remove_interface = 19;
      */
     value: Change_RemoveInterface;
@@ -170,20 +210,28 @@ export class Change extends Message<Change> {
 }
 
 /**
+ * Config file change.
+ *
  * @generated from message api.v1.capsule.Change.ConfigFile
  */
 export class Change_ConfigFile extends Message<Change_ConfigFile> {
   /**
+   * Path of the file in the instance.
+   *
    * @generated from field: string path = 1;
    */
   path = "";
 
   /**
+   * Content of the config file.
+   *
    * @generated from field: bytes content = 2;
    */
   content = new Uint8Array(0);
 
   /**
+   * True if the content is secret.
+   *
    * @generated from field: bool is_secret = 3;
    */
   isSecret = false;
@@ -219,10 +267,14 @@ export class Change_ConfigFile extends Message<Change_ConfigFile> {
 }
 
 /**
+ * Rollback change.
+ *
  * @generated from message api.v1.capsule.Change.Rollback
  */
 export class Change_Rollback extends Message<Change_Rollback> {
   /**
+   * Rollout to roll back to.
+   *
    * @generated from field: uint64 rollback_id = 1;
    */
   rollbackId = protoInt64.zero;
@@ -256,10 +308,14 @@ export class Change_Rollback extends Message<Change_Rollback> {
 }
 
 /**
+ * Jobs change
+ *
  * @generated from message api.v1.capsule.Change.CronJobs
  */
 export class Change_CronJobs extends Message<Change_CronJobs> {
   /**
+   * The jobs.
+   *
    * @generated from field: repeated api.v1.capsule.CronJob jobs = 1;
    */
   jobs: CronJob[] = [];
@@ -293,15 +349,21 @@ export class Change_CronJobs extends Message<Change_CronJobs> {
 }
 
 /**
+ * Environment variable change.
+ *
  * @generated from message api.v1.capsule.Change.EnvironmentVariable
  */
 export class Change_EnvironmentVariable extends Message<Change_EnvironmentVariable> {
   /**
+   * Name of the environment variable.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * The value it takes.
+   *
    * @generated from field: string value = 2;
    */
   value = "";
@@ -336,15 +398,21 @@ export class Change_EnvironmentVariable extends Message<Change_EnvironmentVariab
 }
 
 /**
+ * Entrypoint for the capsule instances.
+ *
  * @generated from message api.v1.capsule.Change.CommandArguments
  */
 export class Change_CommandArguments extends Message<Change_CommandArguments> {
   /**
+   * Command to run.
+   *
    * @generated from field: string command = 2;
    */
   command = "";
 
   /**
+   * arguments to the command.
+   *
    * @generated from field: repeated string args = 3;
    */
   args: string[] = [];
@@ -379,10 +447,14 @@ export class Change_CommandArguments extends Message<Change_CommandArguments> {
 }
 
 /**
+ * Remove cron job change.
+ *
  * @generated from message api.v1.capsule.Change.RemoveCronJob
  */
 export class Change_RemoveCronJob extends Message<Change_RemoveCronJob> {
   /**
+   * Name of the job to remove
+   *
    * @generated from field: string job_name = 1;
    */
   jobName = "";
@@ -453,30 +525,42 @@ export class Change_RemoveInterface extends Message<Change_RemoveInterface> {
 }
 
 /**
+ * Settings for the instance container
+ *
  * @generated from message api.v1.capsule.ContainerSettings
  */
 export class ContainerSettings extends Message<ContainerSettings> {
   /**
+   * Environment variables.
+   *
    * @generated from field: map<string, string> environment_variables = 1;
    */
   environmentVariables: { [key: string]: string } = {};
 
   /**
+   * Entrypoint for the container.
+   *
    * @generated from field: string command = 2;
    */
   command = "";
 
   /**
+   * Arguments to the container.
+   *
    * @generated from field: repeated string args = 3;
    */
   args: string[] = [];
 
   /**
+   * Resource requests and limits.
+   *
    * @generated from field: api.v1.capsule.Resources resources = 4;
    */
   resources?: Resources;
 
   /**
+   * Environment sources.
+   *
    * @generated from field: repeated api.v1.capsule.EnvironmentSource environment_sources = 5;
    */
   environmentSources: EnvironmentSource[] = [];
@@ -514,20 +598,28 @@ export class ContainerSettings extends Message<ContainerSettings> {
 }
 
 /**
+ * Container resources requests and limits
+ *
  * @generated from message api.v1.capsule.Resources
  */
 export class Resources extends Message<Resources> {
   /**
+   * CPU and memory requests.
+   *
    * @generated from field: api.v1.capsule.ResourceList requests = 1;
    */
   requests?: ResourceList;
 
   /**
+   * CPU and memory limits
+   *
    * @generated from field: api.v1.capsule.ResourceList limits = 2;
    */
   limits?: ResourceList;
 
   /**
+   * GPU Limits
+   *
    * @generated from field: api.v1.capsule.GpuLimits gpu_limits = 3;
    */
   gpuLimits?: GpuLimits;
@@ -563,6 +655,8 @@ export class Resources extends Message<Resources> {
 }
 
 /**
+ * CPU and Memory resource request or limits
+ *
  * @generated from message api.v1.capsule.ResourceList
  */
 export class ResourceList extends Message<ResourceList> {
@@ -610,6 +704,8 @@ export class ResourceList extends Message<ResourceList> {
 }
 
 /**
+ * GPU resource limits
+ *
  * @generated from message api.v1.capsule.GpuLimits
  */
 export class GpuLimits extends Message<GpuLimits> {
@@ -657,15 +753,21 @@ export class GpuLimits extends Message<GpuLimits> {
 }
 
 /**
+ * Source of environment variables
+ *
  * @generated from message api.v1.capsule.EnvironmentSource
  */
 export class EnvironmentSource extends Message<EnvironmentSource> {
   /**
+   * Name of the source
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Type of the source
+   *
    * @generated from field: api.v1.capsule.EnvironmentSource.Kind kind = 2;
    */
   kind = EnvironmentSource_Kind.UNSPECIFIED;
@@ -704,16 +806,22 @@ export class EnvironmentSource extends Message<EnvironmentSource> {
  */
 export enum EnvironmentSource_Kind {
   /**
+   * Unspecified.
+   *
    * @generated from enum value: KIND_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Environment variables from a config map.
+   *
    * @generated from enum value: KIND_CONFIG_MAP = 1;
    */
   CONFIG_MAP = 1,
 
   /**
+   * Environment variables from a secret.
+   *
    * @generated from enum value: KIND_SECRET = 2;
    */
   SECRET = 2,
@@ -726,10 +834,14 @@ proto3.util.setEnumType(EnvironmentSource_Kind, "api.v1.capsule.EnvironmentSourc
 ]);
 
 /**
+ * A network configuration of network interfaces.
+ *
  * @generated from message api.v1.capsule.Network
  */
 export class Network extends Message<Network> {
   /**
+   * All the network interfaces.
+   *
    * @generated from field: repeated api.v1.capsule.Interface interfaces = 1;
    */
   interfaces: Interface[] = [];
@@ -763,30 +875,42 @@ export class Network extends Message<Network> {
 }
 
 /**
+ * A single network interface.
+ *
  * @generated from message api.v1.capsule.Interface
  */
 export class Interface extends Message<Interface> {
   /**
+   * Port of the interface.
+   *
    * @generated from field: uint32 port = 1;
    */
   port = 0;
 
   /**
+   * Name of the interface.
+   *
    * @generated from field: string name = 2;
    */
   name = "";
 
   /**
+   * If public interface is enabled. Contains ingress or load balancer settings.
+   *
    * @generated from field: api.v1.capsule.PublicInterface public = 4;
    */
   public?: PublicInterface;
 
   /**
+   * Liveness probe.
+   *
    * @generated from field: api.v1.capsule.InterfaceProbe liveness = 7;
    */
   liveness?: InterfaceProbe;
 
   /**
+   * Readiness probe.
+   *
    * @generated from field: api.v1.capsule.InterfaceProbe readiness = 8;
    */
   readiness?: InterfaceProbe;
@@ -824,10 +948,14 @@ export class Interface extends Message<Interface> {
 }
 
 /**
+ * Probe for liveness or readiness.
+ *
  * @generated from message api.v1.capsule.InterfaceProbe
  */
 export class InterfaceProbe extends Message<InterfaceProbe> {
   /**
+   * Type of the proble.
+   *
    * @generated from oneof api.v1.capsule.InterfaceProbe.kind
    */
   kind: {
@@ -881,6 +1009,8 @@ export class InterfaceProbe extends Message<InterfaceProbe> {
 }
 
 /**
+ * HTTP path for the probe.
+ *
  * @generated from message api.v1.capsule.InterfaceProbe.HTTP
  */
 export class InterfaceProbe_HTTP extends Message<InterfaceProbe_HTTP> {
@@ -918,6 +1048,8 @@ export class InterfaceProbe_HTTP extends Message<InterfaceProbe_HTTP> {
 }
 
 /**
+ * IF TCP probe.
+ *
  * @generated from message api.v1.capsule.InterfaceProbe.TCP
  */
 export class InterfaceProbe_TCP extends Message<InterfaceProbe_TCP> {
@@ -949,6 +1081,8 @@ export class InterfaceProbe_TCP extends Message<InterfaceProbe_TCP> {
 }
 
 /**
+ * GRPC service for the probe.
+ *
  * @generated from message api.v1.capsule.InterfaceProbe.GRPC
  */
 export class InterfaceProbe_GRPC extends Message<InterfaceProbe_GRPC> {
@@ -986,15 +1120,21 @@ export class InterfaceProbe_GRPC extends Message<InterfaceProbe_GRPC> {
 }
 
 /**
+ * Public interface configuration.
+ *
  * @generated from message api.v1.capsule.PublicInterface
  */
 export class PublicInterface extends Message<PublicInterface> {
   /**
+   * True if the interface is public.
+   *
    * @generated from field: bool enabled = 1;
    */
   enabled = false;
 
   /**
+   * Routing method - Ingress or Load Balancer.
+   *
    * @generated from field: api.v1.capsule.RoutingMethod method = 2;
    */
   method?: RoutingMethod;
@@ -1029,10 +1169,14 @@ export class PublicInterface extends Message<PublicInterface> {
 }
 
 /**
+ * The routing method for the public interface.
+ *
  * @generated from message api.v1.capsule.RoutingMethod
  */
 export class RoutingMethod extends Message<RoutingMethod> {
   /**
+   * Type of routing for the public interface.
+   *
    * @generated from oneof api.v1.capsule.RoutingMethod.kind
    */
   kind: {
@@ -1079,15 +1223,21 @@ export class RoutingMethod extends Message<RoutingMethod> {
 }
 
 /**
+ * Loadbalancer routing.
+ *
  * @generated from message api.v1.capsule.RoutingMethod.LoadBalancer
  */
 export class RoutingMethod_LoadBalancer extends Message<RoutingMethod_LoadBalancer> {
   /**
+   * public port.
+   *
    * @generated from field: uint32 port = 1;
    */
   port = 0;
 
   /**
+   * node port.
+   *
    * @generated from field: uint32 node_port = 2;
    */
   nodePort = 0;
@@ -1122,20 +1272,28 @@ export class RoutingMethod_LoadBalancer extends Message<RoutingMethod_LoadBalanc
 }
 
 /**
+ * Ingress routing.
+ *
  * @generated from message api.v1.capsule.RoutingMethod.Ingress
  */
 export class RoutingMethod_Ingress extends Message<RoutingMethod_Ingress> {
   /**
+   * Hostname of the ingress.
+   *
    * @generated from field: string host = 1;
    */
   host = "";
 
   /**
+   * True if TLS is enabled.
+   *
    * @generated from field: bool tls = 2;
    */
   tls = false;
 
   /**
+   * Paths of the ingress.
+   *
    * @generated from field: repeated string paths = 3;
    */
   paths: string[] = [];
@@ -1171,25 +1329,35 @@ export class RoutingMethod_Ingress extends Message<RoutingMethod_Ingress> {
 }
 
 /**
+ * Horizontal scaling settings.
+ *
  * @generated from message api.v1.capsule.HorizontalScale
  */
 export class HorizontalScale extends Message<HorizontalScale> {
   /**
+   * Maximum number of replicas.
+   *
    * @generated from field: uint32 max_replicas = 1;
    */
   maxReplicas = 0;
 
   /**
+   * Minimum number of replicas.
+   *
    * @generated from field: uint32 min_replicas = 2;
    */
   minReplicas = 0;
 
   /**
+   * CPU target for autoscaling.
+   *
    * @generated from field: api.v1.capsule.CPUTarget cpu_target = 3;
    */
   cpuTarget?: CPUTarget;
 
   /**
+   * If scaling based on custom metrics.
+   *
    * @generated from field: repeated api.v1.capsule.CustomMetric custom_metrics = 4;
    */
   customMetrics: CustomMetric[] = [];
@@ -1226,10 +1394,14 @@ export class HorizontalScale extends Message<HorizontalScale> {
 }
 
 /**
+ * Autoscaling based on CPU target.
+ *
  * @generated from message api.v1.capsule.CPUTarget
  */
 export class CPUTarget extends Message<CPUTarget> {
   /**
+   * Average CPU utilization target.
+   *
    * @generated from field: uint32 average_utilization_percentage = 1;
    */
   averageUtilizationPercentage = 0;
@@ -1263,20 +1435,28 @@ export class CPUTarget extends Message<CPUTarget> {
 }
 
 /**
+ * Autoscaling based on custom metrics.
+ *
  * @generated from message api.v1.capsule.CustomMetric
  */
 export class CustomMetric extends Message<CustomMetric> {
   /**
+   * The type of metric.
+   *
    * @generated from oneof api.v1.capsule.CustomMetric.metric
    */
   metric: {
     /**
+     * If scaling based on metrics across all intstances / pods.
+     *
      * @generated from field: api.v1.capsule.InstanceMetric instance = 1;
      */
     value: InstanceMetric;
     case: "instance";
   } | {
     /**
+     * If scaling based on metrics for a specific kubernetes resource object.
+     *
      * @generated from field: api.v1.capsule.ObjectMetric object = 2;
      */
     value: ObjectMetric;
@@ -1313,20 +1493,28 @@ export class CustomMetric extends Message<CustomMetric> {
 }
 
 /**
+ * Metric emitted by instances / pods.
+ *
  * @generated from message api.v1.capsule.InstanceMetric
  */
 export class InstanceMetric extends Message<InstanceMetric> {
   /**
+   * Name of the metric
+   *
    * @generated from field: string metric_name = 1;
    */
   metricName = "";
 
   /**
+   * Labels of the instances to match.
+   *
    * @generated from field: map<string, string> match_labels = 2;
    */
   matchLabels: { [key: string]: string } = {};
 
   /**
+   * Average value target.
+   *
    * @generated from field: string average_value = 3;
    */
   averageValue = "";
@@ -1362,30 +1550,42 @@ export class InstanceMetric extends Message<InstanceMetric> {
 }
 
 /**
+ * Metric emitted by kubernetes object. 
+ *
  * @generated from message api.v1.capsule.ObjectMetric
  */
 export class ObjectMetric extends Message<ObjectMetric> {
   /**
+   * Name of the metric.
+   *
    * @generated from field: string metric_name = 1;
    */
   metricName = "";
 
   /**
+   * Labels of the object to match.
+   *
    * @generated from field: map<string, string> match_labels = 2;
    */
   matchLabels: { [key: string]: string } = {};
 
   /**
+   * Average value target.
+   *
    * @generated from field: string average_value = 3;
    */
   averageValue = "";
 
   /**
+   * Value target.
+   *
    * @generated from field: string value = 4;
    */
   value = "";
 
   /**
+   * Reference to the object.
+   *
    * @generated from field: api.v1.capsule.ObjectReference object_reference = 5;
    */
   objectReference?: ObjectReference;
@@ -1423,20 +1623,28 @@ export class ObjectMetric extends Message<ObjectMetric> {
 }
 
 /**
+ * A reference to a kubernetes object.
+ *
  * @generated from message api.v1.capsule.ObjectReference
  */
 export class ObjectReference extends Message<ObjectReference> {
   /**
+   * Type of object.
+   *
    * @generated from field: string kind = 1;
    */
   kind = "";
 
   /**
+   * Name of the object.
+   *
    * @generated from field: string name = 2;
    */
   name = "";
 
   /**
+   * Api version of the object.
+   *
    * @generated from field: string api_version = 3;
    */
   apiVersion = "";

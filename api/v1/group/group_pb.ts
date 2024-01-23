@@ -8,30 +8,42 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Metadata } from "../../../model/metadata_pb.js";
 
 /**
+ * Group is a named collection of users and service accounts with optional metadata.
+ *
  * @generated from message api.v1.group.Group
  */
 export class Group extends Message<Group> {
   /**
+   * Unique name of the group.
+   *
    * @generated from field: string group_id = 1;
    */
   groupId = "";
 
   /**
+   * Number of members.
+   *
    * @generated from field: uint64 num_members = 5;
    */
   numMembers = protoInt64.zero;
 
   /**
+   * Metadata of the group.
+   *
    * @generated from field: map<string, bytes> metadata = 6;
    */
   metadata: { [key: string]: Uint8Array } = {};
 
   /**
+   * Creation time of the group.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 7;
    */
   createdAt?: Timestamp;
 
   /**
+   * Last update time of the group.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 8;
    */
   updatedAt?: Timestamp;
@@ -69,6 +81,8 @@ export class Group extends Message<Group> {
 }
 
 /**
+ * An update msg for a group.
+ *
  * @generated from message api.v1.group.Update
  */
 export class Update extends Message<Update> {
@@ -77,18 +91,24 @@ export class Update extends Message<Update> {
    */
   field: {
     /**
+     * Update the unique group name.
+     *
      * @generated from field: string group_id = 1;
      */
     value: string;
     case: "groupId";
   } | {
     /**
+     * Update or create a metadata entry.
+     *
      * @generated from field: model.Metadata set_metadata = 2;
      */
     value: Metadata;
     case: "setMetadata";
   } | {
     /**
+     * Delete a metadata entry.
+     *
      * @generated from field: string delete_metadata_key = 3;
      */
     value: string;
@@ -126,6 +146,8 @@ export class Update extends Message<Update> {
 }
 
 /**
+ * MemberID is a union of service account id and user id.
+ *
  * @generated from message api.v1.group.MemberID
  */
 export class MemberID extends Message<MemberID> {
@@ -134,12 +156,16 @@ export class MemberID extends Message<MemberID> {
    */
   kind: {
     /**
+     * ID of a service account.
+     *
      * @generated from field: string service_account_id = 1;
      */
     value: string;
     case: "serviceAccountId";
   } | {
     /**
+     * ID of a user.
+     *
      * @generated from field: string user_id = 2;
      */
     value: string;

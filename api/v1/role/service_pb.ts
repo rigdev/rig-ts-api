@@ -9,15 +9,21 @@ import { EntityID, Permission, Role, Update } from "./role_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 
 /**
+ * Request to create a role.
+ *
  * @generated from message api.v1.role.CreateRequest
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
+   * The id / name of the role to create.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
 
   /**
+   * The permissions to assign to the role.
+   *
    * @generated from field: repeated api.v1.role.Permission permissions = 2;
    */
   permissions: Permission[] = [];
@@ -52,10 +58,14 @@ export class CreateRequest extends Message<CreateRequest> {
 }
 
 /**
+ * Response to create a role.
+ *
  * @generated from message api.v1.role.CreateResponse
  */
 export class CreateResponse extends Message<CreateResponse> {
   /**
+   * The created role.
+   *
    * @generated from field: api.v1.role.Role role = 1;
    */
   role?: Role;
@@ -89,10 +99,14 @@ export class CreateResponse extends Message<CreateResponse> {
 }
 
 /**
+ * Request to delete a role.
+ *
  * @generated from message api.v1.role.DeleteRequest
  */
 export class DeleteRequest extends Message<DeleteRequest> {
   /**
+   * The id / name of the role to delete.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
@@ -126,6 +140,8 @@ export class DeleteRequest extends Message<DeleteRequest> {
 }
 
 /**
+ * Empty Response to delete a role.
+ *
  * @generated from message api.v1.role.DeleteResponse
  */
 export class DeleteResponse extends Message<DeleteResponse> {
@@ -157,10 +173,14 @@ export class DeleteResponse extends Message<DeleteResponse> {
 }
 
 /**
+ * Request to list roles.
+ *
  * @generated from message api.v1.role.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 1;
    */
   pagination?: Pagination;
@@ -194,10 +214,14 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * Response to list roles.
+ *
  * @generated from message api.v1.role.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
+   * The retrieved roles.
+   *
    * @generated from field: repeated api.v1.role.Role roles = 1;
    */
   roles: Role[] = [];
@@ -231,15 +255,21 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
+ * Request to update a role.
+ *
  * @generated from message api.v1.role.UpdateRequest
  */
 export class UpdateRequest extends Message<UpdateRequest> {
   /**
+   * the role to update.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
 
   /**
+   * The updates to apply to the role.
+   *
    * @generated from field: repeated api.v1.role.Update updates = 2;
    */
   updates: Update[] = [];
@@ -274,6 +304,8 @@ export class UpdateRequest extends Message<UpdateRequest> {
 }
 
 /**
+ * Empty update response.
+ *
  * @generated from message api.v1.role.UpdateResponse
  */
 export class UpdateResponse extends Message<UpdateResponse> {
@@ -305,10 +337,14 @@ export class UpdateResponse extends Message<UpdateResponse> {
 }
 
 /**
+ * Request to retrieve a role.
+ *
  * @generated from message api.v1.role.GetRequest
  */
 export class GetRequest extends Message<GetRequest> {
   /**
+   * The role to retrieve.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
@@ -342,10 +378,14 @@ export class GetRequest extends Message<GetRequest> {
 }
 
 /**
+ * Response to getting a role.
+ *
  * @generated from message api.v1.role.GetResponse
  */
 export class GetResponse extends Message<GetResponse> {
   /**
+   * The retrieved role.
+   *
    * @generated from field: api.v1.role.Role role = 1;
    */
   role?: Role;
@@ -379,15 +419,21 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
+ * Assign a role to an entity.
+ *
  * @generated from message api.v1.role.AssignRequest
  */
 export class AssignRequest extends Message<AssignRequest> {
   /**
+   * The role to assign.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
 
   /**
+   * The entity to assign the role to.
+   *
    * @generated from field: api.v1.role.EntityID entity_id = 2;
    */
   entityId?: EntityID;
@@ -422,6 +468,8 @@ export class AssignRequest extends Message<AssignRequest> {
 }
 
 /**
+ * Empty response of assigning a role to an entity.
+ *
  * @generated from message api.v1.role.AssignResponse
  */
 export class AssignResponse extends Message<AssignResponse> {
@@ -453,15 +501,21 @@ export class AssignResponse extends Message<AssignResponse> {
 }
 
 /**
+ * Revoke a role from an entity.
+ *
  * @generated from message api.v1.role.RevokeRequest
  */
 export class RevokeRequest extends Message<RevokeRequest> {
   /**
+   * The role to revoke.
+   *
    * @generated from field: string role_id = 1;
    */
   roleId = "";
 
   /**
+   * The entity to revoke the role from.
+   *
    * @generated from field: api.v1.role.EntityID entity_id = 2;
    */
   entityId?: EntityID;
@@ -496,6 +550,8 @@ export class RevokeRequest extends Message<RevokeRequest> {
 }
 
 /**
+ * Empty response for revoking a role.
+ *
  * @generated from message api.v1.role.RevokeResponse
  */
 export class RevokeResponse extends Message<RevokeResponse> {

@@ -7,6 +7,8 @@ import { GetSettingsRequest, GetSettingsResponse, UpdateSettingsRequest, UpdateS
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
+ * Service for setting and retrieving project-wide settings.
+ *
  * @generated from service api.v1.project.settings.Service
  */
 export const Service = {

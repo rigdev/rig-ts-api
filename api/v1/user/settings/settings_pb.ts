@@ -10,40 +10,56 @@ import { LoginType } from "../../../../model/auth_pb.js";
 import { ProviderCredentials } from "../../../../model/credentials_pb.js";
 
 /**
+ * The different template types.
+ *
  * @generated from enum api.v1.user.settings.TemplateType
  */
 export enum TemplateType {
   /**
+   * Unspecified template type.
+   *
    * @generated from enum value: TEMPLATE_TYPE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The welcome email template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_WELCOME_EMAIL = 1;
    */
   WELCOME_EMAIL = 1,
 
   /**
+   * The email verification template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_EMAIL_VERIFICATION = 2;
    */
   EMAIL_VERIFICATION = 2,
 
   /**
+   * The reset password email template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_EMAIL_RESET_PASSWORD = 3;
    */
   EMAIL_RESET_PASSWORD = 3,
 
   /**
+   * Deprecated: Text is not supported - The welcome text template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_WELCOME_TEXT = 4;
    */
   WELCOME_TEXT = 4,
 
   /**
+   * Deprecated: Text is not supported - The text verification template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_TEXT_VERIFICATION = 5;
    */
   TEXT_VERIFICATION = 5,
 
   /**
+   * Deprecated: Text is not supported - The reset password text template.
+   *
    * @generated from enum value: TEMPLATE_TYPE_TEXT_RESET_PASSWORD = 6;
    */
   TEXT_RESET_PASSWORD = 6,
@@ -60,74 +76,100 @@ proto3.util.setEnumType(TemplateType, "api.v1.user.settings.TemplateType", [
 ]);
 
 /**
+ * Update message for updating users settings.
+ *
  * @generated from message api.v1.user.settings.Update
  */
 export class Update extends Message<Update> {
   /**
+   * A oneof field for the different settings fields.
+   *
    * @generated from oneof api.v1.user.settings.Update.field
    */
   field: {
     /**
+     * If true, users can self register.
+     *
      * @generated from field: bool allow_register = 1;
      */
     value: boolean;
     case: "allowRegister";
   } | {
     /**
+     * If true, users must be verified via email to login.
+     *
      * @generated from field: bool is_verified_email_required = 2;
      */
     value: boolean;
     case: "isVerifiedEmailRequired";
   } | {
     /**
+     * If true, users must be verified via phone to login.
+     *
      * @generated from field: bool is_verified_phone_required = 3;
      */
     value: boolean;
     case: "isVerifiedPhoneRequired";
   } | {
     /**
+     * Access token Time to Live.
+     *
      * @generated from field: google.protobuf.Duration access_token_ttl = 4;
      */
     value: Duration;
     case: "accessTokenTtl";
   } | {
     /**
+     * Refresh token Time to Live.
+     *
      * @generated from field: google.protobuf.Duration refresh_token_ttl = 5;
      */
     value: Duration;
     case: "refreshTokenTtl";
   } | {
     /**
+     * Verification code Time to Live.
+     *
      * @generated from field: google.protobuf.Duration verification_code_ttl = 6;
      */
     value: Duration;
     case: "verificationCodeTtl";
   } | {
     /**
+     * The hashing config used to hash passwords.
+     *
      * @generated from field: model.HashingConfig password_hashing = 7;
      */
     value: HashingConfig;
     case: "passwordHashing";
   } | {
     /**
+     * The allowed login mechanisms.
+     *
      * @generated from field: api.v1.user.settings.Update.LoginMechanisms login_mechanisms = 8;
      */
     value: Update_LoginMechanisms;
     case: "loginMechanisms";
   } | {
     /**
+     * The email provider. 
+     *
      * @generated from field: api.v1.user.settings.EmailProvider email_provider = 9;
      */
     value: EmailProvider;
     case: "emailProvider";
   } | {
     /**
+     * The text provider.
+     *
      * @generated from field: api.v1.user.settings.TextProvider text_provider = 10;
      */
     value: TextProvider;
     case: "textProvider";
   } | {
     /**
+     * The templates used for sending emails and texts.
+     *
      * @generated from field: api.v1.user.settings.Template template = 11;
      */
     value: Template;
@@ -173,6 +215,8 @@ export class Update extends Message<Update> {
 }
 
 /**
+ * The allowed login mechanisms
+ *
  * @generated from message api.v1.user.settings.Update.LoginMechanisms
  */
 export class Update_LoginMechanisms extends Message<Update_LoginMechanisms> {
@@ -210,20 +254,28 @@ export class Update_LoginMechanisms extends Message<Update_LoginMechanisms> {
 }
 
 /**
+ * Message that tells how the user was registered / created.
+ *
  * @generated from message api.v1.user.settings.RegisterMethod
  */
 export class RegisterMethod extends Message<RegisterMethod> {
   /**
+   * The method used to register a user.
+   *
    * @generated from oneof api.v1.user.settings.RegisterMethod.method
    */
   method: {
     /**
+     * The user was created by the system.
+     *
      * @generated from field: api.v1.user.settings.RegisterMethod.System system = 1;
      */
     value: RegisterMethod_System;
     case: "system";
   } | {
     /**
+     * The user was self-registered with a login-type.
+     *
      * @generated from field: api.v1.user.settings.RegisterMethod.Signup signup = 2;
      */
     value: RegisterMethod_Signup;
@@ -260,6 +312,8 @@ export class RegisterMethod extends Message<RegisterMethod> {
 }
 
 /**
+ * The user was created by the system.
+ *
  * @generated from message api.v1.user.settings.RegisterMethod.System
  */
 export class RegisterMethod_System extends Message<RegisterMethod_System> {
@@ -291,10 +345,14 @@ export class RegisterMethod_System extends Message<RegisterMethod_System> {
 }
 
 /**
+ * The user was self-registered with a login-type.
+ *
  * @generated from message api.v1.user.settings.RegisterMethod.Signup
  */
 export class RegisterMethod_Signup extends Message<RegisterMethod_Signup> {
   /**
+   * The login type used to register.
+   *
    * @generated from field: model.LoginType login_type = 1;
    */
   loginType = LoginType.UNSPECIFIED;
@@ -328,6 +386,8 @@ export class RegisterMethod_Signup extends Message<RegisterMethod_Signup> {
 }
 
 /**
+ * Message that tells how the user was authenticated.
+ *
  * @generated from message api.v1.user.settings.AuthMethod
  */
 export class AuthMethod extends Message<AuthMethod> {
@@ -371,65 +431,91 @@ export class AuthMethod extends Message<AuthMethod> {
 }
 
 /**
+ * The users settings configuration. Settings of everything that has to do with users.
+ *
  * @generated from message api.v1.user.settings.Settings
  */
 export class Settings extends Message<Settings> {
   /**
+   * If true, users can self register.
+   *
    * @generated from field: bool allow_register = 1;
    */
   allowRegister = false;
 
   /**
+   * If true, users must be verified via email to login.
+   *
    * @generated from field: bool is_verified_email_required = 2;
    */
   isVerifiedEmailRequired = false;
 
   /**
+   * Deprecated: Text is not supported - If true, users must be verified via phone to login.
+   *
    * @generated from field: bool is_verified_phone_required = 3;
    */
   isVerifiedPhoneRequired = false;
 
   /**
+   * Access token Time to Live.
+   *
    * @generated from field: google.protobuf.Duration access_token_ttl = 4;
    */
   accessTokenTtl?: Duration;
 
   /**
+   * Refresh token Time to Live.
+   *
    * @generated from field: google.protobuf.Duration refresh_token_ttl = 5;
    */
   refreshTokenTtl?: Duration;
 
   /**
+   * Verification code Time to Live.
+   *
    * @generated from field: google.protobuf.Duration verification_code_ttl = 6;
    */
   verificationCodeTtl?: Duration;
 
   /**
+   * The hashing config used to hash passwords.
+   *
    * @generated from field: model.HashingConfig password_hashing = 7;
    */
   passwordHashing?: HashingConfig;
 
   /**
+   * The allowed login mechanisms.
+   *
    * @generated from field: repeated model.LoginType login_mechanisms = 8;
    */
   loginMechanisms: LoginType[] = [];
 
   /**
+   * If true, send a welcome email to new users.
+   *
    * @generated from field: bool send_welcome_mail = 10;
    */
   sendWelcomeMail = false;
 
   /**
+   * The email provider.
+   *
    * @generated from field: api.v1.user.settings.EmailProviderEntry email_provider = 11;
    */
   emailProvider?: EmailProviderEntry;
 
   /**
+   * Deprecated: Text is not supported - The text provider.
+   *
    * @generated from field: api.v1.user.settings.TextProviderEntry text_provider = 12;
    */
   textProvider?: TextProviderEntry;
 
   /**
+   * The templates used for sending emails and texts.
+   *
    * @generated from field: api.v1.user.settings.Templates templates = 13;
    */
   templates?: Templates;
@@ -474,6 +560,8 @@ export class Settings extends Message<Settings> {
 }
 
 /**
+ * Default email provider instance.
+ *
  * @generated from message api.v1.user.settings.DefaultInstance
  */
 export class DefaultInstance extends Message<DefaultInstance> {
@@ -505,6 +593,8 @@ export class DefaultInstance extends Message<DefaultInstance> {
 }
 
 /**
+ * Mailjet email rpvoider instance.
+ *
  * @generated from message api.v1.user.settings.MailjetInstance
  */
 export class MailjetInstance extends Message<MailjetInstance> {
@@ -536,6 +626,8 @@ export class MailjetInstance extends Message<MailjetInstance> {
 }
 
 /**
+ * Deprecated: Text is not supported - Default text provider instance.
+ *
  * @generated from message api.v1.user.settings.TwilioInstance
  */
 export class TwilioInstance extends Message<TwilioInstance> {
@@ -567,15 +659,21 @@ export class TwilioInstance extends Message<TwilioInstance> {
 }
 
 /**
+ * SMTP email provider instance.
+ *
  * @generated from message api.v1.user.settings.SmtpInstance
  */
 export class SmtpInstance extends Message<SmtpInstance> {
   /**
+   * Host of the smtp server.
+   *
    * @generated from field: string host = 1;
    */
   host = "";
 
   /**
+   * Port of the smtp server.
+   *
    * @generated from field: int64 port = 2;
    */
   port = protoInt64.zero;
@@ -610,6 +708,8 @@ export class SmtpInstance extends Message<SmtpInstance> {
 }
 
 /**
+ * Type of email instance in a provider.
+ *
  * @generated from message api.v1.user.settings.EmailInstance
  */
 export class EmailInstance extends Message<EmailInstance> {
@@ -618,18 +718,24 @@ export class EmailInstance extends Message<EmailInstance> {
    */
   instance: {
     /**
+     * default from platform config.
+     *
      * @generated from field: api.v1.user.settings.DefaultInstance default = 1;
      */
     value: DefaultInstance;
     case: "default";
   } | {
     /**
+     * Mailjet instance.
+     *
      * @generated from field: api.v1.user.settings.MailjetInstance mailjet = 2;
      */
     value: MailjetInstance;
     case: "mailjet";
   } | {
     /**
+     * SMTP instance.
+     *
      * @generated from field: api.v1.user.settings.SmtpInstance smtp = 3;
      */
     value: SmtpInstance;
@@ -667,6 +773,8 @@ export class EmailInstance extends Message<EmailInstance> {
 }
 
 /**
+ * Deprecated: Text is not supported - Type of text instance in a provider.
+ *
  * @generated from message api.v1.user.settings.TextInstance
  */
 export class TextInstance extends Message<TextInstance> {
@@ -675,12 +783,16 @@ export class TextInstance extends Message<TextInstance> {
    */
   instance: {
     /**
+     * default from platform config.
+     *
      * @generated from field: api.v1.user.settings.DefaultInstance default = 1;
      */
     value: DefaultInstance;
     case: "default";
   } | {
     /**
+     * Twilio instance.
+     *
      * @generated from field: api.v1.user.settings.TwilioInstance twilio = 2;
      */
     value: TwilioInstance;
@@ -717,20 +829,28 @@ export class TextInstance extends Message<TextInstance> {
 }
 
 /**
+ * The email provider.
+ *
  * @generated from message api.v1.user.settings.EmailProvider
  */
 export class EmailProvider extends Message<EmailProvider> {
   /**
+   * The email-address that the provider sends emails from.
+   *
    * @generated from field: string from = 1;
    */
   from = "";
 
   /**
+   * The credentials for the provider.
+   *
    * @generated from field: model.ProviderCredentials credentials = 2;
    */
   credentials?: ProviderCredentials;
 
   /**
+   * The instance of the provider.
+   *
    * @generated from field: api.v1.user.settings.EmailInstance instance = 3;
    */
   instance?: EmailInstance;
@@ -766,25 +886,35 @@ export class EmailProvider extends Message<EmailProvider> {
 }
 
 /**
+ * an entry model for the email provider.
+ *
  * @generated from message api.v1.user.settings.EmailProviderEntry
  */
 export class EmailProviderEntry extends Message<EmailProviderEntry> {
   /**
+   * The email-address that the provider sends emails from.
+   *
    * @generated from field: string from = 1;
    */
   from = "";
 
   /**
+   * The client id for the provider.
+   *
    * @generated from field: string client_id = 2;
    */
   clientId = "";
 
   /**
+   * The secret id for the provider.
+   *
    * @generated from field: string secret_id = 3;
    */
   secretId = "";
 
   /**
+   * The instance of the provider.
+   *
    * @generated from field: api.v1.user.settings.EmailInstance instance = 4;
    */
   instance?: EmailInstance;
@@ -821,20 +951,28 @@ export class EmailProviderEntry extends Message<EmailProviderEntry> {
 }
 
 /**
+ * Deprecated: Text is not supported - The text provider.
+ *
  * @generated from message api.v1.user.settings.TextProvider
  */
 export class TextProvider extends Message<TextProvider> {
   /**
+   * The phone number that the provider sends texts from.
+   *
    * @generated from field: string from = 1;
    */
   from = "";
 
   /**
+   * The credentials for the provider.
+   *
    * @generated from field: model.ProviderCredentials credentials = 2;
    */
   credentials?: ProviderCredentials;
 
   /**
+   * The instance of the provider.
+   *
    * @generated from field: api.v1.user.settings.TextInstance instance = 3;
    */
   instance?: TextInstance;
@@ -870,25 +1008,35 @@ export class TextProvider extends Message<TextProvider> {
 }
 
 /**
+ * Deprecated: Text is not supported - An entry model for the text provider.
+ *
  * @generated from message api.v1.user.settings.TextProviderEntry
  */
 export class TextProviderEntry extends Message<TextProviderEntry> {
   /**
+   * The phone number that the provider sends texts from.
+   *
    * @generated from field: string from = 1;
    */
   from = "";
 
   /**
+   * The client id for the provider.
+   *
    * @generated from field: string client_id = 2;
    */
   clientId = "";
 
   /**
+   * The secret id for the provider.
+   *
    * @generated from field: string secret_id = 3;
    */
   secretId = "";
 
   /**
+   * The instance of the provider.
+   *
    * @generated from field: api.v1.user.settings.TextInstance instance = 4;
    */
   instance?: TextInstance;
@@ -925,25 +1073,35 @@ export class TextProviderEntry extends Message<TextProviderEntry> {
 }
 
 /**
+ * A generic template model for sending emails and texts.
+ *
  * @generated from message api.v1.user.settings.Template
  */
 export class Template extends Message<Template> {
   /**
+   * The body of the template.
+   *
    * @generated from field: string body = 1;
    */
   body = "";
 
   /**
+   * The subject of the template.
+   *
    * @generated from field: string subject = 2;
    */
   subject = "";
 
   /**
+   * The type of the template.
+   *
    * @generated from field: api.v1.user.settings.TemplateType type = 3;
    */
   type = TemplateType.UNSPECIFIED;
 
   /**
+   * The format of the template.
+   *
    * @generated from field: repeated string format = 4;
    */
   format: string[] = [];
@@ -984,31 +1142,43 @@ export class Template extends Message<Template> {
  */
 export class Templates extends Message<Templates> {
   /**
+   * The welcome email template.
+   *
    * @generated from field: api.v1.user.settings.Template welcome_email = 1;
    */
   welcomeEmail?: Template;
 
   /**
+   * Deprecated: Text is not supported - The welcome text template.
+   *
    * @generated from field: api.v1.user.settings.Template welcome_text = 2;
    */
   welcomeText?: Template;
 
   /**
+   * The reset password email template.
+   *
    * @generated from field: api.v1.user.settings.Template reset_password_email = 3;
    */
   resetPasswordEmail?: Template;
 
   /**
+   * Deprecated: Text is not supported - The reset password text template.
+   *
    * @generated from field: api.v1.user.settings.Template reset_password_text = 4;
    */
   resetPasswordText?: Template;
 
   /**
+   * The email verification template.
+   *
    * @generated from field: api.v1.user.settings.Template verify_email = 5;
    */
   verifyEmail?: Template;
 
   /**
+   * Deprecated: Text is not supported - The text verification template.
+   *
    * @generated from field: api.v1.user.settings.Template verify_phone_number = 6;
    */
   verifyPhoneNumber?: Template;

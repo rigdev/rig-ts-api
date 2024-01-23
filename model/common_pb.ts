@@ -7,10 +7,14 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Bcrypt hashing configuration.
+ *
  * @generated from message model.BcryptHashingConfig
  */
 export class BcryptHashingConfig extends Message<BcryptHashingConfig> {
   /**
+   * The cost of the hashing algorithm.
+   *
    * @generated from field: int32 cost = 1;
    */
   cost = 0;
@@ -44,6 +48,8 @@ export class BcryptHashingConfig extends Message<BcryptHashingConfig> {
 }
 
 /**
+ * Bcrypt hashing instance.
+ *
  * @generated from message model.BcryptHashingInstance
  */
 export class BcryptHashingInstance extends Message<BcryptHashingInstance> {
@@ -75,35 +81,49 @@ export class BcryptHashingInstance extends Message<BcryptHashingInstance> {
 }
 
 /**
+ * Scrypt hashing configuration.
+ *
  * @generated from message model.ScryptHashingConfig
  */
 export class ScryptHashingConfig extends Message<ScryptHashingConfig> {
   /**
+   * The key used to sign the salt.
+   *
    * @generated from field: string signer_key = 1;
    */
   signerKey = "";
 
   /**
+   * The salt separator.
+   *
    * @generated from field: string salt_separator = 2;
    */
   saltSeparator = "";
 
   /**
+   * The number of rounds in the algorithm.
+   *
    * @generated from field: int32 rounds = 3;
    */
   rounds = 0;
 
   /**
+   * The memory cost of the algorithm.
+   *
    * @generated from field: int32 mem_cost = 4;
    */
   memCost = 0;
 
   /**
+   * The parallelization factor of the algorithm.
+   *
    * @generated from field: int32 p = 5;
    */
   p = 0;
 
   /**
+   * The length of the key.
+   *
    * @generated from field: int32 key_len = 6;
    */
   keyLen = 0;
@@ -142,10 +162,14 @@ export class ScryptHashingConfig extends Message<ScryptHashingConfig> {
 }
 
 /**
+ * Scrypt hashing instance.
+ *
  * @generated from message model.ScryptHashingInstance
  */
 export class ScryptHashingInstance extends Message<ScryptHashingInstance> {
   /**
+   * The salt used to hash the password.
+   *
    * @generated from field: bytes salt = 1;
    */
   salt = new Uint8Array(0);
@@ -179,6 +203,8 @@ export class ScryptHashingInstance extends Message<ScryptHashingInstance> {
 }
 
 /**
+ * Hashing configuration.
+ *
  * @generated from message model.HashingConfig
  */
 export class HashingConfig extends Message<HashingConfig> {
@@ -187,12 +213,16 @@ export class HashingConfig extends Message<HashingConfig> {
    */
   method: {
     /**
+     * if bcrypt is set, use bcrypt.
+     *
      * @generated from field: model.BcryptHashingConfig bcrypt = 1;
      */
     value: BcryptHashingConfig;
     case: "bcrypt";
   } | {
     /**
+     * if scrypt is set, use scrypt.
+     *
      * @generated from field: model.ScryptHashingConfig scrypt = 2;
      */
     value: ScryptHashingConfig;
@@ -229,15 +259,21 @@ export class HashingConfig extends Message<HashingConfig> {
 }
 
 /**
+ * Hashing instance.
+ *
  * @generated from message model.HashingInstance
  */
 export class HashingInstance extends Message<HashingInstance> {
   /**
+   * The hashing configuration.
+   *
    * @generated from field: model.HashingConfig config = 1;
    */
   config?: HashingConfig;
 
   /**
+   * A hash
+   *
    * @generated from field: bytes hash = 2;
    */
   hash = new Uint8Array(0);
@@ -247,12 +283,16 @@ export class HashingInstance extends Message<HashingInstance> {
    */
   instance: {
     /**
+     * if bcrypt is set, this bcrypt instance was used.
+     *
      * @generated from field: model.BcryptHashingInstance bcrypt = 3;
      */
     value: BcryptHashingInstance;
     case: "bcrypt";
   } | {
     /**
+     * if scrypt is set, this scrypt instance was used.
+     *
      * @generated from field: model.ScryptHashingInstance scrypt = 4;
      */
     value: ScryptHashingInstance;
@@ -291,20 +331,28 @@ export class HashingInstance extends Message<HashingInstance> {
 }
 
 /**
+ * Pagination option.
+ *
  * @generated from message model.Pagination
  */
 export class Pagination extends Message<Pagination> {
   /**
+   * Where to start the pagination.
+   *
    * @generated from field: uint32 offset = 1;
    */
   offset = 0;
 
   /**
+   * How many items to return.
+   *
    * @generated from field: uint32 limit = 2;
    */
   limit = 0;
 
   /**
+   * Whether to sort in descending order.
+   *
    * @generated from field: bool descending = 3;
    */
   descending = false;

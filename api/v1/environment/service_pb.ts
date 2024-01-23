@@ -9,10 +9,14 @@ import { Pagination } from "../../../model/common_pb.js";
 import { Environment } from "./environment_pb.js";
 
 /**
+ * Request for listing available environments.
+ *
  * @generated from message api.v1.environment.ListRequest
  */
 export class ListRequest extends Message<ListRequest> {
   /**
+   * Pagination options.
+   *
    * @generated from field: model.Pagination pagination = 2;
    */
   pagination?: Pagination;
@@ -46,15 +50,21 @@ export class ListRequest extends Message<ListRequest> {
 }
 
 /**
+ * Response for listing available environments.
+ *
  * @generated from message api.v1.environment.ListResponse
  */
 export class ListResponse extends Message<ListResponse> {
   /**
+   * List of environments.
+   *
    * @generated from field: repeated api.v1.environment.Environment environments = 1;
    */
   environments: Environment[] = [];
 
   /**
+   * The version of the Rig-platform.
+   *
    * @generated from field: string platform_version = 2;
    */
   platformVersion = "";

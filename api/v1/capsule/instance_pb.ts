@@ -1334,7 +1334,7 @@ export class ContainerStateTerminated extends Message<ContainerStateTerminated> 
   finishedAt?: Timestamp;
 
   /**
-   * Container's ID in the format '<type>://<container_id>'
+   * Container's ID in the format 'type://container_id'
    * +optional
    *
    * @generated from field: string container_id = 7;

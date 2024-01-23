@@ -7,15 +7,21 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * Generic metadata model.
+ *
  * @generated from message model.Metadata
  */
 export class Metadata extends Message<Metadata> {
   /**
+   * Key of the metadata.
+   *
    * @generated from field: string key = 1;
    */
   key = "";
 
   /**
+   * Value of the metadata.
+   *
    * @generated from field: bytes value = 2;
    */
   value = new Uint8Array(0);

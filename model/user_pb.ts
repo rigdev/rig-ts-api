@@ -9,6 +9,8 @@ import { Author } from "./author_pb.js";
 import { LoginType } from "./auth_pb.js";
 
 /**
+ * different fields that can identify a user.
+ *
  * @generated from message model.UserIdentifier
  */
 export class UserIdentifier extends Message<UserIdentifier> {
@@ -17,18 +19,24 @@ export class UserIdentifier extends Message<UserIdentifier> {
    */
   identifier: {
     /**
+     * username is unique.
+     *
      * @generated from field: string username = 1;
      */
     value: string;
     case: "username";
   } | {
     /**
+     * email is unique.
+     *
      * @generated from field: string email = 2;
      */
     value: string;
     case: "email";
   } | {
     /**
+     * Deprecated: text is not supported - phone number is unique.
+     *
      * @generated from field: string phone_number = 3;
      */
     value: string;
@@ -66,30 +74,42 @@ export class UserIdentifier extends Message<UserIdentifier> {
 }
 
 /**
+ * Userinfo - placed in models to prevent cyclic imports.
+ *
  * @generated from message model.UserInfo
  */
 export class UserInfo extends Message<UserInfo> {
   /**
+   * email of the user.
+   *
    * @generated from field: string email = 1;
    */
   email = "";
 
   /**
+   * username of the user.
+   *
    * @generated from field: string username = 2;
    */
   username = "";
 
   /**
+   * Deprecated: text is not supported - phone number of the user.
+   *
    * @generated from field: string phone_number = 3;
    */
   phoneNumber = "";
 
   /**
+   * when the user was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 5;
    */
   createdAt?: Timestamp;
 
   /**
+   * groups the user belongs to.
+   *
    * @generated from field: repeated string group_ids = 6;
    */
   groupIds: string[] = [];
@@ -127,35 +147,49 @@ export class UserInfo extends Message<UserInfo> {
 }
 
 /**
+ * Entry model of a user - placed in models to prevent cyclic imports.
+ *
  * @generated from message model.UserEntry
  */
 export class UserEntry extends Message<UserEntry> {
   /**
+   * unique id of the user.
+   *
    * @generated from field: string user_id = 1;
    */
   userId = "";
 
   /**
+   * pretty printable name of a user.
+   *
    * @generated from field: string printable_name = 2;
    */
   printableName = "";
 
   /**
+   * how the user was registered.
+   *
    * @generated from field: model.RegisterInfo register_info = 3;
    */
   registerInfo?: RegisterInfo;
 
   /**
+   * whether the user is verified.
+   *
    * @generated from field: bool verified = 4;
    */
   verified = false;
 
   /**
+   * groups the user belongs to.
+   *
    * @generated from field: repeated string group_ids = 5;
    */
   groupIds: string[] = [];
 
   /**
+   * when the user was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
   createdAt?: Timestamp;
@@ -194,35 +228,49 @@ export class UserEntry extends Message<UserEntry> {
 }
 
 /**
+ * Entry model of a service account - placed in models to prevent cyclic imports.
+ *
  * @generated from message model.ServiceAccountEntry
  */
 export class ServiceAccountEntry extends Message<ServiceAccountEntry> {
   /**
+   * unique id of the service account.
+   *
    * @generated from field: string service_account_id = 1;
    */
   serviceAccountId = "";
 
   /**
+   * name of the service account.
+   *
    * @generated from field: string name = 2;
    */
   name = "";
 
   /**
+   * client id of the service account.
+   *
    * @generated from field: string client_id = 3;
    */
   clientId = "";
 
   /**
+   * groups the service account belongs to.
+   *
    * @generated from field: repeated string group_ids = 4;
    */
   groupIds: string[] = [];
 
   /**
+   * when the service account was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 5;
    */
   createdAt?: Timestamp;
 
   /**
+   * who created the service account.
+   *
    * @generated from field: model.Author created_by = 6;
    */
   createdBy?: Author;
@@ -261,20 +309,28 @@ export class ServiceAccountEntry extends Message<ServiceAccountEntry> {
 }
 
 /**
+ * Entry model of a group member - placed in models to prevent cyclic imports.
+ *
  * @generated from message model.MemberEntry
  */
 export class MemberEntry extends Message<MemberEntry> {
   /**
+   * The user or service account.
+   *
    * @generated from oneof model.MemberEntry.entry
    */
   entry: {
     /**
+     * if the member is a user.
+     *
      * @generated from field: model.UserEntry user = 1;
      */
     value: UserEntry;
     case: "user";
   } | {
     /**
+     * if the member is a service account.
+     *
      * @generated from field: model.ServiceAccountEntry service_account = 2;
      */
     value: ServiceAccountEntry;
@@ -282,6 +338,8 @@ export class MemberEntry extends Message<MemberEntry> {
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
+   * when the member joined the group.
+   *
    * @generated from field: google.protobuf.Timestamp joined_at = 5;
    */
   joinedAt?: Timestamp;
@@ -317,15 +375,21 @@ export class MemberEntry extends Message<MemberEntry> {
 }
 
 /**
+ * Registering information of a user.
+ *
  * @generated from message model.RegisterInfo
  */
 export class RegisterInfo extends Message<RegisterInfo> {
   /**
+   * Who created the user.
+   *
    * @generated from field: string creater_id = 1;
    */
   createrId = "";
 
   /**
+   * How the user was registered.
+   *
    * @generated from field: model.RegisterMethod method = 2;
    */
   method?: RegisterMethod;
@@ -360,6 +424,8 @@ export class RegisterInfo extends Message<RegisterInfo> {
 }
 
 /**
+ * Method used to register a user.
+ *
  * @generated from message model.RegisterMethod
  */
 export class RegisterMethod extends Message<RegisterMethod> {
@@ -368,12 +434,16 @@ export class RegisterMethod extends Message<RegisterMethod> {
    */
   method: {
     /**
+     * system created the user.
+     *
      * @generated from field: model.RegisterMethod.System system = 1;
      */
     value: RegisterMethod_System;
     case: "system";
   } | {
     /**
+     * user signed up.
+     *
      * @generated from field: model.RegisterMethod.Signup signup = 2;
      */
     value: RegisterMethod_Signup;
@@ -410,6 +480,8 @@ export class RegisterMethod extends Message<RegisterMethod> {
 }
 
 /**
+ * if the user was created by the system.
+ *
  * @generated from message model.RegisterMethod.System
  */
 export class RegisterMethod_System extends Message<RegisterMethod_System> {
@@ -441,10 +513,14 @@ export class RegisterMethod_System extends Message<RegisterMethod_System> {
 }
 
 /**
+ * if the user was created by signing up.
+ *
  * @generated from message model.RegisterMethod.Signup
  */
 export class RegisterMethod_Signup extends Message<RegisterMethod_Signup> {
   /**
+   * The login type used to sign up.
+   *
    * @generated from field: model.LoginType login_type = 1;
    */
   loginType = LoginType.UNSPECIFIED;

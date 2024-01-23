@@ -8,6 +8,8 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
+ * An event is a message from a rollout
+ *
  * @generated from message api.v1.capsule.Event
  */
 export class Event extends Message<Event> {
@@ -19,21 +21,29 @@ export class Event extends Message<Event> {
   createdBy?: Author;
 
   /**
+   * When the event was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 2;
    */
   createdAt?: Timestamp;
 
   /**
+   * The rollout that created the event.
+   *
    * @generated from field: uint64 rollout_id = 3;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * A message associated with the event.
+   *
    * @generated from field: string message = 4;
    */
   message = "";
 
   /**
+   * The data associated with the event.
+   *
    * @generated from field: api.v1.capsule.EventData event_data = 5;
    */
   eventData?: EventData;
@@ -71,6 +81,8 @@ export class Event extends Message<Event> {
 }
 
 /**
+ * An event that is associated with a rollout.
+ *
  * @generated from message api.v1.capsule.RolloutEvent
  */
 export class RolloutEvent extends Message<RolloutEvent> {
@@ -102,6 +114,8 @@ export class RolloutEvent extends Message<RolloutEvent> {
 }
 
 /**
+ * An event that is associated with an abort.
+ *
  * @generated from message api.v1.capsule.AbortEvent
  */
 export class AbortEvent extends Message<AbortEvent> {
@@ -133,6 +147,8 @@ export class AbortEvent extends Message<AbortEvent> {
 }
 
 /**
+ * An event that is associated with an error.
+ *
  * @generated from message api.v1.capsule.ErrorEvent
  */
 export class ErrorEvent extends Message<ErrorEvent> {
@@ -164,6 +180,8 @@ export class ErrorEvent extends Message<ErrorEvent> {
 }
 
 /**
+ * The data associated with an event.
+ *
  * @generated from message api.v1.capsule.EventData
  */
 export class EventData extends Message<EventData> {
@@ -172,18 +190,24 @@ export class EventData extends Message<EventData> {
    */
   kind: {
     /**
+     * If event is a rollout.
+     *
      * @generated from field: api.v1.capsule.RolloutEvent rollout = 1;
      */
     value: RolloutEvent;
     case: "rollout";
   } | {
     /**
+     * if event is an error event.
+     *
      * @generated from field: api.v1.capsule.ErrorEvent error = 2;
      */
     value: ErrorEvent;
     case: "error";
   } | {
     /**
+     * If event is an abort event.
+     *
      * @generated from field: api.v1.capsule.AbortEvent abort = 3;
      */
     value: AbortEvent;

@@ -8,25 +8,35 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
+ * Environment wide capsule abstraction
+ *
  * @generated from message api.v1.capsule.Capsule
  */
 export class Capsule extends Message<Capsule> {
   /**
+   * ID of the capsule
+   *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
+   * Current rollout of the capsule
+   *
    * @generated from field: uint64 current_rollout = 5;
    */
   currentRollout = protoInt64.zero;
 
   /**
+   * Last time the capsule was updated
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 6;
    */
   updatedAt?: Timestamp;
 
   /**
+   * Author of the last update
+   *
    * @generated from field: model.Author updated_by = 7;
    */
   updatedBy?: Author;
@@ -63,6 +73,8 @@ export class Capsule extends Message<Capsule> {
 }
 
 /**
+ * Legacy update message
+ *
  * @generated from message api.v1.capsule.Update
  */
 export class Update extends Message<Update> {

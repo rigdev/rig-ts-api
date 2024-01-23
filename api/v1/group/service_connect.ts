@@ -7,7 +7,7 @@ import { AddMemberRequest, AddMemberResponse, CreateRequest, CreateResponse, Del
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * The service to manage groups in Users
+ * The service to manage groups in Users.
  *
  * @generated from service api.v1.group.Service
  */
@@ -15,7 +15,7 @@ export const Service = {
   typeName: "api.v1.group.Service",
   methods: {
     /**
-     * Create a new group
+     * Create a new group.
      *
      * @generated from rpc api.v1.group.Service.Create
      */
@@ -26,7 +26,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Delete group
+     * Delete a group.
      *
      * @generated from rpc api.v1.group.Service.Delete
      */
@@ -37,7 +37,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * List groups
+     * List groups.
      *
      * @generated from rpc api.v1.group.Service.List
      */
@@ -48,7 +48,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Update group
+     * Update group.
      *
      * @generated from rpc api.v1.group.Service.Update
      */
@@ -59,7 +59,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get group
+     * Get group.
      *
      * @generated from rpc api.v1.group.Service.Get
      */
@@ -70,7 +70,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Add a member to a group
+     * Add a member to a group.
      *
      * @generated from rpc api.v1.group.Service.AddMember
      */
@@ -81,7 +81,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Remove member from Group
+     * Remove member from group.
      *
      * @generated from rpc api.v1.group.Service.RemoveMember
      */
@@ -92,7 +92,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get Group Members
+     * Get Group Members.
      *
      * @generated from rpc api.v1.group.Service.ListMembers
      */
@@ -103,7 +103,7 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Get Groups
+     * Get Groups.
      *
      * @generated from rpc api.v1.group.Service.ListGroupsForMember
      */

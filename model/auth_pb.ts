@@ -6,25 +6,35 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * The LoginType enum defines the type of login.
+ *
  * @generated from enum model.LoginType
  */
 export enum LoginType {
   /**
+   * Default value.
+   *
    * @generated from enum value: LOGIN_TYPE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * Email and password login.
+   *
    * @generated from enum value: LOGIN_TYPE_EMAIL_PASSWORD = 1;
    */
   EMAIL_PASSWORD = 1,
 
   /**
+   * deprecated: text is not supported - Phone number and password login.
+   *
    * @generated from enum value: LOGIN_TYPE_PHONE_PASSWORD = 2;
    */
   PHONE_PASSWORD = 2,
 
   /**
+   * Username and password login.
+   *
    * @generated from enum value: LOGIN_TYPE_USERNAME_PASSWORD = 3;
    */
   USERNAME_PASSWORD = 3,

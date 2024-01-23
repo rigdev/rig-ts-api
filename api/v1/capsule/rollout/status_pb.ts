@@ -7,25 +7,35 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Different states a stage can be in.
+ *
  * @generated from enum api.v1.capsule.rollout.StageState
  */
 export enum StageState {
   /**
+   * The state is unspecified.
+   *
    * @generated from enum value: STAGE_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The stage is deploying.
+   *
    * @generated from enum value: STAGE_STATE_DEPLOYING = 1;
    */
   DEPLOYING = 1,
 
   /**
+   * The stage is running.
+   *
    * @generated from enum value: STAGE_STATE_RUNNING = 2;
    */
   RUNNING = 2,
 
   /**
+   * The stage is stopped.
+   *
    * @generated from enum value: STAGE_STATE_STOPPED = 3;
    */
   STOPPED = 3,
@@ -39,25 +49,35 @@ proto3.util.setEnumType(StageState, "api.v1.capsule.rollout.StageState", [
 ]);
 
 /**
+ * Different states a step can be in.
+ *
  * @generated from enum api.v1.capsule.rollout.StepState
  */
 export enum StepState {
   /**
+   * The state is unspecified.
+   *
    * @generated from enum value: STEP_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The step is ongoing.
+   *
    * @generated from enum value: STEP_STATE_ONGOING = 1;
    */
   ONGOING = 1,
 
   /**
+   * The step failed.
+   *
    * @generated from enum value: STEP_STATE_FAILED = 2;
    */
   FAILED = 2,
 
   /**
+   * The step is done.
+   *
    * @generated from enum value: STEP_STATE_DONE = 3;
    */
   DONE = 3,
@@ -71,35 +91,49 @@ proto3.util.setEnumType(StepState, "api.v1.capsule.rollout.StepState", [
 ]);
 
 /**
+ * Different states a rollout can be in.
+ *
  * @generated from enum api.v1.capsule.rollout.State
  */
 export enum State {
   /**
+   * The state is unspecified.
+   *
    * @generated from enum value: STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The rollout is preparing.
+   *
    * @generated from enum value: STATE_PREPARING = 1;
    */
   PREPARING = 1,
 
   /**
+   * The rollout is configuring.
+   *
    * @generated from enum value: STATE_CONFIGURE = 2;
    */
   CONFIGURE = 2,
 
   /**
+   * The rollout is creating resources.
+   *
    * @generated from enum value: STATE_RESOURCE_CREATION = 3;
    */
   RESOURCE_CREATION = 3,
 
   /**
+   * The rollout is running.
+   *
    * @generated from enum value: STATE_RUNNING = 4;
    */
   RUNNING = 4,
 
   /**
+   * The rollout is stopped.
+   *
    * @generated from enum value: STATE_STOPPED = 5;
    */
   STOPPED = 5,
@@ -115,30 +149,42 @@ proto3.util.setEnumType(State, "api.v1.capsule.rollout.State", [
 ]);
 
 /**
+ * Different result of a rollout.
+ *
  * @generated from enum api.v1.capsule.rollout.Result
  */
 export enum Result {
   /**
+   * The result is unspecified.
+   *
    * @generated from enum value: RESULT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The rollout has been replaced.
+   *
    * @generated from enum value: RESULT_REPLACED = 1;
    */
   REPLACED = 1,
 
   /**
+   * The rollout has failed.
+   *
    * @generated from enum value: RESULT_FAILED = 2;
    */
   FAILED = 2,
 
   /**
+   * The rollout has been aborted.
+   *
    * @generated from enum value: RESULT_ABORTED = 3;
    */
   ABORTED = 3,
 
   /**
+   * The rollout has been rolled back.
+   *
    * @generated from enum value: RESULT_ROLLBACK = 4;
    */
   ROLLBACK = 4,
@@ -153,30 +199,42 @@ proto3.util.setEnumType(Result, "api.v1.capsule.rollout.Result", [
 ]);
 
 /**
+ * The result of a configuration step.
+ *
  * @generated from enum api.v1.capsule.rollout.ConfigureResult
  */
 export enum ConfigureResult {
   /**
+   * The result is unspecified.
+   *
    * @generated from enum value: CONFIGURE_RESULT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
+   * The resource is to be created.
+   *
    * @generated from enum value: CONFIGURE_RESULT_CREATED = 1;
    */
   CREATED = 1,
 
   /**
+   * The resource is to be updated.
+   *
    * @generated from enum value: CONFIGURE_RESULT_UPDATED = 2;
    */
   UPDATED = 2,
 
   /**
+   * The resource has no change.
+   *
    * @generated from enum value: CONFIGURE_RESULT_NO_CHANGE = 3;
    */
   NO_CHANGE = 3,
 
   /**
+   * The resource is to be deleted.
+   *
    * @generated from enum value: CONFIGURE_RESULT_DELETED = 4;
    */
   DELETED = 4,
@@ -191,32 +249,42 @@ proto3.util.setEnumType(ConfigureResult, "api.v1.capsule.rollout.ConfigureResult
 ]);
 
 /**
- * Status is a representation of the current state of a rollout
+ * Status is a representation of the current state of a rollout.
  *
  * @generated from message api.v1.capsule.rollout.Status
  */
 export class Status extends Message<Status> {
   /**
+   * The ID of the rollout.
+   *
    * @generated from field: uint64 rollout_id = 1;
    */
   rolloutId = protoInt64.zero;
 
   /**
+   * The current state of the rollout.
+   *
    * @generated from field: api.v1.capsule.rollout.State state = 2;
    */
   state = State.UNSPECIFIED;
 
   /**
+   * The stages of the rollout.
+   *
    * @generated from field: api.v1.capsule.rollout.Stages stages = 3;
    */
   stages?: Stages;
 
   /**
+   * The last time the rollout was updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
   updatedAt?: Timestamp;
 
   /**
+   * The result of the rollout.
+   *
    * @generated from field: api.v1.capsule.rollout.Result result = 5;
    */
   result = Result.UNSPECIFIED;
@@ -254,25 +322,35 @@ export class Status extends Message<Status> {
 }
 
 /**
+ * Information about a stage of a rollout.
+ *
  * @generated from message api.v1.capsule.rollout.StageInfo
  */
 export class StageInfo extends Message<StageInfo> {
   /**
+   * Name of the stage.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * The last time the stage was updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 2;
    */
   updatedAt?: Timestamp;
 
   /**
+   * The current state of the stage.
+   *
    * @generated from field: api.v1.capsule.rollout.StageState state = 3;
    */
   state = StageState.UNSPECIFIED;
 
   /**
+   * The time the stage started.
+   *
    * @generated from field: google.protobuf.Timestamp started_at = 4;
    */
   startedAt?: Timestamp;
@@ -309,10 +387,14 @@ export class StageInfo extends Message<StageInfo> {
 }
 
 /**
+ * A generic step of a stage.
+ *
  * @generated from message api.v1.capsule.rollout.GenericStep
  */
 export class GenericStep extends Message<GenericStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
@@ -346,30 +428,42 @@ export class GenericStep extends Message<GenericStep> {
 }
 
 /**
+ * Information about a step of a stage.
+ *
  * @generated from message api.v1.capsule.rollout.StepInfo
  */
 export class StepInfo extends Message<StepInfo> {
   /**
+   * Name of the step.
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Messages in the step.
+   *
    * @generated from field: string message = 2;
    */
   message = "";
 
   /**
+   * The last time the step was updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 3;
    */
   updatedAt?: Timestamp;
 
   /**
+   * The current state of the step.
+   *
    * @generated from field: api.v1.capsule.rollout.StepState state = 4;
    */
   state = StepState.UNSPECIFIED;
 
   /**
+   * The time the step started.
+   *
    * @generated from field: google.protobuf.Timestamp started_at = 5;
    */
   startedAt?: Timestamp;
@@ -407,20 +501,28 @@ export class StepInfo extends Message<StepInfo> {
 }
 
 /**
+ * The three stages of a rollout
+ *
  * @generated from message api.v1.capsule.rollout.Stages
  */
 export class Stages extends Message<Stages> {
   /**
+   * The configure stage.
+   *
    * @generated from field: api.v1.capsule.rollout.ConfigureStage configure = 1;
    */
   configure?: ConfigureStage;
 
   /**
+   * The resource creation stage.
+   *
    * @generated from field: api.v1.capsule.rollout.ResourceCreationStage resource_creation = 2;
    */
   resourceCreation?: ResourceCreationStage;
 
   /**
+   * The running stage.
+   *
    * @generated from field: api.v1.capsule.rollout.RunningStage running = 3;
    */
   running?: RunningStage;
@@ -456,15 +558,21 @@ export class Stages extends Message<Stages> {
 }
 
 /**
+ * The configure stage.
+ *
  * @generated from message api.v1.capsule.rollout.ConfigureStage
  */
 export class ConfigureStage extends Message<ConfigureStage> {
   /**
+   * Stage information.
+   *
    * @generated from field: api.v1.capsule.rollout.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * The steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.rollout.ConfigureStep steps = 2;
    */
   steps: ConfigureStep[] = [];
@@ -499,6 +607,8 @@ export class ConfigureStage extends Message<ConfigureStage> {
 }
 
 /**
+ * A step of the configure stage.
+ *
  * @generated from message api.v1.capsule.rollout.ConfigureStep
  */
 export class ConfigureStep extends Message<ConfigureStep> {
@@ -507,24 +617,32 @@ export class ConfigureStep extends Message<ConfigureStep> {
    */
   step: {
     /**
+     * A generic step.
+     *
      * @generated from field: api.v1.capsule.rollout.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * A step configuring a capsule.
+     *
      * @generated from field: api.v1.capsule.rollout.ConfigureCapsuleStep configure_capsule = 2;
      */
     value: ConfigureCapsuleStep;
     case: "configureCapsule";
   } | {
     /**
+     * A step configuring a file.
+     *
      * @generated from field: api.v1.capsule.rollout.ConfigureFileStep configure_file = 3;
      */
     value: ConfigureFileStep;
     case: "configureFile";
   } | {
     /**
+     * A step configuring an environment.
+     *
      * @generated from field: api.v1.capsule.rollout.ConfigureEnvStep configure_env = 4;
      */
     value: ConfigureEnvStep;
@@ -563,15 +681,21 @@ export class ConfigureStep extends Message<ConfigureStep> {
 }
 
 /**
+ * A step configuring a capsule.
+ *
  * @generated from message api.v1.capsule.rollout.ConfigureCapsuleStep
  */
 export class ConfigureCapsuleStep extends Message<ConfigureCapsuleStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * The state of the step.
+   *
    * @generated from field: api.v1.capsule.rollout.ConfigureResult state = 2;
    */
   state = ConfigureResult.UNSPECIFIED;
@@ -606,25 +730,35 @@ export class ConfigureCapsuleStep extends Message<ConfigureCapsuleStep> {
 }
 
 /**
+ * A step configuring a file.
+ *
  * @generated from message api.v1.capsule.rollout.ConfigureFileStep
  */
 export class ConfigureFileStep extends Message<ConfigureFileStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * The result of the file configuration.
+   *
    * @generated from field: api.v1.capsule.rollout.ConfigureResult state = 2;
    */
   state = ConfigureResult.UNSPECIFIED;
 
   /**
+   * The path of the file.
+   *
    * @generated from field: string path = 3;
    */
   path = "";
 
   /**
+   * Whether the file is a secret.
+   *
    * @generated from field: bool is_secret = 4;
    */
   isSecret = false;
@@ -661,20 +795,28 @@ export class ConfigureFileStep extends Message<ConfigureFileStep> {
 }
 
 /**
+ * A step configuring an environment.
+ *
  * @generated from message api.v1.capsule.rollout.ConfigureEnvStep
  */
 export class ConfigureEnvStep extends Message<ConfigureEnvStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * The result of the environment configuration.
+   *
    * @generated from field: api.v1.capsule.rollout.ConfigureResult state = 2;
    */
   state = ConfigureResult.UNSPECIFIED;
 
   /**
+   * Whether the environment is a secret.
+   *
    * @generated from field: bool is_secret = 3;
    */
   isSecret = false;
@@ -710,15 +852,21 @@ export class ConfigureEnvStep extends Message<ConfigureEnvStep> {
 }
 
 /**
+ * The resource creation stage.
+ *
  * @generated from message api.v1.capsule.rollout.ResourceCreationStage
  */
 export class ResourceCreationStage extends Message<ResourceCreationStage> {
   /**
+   * Stage information.
+   *
    * @generated from field: api.v1.capsule.rollout.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * The steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.rollout.ResourceCreationStep steps = 2;
    */
   steps: ResourceCreationStep[] = [];
@@ -753,6 +901,8 @@ export class ResourceCreationStage extends Message<ResourceCreationStage> {
 }
 
 /**
+ * A step of the resource creation stage.
+ *
  * @generated from message api.v1.capsule.rollout.ResourceCreationStep
  */
 export class ResourceCreationStep extends Message<ResourceCreationStep> {
@@ -761,12 +911,16 @@ export class ResourceCreationStep extends Message<ResourceCreationStep> {
    */
   step: {
     /**
+     * A generic step.
+     *
      * @generated from field: api.v1.capsule.rollout.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * A step creating a resource.
+     *
      * @generated from field: api.v1.capsule.rollout.CreateResourceStep create_resource = 2;
      */
     value: CreateResourceStep;
@@ -803,20 +957,28 @@ export class ResourceCreationStep extends Message<ResourceCreationStep> {
 }
 
 /**
+ * A step creating a resource.
+ *
  * @generated from message api.v1.capsule.rollout.CreateResourceStep
  */
 export class CreateResourceStep extends Message<CreateResourceStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * The kind of the resource.
+   *
    * @generated from field: string kind = 2;
    */
   kind = "";
 
   /**
+   * The name of the resource.
+   *
    * @generated from field: string name = 3;
    */
   name = "";
@@ -852,15 +1014,21 @@ export class CreateResourceStep extends Message<CreateResourceStep> {
 }
 
 /**
+ * The running stage.
+ *
  * @generated from message api.v1.capsule.rollout.RunningStage
  */
 export class RunningStage extends Message<RunningStage> {
   /**
+   * Stage information.
+   *
    * @generated from field: api.v1.capsule.rollout.StageInfo info = 1;
    */
   info?: StageInfo;
 
   /**
+   * The steps of the stage.
+   *
    * @generated from field: repeated api.v1.capsule.rollout.RunningStep steps = 2;
    */
   steps: RunningStep[] = [];
@@ -895,6 +1063,8 @@ export class RunningStage extends Message<RunningStage> {
 }
 
 /**
+ * A step of the running stage.
+ *
  * @generated from message api.v1.capsule.rollout.RunningStep
  */
 export class RunningStep extends Message<RunningStep> {
@@ -903,12 +1073,16 @@ export class RunningStep extends Message<RunningStep> {
    */
   step: {
     /**
+     * A generic step.
+     *
      * @generated from field: api.v1.capsule.rollout.GenericStep generic = 1;
      */
     value: GenericStep;
     case: "generic";
   } | {
     /**
+     * A step containing information on the instances of the rollout.
+     *
      * @generated from field: api.v1.capsule.rollout.InstancesStep instances = 2;
      */
     value: InstancesStep;
@@ -945,30 +1119,42 @@ export class RunningStep extends Message<RunningStep> {
 }
 
 /**
+ * Information on the instances of the rollout.
+ *
  * @generated from message api.v1.capsule.rollout.InstancesStep
  */
 export class InstancesStep extends Message<InstancesStep> {
   /**
+   * Step information.
+   *
    * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
    */
   info?: StepInfo;
 
   /**
+   * The number of updated instances.
+   *
    * @generated from field: uint32 num_updated = 2;
    */
   numUpdated = 0;
 
   /**
+   * The number of ready instances.
+   *
    * @generated from field: uint32 num_ready = 3;
    */
   numReady = 0;
 
   /**
+   * The number of stuck instances.
+   *
    * @generated from field: uint32 num_stuck = 4;
    */
   numStuck = 0;
 
   /**
+   * The number of instances with the wrong version.
+   *
    * @generated from field: uint32 num_wrong_version = 5;
    */
   numWrongVersion = 0;

@@ -8,6 +8,8 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { Settings, Update } from "./settings_pb.js";
 
 /**
+ * Empty get settings request
+ *
  * @generated from message api.v1.project.settings.GetSettingsRequest
  */
 export class GetSettingsRequest extends Message<GetSettingsRequest> {
@@ -39,10 +41,14 @@ export class GetSettingsRequest extends Message<GetSettingsRequest> {
 }
 
 /**
+ * Response for getting settings for the project.
+ *
  * @generated from message api.v1.project.settings.GetSettingsResponse
  */
 export class GetSettingsResponse extends Message<GetSettingsResponse> {
   /**
+   * The settings.
+   *
    * @generated from field: api.v1.project.settings.Settings settings = 1;
    */
   settings?: Settings;
@@ -76,10 +82,14 @@ export class GetSettingsResponse extends Message<GetSettingsResponse> {
 }
 
 /**
+ * Request for  updating settings for a project.
+ *
  * @generated from message api.v1.project.settings.UpdateSettingsRequest
  */
 export class UpdateSettingsRequest extends Message<UpdateSettingsRequest> {
   /**
+   * The updates to apply.
+   *
    * @generated from field: repeated api.v1.project.settings.Update updates = 1;
    */
   updates: Update[] = [];
@@ -113,6 +123,8 @@ export class UpdateSettingsRequest extends Message<UpdateSettingsRequest> {
 }
 
 /**
+ * Empty response for updating a project's settings.
+ *
  * @generated from message api.v1.project.settings.UpdateSettingsResponse
  */
 export class UpdateSettingsResponse extends Message<UpdateSettingsResponse> {
