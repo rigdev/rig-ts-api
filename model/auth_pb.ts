@@ -38,6 +38,13 @@ export enum LoginType {
    * @generated from enum value: LOGIN_TYPE_USERNAME_PASSWORD = 3;
    */
   USERNAME_PASSWORD = 3,
+
+  /**
+   * SSO Login
+   *
+   * @generated from enum value: LOGIN_TYPE_SSO = 4;
+   */
+  SSO = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(LoginType)
 proto3.util.setEnumType(LoginType, "model.LoginType", [
@@ -45,5 +52,6 @@ proto3.util.setEnumType(LoginType, "model.LoginType", [
   { no: 1, name: "LOGIN_TYPE_EMAIL_PASSWORD" },
   { no: 2, name: "LOGIN_TYPE_PHONE_PASSWORD" },
   { no: 3, name: "LOGIN_TYPE_USERNAME_PASSWORD" },
+  { no: 4, name: "LOGIN_TYPE_SSO" },
 ]);
 

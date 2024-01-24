@@ -10,6 +10,28 @@ import { UserIdentifier, UserInfo } from "../../../model/user_pb.js";
 import { LoginType } from "../../../model/auth_pb.js";
 
 /**
+ * The type of SSO. Currently only OIDC is supported.
+ *
+ * @generated from enum api.v1.authentication.SSOType
+ */
+export enum SSOType {
+  /**
+   * @generated from enum value: SSO_TYPE_UNSPECIFIED = 0;
+   */
+  SSO_TYPE_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: SSO_TYPE_OIDC = 1;
+   */
+  SSO_TYPE_OIDC = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SSOType)
+proto3.util.setEnumType(SSOType, "api.v1.authentication.SSOType", [
+  { no: 0, name: "SSO_TYPE_UNSPECIFIED" },
+  { no: 1, name: "SSO_TYPE_OIDC" },
+]);
+
+/**
  * Request to verify the email of a user with a verification code sent to the email.
  *
  * @generated from message api.v1.authentication.VerifyEmailRequest
@@ -283,7 +305,7 @@ export class LoginResponse extends Message<LoginResponse> {
 }
 
 /**
- * Empty logout request. The user ID etc. is taken from the token. 
+ * Empty logout request. The user ID etc. is taken from the token.
  *
  * @generated from message api.v1.authentication.LogoutRequest
  */
@@ -922,6 +944,13 @@ export class GetAuthConfigResponse extends Message<GetAuthConfigResponse> {
    */
   allowsRegister = false;
 
+  /**
+   * SSO login options
+   *
+   * @generated from field: repeated api.v1.authentication.SSOOption sso_options = 8;
+   */
+  ssoOptions: SSOOption[] = [];
+
   constructor(data?: PartialMessage<GetAuthConfigResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -935,6 +964,7 @@ export class GetAuthConfigResponse extends Message<GetAuthConfigResponse> {
     { no: 3, name: "validate_password", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "login_types", kind: "enum", T: proto3.getEnumType(LoginType), repeated: true },
     { no: 7, name: "allows_register", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "sso_options", kind: "message", T: SSOOption, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAuthConfigResponse {
@@ -951,6 +981,139 @@ export class GetAuthConfigResponse extends Message<GetAuthConfigResponse> {
 
   static equals(a: GetAuthConfigResponse | PlainMessage<GetAuthConfigResponse> | undefined, b: GetAuthConfigResponse | PlainMessage<GetAuthConfigResponse> | undefined): boolean {
     return proto3.util.equals(GetAuthConfigResponse, a, b);
+  }
+}
+
+/**
+ * A login option for using SSO. This might be merged into
+ * GetAuthConfigResponse.login_types, but is introduced as a separate field, to
+ * maintain backwards compatibility.
+ *
+ * @generated from message api.v1.authentication.SSOOption
+ */
+export class SSOOption extends Message<SSOOption> {
+  /**
+   * Type of SSO. Currently only OIDC is supported.
+   *
+   * @generated from field: api.v1.authentication.SSOType type = 1;
+   */
+  type = SSOType.SSO_TYPE_UNSPECIFIED;
+
+  /**
+   * ID of the SSO provider as given in the platform configuration.
+   *
+   * @generated from field: string provider_id = 2;
+   */
+  providerId = "";
+
+  /**
+   * Name of SSO provider. This is an optional human readable version of the provider ID.
+   *
+   * @generated from field: string name = 3;
+   */
+  name = "";
+
+  /**
+   * URL of the underlying issuer. This can be used in the frontend for
+   * showing specific items for certain known issuers.
+   *
+   * @generated from field: string issuer_url = 4;
+   */
+  issuerUrl = "";
+
+  constructor(data?: PartialMessage<SSOOption>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.authentication.SSOOption";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(SSOType) },
+    { no: 2, name: "provider_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "issuer_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SSOOption {
+    return new SSOOption().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SSOOption {
+    return new SSOOption().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SSOOption {
+    return new SSOOption().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SSOOption | PlainMessage<SSOOption> | undefined, b: SSOOption | PlainMessage<SSOOption> | undefined): boolean {
+    return proto3.util.equals(SSOOption, a, b);
+  }
+}
+
+/**
+ * Represents an SSO provided ID of a user
+ *
+ * @generated from message api.v1.authentication.SSOID
+ */
+export class SSOID extends Message<SSOID> {
+  /**
+   * What type of SSO this ID is from
+   *
+   * @generated from field: api.v1.authentication.SSOType type = 1;
+   */
+  type = SSOType.SSO_TYPE_UNSPECIFIED;
+
+  /**
+   * The ID of the SSO provider
+   *
+   * @generated from field: string provider_id = 2;
+   */
+  providerId = "";
+
+  /**
+   * The ID provided by SSO
+   *
+   * @generated from field: string sso_id = 3;
+   */
+  ssoId = "";
+
+  /**
+   * The internal user ID
+   *
+   * @generated from field: string user_id = 4;
+   */
+  userId = "";
+
+  constructor(data?: PartialMessage<SSOID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.authentication.SSOID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(SSOType) },
+    { no: 2, name: "provider_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "sso_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SSOID {
+    return new SSOID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SSOID {
+    return new SSOID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SSOID {
+    return new SSOID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SSOID | PlainMessage<SSOID> | undefined, b: SSOID | PlainMessage<SSOID> | undefined): boolean {
+    return proto3.util.equals(SSOID, a, b);
   }
 }
 
