@@ -661,6 +661,13 @@ export class LogsRequest extends Message<LogsRequest> {
    */
   environmentId = "";
 
+  /**
+   * If true, include logs from previously terminated containers
+   *
+   * @generated from field: bool previous_containers = 7;
+   */
+  previousContainers = false;
+
   constructor(data?: PartialMessage<LogsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -675,6 +682,7 @@ export class LogsRequest extends Message<LogsRequest> {
     { no: 4, name: "since", kind: "message", T: Duration },
     { no: 5, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "previous_containers", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogsRequest {

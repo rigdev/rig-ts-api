@@ -88,6 +88,14 @@ export class LogMessage extends Message<LogMessage> {
      */
     value: Uint8Array;
     case: "stderr";
+  } | {
+    /**
+     * Represents a termination event
+     *
+     * @generated from field: api.v1.capsule.LogMessage.ContainerTermination container_termination = 3;
+     */
+    value: LogMessage_ContainerTermination;
+    case: "containerTermination";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<LogMessage>) {
@@ -100,6 +108,7 @@ export class LogMessage extends Message<LogMessage> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "stdout", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "message" },
     { no: 2, name: "stderr", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "message" },
+    { no: 3, name: "container_termination", kind: "message", T: LogMessage_ContainerTermination, oneof: "message" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogMessage {
@@ -116,6 +125,37 @@ export class LogMessage extends Message<LogMessage> {
 
   static equals(a: LogMessage | PlainMessage<LogMessage> | undefined, b: LogMessage | PlainMessage<LogMessage> | undefined): boolean {
     return proto3.util.equals(LogMessage, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.LogMessage.ContainerTermination
+ */
+export class LogMessage_ContainerTermination extends Message<LogMessage_ContainerTermination> {
+  constructor(data?: PartialMessage<LogMessage_ContainerTermination>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.LogMessage.ContainerTermination";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogMessage_ContainerTermination {
+    return new LogMessage_ContainerTermination().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LogMessage_ContainerTermination {
+    return new LogMessage_ContainerTermination().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LogMessage_ContainerTermination {
+    return new LogMessage_ContainerTermination().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LogMessage_ContainerTermination | PlainMessage<LogMessage_ContainerTermination> | undefined, b: LogMessage_ContainerTermination | PlainMessage<LogMessage_ContainerTermination> | undefined): boolean {
+    return proto3.util.equals(LogMessage_ContainerTermination, a, b);
   }
 }
 
