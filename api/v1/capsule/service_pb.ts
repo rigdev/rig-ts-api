@@ -1994,13 +1994,6 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
   instanceId = "";
 
   /**
-   * Pagination options.
-   *
-   * @generated from field: model.Pagination pagination = 3;
-   */
-  pagination?: Pagination;
-
-  /**
    * The project in which the capsule lives.
    *
    * @generated from field: string project_id = 4;
@@ -2014,6 +2007,13 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
    */
   environmentId = "";
 
+  /**
+   * Return metrics generated after 'since'
+   *
+   * @generated from field: google.protobuf.Timestamp since = 6;
+   */
+  since?: Timestamp;
+
   constructor(data?: PartialMessage<CapsuleMetricsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2024,9 +2024,9 @@ export class CapsuleMetricsRequest extends Message<CapsuleMetricsRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pagination", kind: "message", T: Pagination },
     { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "since", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleMetricsRequest {
