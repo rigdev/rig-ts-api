@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomObjectMetricsRequest, GetCustomObjectMetricsResponse, GetLicenseInfoRequest, GetLicenseInfoResponse, GetObjectsByKindRequest, GetObjectsByKindResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomObjectMetricsRequest, GetCustomObjectMetricsResponse, GetObjectsByKindRequest, GetObjectsByKindResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -78,17 +78,6 @@ export const Service = {
       name: "PublicKey",
       I: PublicKeyRequest,
       O: PublicKeyResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Get License Information.
-     *
-     * @generated from rpc api.v1.project.Service.GetLicenseInfo
-     */
-    getLicenseInfo: {
-      name: "GetLicenseInfo",
-      I: GetLicenseInfoRequest,
-      O: GetLicenseInfoResponse,
       kind: MethodKind.Unary,
     },
     /**

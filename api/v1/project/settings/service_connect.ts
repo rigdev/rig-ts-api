@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetSettingsRequest, GetSettingsResponse, UpdateSettingsRequest, UpdateSettingsResponse } from "./service_pb.js";
+import { GetLicenseInfoRequest, GetLicenseInfoResponse, GetSettingsRequest, GetSettingsResponse, UpdateSettingsRequest, UpdateSettingsResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -34,6 +34,17 @@ export const Service = {
       name: "UpdateSettings",
       I: UpdateSettingsRequest,
       O: UpdateSettingsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Get License Information.
+     *
+     * @generated from rpc api.v1.project.settings.Service.GetLicenseInfo
+     */
+    getLicenseInfo: {
+      name: "GetLicenseInfo",
+      I: GetLicenseInfoRequest,
+      O: GetLicenseInfoResponse,
       kind: MethodKind.Unary,
     },
   }
