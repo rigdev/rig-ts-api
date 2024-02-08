@@ -14,13 +14,6 @@ import { Settings, Update } from "./settings_pb.js";
  * @generated from message api.v1.project.settings.GetLicenseInfoRequest
  */
 export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
-  /**
-   * Deprecated: Only the Rig-Project has license information.
-   *
-   * @generated from field: string project_id = 1;
-   */
-  projectId = "";
-
   constructor(data?: PartialMessage<GetLicenseInfoRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -29,7 +22,6 @@ export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.settings.GetLicenseInfoRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoRequest {
