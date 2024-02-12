@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DeleteRequest, DeleteResponse, GetAuthConfigRequest, GetAuthConfigResponse, GetRequest, GetResponse, LoginRequest, LoginResponse, LogoutRequest, LogoutResponse, RefreshTokenRequest, RefreshTokenResponse, RegisterRequest, RegisterResponse, ResetPasswordRequest, ResetPasswordResponse, SendPasswordResetRequest, SendPasswordResetResponse, VerifyEmailRequest, VerifyEmailResponse, VerifyPhoneNumberRequest, VerifyPhoneNumberResponse } from "./service_pb.js";
+import { DeleteRequest, DeleteResponse, GetAuthConfigRequest, GetAuthConfigResponse, GetRequest, GetResponse, LoginRequest, LoginResponse, LogoutRequest, LogoutResponse, RefreshTokenRequest, RefreshTokenResponse, RegisterRequest, RegisterResponse, ResetPasswordRequest, ResetPasswordResponse, SendPasswordResetRequest, SendPasswordResetResponse, SendVerificationEmailRequest, SendVerificationEmailResponse, VerifyEmailRequest, VerifyEmailResponse, VerifyPhoneNumberRequest, VerifyPhoneNumberResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -133,6 +133,15 @@ export const Service = {
       name: "VerifyPhoneNumber",
       I: VerifyPhoneNumberRequest,
       O: VerifyPhoneNumberResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.authentication.Service.SendVerificationEmail
+     */
+    sendVerificationEmail: {
+      name: "SendVerificationEmail",
+      I: SendVerificationEmailRequest,
+      O: SendVerificationEmailResponse,
       kind: MethodKind.Unary,
     },
   }

@@ -5,8 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { ClientCredentials, Token, UserPassword } from "./user_pb.js";
 import { UserIdentifier, UserInfo } from "../../../model/user_pb.js";
+import { ClientCredentials, Token, UserPassword } from "./user_pb.js";
 import { LoginType } from "../../../model/auth_pb.js";
 
 /**
@@ -30,6 +30,82 @@ proto3.util.setEnumType(SSOType, "api.v1.authentication.SSOType", [
   { no: 0, name: "SSO_TYPE_UNSPECIFIED" },
   { no: 1, name: "SSO_TYPE_OIDC" },
 ]);
+
+/**
+ * Request to send an email containing the code for the email verification flow.
+ * This is an upsert, and will invalidate the current verification-code if it exists.
+ * Only possible if an email-provider is configured, and the user has en email.
+ *
+ * @generated from message api.v1.authentication.SendVerificationEmailRequest
+ */
+export class SendVerificationEmailRequest extends Message<SendVerificationEmailRequest> {
+  /**
+   * User identifier of the user.
+   *
+   * @generated from field: model.UserIdentifier identifier = 1;
+   */
+  identifier?: UserIdentifier;
+
+  constructor(data?: PartialMessage<SendVerificationEmailRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.authentication.SendVerificationEmailRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "identifier", kind: "message", T: UserIdentifier },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendVerificationEmailRequest {
+    return new SendVerificationEmailRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SendVerificationEmailRequest {
+    return new SendVerificationEmailRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SendVerificationEmailRequest {
+    return new SendVerificationEmailRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SendVerificationEmailRequest | PlainMessage<SendVerificationEmailRequest> | undefined, b: SendVerificationEmailRequest | PlainMessage<SendVerificationEmailRequest> | undefined): boolean {
+    return proto3.util.equals(SendVerificationEmailRequest, a, b);
+  }
+}
+
+/**
+ * Empty response for sending a verification email
+ *
+ * @generated from message api.v1.authentication.SendVerificationEmailResponse
+ */
+export class SendVerificationEmailResponse extends Message<SendVerificationEmailResponse> {
+  constructor(data?: PartialMessage<SendVerificationEmailResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.authentication.SendVerificationEmailResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendVerificationEmailResponse {
+    return new SendVerificationEmailResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SendVerificationEmailResponse {
+    return new SendVerificationEmailResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SendVerificationEmailResponse {
+    return new SendVerificationEmailResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SendVerificationEmailResponse | PlainMessage<SendVerificationEmailResponse> | undefined, b: SendVerificationEmailResponse | PlainMessage<SendVerificationEmailResponse> | undefined): boolean {
+    return proto3.util.equals(SendVerificationEmailResponse, a, b);
+  }
+}
 
 /**
  * Request to verify the email of a user with a verification code sent to the email.
