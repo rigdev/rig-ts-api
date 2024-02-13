@@ -80,6 +80,13 @@ export class SendVerificationEmailRequest extends Message<SendVerificationEmailR
  * @generated from message api.v1.authentication.SendVerificationEmailResponse
  */
 export class SendVerificationEmailResponse extends Message<SendVerificationEmailResponse> {
+  /**
+   * The token used as accesstoken to verify the email.
+   *
+   * @generated from field: string token = 1;
+   */
+  token = "";
+
   constructor(data?: PartialMessage<SendVerificationEmailResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -88,6 +95,7 @@ export class SendVerificationEmailResponse extends Message<SendVerificationEmail
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.authentication.SendVerificationEmailResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendVerificationEmailResponse {
@@ -679,6 +687,13 @@ export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> 
  * @generated from message api.v1.authentication.SendPasswordResetResponse
  */
 export class SendPasswordResetResponse extends Message<SendPasswordResetResponse> {
+  /**
+   * The token used as accesstoken to reset the password.
+   *
+   * @generated from field: string token = 1;
+   */
+  token = "";
+
   constructor(data?: PartialMessage<SendPasswordResetResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -687,6 +702,7 @@ export class SendPasswordResetResponse extends Message<SendPasswordResetResponse
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.authentication.SendPasswordResetResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendPasswordResetResponse {
