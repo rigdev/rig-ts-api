@@ -81,7 +81,7 @@ export class SendVerificationEmailRequest extends Message<SendVerificationEmailR
  */
 export class SendVerificationEmailResponse extends Message<SendVerificationEmailResponse> {
   /**
-   * The token used as accesstoken to verify the email.
+   * JWT token to verify the email.
    *
    * @generated from field: string token = 1;
    */
@@ -135,6 +135,13 @@ export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
    */
   email = "";
 
+  /**
+   * JWT token to verify the email.
+   *
+   * @generated from field: string token = 3;
+   */
+  token = "";
+
   constructor(data?: PartialMessage<VerifyEmailRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -145,6 +152,7 @@ export class VerifyEmailRequest extends Message<VerifyEmailRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerifyEmailRequest {
@@ -688,7 +696,7 @@ export class SendPasswordResetRequest extends Message<SendPasswordResetRequest> 
  */
 export class SendPasswordResetResponse extends Message<SendPasswordResetResponse> {
   /**
-   * The token used as accesstoken to reset the password.
+   * JWT token to reset the password.
    *
    * @generated from field: string token = 1;
    */
@@ -749,6 +757,13 @@ export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
    */
   identifier?: UserIdentifier;
 
+  /**
+   * JWT token to reset the password.
+   *
+   * @generated from field: string token = 4;
+   */
+  token = "";
+
   constructor(data?: PartialMessage<ResetPasswordRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -760,6 +775,7 @@ export class ResetPasswordRequest extends Message<ResetPasswordRequest> {
     { no: 1, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "new_password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "identifier", kind: "message", T: UserIdentifier },
+    { no: 4, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResetPasswordRequest {
