@@ -647,6 +647,14 @@ export class ConfigureStep extends Message<ConfigureStep> {
      */
     value: ConfigureEnvStep;
     case: "configureEnv";
+  } | {
+    /**
+     * A step for commiting the changes to git.
+     *
+     * @generated from field: api.v1.capsule.rollout.ConfigureCommitStep commit = 5;
+     */
+    value: ConfigureCommitStep;
+    case: "commit";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<ConfigureStep>) {
@@ -661,6 +669,7 @@ export class ConfigureStep extends Message<ConfigureStep> {
     { no: 2, name: "configure_capsule", kind: "message", T: ConfigureCapsuleStep, oneof: "step" },
     { no: 3, name: "configure_file", kind: "message", T: ConfigureFileStep, oneof: "step" },
     { no: 4, name: "configure_env", kind: "message", T: ConfigureEnvStep, oneof: "step" },
+    { no: 5, name: "commit", kind: "message", T: ConfigureCommitStep, oneof: "step" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigureStep {
@@ -848,6 +857,63 @@ export class ConfigureEnvStep extends Message<ConfigureEnvStep> {
 
   static equals(a: ConfigureEnvStep | PlainMessage<ConfigureEnvStep> | undefined, b: ConfigureEnvStep | PlainMessage<ConfigureEnvStep> | undefined): boolean {
     return proto3.util.equals(ConfigureEnvStep, a, b);
+  }
+}
+
+/**
+ * A step committing the changes to git
+ *
+ * @generated from message api.v1.capsule.rollout.ConfigureCommitStep
+ */
+export class ConfigureCommitStep extends Message<ConfigureCommitStep> {
+  /**
+   * Step information
+   *
+   * @generated from field: api.v1.capsule.rollout.StepInfo info = 1;
+   */
+  info?: StepInfo;
+
+  /**
+   * The hash of the commit containing the changes
+   *
+   * @generated from field: string commit_hash = 2;
+   */
+  commitHash = "";
+
+  /**
+   * The url to the commit (if known. May be empty)
+   *
+   * @generated from field: string commit_url = 3;
+   */
+  commitUrl = "";
+
+  constructor(data?: PartialMessage<ConfigureCommitStep>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.rollout.ConfigureCommitStep";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StepInfo },
+    { no: 2, name: "commit_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "commit_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigureCommitStep {
+    return new ConfigureCommitStep().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConfigureCommitStep {
+    return new ConfigureCommitStep().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConfigureCommitStep {
+    return new ConfigureCommitStep().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ConfigureCommitStep | PlainMessage<ConfigureCommitStep> | undefined, b: ConfigureCommitStep | PlainMessage<ConfigureCommitStep> | undefined): boolean {
+    return proto3.util.equals(ConfigureCommitStep, a, b);
   }
 }
 
