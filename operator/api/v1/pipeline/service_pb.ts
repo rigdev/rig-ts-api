@@ -79,6 +79,14 @@ export class DryRunRequest extends Message<DryRunRequest> {
    */
   capsuleSpec = "";
 
+  /**
+   * If force is enabled, existing resources will be handled as if they were
+   * supposed to be replaced.
+   *
+   * @generated from field: bool force = 5;
+   */
+  force = false;
+
   constructor(data?: PartialMessage<DryRunRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -91,6 +99,7 @@ export class DryRunRequest extends Message<DryRunRequest> {
     { no: 2, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "operator_config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "capsule_spec", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DryRunRequest {
