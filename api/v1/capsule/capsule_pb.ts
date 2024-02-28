@@ -4,38 +4,31 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
- * Environment wide capsule abstraction
+ * Environment wide capsule abstraction.
  *
  * @generated from message api.v1.capsule.Capsule
  */
 export class Capsule extends Message<Capsule> {
   /**
-   * ID of the capsule
+   * ID of the capsule.
    *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
-   * Current rollout of the capsule
-   *
-   * @generated from field: uint64 current_rollout = 5;
-   */
-  currentRollout = protoInt64.zero;
-
-  /**
-   * Last time the capsule was updated
+   * Last time the capsule was updated.
    *
    * @generated from field: google.protobuf.Timestamp updated_at = 6;
    */
   updatedAt?: Timestamp;
 
   /**
-   * Author of the last update
+   * Author of the last update.
    *
    * @generated from field: model.Author updated_by = 7;
    */
@@ -50,7 +43,6 @@ export class Capsule extends Message<Capsule> {
   static readonly typeName = "api.v1.capsule.Capsule";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "current_rollout", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 6, name: "updated_at", kind: "message", T: Timestamp },
     { no: 7, name: "updated_by", kind: "message", T: Author },
   ]);
