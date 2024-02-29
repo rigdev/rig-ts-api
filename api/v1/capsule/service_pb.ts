@@ -2360,6 +2360,13 @@ export class GetJobExecutionsResponse extends Message<GetJobExecutionsResponse> 
    */
   jobExecutions: JobExecution[] = [];
 
+  /**
+   * Total number of executions ignorring pagination.
+   *
+   * @generated from field: uint64 total = 2;
+   */
+  total = protoInt64.zero;
+
   constructor(data?: PartialMessage<GetJobExecutionsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2369,6 +2376,7 @@ export class GetJobExecutionsResponse extends Message<GetJobExecutionsResponse> 
   static readonly typeName = "api.v1.capsule.GetJobExecutionsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "job_executions", kind: "message", T: JobExecution, repeated: true },
+    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetJobExecutionsResponse {
