@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ListRequest, ListResponse } from "./service_pb.js";
+import { GetNamespacesRequest, GetNamespacesResponse, ListRequest, ListResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -21,6 +21,15 @@ export const Service = {
       name: "List",
       I: ListRequest,
       O: ListResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.environment.Service.GetNamespaces
+     */
+    getNamespaces: {
+      name: "GetNamespaces",
+      I: GetNamespacesRequest,
+      O: GetNamespacesResponse,
       kind: MethodKind.Unary,
     },
   }

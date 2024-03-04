@@ -98,3 +98,169 @@ export class ListResponse extends Message<ListResponse> {
   }
 }
 
+/**
+ * @generated from message api.v1.environment.ProjectEnvironment
+ */
+export class ProjectEnvironment extends Message<ProjectEnvironment> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  constructor(data?: PartialMessage<ProjectEnvironment>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.ProjectEnvironment";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectEnvironment {
+    return new ProjectEnvironment().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectEnvironment {
+    return new ProjectEnvironment().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectEnvironment {
+    return new ProjectEnvironment().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectEnvironment | PlainMessage<ProjectEnvironment> | undefined, b: ProjectEnvironment | PlainMessage<ProjectEnvironment> | undefined): boolean {
+    return proto3.util.equals(ProjectEnvironment, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.environment.ProjectEnvironmentNamespace
+ */
+export class ProjectEnvironmentNamespace extends Message<ProjectEnvironmentNamespace> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string namespace = 3;
+   */
+  namespace = "";
+
+  constructor(data?: PartialMessage<ProjectEnvironmentNamespace>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.ProjectEnvironmentNamespace";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectEnvironmentNamespace {
+    return new ProjectEnvironmentNamespace().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectEnvironmentNamespace {
+    return new ProjectEnvironmentNamespace().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectEnvironmentNamespace {
+    return new ProjectEnvironmentNamespace().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectEnvironmentNamespace | PlainMessage<ProjectEnvironmentNamespace> | undefined, b: ProjectEnvironmentNamespace | PlainMessage<ProjectEnvironmentNamespace> | undefined): boolean {
+    return proto3.util.equals(ProjectEnvironmentNamespace, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.environment.GetNamespacesRequest
+ */
+export class GetNamespacesRequest extends Message<GetNamespacesRequest> {
+  /**
+   * @generated from field: repeated api.v1.environment.ProjectEnvironment project_envs = 1;
+   */
+  projectEnvs: ProjectEnvironment[] = [];
+
+  constructor(data?: PartialMessage<GetNamespacesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.GetNamespacesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_envs", kind: "message", T: ProjectEnvironment, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetNamespacesRequest {
+    return new GetNamespacesRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetNamespacesRequest {
+    return new GetNamespacesRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetNamespacesRequest {
+    return new GetNamespacesRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetNamespacesRequest | PlainMessage<GetNamespacesRequest> | undefined, b: GetNamespacesRequest | PlainMessage<GetNamespacesRequest> | undefined): boolean {
+    return proto3.util.equals(GetNamespacesRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.environment.GetNamespacesResponse
+ */
+export class GetNamespacesResponse extends Message<GetNamespacesResponse> {
+  /**
+   * @generated from field: repeated api.v1.environment.ProjectEnvironmentNamespace namespaces = 2;
+   */
+  namespaces: ProjectEnvironmentNamespace[] = [];
+
+  constructor(data?: PartialMessage<GetNamespacesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.GetNamespacesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "namespaces", kind: "message", T: ProjectEnvironmentNamespace, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetNamespacesResponse {
+    return new GetNamespacesResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetNamespacesResponse {
+    return new GetNamespacesResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetNamespacesResponse {
+    return new GetNamespacesResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetNamespacesResponse | PlainMessage<GetNamespacesResponse> | undefined, b: GetNamespacesResponse | PlainMessage<GetNamespacesResponse> | undefined): boolean {
+    return proto3.util.equals(GetNamespacesResponse, a, b);
+  }
+}
+
