@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetConfigRequest, GetConfigResponse, GetRequest, GetResponse } from "./service_pb.js";
+import { GetConfigRequest, GetConfigResponse, GetPluginsRequest, GetPluginsResponse, GetRequest, GetResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,15 @@ export const Service = {
       name: "GetConfig",
       I: GetConfigRequest,
       O: GetConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capabilities.Service.GetPlugins
+     */
+    getPlugins: {
+      name: "GetPlugins",
+      I: GetPluginsRequest,
+      O: GetPluginsResponse,
       kind: MethodKind.Unary,
     },
   }
