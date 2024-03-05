@@ -158,6 +158,11 @@ export class RolloutConfig extends Message<RolloutConfig> {
    */
   message = "";
 
+  /**
+   * @generated from field: map<string, string> annotations = 14;
+   */
+  annotations: { [key: string]: string } = {};
+
   constructor(data?: PartialMessage<RolloutConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -179,6 +184,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 11, name: "cron_jobs", kind: "message", T: CronJob, repeated: true },
     { no: 12, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 13, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutConfig {

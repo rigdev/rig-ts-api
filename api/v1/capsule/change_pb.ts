@@ -94,9 +94,9 @@ export class Change extends Message<Change> {
     /**
      * Update or add an environment variable.
      *
-     * @generated from field: api.v1.capsule.Change.EnvironmentVariable set_environment_variable = 11;
+     * @generated from field: api.v1.capsule.Change.KeyValue set_environment_variable = 11;
      */
-    value: Change_EnvironmentVariable;
+    value: Change_KeyValue;
     case: "setEnvironmentVariable";
   } | {
     /**
@@ -148,20 +148,44 @@ export class Change extends Message<Change> {
     case: "removeCronJob";
   } | {
     /**
-     * Add a network interface.
+     * Add or update a network interface.
      *
-     * @generated from field: api.v1.capsule.Interface add_interface = 18;
+     * @generated from field: api.v1.capsule.Interface set_interface = 18;
      */
     value: Interface;
-    case: "addInterface";
+    case: "setInterface";
   } | {
     /**
      * Remove a network interface.
      *
-     * @generated from field: api.v1.capsule.Change.RemoveInterface remove_interface = 19;
+     * @generated from field: string remove_interface = 19;
      */
-    value: Change_RemoveInterface;
+    value: string;
     case: "removeInterface";
+  } | {
+    /**
+     * Set capsule annotations.
+     *
+     * @generated from field: api.v1.capsule.Change.Annotations set_annotations = 20;
+     */
+    value: Change_Annotations;
+    case: "setAnnotations";
+  } | {
+    /**
+     * Update or add a single capsule annotation.
+     *
+     * @generated from field: api.v1.capsule.Change.KeyValue set_annotation = 21;
+     */
+    value: Change_KeyValue;
+    case: "setAnnotation";
+  } | {
+    /**
+     * Name of a single capsule annotation to remove.
+     *
+     * @generated from field: string remove_annotation = 22;
+     */
+    value: string;
+    case: "removeAnnotation";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -181,15 +205,18 @@ export class Change extends Message<Change> {
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 8, name: "horizontal_scale", kind: "message", T: HorizontalScale, oneof: "field" },
     { no: 9, name: "rollback", kind: "message", T: Change_Rollback, oneof: "field" },
-    { no: 11, name: "set_environment_variable", kind: "message", T: Change_EnvironmentVariable, oneof: "field" },
+    { no: 11, name: "set_environment_variable", kind: "message", T: Change_KeyValue, oneof: "field" },
     { no: 12, name: "remove_environment_variable", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 13, name: "set_environment_source", kind: "message", T: EnvironmentSource, oneof: "field" },
     { no: 14, name: "remove_environment_source", kind: "message", T: EnvironmentSource, oneof: "field" },
     { no: 15, name: "command_arguments", kind: "message", T: Change_CommandArguments, oneof: "field" },
     { no: 16, name: "add_cron_job", kind: "message", T: CronJob, oneof: "field" },
     { no: 17, name: "remove_cron_job", kind: "message", T: Change_RemoveCronJob, oneof: "field" },
-    { no: 18, name: "add_interface", kind: "message", T: Interface, oneof: "field" },
-    { no: 19, name: "remove_interface", kind: "message", T: Change_RemoveInterface, oneof: "field" },
+    { no: 18, name: "set_interface", kind: "message", T: Interface, oneof: "field" },
+    { no: 19, name: "remove_interface", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 20, name: "set_annotations", kind: "message", T: Change_Annotations, oneof: "field" },
+    { no: 21, name: "set_annotation", kind: "message", T: Change_KeyValue, oneof: "field" },
+    { no: 22, name: "remove_annotation", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -349,51 +376,51 @@ export class Change_CronJobs extends Message<Change_CronJobs> {
 }
 
 /**
- * Environment variable change.
+ * Key-value change.
  *
- * @generated from message api.v1.capsule.Change.EnvironmentVariable
+ * @generated from message api.v1.capsule.Change.KeyValue
  */
-export class Change_EnvironmentVariable extends Message<Change_EnvironmentVariable> {
+export class Change_KeyValue extends Message<Change_KeyValue> {
   /**
-   * Name of the environment variable.
+   * Name of the property.
    *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
-   * The value it takes.
+   * The value of the property.
    *
    * @generated from field: string value = 2;
    */
   value = "";
 
-  constructor(data?: PartialMessage<Change_EnvironmentVariable>) {
+  constructor(data?: PartialMessage<Change_KeyValue>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.Change.EnvironmentVariable";
+  static readonly typeName = "api.v1.capsule.Change.KeyValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_EnvironmentVariable {
-    return new Change_EnvironmentVariable().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_KeyValue {
+    return new Change_KeyValue().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_EnvironmentVariable {
-    return new Change_EnvironmentVariable().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_KeyValue {
+    return new Change_KeyValue().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_EnvironmentVariable {
-    return new Change_EnvironmentVariable().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_KeyValue {
+    return new Change_KeyValue().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Change_EnvironmentVariable | PlainMessage<Change_EnvironmentVariable> | undefined, b: Change_EnvironmentVariable | PlainMessage<Change_EnvironmentVariable> | undefined): boolean {
-    return proto3.util.equals(Change_EnvironmentVariable, a, b);
+  static equals(a: Change_KeyValue | PlainMessage<Change_KeyValue> | undefined, b: Change_KeyValue | PlainMessage<Change_KeyValue> | undefined): boolean {
+    return proto3.util.equals(Change_KeyValue, a, b);
   }
 }
 
@@ -488,39 +515,39 @@ export class Change_RemoveCronJob extends Message<Change_RemoveCronJob> {
 }
 
 /**
- * @generated from message api.v1.capsule.Change.RemoveInterface
+ * @generated from message api.v1.capsule.Change.Annotations
  */
-export class Change_RemoveInterface extends Message<Change_RemoveInterface> {
+export class Change_Annotations extends Message<Change_Annotations> {
   /**
-   * @generated from field: string interface_name = 1;
+   * @generated from field: map<string, string> annotations = 1;
    */
-  interfaceName = "";
+  annotations: { [key: string]: string } = {};
 
-  constructor(data?: PartialMessage<Change_RemoveInterface>) {
+  constructor(data?: PartialMessage<Change_Annotations>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.Change.RemoveInterface";
+  static readonly typeName = "api.v1.capsule.Change.Annotations";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_RemoveInterface {
-    return new Change_RemoveInterface().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_Annotations {
+    return new Change_Annotations().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_RemoveInterface {
-    return new Change_RemoveInterface().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_Annotations {
+    return new Change_Annotations().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_RemoveInterface {
-    return new Change_RemoveInterface().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_Annotations {
+    return new Change_Annotations().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Change_RemoveInterface | PlainMessage<Change_RemoveInterface> | undefined, b: Change_RemoveInterface | PlainMessage<Change_RemoveInterface> | undefined): boolean {
-    return proto3.util.equals(Change_RemoveInterface, a, b);
+  static equals(a: Change_Annotations | PlainMessage<Change_Annotations> | undefined, b: Change_Annotations | PlainMessage<Change_Annotations> | undefined): boolean {
+    return proto3.util.equals(Change_Annotations, a, b);
   }
 }
 
