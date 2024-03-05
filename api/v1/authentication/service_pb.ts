@@ -33,8 +33,9 @@ proto3.util.setEnumType(SSOType, "api.v1.authentication.SSOType", [
 
 /**
  * Request to send an email containing the code for the email verification flow.
- * This is an upsert, and will invalidate the current verification-code if it exists.
- * Only possible if an email-provider is configured, and the user has en email.
+ * This is an upsert, and will invalidate the current verification-code if it
+ * exists. Only possible if an email-provider is configured, and the user has en
+ * email.
  *
  * @generated from message api.v1.authentication.SendVerificationEmailRequest
  */
@@ -116,7 +117,8 @@ export class SendVerificationEmailResponse extends Message<SendVerificationEmail
 }
 
 /**
- * Request to verify the email of a user with a verification code sent to the email.
+ * Request to verify the email of a user with a verification code sent to the
+ * email.
  *
  * @generated from message api.v1.authentication.VerifyEmailRequest
  */
@@ -206,7 +208,8 @@ export class VerifyEmailResponse extends Message<VerifyEmailResponse> {
 }
 
 /**
- * Request to verify the phone number of a user with a verification code sent to the phone number.
+ * Request to verify the phone number of a user with a verification code sent to
+ * the phone number.
  *
  * @generated from message api.v1.authentication.VerifyPhoneNumberRequest
  */
@@ -463,7 +466,8 @@ export class LogoutResponse extends Message<LogoutResponse> {
 }
 
 /**
- * Get request to get the logged in user. The user ID etc. is taken from the token.
+ * Get request to get the logged in user. The user ID etc. is taken from the
+ * token.
  *
  * @generated from message api.v1.authentication.GetRequest
  */
@@ -545,7 +549,8 @@ export class GetResponse extends Message<GetResponse> {
 }
 
 /**
- * Register request for users to self-register. This is only possible with the register bool set in users settings.
+ * Register request for users to self-register. This is only possible with the
+ * register bool set in users settings.
  *
  * @generated from message api.v1.authentication.RegisterRequest
  */
@@ -649,7 +654,8 @@ export class RegisterResponse extends Message<RegisterResponse> {
 }
 
 /**
- * Request to send a reset password email to the user. This is only possible if an email provider is configured, and the user has an email.
+ * Request to send a reset password email to the user. This is only possible if
+ * an email provider is configured, and the user has an email.
  *
  * @generated from message api.v1.authentication.SendPasswordResetRequest
  */
@@ -731,7 +737,8 @@ export class SendPasswordResetResponse extends Message<SendPasswordResetResponse
 }
 
 /**
- * Request to reset the password of a user with a verification code sent to the email.
+ * Request to reset the password of a user with a verification code sent to the
+ * email.
  *
  * @generated from message api.v1.authentication.ResetPasswordRequest
  */
@@ -829,7 +836,8 @@ export class ResetPasswordResponse extends Message<ResetPasswordResponse> {
 }
 
 /**
- * Request to delete the logged in user. The user ID etc. is taken from the token.
+ * Request to delete the logged in user. The user ID etc. is taken from the
+ * token.
  *
  * @generated from message api.v1.authentication.DeleteRequest
  */
@@ -902,7 +910,6 @@ export class DeleteResponse extends Message<DeleteResponse> {
 export class RefreshTokenRequest extends Message<RefreshTokenRequest> {
   /**
    * The access token of the user
-   *
    * Refresh token matching the access token.
    *
    * @generated from field: string refresh_token = 1;
@@ -979,7 +986,8 @@ export class RefreshTokenResponse extends Message<RefreshTokenResponse> {
 }
 
 /**
- * Empty Request to get the auth config containing the available login mechanisms and if self-registering is enabled.
+ * Empty Request to get the auth config containing the available login
+ * mechanisms and if self-registering is enabled.
  *
  * @generated from message api.v1.authentication.GetAuthConfigRequest
  */
@@ -1012,7 +1020,8 @@ export class GetAuthConfigRequest extends Message<GetAuthConfigRequest> {
 }
 
 /**
- * Response with the auth config containing the available login mechanisms and if self-registering is enabled.
+ * Response with the auth config containing the available login mechanisms and
+ * if self-registering is enabled.
  *
  * @generated from message api.v1.authentication.GetAuthConfigResponse
  */
@@ -1115,7 +1124,8 @@ export class SSOOption extends Message<SSOOption> {
   providerId = "";
 
   /**
-   * Name of SSO provider. This is an optional human readable version of the provider ID.
+   * Name of SSO provider. This is an optional human readable version of the
+   * provider ID.
    *
    * @generated from field: string name = 3;
    */

@@ -66,7 +66,8 @@ export class StreamData extends Message<StreamData> {
 }
 
 /**
- * Execute request. This can either be a request to start a request, a terminal resize msg or a stream data msg.
+ * Execute request. This can either be a request to start a request, a terminal
+ * resize msg or a stream data msg.
  *
  * @generated from message api.v1.capsule.ExecuteRequest
  */
@@ -295,7 +296,7 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
     case: "stdout";
   } | {
     /**
-     * Stderr in case of an error. 
+     * Stderr in case of an error.
      *
      * @generated from field: api.v1.capsule.StreamData stderr = 2;
      */
@@ -348,9 +349,9 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
  */
 export class CreateRequest extends Message<CreateRequest> {
   /**
-   * The name of the capsule. This property must be unique for a project and cannot be changed
-   * after creation.
-   * Resources created in associating with the capsule will use this name.
+   * The name of the capsule. This property must be unique for a project and
+   * cannot be changed after creation. Resources created in associating with the
+   * capsule will use this name.
    *
    * @generated from field: string name = 1;
    */
@@ -930,7 +931,8 @@ export class ListResponse extends Message<ListResponse> {
 }
 
 /**
- * Deploy request. This will deploy a number of changes which results in a new rollout.
+ * Deploy request. This will deploy a number of changes which results in a new
+ * rollout.
  *
  * @generated from message api.v1.capsule.DeployRequest
  */
@@ -978,7 +980,8 @@ export class DeployRequest extends Message<DeployRequest> {
   message = "";
 
   /**
-   * if true, the deploy will not be executed, but the request will return the rollout config.
+   * if true, the deploy will not be executed, but the request will return the
+   * rollout config.
    *
    * @generated from field: bool dry_run = 7;
    */
@@ -1721,7 +1724,8 @@ export class GetRolloutRequest extends Message<GetRolloutRequest> {
 }
 
 /**
- * GetRolloutResponse returns a single rollout for a capsule and an environment in a project.
+ * GetRolloutResponse returns a single rollout for a capsule and an environment
+ * in a project.
  *
  * @generated from message api.v1.capsule.GetRolloutResponse
  */
@@ -1860,7 +1864,8 @@ export class AbortRolloutResponse extends Message<AbortRolloutResponse> {
 }
 
 /**
- * ListEvents request for listing rollout events for a given rollout in a capsule and environment.
+ * ListEvents request for listing rollout events for a given rollout in a
+ * capsule and environment.
  *
  * @generated from message api.v1.capsule.ListEventsRequest
  */

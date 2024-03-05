@@ -739,7 +739,8 @@ export class GetObjectsByKindRequest extends Message<GetObjectsByKindRequest> {
 }
 
 /**
- * Response for getting all objects of a given kind in a project and environment.
+ * Response for getting all objects of a given kind in a project and
+ * environment.
  *
  * @generated from message api.v1.project.GetObjectsByKindResponse
  */

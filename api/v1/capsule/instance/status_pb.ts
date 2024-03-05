@@ -120,7 +120,7 @@ export enum PlacementState {
   SCHEDULING_STATE_UNSPECIFIED = 0,
 
   /**
-   * If the instance is unschedulable. 
+   * If the instance is unschedulable.
    *
    * @generated from enum value: SCHEDULING_STATE_UNSCHEDULEABLE = 1;
    */

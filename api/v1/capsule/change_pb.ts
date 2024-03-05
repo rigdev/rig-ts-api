@@ -1550,7 +1550,7 @@ export class InstanceMetric extends Message<InstanceMetric> {
 }
 
 /**
- * Metric emitted by kubernetes object. 
+ * Metric emitted by kubernetes object.
  *
  * @generated from message api.v1.capsule.ObjectMetric
  */

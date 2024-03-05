@@ -81,7 +81,8 @@ export class Role extends Message<Role> {
 }
 
 /**
- * EntityID is a oneof type that can be used to represent a user, service account or group.
+ * EntityID is a oneof type that can be used to represent a user, service
+ * account or group.
  *
  * @generated from message api.v1.role.EntityID
  */
@@ -203,14 +204,16 @@ export class Permission extends Message<Permission> {
  */
 export class Scope extends Message<Scope> {
   /**
-   * The resource on which the action can be performed. This consists of a type, and an optional ID. fx. "user/*", "group/admin"
+   * The resource on which the action can be performed. This consists of a type,
+   * and an optional ID. fx. "user/*", "group/admin"
    *
    * @generated from field: string resource = 1;
    */
   resource = "";
 
   /**
-   * The environment in which the action can be performed. This can be a wildcard.
+   * The environment in which the action can be performed. This can be a
+   * wildcard.
    *
    * @generated from field: string environment = 2;
    */

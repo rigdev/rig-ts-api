@@ -152,7 +152,7 @@ export class Update extends Message<Update> {
     case: "loginMechanisms";
   } | {
     /**
-     * The email provider. 
+     * The email provider.
      *
      * @generated from field: api.v1.user.settings.EmailProvider email_provider = 9;
      */
@@ -431,7 +431,8 @@ export class AuthMethod extends Message<AuthMethod> {
 }
 
 /**
- * The users settings configuration. Settings of everything that has to do with users.
+ * The users settings configuration. Settings of everything that has to do with
+ * users.
  *
  * @generated from message api.v1.user.settings.Settings
  */
@@ -451,7 +452,8 @@ export class Settings extends Message<Settings> {
   isVerifiedEmailRequired = false;
 
   /**
-   * Deprecated: Text is not supported - If true, users must be verified via phone to login.
+   * Deprecated: Text is not supported - If true, users must be verified via
+   * phone to login.
    *
    * @generated from field: bool is_verified_phone_required = 3;
    */

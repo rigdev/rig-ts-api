@@ -7,7 +7,8 @@ import { GetSettingsRequest, GetSettingsResponse, UpdateSettingsRequest, UpdateS
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * The Settings service provides methods for getting and updating the users settings.
+ * The Settings service provides methods for getting and updating the users
+ * settings.
  *
  * @generated from service api.v1.user.settings.Service
  */

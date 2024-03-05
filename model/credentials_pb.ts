@@ -13,7 +13,7 @@ import { Message, proto3 } from "@bufbuild/protobuf";
  */
 export class ProviderCredentials extends Message<ProviderCredentials> {
   /**
-   * Public key. 
+   * Public key.
    *
    * @generated from field: string public_key = 1;
    */

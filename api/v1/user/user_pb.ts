@@ -232,7 +232,8 @@ export class User extends Message<User> {
   registerInfo?: RegisterInfo;
 
   /**
-   * Deprecated: text is not supported - Whether the user's phone number is verified.
+   * Deprecated: text is not supported - Whether the user's phone number is
+   * verified.
    *
    * @generated from field: bool is_phone_verified = 6;
    */
@@ -356,7 +357,8 @@ export class Update extends Message<Update> {
     case: "isEmailVerified";
   } | {
     /**
-     * Deprecated: text is not supported - Whether the user's phone number is verified.
+     * Deprecated: text is not supported - Whether the user's phone number is
+     * verified.
      *
      * @generated from field: bool is_phone_verified = 7;
      */
@@ -435,7 +437,8 @@ export class Update extends Message<Update> {
 }
 
 /**
- * if sessions are reset, all sessions will be invalidated and a new session will be created.
+ * if sessions are reset, all sessions will be invalidated and a new session
+ * will be created.
  *
  * @generated from message api.v1.user.Update.ResetSessions
  */

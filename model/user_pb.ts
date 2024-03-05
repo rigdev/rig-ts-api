@@ -228,7 +228,8 @@ export class UserEntry extends Message<UserEntry> {
 }
 
 /**
- * Entry model of a service account - placed in models to prevent cyclic imports.
+ * Entry model of a service account - placed in models to prevent cyclic
+ * imports.
  *
  * @generated from message model.ServiceAccountEntry
  */

@@ -8,7 +8,8 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Metadata } from "../../../model/metadata_pb.js";
 
 /**
- * Group is a named collection of users and service accounts with optional metadata.
+ * Group is a named collection of users and service accounts with optional
+ * metadata.
  *
  * @generated from message api.v1.group.Group
  */

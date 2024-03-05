@@ -8,7 +8,8 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
 
 /**
- * Build is an environment wide abstraction of an image along with metadata for a capsule.
+ * Build is an environment wide abstraction of an image along with metadata for
+ * a capsule.
  *
  * @generated from message api.v1.capsule.Build
  */
