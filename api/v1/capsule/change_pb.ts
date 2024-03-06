@@ -28,12 +28,12 @@ export class Change extends Message<Change> {
     case: "replicas";
   } | {
     /**
-     * New build change.
+     * New image change.
      *
-     * @generated from field: string build_id = 2;
+     * @generated from field: string image_id = 2;
      */
     value: string;
-    case: "buildId";
+    case: "imageId";
   } | {
     /**
      * Network interfaces change.
@@ -197,7 +197,7 @@ export class Change extends Message<Change> {
   static readonly typeName = "api.v1.capsule.Change";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "field" },
-    { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 2, name: "image_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 3, name: "network", kind: "message", T: Network, oneof: "field" },
     { no: 4, name: "container_settings", kind: "message", T: ContainerSettings, oneof: "field" },
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },

@@ -114,9 +114,9 @@ export class RolloutConfig extends Message<RolloutConfig> {
   replicas = 0;
 
   /**
-   * @generated from field: string build_id = 5;
+   * @generated from field: string image_id = 5;
    */
-  buildId = "";
+  imageId = "";
 
   /**
    * @generated from field: api.v1.capsule.Network network = 6;
@@ -175,7 +175,7 @@ export class RolloutConfig extends Message<RolloutConfig> {
     { no: 2, name: "created_at", kind: "message", T: Timestamp },
     { no: 3, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 4, name: "replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 5, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "image_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "network", kind: "message", T: Network },
     { no: 7, name: "container_settings", kind: "message", T: ContainerSettings },
     { no: 8, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },

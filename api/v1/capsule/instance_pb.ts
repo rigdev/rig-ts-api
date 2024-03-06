@@ -54,9 +54,9 @@ export class Instance extends Message<Instance> {
   instanceId = "";
 
   /**
-   * @generated from field: string build_id = 2;
+   * @generated from field: string image_id = 2;
    */
-  buildId = "";
+  imageId = "";
 
   /**
    * @generated from field: api.v1.capsule.State state = 3;
@@ -102,7 +102,7 @@ export class Instance extends Message<Instance> {
   static readonly typeName = "api.v1.capsule.Instance";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "build_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "image_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(State) },
     { no: 4, name: "restart_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 5, name: "created_at", kind: "message", T: Timestamp },
