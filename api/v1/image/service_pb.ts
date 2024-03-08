@@ -319,20 +319,20 @@ export class Tag extends Message<Tag> {
 }
 
 /**
- * Request to create a new image in a capsule.
+ * Request to add a new image in a capsule.
  *
- * @generated from message api.v1.image.CreateRequest
+ * @generated from message api.v1.image.AddRequest
  */
-export class CreateRequest extends Message<CreateRequest> {
+export class AddRequest extends Message<AddRequest> {
   /**
-   * Capsule to create the image in.
+   * Capsule to add the image in.
    *
    * @generated from field: string capsule_id = 1;
    */
   capsuleId = "";
 
   /**
-   * Container image to create the image from.
+   * Container image to add the image from.
    *
    * @generated from field: string image = 2;
    */
@@ -373,13 +373,13 @@ export class CreateRequest extends Message<CreateRequest> {
    */
   projectId = "";
 
-  constructor(data?: PartialMessage<CreateRequest>) {
+  constructor(data?: PartialMessage<AddRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.image.CreateRequest";
+  static readonly typeName = "api.v1.image.AddRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -390,29 +390,29 @@ export class CreateRequest extends Message<CreateRequest> {
     { no: 7, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
-    return new CreateRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AddRequest {
+    return new AddRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateRequest {
-    return new CreateRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AddRequest {
+    return new AddRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRequest {
-    return new CreateRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AddRequest {
+    return new AddRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateRequest | PlainMessage<CreateRequest> | undefined, b: CreateRequest | PlainMessage<CreateRequest> | undefined): boolean {
-    return proto3.util.equals(CreateRequest, a, b);
+  static equals(a: AddRequest | PlainMessage<AddRequest> | undefined, b: AddRequest | PlainMessage<AddRequest> | undefined): boolean {
+    return proto3.util.equals(AddRequest, a, b);
   }
 }
 
 /**
- * Response to create a new image in a capsule.
+ * Response to add a new image in a capsule.
  *
- * @generated from message api.v1.image.CreateResponse
+ * @generated from message api.v1.image.AddResponse
  */
-export class CreateResponse extends Message<CreateResponse> {
+export class AddResponse extends Message<AddResponse> {
   /**
    * ID of the image.
    *
@@ -421,38 +421,38 @@ export class CreateResponse extends Message<CreateResponse> {
   imageId = "";
 
   /**
-   * True if a new image was created.
+   * True if a new image was added, false if the image already existed.
    *
-   * @generated from field: bool created_new_image = 2;
+   * @generated from field: bool added_new_image = 2;
    */
-  createdNewImage = false;
+  addedNewImage = false;
 
-  constructor(data?: PartialMessage<CreateResponse>) {
+  constructor(data?: PartialMessage<AddResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.image.CreateResponse";
+  static readonly typeName = "api.v1.image.AddResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "image_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "created_new_image", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "added_new_image", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateResponse {
-    return new CreateResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AddResponse {
+    return new AddResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateResponse {
-    return new CreateResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AddResponse {
+    return new AddResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateResponse {
-    return new CreateResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AddResponse {
+    return new AddResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateResponse | PlainMessage<CreateResponse> | undefined, b: CreateResponse | PlainMessage<CreateResponse> | undefined): boolean {
-    return proto3.util.equals(CreateResponse, a, b);
+  static equals(a: AddResponse | PlainMessage<AddResponse> | undefined, b: AddResponse | PlainMessage<AddResponse> | undefined): boolean {
+    return proto3.util.equals(AddResponse, a, b);
   }
 }
 

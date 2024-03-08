@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetImageInfoRequest, GetImageInfoResponse, GetRepositoryInfoRequest, GetRepositoryInfoResponse, GetRequest, GetResponse, ListRequest, ListResponse } from "./service_pb.js";
+import { AddRequest, AddResponse, DeleteRequest, DeleteResponse, GetImageInfoRequest, GetImageInfoResponse, GetRepositoryInfoRequest, GetRepositoryInfoResponse, GetRequest, GetResponse, ListRequest, ListResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -46,16 +46,16 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * Create a new image.
-     * Images are immutable and cannot change. Create a new image to make
+     * Add a new image.
+     * Images are immutable and cannot change. Add a new image to make
      * changes from an existing one.
      *
-     * @generated from rpc api.v1.image.Service.Create
+     * @generated from rpc api.v1.image.Service.Add
      */
-    create: {
-      name: "Create",
-      I: CreateRequest,
-      O: CreateResponse,
+    add: {
+      name: "Add",
+      I: AddRequest,
+      O: AddResponse,
       kind: MethodKind.Unary,
     },
     /**
