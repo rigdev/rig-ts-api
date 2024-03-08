@@ -186,6 +186,14 @@ export class Change extends Message<Change> {
      */
     value: string;
     case: "removeAnnotation";
+  } | {
+    /**
+     * Image to deploy, adding it to images if not already present.
+     *
+     * @generated from field: api.v1.capsule.Change.AddImage add_image = 23;
+     */
+    value: Change_AddImage;
+    case: "addImage";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -217,6 +225,7 @@ export class Change extends Message<Change> {
     { no: 20, name: "set_annotations", kind: "message", T: Change_Annotations, oneof: "field" },
     { no: 21, name: "set_annotation", kind: "message", T: Change_KeyValue, oneof: "field" },
     { no: 22, name: "remove_annotation", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 23, name: "add_image", kind: "message", T: Change_AddImage, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
@@ -548,6 +557,43 @@ export class Change_Annotations extends Message<Change_Annotations> {
 
   static equals(a: Change_Annotations | PlainMessage<Change_Annotations> | undefined, b: Change_Annotations | PlainMessage<Change_Annotations> | undefined): boolean {
     return proto3.util.equals(Change_Annotations, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Change.AddImage
+ */
+export class Change_AddImage extends Message<Change_AddImage> {
+  /**
+   * @generated from field: string image = 1;
+   */
+  image = "";
+
+  constructor(data?: PartialMessage<Change_AddImage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Change.AddImage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_AddImage {
+    return new Change_AddImage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_AddImage {
+    return new Change_AddImage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_AddImage {
+    return new Change_AddImage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Change_AddImage | PlainMessage<Change_AddImage> | undefined, b: Change_AddImage | PlainMessage<Change_AddImage> | undefined): boolean {
+    return proto3.util.equals(Change_AddImage, a, b);
   }
 }
 
