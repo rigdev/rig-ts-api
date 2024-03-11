@@ -369,3 +369,163 @@ export class GVK extends Message<GVK> {
   }
 }
 
+/**
+ * @generated from message api.v1.plugin.DeleteObjectRequest
+ */
+export class DeleteObjectRequest extends Message<DeleteObjectRequest> {
+  /**
+   * @generated from field: api.v1.plugin.GVK gvk = 1;
+   */
+  gvk?: GVK;
+
+  /**
+   * @generated from field: bytes object = 2;
+   */
+  object = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<DeleteObjectRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.DeleteObjectRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "gvk", kind: "message", T: GVK },
+    { no: 2, name: "object", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteObjectRequest {
+    return new DeleteObjectRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteObjectRequest {
+    return new DeleteObjectRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteObjectRequest {
+    return new DeleteObjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteObjectRequest | PlainMessage<DeleteObjectRequest> | undefined, b: DeleteObjectRequest | PlainMessage<DeleteObjectRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteObjectRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.DeleteObjectResponse
+ */
+export class DeleteObjectResponse extends Message<DeleteObjectResponse> {
+  constructor(data?: PartialMessage<DeleteObjectResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.DeleteObjectResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteObjectResponse {
+    return new DeleteObjectResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteObjectResponse {
+    return new DeleteObjectResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteObjectResponse {
+    return new DeleteObjectResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteObjectResponse | PlainMessage<DeleteObjectResponse> | undefined, b: DeleteObjectResponse | PlainMessage<DeleteObjectResponse> | undefined): boolean {
+    return proto3.util.equals(DeleteObjectResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.MarkUsedObjectRequest
+ */
+export class MarkUsedObjectRequest extends Message<MarkUsedObjectRequest> {
+  /**
+   * @generated from field: api.v1.plugin.GVK gvk = 1;
+   */
+  gvk?: GVK;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string state = 3;
+   */
+  state = "";
+
+  /**
+   * @generated from field: string message = 4;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<MarkUsedObjectRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.MarkUsedObjectRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "gvk", kind: "message", T: GVK },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "state", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MarkUsedObjectRequest {
+    return new MarkUsedObjectRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MarkUsedObjectRequest {
+    return new MarkUsedObjectRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MarkUsedObjectRequest {
+    return new MarkUsedObjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MarkUsedObjectRequest | PlainMessage<MarkUsedObjectRequest> | undefined, b: MarkUsedObjectRequest | PlainMessage<MarkUsedObjectRequest> | undefined): boolean {
+    return proto3.util.equals(MarkUsedObjectRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.MarkUsedObjectResponse
+ */
+export class MarkUsedObjectResponse extends Message<MarkUsedObjectResponse> {
+  constructor(data?: PartialMessage<MarkUsedObjectResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.MarkUsedObjectResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MarkUsedObjectResponse {
+    return new MarkUsedObjectResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MarkUsedObjectResponse {
+    return new MarkUsedObjectResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MarkUsedObjectResponse {
+    return new MarkUsedObjectResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MarkUsedObjectResponse | PlainMessage<MarkUsedObjectResponse> | undefined, b: MarkUsedObjectResponse | PlainMessage<MarkUsedObjectResponse> | undefined): boolean {
+    return proto3.util.equals(MarkUsedObjectResponse, a, b);
+  }
+}
+
