@@ -996,6 +996,15 @@ export class DeployRequest extends Message<DeployRequest> {
    */
   currentRolloutId = protoInt64.zero;
 
+  /**
+   * if true, existing resources will be handled as if they were created by the
+   * platform, and ownership set to the capsule. Otherwise reconsillication will
+   * be skipped, and ownership remains unchanged.
+   *
+   * @generated from field: bool override_ownership = 9;
+   */
+  overrideOwnership = false;
+
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1012,6 +1021,7 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "current_rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 9, name: "override_ownership", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
