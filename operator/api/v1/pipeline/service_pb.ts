@@ -87,6 +87,13 @@ export class DryRunRequest extends Message<DryRunRequest> {
    */
   force = false;
 
+  /**
+   * Additional objects to be considered materialized when performing the dryrun
+   *
+   * @generated from field: repeated api.v1.pipeline.Object additional_objects = 6;
+   */
+  additionalObjects: Object$[] = [];
+
   constructor(data?: PartialMessage<DryRunRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -100,6 +107,7 @@ export class DryRunRequest extends Message<DryRunRequest> {
     { no: 3, name: "operator_config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "capsule_spec", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "additional_objects", kind: "message", T: Object$, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DryRunRequest {
