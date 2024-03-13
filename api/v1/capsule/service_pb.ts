@@ -997,13 +997,17 @@ export class DeployRequest extends Message<DeployRequest> {
   currentRolloutId = protoInt64.zero;
 
   /**
-   * if true, existing resources will be handled as if they were created by the
-   * platform, and ownership set to the capsule. Otherwise reconsillication will
-   * be skipped, and ownership remains unchanged.
+   * By default, existing objects will be kept in favor of overriding them. To
+   * force the override of resources, set this flag to true. An example of this
+   * use-case is a migration step, where resource created by a previous
+   * toolchain e.g. based on Helm charts, are to be replaced and instead be
+   * created by the Rig operator.
+   * While the override is irreversible, this flag is not "sticky" and must be
+   * set by each deploy that should use this behavior.
    *
-   * @generated from field: bool override_ownership = 9;
+   * @generated from field: bool force_override = 9;
    */
-  overrideOwnership = false;
+  forceOverride = false;
 
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
@@ -1021,7 +1025,7 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "current_rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 9, name: "override_ownership", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "force_override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
