@@ -57,6 +57,38 @@ proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
 ]);
 
 /**
+ * @generated from enum api.v1.capsule.instance.ContainerType
+ */
+export enum ContainerType {
+  /**
+   * @generated from enum value: CONTAINER_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_MAIN = 1;
+   */
+  MAIN = 1,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_SIDECAR = 2;
+   */
+  SIDECAR = 2,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_INIT = 3;
+   */
+  INIT = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ContainerType)
+proto3.util.setEnumType(ContainerType, "api.v1.capsule.instance.ContainerType", [
+  { no: 0, name: "CONTAINER_TYPE_UNSPECIFIED" },
+  { no: 1, name: "CONTAINER_TYPE_MAIN" },
+  { no: 2, name: "CONTAINER_TYPE_SIDECAR" },
+  { no: 3, name: "CONTAINER_TYPE_INIT" },
+]);
+
+/**
  * Different states a step can be in.
  *
  * @generated from enum api.v1.capsule.instance.StepState
@@ -654,6 +686,13 @@ export class StepInfo extends Message<StepInfo> {
    */
   state = StepState.UNSPECIFIED;
 
+  /**
+   * Information about the container associated with the step.
+   *
+   * @generated from field: api.v1.capsule.instance.ContainerInfo container = 5;
+   */
+  container?: ContainerInfo;
+
   constructor(data?: PartialMessage<StepInfo>) {
     super();
     proto3.util.initPartial(data, this);
@@ -666,6 +705,7 @@ export class StepInfo extends Message<StepInfo> {
     { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "updated_at", kind: "message", T: Timestamp },
     { no: 4, name: "state", kind: "enum", T: proto3.getEnumType(StepState) },
+    { no: 5, name: "container", kind: "message", T: ContainerInfo },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StepInfo {
@@ -682,6 +722,49 @@ export class StepInfo extends Message<StepInfo> {
 
   static equals(a: StepInfo | PlainMessage<StepInfo> | undefined, b: StepInfo | PlainMessage<StepInfo> | undefined): boolean {
     return proto3.util.equals(StepInfo, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.instance.ContainerInfo
+ */
+export class ContainerInfo extends Message<ContainerInfo> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: api.v1.capsule.instance.ContainerType type = 2;
+   */
+  type = ContainerType.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<ContainerInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.instance.ContainerInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(ContainerType) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerInfo {
+    return new ContainerInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContainerInfo {
+    return new ContainerInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContainerInfo {
+    return new ContainerInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ContainerInfo | PlainMessage<ContainerInfo> | undefined, b: ContainerInfo | PlainMessage<ContainerInfo> | undefined): boolean {
+    return proto3.util.equals(ContainerInfo, a, b);
   }
 }
 
@@ -759,6 +842,14 @@ export class PreparingStep extends Message<PreparingStep> {
      */
     value: ImagePullingStep;
     case: "imagePulling";
+  } | {
+    /**
+     * Executing step for init containers
+     *
+     * @generated from field: api.v1.capsule.instance.ExecutingStep init_executing = 3;
+     */
+    value: ExecutingStep;
+    case: "initExecuting";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<PreparingStep>) {
@@ -771,6 +862,7 @@ export class PreparingStep extends Message<PreparingStep> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "generic", kind: "message", T: GenericStep, oneof: "step" },
     { no: 2, name: "image_pulling", kind: "message", T: ImagePullingStep, oneof: "step" },
+    { no: 3, name: "init_executing", kind: "message", T: ExecutingStep, oneof: "step" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PreparingStep {
@@ -1062,6 +1154,27 @@ export class ExecutingStep extends Message<ExecutingStep> {
    */
   startedAt?: Timestamp;
 
+  /**
+   * Time at which the step finished.
+   *
+   * @generated from field: google.protobuf.Timestamp finished_at = 3;
+   */
+  finishedAt?: Timestamp;
+
+  /**
+   * Number of restarts of the container
+   *
+   * @generated from field: uint32 restarts = 4;
+   */
+  restarts = 0;
+
+  /**
+   * Information about the last container termination.
+   *
+   * @generated from field: api.v1.capsule.instance.ContainerTermination last_container_termination = 5;
+   */
+  lastContainerTermination?: ContainerTermination;
+
   constructor(data?: PartialMessage<ExecutingStep>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1072,6 +1185,9 @@ export class ExecutingStep extends Message<ExecutingStep> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "info", kind: "message", T: StepInfo },
     { no: 2, name: "started_at", kind: "message", T: Timestamp },
+    { no: 3, name: "finished_at", kind: "message", T: Timestamp },
+    { no: 4, name: "restarts", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "last_container_termination", kind: "message", T: ContainerTermination },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecutingStep {
