@@ -7,6 +7,49 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message api.v1.environment.Update
+ */
+export class Update extends Message<Update> {
+  /**
+   * @generated from oneof api.v1.environment.Update.field
+   */
+  field: {
+    /**
+     * @generated from field: bool default = 1;
+     */
+    value: boolean;
+    case: "default";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<Update>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.Update";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
+    return new Update().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Update {
+    return new Update().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Update {
+    return new Update().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Update | PlainMessage<Update> | undefined, b: Update | PlainMessage<Update> | undefined): boolean {
+    return proto3.util.equals(Update, a, b);
+  }
+}
+
+/**
  * Environment model.
  *
  * @generated from message api.v1.environment.Environment
@@ -33,6 +76,13 @@ export class Environment extends Message<Environment> {
    */
   operatorVersion = "";
 
+  /**
+   * ID of the backing cluster.
+   *
+   * @generated from field: string cluster_id = 4;
+   */
+  clusterId = "";
+
   constructor(data?: PartialMessage<Environment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -44,6 +94,7 @@ export class Environment extends Message<Environment> {
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "operator_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "cluster_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {

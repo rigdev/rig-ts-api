@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetNamespacesRequest, GetNamespacesResponse, ListRequest, ListResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetNamespacesRequest, GetNamespacesResponse, ListRequest, ListResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -12,6 +12,33 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const Service = {
   typeName: "api.v1.environment.Service",
   methods: {
+    /**
+     * @generated from rpc api.v1.environment.Service.Create
+     */
+    create: {
+      name: "Create",
+      I: CreateRequest,
+      O: CreateResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.environment.Service.Update
+     */
+    update: {
+      name: "Update",
+      I: UpdateRequest,
+      O: UpdateResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.environment.Service.Delete
+     */
+    delete: {
+      name: "Delete",
+      I: DeleteRequest,
+      O: DeleteResponse,
+      kind: MethodKind.Unary,
+    },
     /**
      * List available environments.
      *
