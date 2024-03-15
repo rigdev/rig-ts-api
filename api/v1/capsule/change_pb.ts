@@ -1117,11 +1117,6 @@ export class HTTPPathRoute extends Message<HTTPPathRoute> {
    */
   match = PathMatchType.UNSPECIFIED;
 
-  /**
-   * @generated from field: api.v1.capsule.RouteOptions options = 3;
-   */
-  options?: RouteOptions;
-
   constructor(data?: PartialMessage<HTTPPathRoute>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1132,7 +1127,6 @@ export class HTTPPathRoute extends Message<HTTPPathRoute> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "match", kind: "enum", T: proto3.getEnumType(PathMatchType) },
-    { no: 3, name: "options", kind: "message", T: RouteOptions },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HTTPPathRoute {
