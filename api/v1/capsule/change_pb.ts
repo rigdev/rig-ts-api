@@ -1073,6 +1073,11 @@ export class HostRoute extends Message<HostRoute> {
    */
   paths: HTTPPathRoute[] = [];
 
+  /**
+   * @generated from field: string id = 4;
+   */
+  id = "";
+
   constructor(data?: PartialMessage<HostRoute>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1084,6 +1089,7 @@ export class HostRoute extends Message<HostRoute> {
     { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "options", kind: "message", T: RouteOptions },
     { no: 3, name: "paths", kind: "message", T: HTTPPathRoute, repeated: true },
+    { no: 4, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HostRoute {
