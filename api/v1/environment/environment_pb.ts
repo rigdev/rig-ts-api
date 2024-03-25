@@ -83,6 +83,14 @@ export class Environment extends Message<Environment> {
    */
   clusterId = "";
 
+  /**
+   * Namespace template is used to generate the namespace name when configuring
+   * resources. Default is to set the namespace equal to the project name.
+   *
+   * @generated from field: string namespace_template = 5;
+   */
+  namespaceTemplate = "";
+
   constructor(data?: PartialMessage<Environment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -95,6 +103,7 @@ export class Environment extends Message<Environment> {
     { no: 2, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "operator_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "cluster_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "namespace_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {
