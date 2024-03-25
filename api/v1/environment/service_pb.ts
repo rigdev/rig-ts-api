@@ -184,6 +184,15 @@ export class DeleteRequest extends Message<DeleteRequest> {
    */
   environmentId = "";
 
+  /**
+   * Force delete all running capsules in the enviornment. If false,
+   * the request will be aborted if any capsules is running in the
+   * environment.
+   *
+   * @generated from field: bool force = 2;
+   */
+  force = false;
+
   constructor(data?: PartialMessage<DeleteRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -193,6 +202,7 @@ export class DeleteRequest extends Message<DeleteRequest> {
   static readonly typeName = "api.v1.environment.DeleteRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRequest {
