@@ -1806,13 +1806,6 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
    */
   projectId = "";
 
-  /**
-   * The environment the rollout is in.
-   *
-   * @generated from field: string environment_id = 4;
-   */
-  environmentId = "";
-
   constructor(data?: PartialMessage<AbortRolloutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1824,7 +1817,6 @@ export class AbortRolloutRequest extends Message<AbortRolloutRequest> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AbortRolloutRequest {
@@ -1874,6 +1866,96 @@ export class AbortRolloutResponse extends Message<AbortRolloutResponse> {
 
   static equals(a: AbortRolloutResponse | PlainMessage<AbortRolloutResponse> | undefined, b: AbortRolloutResponse | PlainMessage<AbortRolloutResponse> | undefined): boolean {
     return proto3.util.equals(AbortRolloutResponse, a, b);
+  }
+}
+
+/**
+ * StopRolloutRequest aborts a rollout.
+ *
+ * @generated from message api.v1.capsule.StopRolloutRequest
+ */
+export class StopRolloutRequest extends Message<StopRolloutRequest> {
+  /**
+   * The capsule of the aborting rollout.
+   *
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * The rollout to stop.
+   *
+   * @generated from field: uint64 rollout_id = 2;
+   */
+  rolloutId = protoInt64.zero;
+
+  /**
+   * The project in which the capsule lives.
+   *
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  constructor(data?: PartialMessage<StopRolloutRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.StopRolloutRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StopRolloutRequest {
+    return new StopRolloutRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StopRolloutRequest {
+    return new StopRolloutRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StopRolloutRequest {
+    return new StopRolloutRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StopRolloutRequest | PlainMessage<StopRolloutRequest> | undefined, b: StopRolloutRequest | PlainMessage<StopRolloutRequest> | undefined): boolean {
+    return proto3.util.equals(StopRolloutRequest, a, b);
+  }
+}
+
+/**
+ * StopRolloutResponse is an empty response.
+ *
+ * @generated from message api.v1.capsule.StopRolloutResponse
+ */
+export class StopRolloutResponse extends Message<StopRolloutResponse> {
+  constructor(data?: PartialMessage<StopRolloutResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.StopRolloutResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StopRolloutResponse {
+    return new StopRolloutResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StopRolloutResponse {
+    return new StopRolloutResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StopRolloutResponse {
+    return new StopRolloutResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StopRolloutResponse | PlainMessage<StopRolloutResponse> | undefined, b: StopRolloutResponse | PlainMessage<StopRolloutResponse> | undefined): boolean {
+    return proto3.util.equals(StopRolloutResponse, a, b);
   }
 }
 
