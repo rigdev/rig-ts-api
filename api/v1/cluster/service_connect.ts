@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetConfigRequest, GetConfigResponse, GetConfigsRequest, GetConfigsResponse } from "./service_pb.js";
+import { GetConfigRequest, GetConfigResponse, GetConfigsRequest, GetConfigsResponse, ListRequest, ListResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,6 +14,15 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const Service = {
   typeName: "api.v1.cluster.Service",
   methods: {
+    /**
+     * @generated from rpc api.v1.cluster.Service.List
+     */
+    list: {
+      name: "List",
+      I: ListRequest,
+      O: ListResponse,
+      kind: MethodKind.Unary,
+    },
     /**
      * GetConfig returns the config for the cluster.
      *

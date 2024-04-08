@@ -5,6 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { Pagination } from "../../../model/common_pb.js";
+import { Cluster } from "./cluster_pb.js";
 
 /**
  * Cluster type - Docker or kubernetes.
@@ -290,6 +292,88 @@ export class Registry extends Message<Registry> {
 
   static equals(a: Registry | PlainMessage<Registry> | undefined, b: Registry | PlainMessage<Registry> | undefined): boolean {
     return proto3.util.equals(Registry, a, b);
+  }
+}
+
+/**
+ * Request for listing available clusters.
+ *
+ * @generated from message api.v1.cluster.ListRequest
+ */
+export class ListRequest extends Message<ListRequest> {
+  /**
+   * Pagination options.
+   *
+   * @generated from field: model.Pagination pagination = 1;
+   */
+  pagination?: Pagination;
+
+  constructor(data?: PartialMessage<ListRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.cluster.ListRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pagination", kind: "message", T: Pagination },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
+    return new ListRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListRequest {
+    return new ListRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRequest {
+    return new ListRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListRequest | PlainMessage<ListRequest> | undefined, b: ListRequest | PlainMessage<ListRequest> | undefined): boolean {
+    return proto3.util.equals(ListRequest, a, b);
+  }
+}
+
+/**
+ * Response for listing available clusters.
+ *
+ * @generated from message api.v1.cluster.ListResponse
+ */
+export class ListResponse extends Message<ListResponse> {
+  /**
+   * List of clusters.
+   *
+   * @generated from field: repeated api.v1.cluster.Cluster clusters = 1;
+   */
+  clusters: Cluster[] = [];
+
+  constructor(data?: PartialMessage<ListResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.cluster.ListResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "clusters", kind: "message", T: Cluster, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListResponse {
+    return new ListResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListResponse {
+    return new ListResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListResponse {
+    return new ListResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListResponse | PlainMessage<ListResponse> | undefined, b: ListResponse | PlainMessage<ListResponse> | undefined): boolean {
+    return proto3.util.equals(ListResponse, a, b);
   }
 }
 
