@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DeleteObjectRequest, DeleteObjectResponse, GetObjectRequest, GetObjectResponse, InitializeRequest, InitializeResponse, MarkUsedObjectRequest, MarkUsedObjectResponse, RunCapsuleRequest, RunCapsuleResponse, SetObjectRequest, SetObjectResponse } from "./service_pb.js";
+import { DeleteObjectRequest, DeleteObjectResponse, GetObjectRequest, GetObjectResponse, InitializeRequest, InitializeResponse, ListObjectsRequest, ListObjectsResponse, MarkUsedObjectRequest, MarkUsedObjectResponse, RunCapsuleRequest, RunCapsuleResponse, SetObjectRequest, SetObjectResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -73,6 +73,15 @@ export const RequestService = {
       name: "MarkUsedObject",
       I: MarkUsedObjectRequest,
       O: MarkUsedObjectResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.plugin.RequestService.ListObjects
+     */
+    listObjects: {
+      name: "ListObjects",
+      I: ListObjectsRequest,
+      O: ListObjectsResponse,
       kind: MethodKind.Unary,
     },
   }

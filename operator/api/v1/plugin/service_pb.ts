@@ -529,3 +529,83 @@ export class MarkUsedObjectResponse extends Message<MarkUsedObjectResponse> {
   }
 }
 
+/**
+ * @generated from message api.v1.plugin.ListObjectsRequest
+ */
+export class ListObjectsRequest extends Message<ListObjectsRequest> {
+  /**
+   * @generated from field: api.v1.plugin.GVK gvk = 1;
+   */
+  gvk?: GVK;
+
+  /**
+   * @generated from field: bool current = 2;
+   */
+  current = false;
+
+  constructor(data?: PartialMessage<ListObjectsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.ListObjectsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "gvk", kind: "message", T: GVK },
+    { no: 2, name: "current", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListObjectsRequest {
+    return new ListObjectsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListObjectsRequest {
+    return new ListObjectsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListObjectsRequest {
+    return new ListObjectsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListObjectsRequest | PlainMessage<ListObjectsRequest> | undefined, b: ListObjectsRequest | PlainMessage<ListObjectsRequest> | undefined): boolean {
+    return proto3.util.equals(ListObjectsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.ListObjectsResponse
+ */
+export class ListObjectsResponse extends Message<ListObjectsResponse> {
+  /**
+   * @generated from field: repeated bytes objects = 1;
+   */
+  objects: Uint8Array[] = [];
+
+  constructor(data?: PartialMessage<ListObjectsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.ListObjectsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "objects", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListObjectsResponse {
+    return new ListObjectsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListObjectsResponse {
+    return new ListObjectsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListObjectsResponse {
+    return new ListObjectsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListObjectsResponse | PlainMessage<ListObjectsResponse> | undefined, b: ListObjectsResponse | PlainMessage<ListObjectsResponse> | undefined): boolean {
+    return proto3.util.equals(ListObjectsResponse, a, b);
+  }
+}
+
