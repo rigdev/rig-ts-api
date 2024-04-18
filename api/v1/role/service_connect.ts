@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AssignRequest, AssignResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetRequest, GetResponse, ListRequest, ListResponse, RevokeRequest, RevokeResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AssignRequest, AssignResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetRequest, GetResponse, ListForEntityRequest, ListForEntityResponse, ListRequest, ListResponse, RevokeRequest, RevokeResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -89,6 +89,17 @@ export const Service = {
       name: "Revoke",
       I: RevokeRequest,
       O: RevokeResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * List roles for an entity.
+     *
+     * @generated from rpc api.v1.role.Service.ListForEntity
+     */
+    listForEntity: {
+      name: "ListForEntity",
+      I: ListForEntityRequest,
+      O: ListForEntityResponse,
       kind: MethodKind.Unary,
     },
   }

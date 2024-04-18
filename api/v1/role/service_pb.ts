@@ -9,6 +9,84 @@ import { EntityID, Permission, Role, Update } from "./role_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 
 /**
+ * @generated from message api.v1.role.ListForEntityRequest
+ */
+export class ListForEntityRequest extends Message<ListForEntityRequest> {
+  /**
+   * The entity to list roles for.
+   *
+   * @generated from field: api.v1.role.EntityID entity_id = 1;
+   */
+  entityId?: EntityID;
+
+  constructor(data?: PartialMessage<ListForEntityRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.role.ListForEntityRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entity_id", kind: "message", T: EntityID },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListForEntityRequest {
+    return new ListForEntityRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListForEntityRequest {
+    return new ListForEntityRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListForEntityRequest {
+    return new ListForEntityRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListForEntityRequest | PlainMessage<ListForEntityRequest> | undefined, b: ListForEntityRequest | PlainMessage<ListForEntityRequest> | undefined): boolean {
+    return proto3.util.equals(ListForEntityRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.role.ListForEntityResponse
+ */
+export class ListForEntityResponse extends Message<ListForEntityResponse> {
+  /**
+   * The roles assigned to the entity.
+   *
+   * @generated from field: repeated api.v1.role.Role roles = 1;
+   */
+  roles: Role[] = [];
+
+  constructor(data?: PartialMessage<ListForEntityResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.role.ListForEntityResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "roles", kind: "message", T: Role, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListForEntityResponse {
+    return new ListForEntityResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListForEntityResponse {
+    return new ListForEntityResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListForEntityResponse {
+    return new ListForEntityResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListForEntityResponse | PlainMessage<ListForEntityResponse> | undefined, b: ListForEntityResponse | PlainMessage<ListForEntityResponse> | undefined): boolean {
+    return proto3.util.equals(ListForEntityResponse, a, b);
+  }
+}
+
+/**
  * Request to create a role.
  *
  * @generated from message api.v1.role.CreateRequest
