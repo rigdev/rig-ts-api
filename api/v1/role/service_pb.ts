@@ -19,6 +19,13 @@ export class ListForEntityRequest extends Message<ListForEntityRequest> {
    */
   entityId?: EntityID;
 
+  /**
+   * Pagination options.
+   *
+   * @generated from field: model.Pagination pagination = 2;
+   */
+  pagination?: Pagination;
+
   constructor(data?: PartialMessage<ListForEntityRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -28,6 +35,7 @@ export class ListForEntityRequest extends Message<ListForEntityRequest> {
   static readonly typeName = "api.v1.role.ListForEntityRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "entity_id", kind: "message", T: EntityID },
+    { no: 2, name: "pagination", kind: "message", T: Pagination },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListForEntityRequest {
