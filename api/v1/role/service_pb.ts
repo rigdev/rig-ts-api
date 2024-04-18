@@ -62,9 +62,9 @@ export class ListForEntityResponse extends Message<ListForEntityResponse> {
   /**
    * The roles assigned to the entity.
    *
-   * @generated from field: repeated api.v1.role.Role roles = 1;
+   * @generated from field: repeated string role_ids = 1;
    */
-  roles: Role[] = [];
+  roleIds: string[] = [];
 
   constructor(data?: PartialMessage<ListForEntityResponse>) {
     super();
@@ -74,7 +74,7 @@ export class ListForEntityResponse extends Message<ListForEntityResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.role.ListForEntityResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "roles", kind: "message", T: Role, repeated: true },
+    { no: 1, name: "role_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListForEntityResponse {
