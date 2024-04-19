@@ -5,8 +5,94 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { EntityID, Permission, Role, Update } from "./role_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
+import { EntityID, Permission, Role, Update } from "./role_pb.js";
+
+/**
+ * @generated from message api.v1.role.ListAssigneesRequest
+ */
+export class ListAssigneesRequest extends Message<ListAssigneesRequest> {
+  /**
+   * The role to list assignees for.
+   *
+   * @generated from field: string role_id = 1;
+   */
+  roleId = "";
+
+  /**
+   * Pagination options.
+   *
+   * @generated from field: model.Pagination pagination = 2;
+   */
+  pagination?: Pagination;
+
+  constructor(data?: PartialMessage<ListAssigneesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.role.ListAssigneesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "role_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "pagination", kind: "message", T: Pagination },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAssigneesRequest {
+    return new ListAssigneesRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAssigneesRequest {
+    return new ListAssigneesRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAssigneesRequest {
+    return new ListAssigneesRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListAssigneesRequest | PlainMessage<ListAssigneesRequest> | undefined, b: ListAssigneesRequest | PlainMessage<ListAssigneesRequest> | undefined): boolean {
+    return proto3.util.equals(ListAssigneesRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.role.ListAssigneesResponse
+ */
+export class ListAssigneesResponse extends Message<ListAssigneesResponse> {
+  /**
+   * The assignees of the role.
+   *
+   * @generated from field: repeated string entity_ids = 1;
+   */
+  entityIds: string[] = [];
+
+  constructor(data?: PartialMessage<ListAssigneesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.role.ListAssigneesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entity_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAssigneesResponse {
+    return new ListAssigneesResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAssigneesResponse {
+    return new ListAssigneesResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAssigneesResponse {
+    return new ListAssigneesResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListAssigneesResponse | PlainMessage<ListAssigneesResponse> | undefined, b: ListAssigneesResponse | PlainMessage<ListAssigneesResponse> | undefined): boolean {
+    return proto3.util.equals(ListAssigneesResponse, a, b);
+  }
+}
 
 /**
  * @generated from message api.v1.role.ListForEntityRequest
