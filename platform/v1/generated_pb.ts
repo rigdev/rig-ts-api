@@ -114,6 +114,11 @@ export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
   configFiles: ConfigFile[] = [];
 
   /**
+   * @generated from field: map<string, string> environmentVariables = 12;
+   */
+  environmentVariables: { [key: string]: string } = {};
+
+  /**
    * @generated from field: v1alpha2.CapsuleScale scale = 8;
    */
   scale?: CapsuleScale;
@@ -148,6 +153,7 @@ export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
     { no: 5, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 6, name: "interfaces", kind: "message", T: CapsuleInterface, repeated: true },
     { no: 7, name: "configFiles", kind: "message", T: ConfigFile, repeated: true },
+    { no: 12, name: "environmentVariables", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 8, name: "scale", kind: "message", T: CapsuleScale },
     { no: 9, name: "nodeSelector", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 10, name: "cronJobs", kind: "message", T: CronJob, repeated: true },
