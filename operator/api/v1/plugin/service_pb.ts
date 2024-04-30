@@ -25,6 +25,13 @@ export class InitializeRequest extends Message<InitializeRequest> {
    */
   tag = "";
 
+  /**
+   * If not given the plugin will try to initialize using the in-cluster-config.
+   *
+   * @generated from field: api.v1.plugin.RestConfig rest_config = 4;
+   */
+  restConfig?: RestConfig;
+
   constructor(data?: PartialMessage<InitializeRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -36,6 +43,7 @@ export class InitializeRequest extends Message<InitializeRequest> {
     { no: 1, name: "plugin_config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "operator_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 3, name: "tag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "rest_config", kind: "message", T: RestConfig },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InitializeRequest {
@@ -606,6 +614,55 @@ export class ListObjectsResponse extends Message<ListObjectsResponse> {
 
   static equals(a: ListObjectsResponse | PlainMessage<ListObjectsResponse> | undefined, b: ListObjectsResponse | PlainMessage<ListObjectsResponse> | undefined): boolean {
     return proto3.util.equals(ListObjectsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.RestConfig
+ */
+export class RestConfig extends Message<RestConfig> {
+  /**
+   * @generated from field: string host = 1;
+   */
+  host = "";
+
+  /**
+   * @generated from field: string bearer_token = 2;
+   */
+  bearerToken = "";
+
+  /**
+   * @generated from field: bytes tls_config = 3;
+   */
+  tlsConfig = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<RestConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.RestConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bearer_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "tls_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RestConfig {
+    return new RestConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RestConfig {
+    return new RestConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RestConfig {
+    return new RestConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RestConfig | PlainMessage<RestConfig> | undefined, b: RestConfig | PlainMessage<RestConfig> | undefined): boolean {
+    return proto3.util.equals(RestConfig, a, b);
   }
 }
 
