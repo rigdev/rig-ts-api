@@ -4,7 +4,39 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+
+/**
+ * @generated from enum api.v1.pipeline.ObjectType
+ */
+export enum ObjectType {
+  /**
+   * @generated from enum value: OBJECT_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: OBJECT_TYPE_PRIMARY = 1;
+   */
+  PRIMARY = 1,
+
+  /**
+   * @generated from enum value: OBJECT_TYPE_SECONDARY = 2;
+   */
+  SECONDARY = 2,
+
+  /**
+   * @generated from enum value: OBJECT_TYPE_POD = 3;
+   */
+  POD = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ObjectType)
+proto3.util.setEnumType(ObjectType, "api.v1.pipeline.ObjectType", [
+  { no: 0, name: "OBJECT_TYPE_UNSPECIFIED" },
+  { no: 1, name: "OBJECT_TYPE_PRIMARY" },
+  { no: 2, name: "OBJECT_TYPE_SECONDARY" },
+  { no: 3, name: "OBJECT_TYPE_POD" },
+]);
 
 /**
  * @generated from enum api.v1.pipeline.ObjectState
@@ -16,39 +48,329 @@ export enum ObjectState {
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: OBJECT_STATE_CREATE = 1;
+   * @generated from enum value: OBJECT_STATE_HEALTHY = 1;
    */
-  CREATE = 1,
+  HEALTHY = 1,
 
   /**
-   * @generated from enum value: OBJECT_STATE_UPDATE = 2;
+   * @generated from enum value: OBJECT_STATE_PENDING = 2;
    */
-  UPDATE = 2,
+  PENDING = 2,
 
   /**
-   * @generated from enum value: OBJECT_STATE_DELETE = 3;
+   * @generated from enum value: OBJECT_STATE_ERROR = 3;
    */
-  DELETE = 3,
-
-  /**
-   * @generated from enum value: OBJECT_STATE_UNCHANGED = 4;
-   */
-  UNCHANGED = 4,
-
-  /**
-   * @generated from enum value: OBJECT_STATE_ALREADY_EXISTS = 5;
-   */
-  ALREADY_EXISTS = 5,
+  ERROR = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ObjectState)
 proto3.util.setEnumType(ObjectState, "api.v1.pipeline.ObjectState", [
   { no: 0, name: "OBJECT_STATE_UNSPECIFIED" },
-  { no: 1, name: "OBJECT_STATE_CREATE" },
-  { no: 2, name: "OBJECT_STATE_UPDATE" },
-  { no: 3, name: "OBJECT_STATE_DELETE" },
-  { no: 4, name: "OBJECT_STATE_UNCHANGED" },
-  { no: 5, name: "OBJECT_STATE_ALREADY_EXISTS" },
+  { no: 1, name: "OBJECT_STATE_HEALTHY" },
+  { no: 2, name: "OBJECT_STATE_PENDING" },
+  { no: 3, name: "OBJECT_STATE_ERROR" },
 ]);
+
+/**
+ * @generated from enum api.v1.pipeline.ObjectOutcome
+ */
+export enum ObjectOutcome {
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_CREATE = 1;
+   */
+  CREATE = 1,
+
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_UPDATE = 2;
+   */
+  UPDATE = 2,
+
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_DELETE = 3;
+   */
+  DELETE = 3,
+
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_UNCHANGED = 4;
+   */
+  UNCHANGED = 4,
+
+  /**
+   * @generated from enum value: OBJECT_OUTCOME_ALREADY_EXISTS = 5;
+   */
+  ALREADY_EXISTS = 5,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ObjectOutcome)
+proto3.util.setEnumType(ObjectOutcome, "api.v1.pipeline.ObjectOutcome", [
+  { no: 0, name: "OBJECT_OUTCOME_UNSPECIFIED" },
+  { no: 1, name: "OBJECT_OUTCOME_CREATE" },
+  { no: 2, name: "OBJECT_OUTCOME_UPDATE" },
+  { no: 3, name: "OBJECT_OUTCOME_DELETE" },
+  { no: 4, name: "OBJECT_OUTCOME_UNCHANGED" },
+  { no: 5, name: "OBJECT_OUTCOME_ALREADY_EXISTS" },
+]);
+
+/**
+ * @generated from message api.v1.pipeline.WatchObjectStatusRequest
+ */
+export class WatchObjectStatusRequest extends Message<WatchObjectStatusRequest> {
+  /**
+   * @generated from field: string namespace = 1;
+   */
+  namespace = "";
+
+  constructor(data?: PartialMessage<WatchObjectStatusRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.WatchObjectStatusRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchObjectStatusRequest {
+    return new WatchObjectStatusRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchObjectStatusRequest {
+    return new WatchObjectStatusRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchObjectStatusRequest {
+    return new WatchObjectStatusRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: WatchObjectStatusRequest | PlainMessage<WatchObjectStatusRequest> | undefined, b: WatchObjectStatusRequest | PlainMessage<WatchObjectStatusRequest> | undefined): boolean {
+    return proto3.util.equals(WatchObjectStatusRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.WatchObjectStatusResponse
+ */
+export class WatchObjectStatusResponse extends Message<WatchObjectStatusResponse> {
+  /**
+   * @generated from field: api.v1.pipeline.ObjectStatusChange change = 1;
+   */
+  change?: ObjectStatusChange;
+
+  constructor(data?: PartialMessage<WatchObjectStatusResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.WatchObjectStatusResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "change", kind: "message", T: ObjectStatusChange },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchObjectStatusResponse {
+    return new WatchObjectStatusResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchObjectStatusResponse {
+    return new WatchObjectStatusResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchObjectStatusResponse {
+    return new WatchObjectStatusResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: WatchObjectStatusResponse | PlainMessage<WatchObjectStatusResponse> | undefined, b: WatchObjectStatusResponse | PlainMessage<WatchObjectStatusResponse> | undefined): boolean {
+    return proto3.util.equals(WatchObjectStatusResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.ObjectStatusChange
+ */
+export class ObjectStatusChange extends Message<ObjectStatusChange> {
+  /**
+   * @generated from field: string capsule = 1;
+   */
+  capsule = "";
+
+  /**
+   * @generated from oneof api.v1.pipeline.ObjectStatusChange.change
+   */
+  change: {
+    /**
+     * @generated from field: api.v1.pipeline.ObjectStatus updated = 2;
+     */
+    value: ObjectStatus;
+    case: "updated";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.ObjectRef deleted = 3;
+     */
+    value: ObjectRef;
+    case: "deleted";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<ObjectStatusChange>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.ObjectStatusChange";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "updated", kind: "message", T: ObjectStatus, oneof: "change" },
+    { no: 3, name: "deleted", kind: "message", T: ObjectRef, oneof: "change" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectStatusChange {
+    return new ObjectStatusChange().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectStatusChange {
+    return new ObjectStatusChange().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectStatusChange {
+    return new ObjectStatusChange().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectStatusChange | PlainMessage<ObjectStatusChange> | undefined, b: ObjectStatusChange | PlainMessage<ObjectStatusChange> | undefined): boolean {
+    return proto3.util.equals(ObjectStatusChange, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.ObjectStatus
+ */
+export class ObjectStatus extends Message<ObjectStatus> {
+  /**
+   * @generated from field: api.v1.pipeline.ObjectRef object_ref = 1;
+   */
+  objectRef?: ObjectRef;
+
+  /**
+   * @generated from field: api.v1.pipeline.ObjectType type = 2;
+   */
+  type = ObjectType.UNSPECIFIED;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 3;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.pipeline.ObjectState state = 4;
+   */
+  state = ObjectState.UNSPECIFIED;
+
+  /**
+   * @generated from field: repeated api.v1.pipeline.ObjectCondition conditions = 5;
+   */
+  conditions: ObjectCondition[] = [];
+
+  /**
+   * @generated from field: map<string, string> properties = 6;
+   */
+  properties: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<ObjectStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.ObjectStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "object_ref", kind: "message", T: ObjectRef },
+    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(ObjectType) },
+    { no: 3, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 4, name: "state", kind: "enum", T: proto3.getEnumType(ObjectState) },
+    { no: 5, name: "conditions", kind: "message", T: ObjectCondition, repeated: true },
+    { no: 6, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectStatus {
+    return new ObjectStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectStatus {
+    return new ObjectStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectStatus {
+    return new ObjectStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectStatus | PlainMessage<ObjectStatus> | undefined, b: ObjectStatus | PlainMessage<ObjectStatus> | undefined): boolean {
+    return proto3.util.equals(ObjectStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.ObjectCondition
+ */
+export class ObjectCondition extends Message<ObjectCondition> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 2;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.pipeline.ObjectState state = 3;
+   */
+  state = ObjectState.UNSPECIFIED;
+
+  /**
+   * @generated from field: string message = 4;
+   */
+  message = "";
+
+  /**
+   * @generated from field: string last_error = 5;
+   */
+  lastError = "";
+
+  constructor(data?: PartialMessage<ObjectCondition>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.ObjectCondition";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(ObjectState) },
+    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "last_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectCondition {
+    return new ObjectCondition().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectCondition {
+    return new ObjectCondition().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectCondition {
+    return new ObjectCondition().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectCondition | PlainMessage<ObjectCondition> | undefined, b: ObjectCondition | PlainMessage<ObjectCondition> | undefined): boolean {
+    return proto3.util.equals(ObjectCondition, a, b);
+  }
+}
 
 /**
  * @generated from message api.v1.pipeline.DryRunRequest
@@ -180,9 +502,9 @@ export class ObjectChange extends Message<ObjectChange> {
   object?: Object$;
 
   /**
-   * @generated from field: api.v1.pipeline.ObjectState state = 2;
+   * @generated from field: api.v1.pipeline.ObjectOutcome outcome = 2;
    */
-  state = ObjectState.UNSPECIFIED;
+  outcome = ObjectOutcome.UNSPECIFIED;
 
   constructor(data?: PartialMessage<ObjectChange>) {
     super();
@@ -193,7 +515,7 @@ export class ObjectChange extends Message<ObjectChange> {
   static readonly typeName = "api.v1.pipeline.ObjectChange";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "object", kind: "message", T: Object$ },
-    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(ObjectState) },
+    { no: 2, name: "outcome", kind: "enum", T: proto3.getEnumType(ObjectOutcome) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectChange {
@@ -308,6 +630,55 @@ export class GVK extends Message<GVK> {
 
   static equals(a: GVK | PlainMessage<GVK> | undefined, b: GVK | PlainMessage<GVK> | undefined): boolean {
     return proto3.util.equals(GVK, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.ObjectRef
+ */
+export class ObjectRef extends Message<ObjectRef> {
+  /**
+   * @generated from field: api.v1.pipeline.GVK gvk = 1;
+   */
+  gvk?: GVK;
+
+  /**
+   * @generated from field: string namespace = 2;
+   */
+  namespace = "";
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<ObjectRef>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.ObjectRef";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "gvk", kind: "message", T: GVK },
+    { no: 2, name: "namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectRef {
+    return new ObjectRef().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectRef {
+    return new ObjectRef().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectRef {
+    return new ObjectRef().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectRef | PlainMessage<ObjectRef> | undefined, b: ObjectRef | PlainMessage<ObjectRef> | undefined): boolean {
+    return proto3.util.equals(ObjectRef, a, b);
   }
 }
 

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DeleteObjectRequest, DeleteObjectResponse, GetObjectRequest, GetObjectResponse, InitializeRequest, InitializeResponse, ListObjectsRequest, ListObjectsResponse, MarkUsedObjectRequest, MarkUsedObjectResponse, RunCapsuleRequest, RunCapsuleResponse, SetObjectRequest, SetObjectResponse } from "./service_pb.js";
+import { DeleteObjectRequest, DeleteObjectResponse, GetObjectRequest, GetObjectResponse, InitializeRequest, InitializeResponse, ListObjectsRequest, ListObjectsResponse, MarkUsedObjectRequest, MarkUsedObjectResponse, RunCapsuleRequest, RunCapsuleResponse, SetObjectRequest, SetObjectResponse, WatchObjectStatusRequest, WatchObjectStatusResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -29,6 +29,15 @@ export const PluginService = {
       I: RunCapsuleRequest,
       O: RunCapsuleResponse,
       kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.plugin.PluginService.WatchObjectStatus
+     */
+    watchObjectStatus: {
+      name: "WatchObjectStatus",
+      I: WatchObjectStatusRequest,
+      O: WatchObjectStatusResponse,
+      kind: MethodKind.ServerStreaming,
     },
   }
 } as const;
