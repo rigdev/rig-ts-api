@@ -6,7 +6,6 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { CrossVersionObjectReference } from "../k8s.io/api/autoscaling/v2/generated_pb.js";
-import { Quantity } from "../k8s.io/apimachinery/pkg/api/resource/generated_pb.js";
 
 /**
  * @generated from message v1alpha2.CapsuleInterface
@@ -761,14 +760,14 @@ export class VerticalScale extends Message<VerticalScale> {
  */
 export class ResourceLimits extends Message<ResourceLimits> {
   /**
-   * @generated from field: k8s.io.apimachinery.pkg.api.resource.Quantity request = 1;
+   * @generated from field: string request = 1;
    */
-  request?: Quantity;
+  request = "";
 
   /**
-   * @generated from field: k8s.io.apimachinery.pkg.api.resource.Quantity limit = 2;
+   * @generated from field: string limit = 2;
    */
-  limit?: Quantity;
+  limit = "";
 
   constructor(data?: PartialMessage<ResourceLimits>) {
     super();
@@ -778,8 +777,8 @@ export class ResourceLimits extends Message<ResourceLimits> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "v1alpha2.ResourceLimits";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "request", kind: "message", T: Quantity },
-    { no: 2, name: "limit", kind: "message", T: Quantity },
+    { no: 1, name: "request", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "limit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceLimits {
@@ -804,9 +803,9 @@ export class ResourceLimits extends Message<ResourceLimits> {
  */
 export class ResourceRequest extends Message<ResourceRequest> {
   /**
-   * @generated from field: k8s.io.apimachinery.pkg.api.resource.Quantity request = 1;
+   * @generated from field: string request = 1;
    */
-  request?: Quantity;
+  request = "";
 
   constructor(data?: PartialMessage<ResourceRequest>) {
     super();
@@ -816,7 +815,7 @@ export class ResourceRequest extends Message<ResourceRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "v1alpha2.ResourceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "request", kind: "message", T: Quantity },
+    { no: 1, name: "request", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceRequest {
