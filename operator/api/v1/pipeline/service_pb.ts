@@ -259,22 +259,12 @@ export class ObjectStatus extends Message<ObjectStatus> {
   type = ObjectType.UNSPECIFIED;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 3;
-   */
-  updatedAt?: Timestamp;
-
-  /**
-   * @generated from field: api.v1.pipeline.ObjectState state = 4;
-   */
-  state = ObjectState.UNSPECIFIED;
-
-  /**
-   * @generated from field: repeated api.v1.pipeline.ObjectCondition conditions = 5;
+   * @generated from field: repeated api.v1.pipeline.ObjectCondition conditions = 3;
    */
   conditions: ObjectCondition[] = [];
 
   /**
-   * @generated from field: map<string, string> properties = 6;
+   * @generated from field: map<string, string> properties = 4;
    */
   properties: { [key: string]: string } = {};
 
@@ -288,10 +278,8 @@ export class ObjectStatus extends Message<ObjectStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "object_ref", kind: "message", T: ObjectRef },
     { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(ObjectType) },
-    { no: 3, name: "updated_at", kind: "message", T: Timestamp },
-    { no: 4, name: "state", kind: "enum", T: proto3.getEnumType(ObjectState) },
-    { no: 5, name: "conditions", kind: "message", T: ObjectCondition, repeated: true },
-    { no: 6, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "conditions", kind: "message", T: ObjectCondition, repeated: true },
+    { no: 4, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectStatus {
@@ -335,11 +323,6 @@ export class ObjectCondition extends Message<ObjectCondition> {
    */
   message = "";
 
-  /**
-   * @generated from field: string last_error = 5;
-   */
-  lastError = "";
-
   constructor(data?: PartialMessage<ObjectCondition>) {
     super();
     proto3.util.initPartial(data, this);
@@ -352,7 +335,6 @@ export class ObjectCondition extends Message<ObjectCondition> {
     { no: 2, name: "updated_at", kind: "message", T: Timestamp },
     { no: 3, name: "state", kind: "enum", T: proto3.getEnumType(ObjectState) },
     { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "last_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectCondition {
