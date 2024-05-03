@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { ObjectRef, ObjectStatus } from "../pipeline/service_pb.js";
+import { ObjectRef, ObjectStatus } from "../pipeline/object_status_pb.js";
 
 /**
  * @generated from message api.v1.plugin.WatchObjectStatusRequest
@@ -112,6 +112,12 @@ export class ObjectStatusChange extends Message<ObjectStatusChange> {
      */
     value: ObjectRef;
     case: "deleted";
+  } | {
+    /**
+     * @generated from field: api.v1.plugin.ObjectStatusChange.Checkpoint checkpoint = 4;
+     */
+    value: ObjectStatusChange_Checkpoint;
+    case: "checkpoint";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<ObjectStatusChange>) {
@@ -125,6 +131,7 @@ export class ObjectStatusChange extends Message<ObjectStatusChange> {
     { no: 1, name: "all_objects", kind: "message", T: ObjectStatusChange_AllObjects, oneof: "change" },
     { no: 2, name: "updated", kind: "message", T: ObjectStatus, oneof: "change" },
     { no: 3, name: "deleted", kind: "message", T: ObjectRef, oneof: "change" },
+    { no: 4, name: "checkpoint", kind: "message", T: ObjectStatusChange_Checkpoint, oneof: "change" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectStatusChange {
@@ -178,6 +185,37 @@ export class ObjectStatusChange_AllObjects extends Message<ObjectStatusChange_Al
 
   static equals(a: ObjectStatusChange_AllObjects | PlainMessage<ObjectStatusChange_AllObjects> | undefined, b: ObjectStatusChange_AllObjects | PlainMessage<ObjectStatusChange_AllObjects> | undefined): boolean {
     return proto3.util.equals(ObjectStatusChange_AllObjects, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.plugin.ObjectStatusChange.Checkpoint
+ */
+export class ObjectStatusChange_Checkpoint extends Message<ObjectStatusChange_Checkpoint> {
+  constructor(data?: PartialMessage<ObjectStatusChange_Checkpoint>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.plugin.ObjectStatusChange.Checkpoint";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectStatusChange_Checkpoint {
+    return new ObjectStatusChange_Checkpoint().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectStatusChange_Checkpoint {
+    return new ObjectStatusChange_Checkpoint().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectStatusChange_Checkpoint {
+    return new ObjectStatusChange_Checkpoint().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectStatusChange_Checkpoint | PlainMessage<ObjectStatusChange_Checkpoint> | undefined, b: ObjectStatusChange_Checkpoint | PlainMessage<ObjectStatusChange_Checkpoint> | undefined): boolean {
+    return proto3.util.equals(ObjectStatusChange_Checkpoint, a, b);
   }
 }
 
