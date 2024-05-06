@@ -8,9 +8,9 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { CapsuleInterface, CapsuleScale, CronJob } from "../../v1alpha2/generated_pb.js";
 
 /**
- * @generated from message platform.v1.CapsuleStar
+ * @generated from message platform.v1.Capsule
  */
-export class CapsuleStar extends Message<CapsuleStar> {
+export class Capsule extends Message<Capsule> {
   /**
    * @generated from field: string kind = 1;
    */
@@ -32,52 +32,58 @@ export class CapsuleStar extends Message<CapsuleStar> {
   project = "";
 
   /**
-   * @generated from field: platform.v1.CapsuleSpecExtension capsuleBase = 5;
+   * @generated from field: platform.v1.CapsuleSpec spec = 5;
    */
-  capsuleBase?: CapsuleSpecExtension;
+  spec?: CapsuleSpec;
 
   /**
-   * @generated from field: repeated string environments = 6;
+   * @generated from field: map<string, platform.v1.CapsuleSpec> environments = 6;
    */
-  environments: string[] = [];
+  environments: { [key: string]: CapsuleSpec } = {};
 
-  constructor(data?: PartialMessage<CapsuleStar>) {
+  /**
+   * @generated from field: repeated string environmentRefs = 7;
+   */
+  environmentRefs: string[] = [];
+
+  constructor(data?: PartialMessage<Capsule>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.CapsuleStar";
+  static readonly typeName = "platform.v1.Capsule";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "capsuleBase", kind: "message", T: CapsuleSpecExtension },
-    { no: 6, name: "environments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "spec", kind: "message", T: CapsuleSpec },
+    { no: 6, name: "environments", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: CapsuleSpec} },
+    { no: 7, name: "environmentRefs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleStar {
-    return new CapsuleStar().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Capsule {
+    return new Capsule().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleStar {
-    return new CapsuleStar().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Capsule {
+    return new Capsule().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleStar {
-    return new CapsuleStar().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Capsule {
+    return new Capsule().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CapsuleStar | PlainMessage<CapsuleStar> | undefined, b: CapsuleStar | PlainMessage<CapsuleStar> | undefined): boolean {
-    return proto3.util.equals(CapsuleStar, a, b);
+  static equals(a: Capsule | PlainMessage<Capsule> | undefined, b: Capsule | PlainMessage<Capsule> | undefined): boolean {
+    return proto3.util.equals(Capsule, a, b);
   }
 }
 
 /**
- * @generated from message platform.v1.CapsuleSpecExtension
+ * @generated from message platform.v1.CapsuleSpec
  */
-export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
+export class CapsuleSpec extends Message<CapsuleSpec> {
   /**
    * @generated from field: string kind = 1;
    */
@@ -87,6 +93,11 @@ export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
    * @generated from field: string apiVersion = 2;
    */
   apiVersion = "";
+
+  /**
+   * @generated from field: map<string, string> annotations = 11;
+   */
+  annotations: { [key: string]: string } = {};
 
   /**
    * @generated from field: string image = 3;
@@ -109,14 +120,14 @@ export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
   interfaces: CapsuleInterface[] = [];
 
   /**
-   * @generated from field: repeated platform.v1.ConfigFile configFiles = 7;
+   * @generated from field: repeated platform.v1.File files = 7;
    */
-  configFiles: ConfigFile[] = [];
+  files: File[] = [];
 
   /**
-   * @generated from field: platform.v1.EnvironmentVariables environmentVariables = 12;
+   * @generated from field: platform.v1.EnvironmentVariables env = 12;
    */
-  environmentVariables?: EnvironmentVariables;
+  env?: EnvironmentVariables;
 
   /**
    * @generated from field: v1alpha2.CapsuleScale scale = 8;
@@ -124,111 +135,106 @@ export class CapsuleSpecExtension extends Message<CapsuleSpecExtension> {
   scale?: CapsuleScale;
 
   /**
-   * @generated from field: map<string, string> nodeSelector = 9;
-   */
-  nodeSelector: { [key: string]: string } = {};
-
-  /**
    * @generated from field: repeated v1alpha2.CronJob cronJobs = 10;
    */
   cronJobs: CronJob[] = [];
-
-  /**
-   * @generated from field: map<string, string> annotations = 11;
-   */
-  annotations: { [key: string]: string } = {};
 
   /**
    * @generated from field: bool autoAddRigServiceAccounts = 13;
    */
   autoAddRigServiceAccounts = false;
 
-  constructor(data?: PartialMessage<CapsuleSpecExtension>) {
+  constructor(data?: PartialMessage<CapsuleSpec>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.CapsuleSpecExtension";
+  static readonly typeName = "platform.v1.CapsuleSpec";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 3, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 6, name: "interfaces", kind: "message", T: CapsuleInterface, repeated: true },
-    { no: 7, name: "configFiles", kind: "message", T: ConfigFile, repeated: true },
-    { no: 12, name: "environmentVariables", kind: "message", T: EnvironmentVariables },
+    { no: 7, name: "files", kind: "message", T: File, repeated: true },
+    { no: 12, name: "env", kind: "message", T: EnvironmentVariables },
     { no: 8, name: "scale", kind: "message", T: CapsuleScale },
-    { no: 9, name: "nodeSelector", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 10, name: "cronJobs", kind: "message", T: CronJob, repeated: true },
-    { no: 11, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 13, name: "autoAddRigServiceAccounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSpecExtension {
-    return new CapsuleSpecExtension().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSpec {
+    return new CapsuleSpec().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleSpecExtension {
-    return new CapsuleSpecExtension().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleSpec {
+    return new CapsuleSpec().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleSpecExtension {
-    return new CapsuleSpecExtension().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleSpec {
+    return new CapsuleSpec().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CapsuleSpecExtension | PlainMessage<CapsuleSpecExtension> | undefined, b: CapsuleSpecExtension | PlainMessage<CapsuleSpecExtension> | undefined): boolean {
-    return proto3.util.equals(CapsuleSpecExtension, a, b);
+  static equals(a: CapsuleSpec | PlainMessage<CapsuleSpec> | undefined, b: CapsuleSpec | PlainMessage<CapsuleSpec> | undefined): boolean {
+    return proto3.util.equals(CapsuleSpec, a, b);
   }
 }
 
 /**
- * @generated from message platform.v1.ConfigFile
+ * @generated from message platform.v1.File
  */
-export class ConfigFile extends Message<ConfigFile> {
+export class File extends Message<File> {
   /**
    * @generated from field: string path = 1;
    */
   path = "";
 
   /**
-   * @generated from field: bytes content = 2;
+   * @generated from field: bool asSecret = 3;
    */
-  content = new Uint8Array(0);
+  asSecret = false;
 
   /**
-   * @generated from field: bool isSecret = 3;
+   * @generated from field: bytes bytes = 4;
    */
-  isSecret = false;
+  bytes = new Uint8Array(0);
 
-  constructor(data?: PartialMessage<ConfigFile>) {
+  /**
+   * @generated from field: string string = 5;
+   */
+  string = "";
+
+  constructor(data?: PartialMessage<File>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.ConfigFile";
+  static readonly typeName = "platform.v1.File";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "isSecret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "asSecret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 5, name: "string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFile {
-    return new ConfigFile().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): File {
+    return new File().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConfigFile {
-    return new ConfigFile().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): File {
+    return new File().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConfigFile {
-    return new ConfigFile().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): File {
+    return new File().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ConfigFile | PlainMessage<ConfigFile> | undefined, b: ConfigFile | PlainMessage<ConfigFile> | undefined): boolean {
-    return proto3.util.equals(ConfigFile, a, b);
+  static equals(a: File | PlainMessage<File> | undefined, b: File | PlainMessage<File> | undefined): boolean {
+    return proto3.util.equals(File, a, b);
   }
 }
 
@@ -348,9 +354,9 @@ export class CapsuleEnvironment extends Message<CapsuleEnvironment> {
   environment = "";
 
   /**
-   * @generated from field: platform.v1.CapsuleSpecExtension spec = 6;
+   * @generated from field: platform.v1.CapsuleSpec spec = 6;
    */
-  spec?: CapsuleSpecExtension;
+  spec?: CapsuleSpec;
 
   constructor(data?: PartialMessage<CapsuleEnvironment>) {
     super();
@@ -365,7 +371,7 @@ export class CapsuleEnvironment extends Message<CapsuleEnvironment> {
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "spec", kind: "message", T: CapsuleSpecExtension },
+    { no: 6, name: "spec", kind: "message", T: CapsuleSpec },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleEnvironment {
@@ -415,14 +421,14 @@ export class Environment extends Message<Environment> {
   operatorVersion = "";
 
   /**
-   * @generated from field: string clusterID = 6;
+   * @generated from field: string cluster = 6;
    */
-  clusterID = "";
+  cluster = "";
 
   /**
-   * @generated from field: platform.v1.ProjEnvCapsuleBase capsuleBase = 7;
+   * @generated from field: platform.v1.ProjEnvCapsuleBase spec = 7;
    */
-  capsuleBase?: ProjEnvCapsuleBase;
+  spec?: ProjEnvCapsuleBase;
 
   constructor(data?: PartialMessage<Environment>) {
     super();
@@ -437,8 +443,8 @@ export class Environment extends Message<Environment> {
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "namespaceTemplate", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "operatorVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "clusterID", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "capsuleBase", kind: "message", T: ProjEnvCapsuleBase },
+    { no: 6, name: "cluster", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "spec", kind: "message", T: ProjEnvCapsuleBase },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {
@@ -463,14 +469,14 @@ export class Environment extends Message<Environment> {
  */
 export class ProjEnvCapsuleBase extends Message<ProjEnvCapsuleBase> {
   /**
-   * @generated from field: repeated platform.v1.ConfigFile configFiles = 1;
+   * @generated from field: repeated platform.v1.File files = 1;
    */
-  configFiles: ConfigFile[] = [];
+  files: File[] = [];
 
   /**
-   * @generated from field: platform.v1.EnvironmentVariables environmentVariables = 2;
+   * @generated from field: platform.v1.EnvironmentVariables env = 2;
    */
-  environmentVariables?: EnvironmentVariables;
+  env?: EnvironmentVariables;
 
   constructor(data?: PartialMessage<ProjEnvCapsuleBase>) {
     super();
@@ -480,8 +486,8 @@ export class ProjEnvCapsuleBase extends Message<ProjEnvCapsuleBase> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "platform.v1.ProjEnvCapsuleBase";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "configFiles", kind: "message", T: ConfigFile, repeated: true },
-    { no: 2, name: "environmentVariables", kind: "message", T: EnvironmentVariables },
+    { no: 1, name: "files", kind: "message", T: File, repeated: true },
+    { no: 2, name: "env", kind: "message", T: EnvironmentVariables },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjEnvCapsuleBase {
@@ -526,9 +532,9 @@ export class Project extends Message<Project> {
   environments: string[] = [];
 
   /**
-   * @generated from field: platform.v1.ProjEnvCapsuleBase capsuleBase = 5;
+   * @generated from field: platform.v1.ProjEnvCapsuleBase spec = 5;
    */
-  capsuleBase?: ProjEnvCapsuleBase;
+  spec?: ProjEnvCapsuleBase;
 
   constructor(data?: PartialMessage<Project>) {
     super();
@@ -542,7 +548,7 @@ export class Project extends Message<Project> {
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "environments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "capsuleBase", kind: "message", T: ProjEnvCapsuleBase },
+    { no: 5, name: "spec", kind: "message", T: ProjEnvCapsuleBase },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
