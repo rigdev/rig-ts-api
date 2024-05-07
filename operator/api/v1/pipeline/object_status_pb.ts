@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum api.v1.pipeline.ObjectState
@@ -150,6 +150,13 @@ export class ObjectStatus extends Message<ObjectStatus> {
   info?: ObjectStatusInfo;
 
   /**
+   * The createdTimestamp from the kubernetes object.
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 5;
+   */
+  createdAt?: Timestamp;
+
+  /**
    * @generated from field: google.protobuf.Timestamp updated_at = 3;
    */
   updatedAt?: Timestamp;
@@ -169,6 +176,7 @@ export class ObjectStatus extends Message<ObjectStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "object_ref", kind: "message", T: ObjectRef },
     { no: 2, name: "info", kind: "message", T: ObjectStatusInfo },
+    { no: 5, name: "created_at", kind: "message", T: Timestamp },
     { no: 3, name: "updated_at", kind: "message", T: Timestamp },
     { no: 4, name: "parent", kind: "message", T: ObjectRef },
   ]);
@@ -292,6 +300,16 @@ export class RouteStatus extends Message<RouteStatus> {
  * @generated from message api.v1.pipeline.InstanceStatus
  */
 export class InstanceStatus extends Message<InstanceStatus> {
+  /**
+   * @generated from field: uint64 rollout_id = 1;
+   */
+  rolloutId = protoInt64.zero;
+
+  /**
+   * @generated from field: string node = 2;
+   */
+  node = "";
+
   constructor(data?: PartialMessage<InstanceStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -300,6 +318,8 @@ export class InstanceStatus extends Message<InstanceStatus> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.pipeline.InstanceStatus";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "node", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceStatus {
@@ -338,6 +358,11 @@ export class ContainerStatus extends Message<ContainerStatus> {
    */
   startedAt?: Timestamp;
 
+  /**
+   * @generated from field: string image = 4;
+   */
+  image = "";
+
   constructor(data?: PartialMessage<ContainerStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -349,6 +374,7 @@ export class ContainerStatus extends Message<ContainerStatus> {
     { no: 1, name: "restart_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 2, name: "last_termination", kind: "message", T: ContainerStatus_ContainerTermination },
     { no: 3, name: "started_at", kind: "message", T: Timestamp },
+    { no: 4, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerStatus {
