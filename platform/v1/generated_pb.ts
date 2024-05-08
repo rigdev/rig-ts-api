@@ -8,9 +8,9 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { CapsuleInterface, CapsuleScale, CronJob } from "../../v1alpha2/generated_pb.js";
 
 /**
- * @generated from message platform.v1.Capsule
+ * @generated from message platform.v1.CapsuleSet
  */
-export class Capsule extends Message<Capsule> {
+export class CapsuleSet extends Message<CapsuleSet> {
   /**
    * @generated from field: string kind = 1;
    */
@@ -46,13 +46,13 @@ export class Capsule extends Message<Capsule> {
    */
   environmentRefs: string[] = [];
 
-  constructor(data?: PartialMessage<Capsule>) {
+  constructor(data?: PartialMessage<CapsuleSet>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.Capsule";
+  static readonly typeName = "platform.v1.CapsuleSet";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -63,20 +63,20 @@ export class Capsule extends Message<Capsule> {
     { no: 7, name: "environmentRefs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Capsule {
-    return new Capsule().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSet {
+    return new CapsuleSet().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Capsule {
-    return new Capsule().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleSet {
+    return new CapsuleSet().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Capsule {
-    return new Capsule().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleSet {
+    return new CapsuleSet().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Capsule | PlainMessage<Capsule> | undefined, b: Capsule | PlainMessage<Capsule> | undefined): boolean {
-    return proto3.util.equals(Capsule, a, b);
+  static equals(a: CapsuleSet | PlainMessage<CapsuleSet> | undefined, b: CapsuleSet | PlainMessage<CapsuleSet> | undefined): boolean {
+    return proto3.util.equals(CapsuleSet, a, b);
   }
 }
 
@@ -325,9 +325,9 @@ export class EnvironmentSource extends Message<EnvironmentSource> {
 }
 
 /**
- * @generated from message platform.v1.CapsuleEnvironment
+ * @generated from message platform.v1.Capsule
  */
-export class CapsuleEnvironment extends Message<CapsuleEnvironment> {
+export class Capsule extends Message<Capsule> {
   /**
    * @generated from field: string kind = 1;
    */
@@ -358,13 +358,13 @@ export class CapsuleEnvironment extends Message<CapsuleEnvironment> {
    */
   spec?: CapsuleSpec;
 
-  constructor(data?: PartialMessage<CapsuleEnvironment>) {
+  constructor(data?: PartialMessage<Capsule>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.CapsuleEnvironment";
+  static readonly typeName = "platform.v1.Capsule";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -374,20 +374,20 @@ export class CapsuleEnvironment extends Message<CapsuleEnvironment> {
     { no: 6, name: "spec", kind: "message", T: CapsuleSpec },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleEnvironment {
-    return new CapsuleEnvironment().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Capsule {
+    return new Capsule().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleEnvironment {
-    return new CapsuleEnvironment().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Capsule {
+    return new Capsule().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleEnvironment {
-    return new CapsuleEnvironment().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Capsule {
+    return new Capsule().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CapsuleEnvironment | PlainMessage<CapsuleEnvironment> | undefined, b: CapsuleEnvironment | PlainMessage<CapsuleEnvironment> | undefined): boolean {
-    return proto3.util.equals(CapsuleEnvironment, a, b);
+  static equals(a: Capsule | PlainMessage<Capsule> | undefined, b: Capsule | PlainMessage<Capsule> | undefined): boolean {
+    return proto3.util.equals(Capsule, a, b);
   }
 }
 
