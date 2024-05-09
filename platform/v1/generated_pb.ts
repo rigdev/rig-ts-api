@@ -527,12 +527,7 @@ export class Project extends Message<Project> {
   name = "";
 
   /**
-   * @generated from field: repeated string environments = 4;
-   */
-  environments: string[] = [];
-
-  /**
-   * @generated from field: platform.v1.ProjEnvCapsuleBase spec = 5;
+   * @generated from field: platform.v1.ProjEnvCapsuleBase spec = 4;
    */
   spec?: ProjEnvCapsuleBase;
 
@@ -547,8 +542,7 @@ export class Project extends Message<Project> {
     { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "environments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "spec", kind: "message", T: ProjEnvCapsuleBase },
+    { no: 4, name: "spec", kind: "message", T: ProjEnvCapsuleBase },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
