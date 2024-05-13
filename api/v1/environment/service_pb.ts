@@ -39,6 +39,14 @@ export class CreateRequest extends Message<CreateRequest> {
    */
   namespaceTemplate = "";
 
+  /**
+   * If true, the environment will be marked as ephemeral.
+   * It is possible for developers to create ephemeral environments.
+   *
+   * @generated from field: bool ephemeral = 5;
+   */
+  ephemeral = false;
+
   constructor(data?: PartialMessage<CreateRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -51,6 +59,7 @@ export class CreateRequest extends Message<CreateRequest> {
     { no: 2, name: "initializers", kind: "message", T: Update, repeated: true },
     { no: 3, name: "cluster_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "namespace_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRequest {
@@ -266,6 +275,20 @@ export class ListRequest extends Message<ListRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * Exclude ephemeral environments in the list.
+   *
+   * @generated from field: bool exclude_ephemeral = 3;
+   */
+  excludeEphemeral = false;
+
+  /**
+   * Filter environments by project.
+   *
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
   constructor(data?: PartialMessage<ListRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -275,6 +298,8 @@ export class ListRequest extends Message<ListRequest> {
   static readonly typeName = "api.v1.environment.ListRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "pagination", kind: "message", T: Pagination },
+    { no: 3, name: "exclude_ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {

@@ -15,10 +15,16 @@ export class Update extends Message<Update> {
    */
   field: {
     /**
-     * @generated from field: bool default = 1;
+     * @generated from field: string add_project = 2;
      */
-    value: boolean;
-    case: "default";
+    value: string;
+    case: "addProject";
+  } | {
+    /**
+     * @generated from field: string remove_project = 3;
+     */
+    value: string;
+    case: "removeProject";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Update>) {
@@ -29,7 +35,8 @@ export class Update extends Message<Update> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.environment.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
+    { no: 2, name: "add_project", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 3, name: "remove_project", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
@@ -63,13 +70,6 @@ export class Environment extends Message<Environment> {
   environmentId = "";
 
   /**
-   * If true, this is the default environment.
-   *
-   * @generated from field: bool default = 2;
-   */
-  default = false;
-
-  /**
    * The version of the Rig-operator CRD for this environment.
    *
    * @generated from field: string operator_version = 3;
@@ -91,6 +91,22 @@ export class Environment extends Message<Environment> {
    */
   namespaceTemplate = "";
 
+  /**
+   * If true, the environment is deletable by developer users, and can be
+   * deleted with capsules running.
+   *
+   * @generated from field: bool ephemeral = 6;
+   */
+  ephemeral = false;
+
+  /**
+   * Active Projects. If this is set, only capsules in these projects can be
+   * deployed to this environment.
+   *
+   * @generated from field: repeated string active_projects = 7;
+   */
+  activeProjects: string[] = [];
+
   constructor(data?: PartialMessage<Environment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -100,10 +116,11 @@ export class Environment extends Message<Environment> {
   static readonly typeName = "api.v1.environment.Environment";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "default", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "operator_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "cluster_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "namespace_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "active_projects", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {
