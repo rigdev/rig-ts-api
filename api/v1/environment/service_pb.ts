@@ -283,11 +283,11 @@ export class ListRequest extends Message<ListRequest> {
   excludeEphemeral = false;
 
   /**
-   * Filter environments by project.
+   * Get environments for a specific project.
    *
-   * @generated from field: string project_id = 4;
+   * @generated from field: string project_filter = 4;
    */
-  projectId = "";
+  projectFilter = "";
 
   constructor(data?: PartialMessage<ListRequest>) {
     super();
@@ -299,7 +299,7 @@ export class ListRequest extends Message<ListRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "pagination", kind: "message", T: Pagination },
     { no: 3, name: "exclude_ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "project_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRequest {
