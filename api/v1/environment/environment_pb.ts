@@ -25,6 +25,12 @@ export class Update extends Message<Update> {
      */
     value: string;
     case: "removeProject";
+  } | {
+    /**
+     * @generated from field: bool set_global = 4;
+     */
+    value: boolean;
+    case: "setGlobal";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Update>) {
@@ -37,6 +43,7 @@ export class Update extends Message<Update> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "add_project", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 3, name: "remove_project", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
+    { no: 4, name: "set_global", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
@@ -100,12 +107,19 @@ export class Environment extends Message<Environment> {
   ephemeral = false;
 
   /**
-   * Active Projects. If this is set, only capsules in these projects can be
-   * deployed to this environment.
+   * Active Projects. These projects can deploy capsules to this environment.
+   * This is overridden by a true the global flag.
    *
    * @generated from field: repeated string active_projects = 7;
    */
   activeProjects: string[] = [];
+
+  /**
+   * If true, the environment is available to all projects.
+   *
+   * @generated from field: bool global = 8;
+   */
+  global = false;
 
   constructor(data?: PartialMessage<Environment>) {
     super();
@@ -121,6 +135,7 @@ export class Environment extends Message<Environment> {
     { no: 5, name: "namespace_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 7, name: "active_projects", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "global", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {
