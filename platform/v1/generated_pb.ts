@@ -430,6 +430,21 @@ export class Environment extends Message<Environment> {
    */
   spec?: ProjEnvCapsuleBase;
 
+  /**
+   * @generated from field: bool ephemeral = 8;
+   */
+  ephemeral = false;
+
+  /**
+   * @generated from field: repeated string activeProjects = 9;
+   */
+  activeProjects: string[] = [];
+
+  /**
+   * @generated from field: bool global = 10;
+   */
+  global = false;
+
   constructor(data?: PartialMessage<Environment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -445,6 +460,9 @@ export class Environment extends Message<Environment> {
     { no: 5, name: "operatorVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "cluster", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "spec", kind: "message", T: ProjEnvCapsuleBase },
+    { no: 8, name: "ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "activeProjects", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: "global", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Environment {
