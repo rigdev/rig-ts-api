@@ -600,9 +600,9 @@ export class DeleteObjectRequest extends Message<DeleteObjectRequest> {
   gvk?: GVK;
 
   /**
-   * @generated from field: bytes object = 2;
+   * @generated from field: string name = 3;
    */
-  object = new Uint8Array(0);
+  name = "";
 
   constructor(data?: PartialMessage<DeleteObjectRequest>) {
     super();
@@ -613,7 +613,7 @@ export class DeleteObjectRequest extends Message<DeleteObjectRequest> {
   static readonly typeName = "api.v1.plugin.DeleteObjectRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "gvk", kind: "message", T: GVK },
-    { no: 2, name: "object", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteObjectRequest {
