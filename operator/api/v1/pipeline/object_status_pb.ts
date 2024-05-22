@@ -484,6 +484,99 @@ export class ContainerStatus_ContainerTermination extends Message<ContainerStatu
 }
 
 /**
+ * @generated from message api.v1.pipeline.ConfigFileStatus
+ */
+export class ConfigFileStatus extends Message<ConfigFileStatus> {
+  constructor(data?: PartialMessage<ConfigFileStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.ConfigFileStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFileStatus {
+    return new ConfigFileStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConfigFileStatus {
+    return new ConfigFileStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConfigFileStatus {
+    return new ConfigFileStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ConfigFileStatus | PlainMessage<ConfigFileStatus> | undefined, b: ConfigFileStatus | PlainMessage<ConfigFileStatus> | undefined): boolean {
+    return proto3.util.equals(ConfigFileStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.CronjobStatus
+ */
+export class CronjobStatus extends Message<CronjobStatus> {
+  constructor(data?: PartialMessage<CronjobStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.CronjobStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CronjobStatus {
+    return new CronjobStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CronjobStatus {
+    return new CronjobStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CronjobStatus {
+    return new CronjobStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CronjobStatus | PlainMessage<CronjobStatus> | undefined, b: CronjobStatus | PlainMessage<CronjobStatus> | undefined): boolean {
+    return proto3.util.equals(CronjobStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.CapsuleStatus
+ */
+export class CapsuleStatus extends Message<CapsuleStatus> {
+  constructor(data?: PartialMessage<CapsuleStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.CapsuleStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleStatus {
+    return new CapsuleStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleStatus {
+    return new CapsuleStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleStatus {
+    return new CapsuleStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CapsuleStatus | PlainMessage<CapsuleStatus> | undefined, b: CapsuleStatus | PlainMessage<CapsuleStatus> | undefined): boolean {
+    return proto3.util.equals(CapsuleStatus, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.pipeline.PlatformObjectStatus
  */
 export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
@@ -513,6 +606,24 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
      */
     value: ContainerStatus;
     case: "container";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.ConfigFileStatus config_file = 5;
+     */
+    value: ConfigFileStatus;
+    case: "configFile";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.CronjobStatus cronjob = 6;
+     */
+    value: CronjobStatus;
+    case: "cronjob";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.CapsuleStatus capsule = 7;
+     */
+    value: CapsuleStatus;
+    case: "capsule";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<PlatformObjectStatus>) {
@@ -527,6 +638,9 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
     { no: 2, name: "route", kind: "message", T: RouteStatus, oneof: "kind" },
     { no: 3, name: "instance", kind: "message", T: InstanceStatus, oneof: "kind" },
     { no: 4, name: "container", kind: "message", T: ContainerStatus, oneof: "kind" },
+    { no: 5, name: "config_file", kind: "message", T: ConfigFileStatus, oneof: "kind" },
+    { no: 6, name: "cronjob", kind: "message", T: CronjobStatus, oneof: "kind" },
+    { no: 7, name: "capsule", kind: "message", T: CapsuleStatus, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlatformObjectStatus {
