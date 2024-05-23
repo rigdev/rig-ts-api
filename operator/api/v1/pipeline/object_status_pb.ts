@@ -267,6 +267,11 @@ export class RouteStatus extends Message<RouteStatus> {
    */
   host = "";
 
+  /**
+   * @generated from field: string interface_name = 3;
+   */
+  interfaceName = "";
+
   constructor(data?: PartialMessage<RouteStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -277,6 +282,7 @@ export class RouteStatus extends Message<RouteStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RouteStatus {
@@ -577,6 +583,37 @@ export class CapsuleStatus extends Message<CapsuleStatus> {
 }
 
 /**
+ * @generated from message api.v1.pipeline.InterfaceStatus
+ */
+export class InterfaceStatus extends Message<InterfaceStatus> {
+  constructor(data?: PartialMessage<InterfaceStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.InterfaceStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceStatus {
+    return new InterfaceStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceStatus {
+    return new InterfaceStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceStatus {
+    return new InterfaceStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InterfaceStatus | PlainMessage<InterfaceStatus> | undefined, b: InterfaceStatus | PlainMessage<InterfaceStatus> | undefined): boolean {
+    return proto3.util.equals(InterfaceStatus, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.pipeline.PlatformObjectStatus
  */
 export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
@@ -624,6 +661,12 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
      */
     value: CapsuleStatus;
     case: "capsule";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.InterfaceStatus interface = 8;
+     */
+    value: InterfaceStatus;
+    case: "interface";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<PlatformObjectStatus>) {
@@ -641,6 +684,7 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
     { no: 5, name: "config_file", kind: "message", T: ConfigFileStatus, oneof: "kind" },
     { no: 6, name: "cronjob", kind: "message", T: CronjobStatus, oneof: "kind" },
     { no: 7, name: "capsule", kind: "message", T: CapsuleStatus, oneof: "kind" },
+    { no: 8, name: "interface", kind: "message", T: InterfaceStatus, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlatformObjectStatus {
