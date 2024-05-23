@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, ApplyCapsuleSpecRequest, ApplyCapsuleSpecResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -92,6 +92,17 @@ export const Service = {
       name: "Deploy",
       I: DeployRequest,
       O: DeployResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Applies a Capsule spec in an environment which will be rolled out
+     *
+     * @generated from rpc api.v1.capsule.Service.ApplyCapsuleSpec
+     */
+    applyCapsuleSpec: {
+      name: "ApplyCapsuleSpec",
+      I: ApplyCapsuleSpecRequest,
+      O: ApplyCapsuleSpecResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -243,6 +254,15 @@ export const Service = {
       name: "GetStatus",
       I: GetStatusRequest,
       O: GetStatusResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.GetRevision
+     */
+    getRevision: {
+      name: "GetRevision",
+      I: GetRevisionRequest,
+      O: GetRevisionResponse,
       kind: MethodKind.Unary,
     },
   }

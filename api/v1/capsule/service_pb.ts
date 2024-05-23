@@ -7,10 +7,13 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Status } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
+import { Revision, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Change } from "./change_pb.js";
 import { Rollout, RolloutConfig } from "./rollout_pb.js";
+import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
+import { Fingerprint } from "../../../model/revision_pb.js";
 import { Instance } from "./instance_pb.js";
 import { Status as Status$1 } from "./instance/status_pb.js";
 import { Event } from "./event_pb.js";
@@ -603,6 +606,16 @@ export class GetResponse extends Message<GetResponse> {
    */
   capsule?: Capsule;
 
+  /**
+   * @generated from field: api.v1.capsule.SetRevision revision = 2;
+   */
+  revision?: SetRevision;
+
+  /**
+   * @generated from field: map<string, api.v1.capsule.Revision> environment_revisions = 3;
+   */
+  environmentRevisions: { [key: string]: Revision } = {};
+
   constructor(data?: PartialMessage<GetResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -612,6 +625,8 @@ export class GetResponse extends Message<GetResponse> {
   static readonly typeName = "api.v1.capsule.GetResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "capsule", kind: "message", T: Capsule },
+    { no: 2, name: "revision", kind: "message", T: SetRevision },
+    { no: 3, name: "environment_revisions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Revision} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
@@ -1198,6 +1213,110 @@ export class DeployResponse extends Message<DeployResponse> {
 
   static equals(a: DeployResponse | PlainMessage<DeployResponse> | undefined, b: DeployResponse | PlainMessage<DeployResponse> | undefined): boolean {
     return proto3.util.equals(DeployResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ApplyCapsuleSpecRequest
+ */
+export class ApplyCapsuleSpecRequest extends Message<ApplyCapsuleSpecRequest> {
+  /**
+   * @generated from field: platform.v1.CapsuleSpec spec = 1;
+   */
+  spec?: CapsuleSpec;
+
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 3;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 4;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: model.Fingerprint current_fingerprint = 5;
+   */
+  currentFingerprint?: Fingerprint;
+
+  /**
+   * @generated from field: bool dry_run = 6;
+   */
+  dryRun = false;
+
+  constructor(data?: PartialMessage<ApplyCapsuleSpecRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ApplyCapsuleSpecRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spec", kind: "message", T: CapsuleSpec },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "current_fingerprint", kind: "message", T: Fingerprint },
+    { no: 6, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ApplyCapsuleSpecRequest {
+    return new ApplyCapsuleSpecRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecRequest {
+    return new ApplyCapsuleSpecRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecRequest {
+    return new ApplyCapsuleSpecRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ApplyCapsuleSpecRequest | PlainMessage<ApplyCapsuleSpecRequest> | undefined, b: ApplyCapsuleSpecRequest | PlainMessage<ApplyCapsuleSpecRequest> | undefined): boolean {
+    return proto3.util.equals(ApplyCapsuleSpecRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ApplyCapsuleSpecResponse
+ */
+export class ApplyCapsuleSpecResponse extends Message<ApplyCapsuleSpecResponse> {
+  /**
+   * @generated from field: model.Fingerprint fingerprint = 1;
+   */
+  fingerprint?: Fingerprint;
+
+  constructor(data?: PartialMessage<ApplyCapsuleSpecResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ApplyCapsuleSpecResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "fingerprint", kind: "message", T: Fingerprint },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ApplyCapsuleSpecResponse {
+    return new ApplyCapsuleSpecResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecResponse {
+    return new ApplyCapsuleSpecResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecResponse {
+    return new ApplyCapsuleSpecResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ApplyCapsuleSpecResponse | PlainMessage<ApplyCapsuleSpecResponse> | undefined, b: ApplyCapsuleSpecResponse | PlainMessage<ApplyCapsuleSpecResponse> | undefined): boolean {
+    return proto3.util.equals(ApplyCapsuleSpecResponse, a, b);
   }
 }
 
@@ -1850,6 +1969,11 @@ export class GetRolloutResponse extends Message<GetRolloutResponse> {
    */
   rollout?: Rollout;
 
+  /**
+   * @generated from field: api.v1.capsule.Revision revision = 2;
+   */
+  revision?: Revision;
+
   constructor(data?: PartialMessage<GetRolloutResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1859,6 +1983,7 @@ export class GetRolloutResponse extends Message<GetRolloutResponse> {
   static readonly typeName = "api.v1.capsule.GetRolloutResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout", kind: "message", T: Rollout },
+    { no: 2, name: "revision", kind: "message", T: Revision },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutResponse {
@@ -2593,6 +2718,98 @@ export class GetJobExecutionsResponse extends Message<GetJobExecutionsResponse> 
 
   static equals(a: GetJobExecutionsResponse | PlainMessage<GetJobExecutionsResponse> | undefined, b: GetJobExecutionsResponse | PlainMessage<GetJobExecutionsResponse> | undefined): boolean {
     return proto3.util.equals(GetJobExecutionsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetRevisionRequest
+ */
+export class GetRevisionRequest extends Message<GetRevisionRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: model.Fingerprint fingerprint = 4;
+   */
+  fingerprint?: Fingerprint;
+
+  constructor(data?: PartialMessage<GetRevisionRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetRevisionRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "fingerprint", kind: "message", T: Fingerprint },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRevisionRequest {
+    return new GetRevisionRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRevisionRequest {
+    return new GetRevisionRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRevisionRequest {
+    return new GetRevisionRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRevisionRequest | PlainMessage<GetRevisionRequest> | undefined, b: GetRevisionRequest | PlainMessage<GetRevisionRequest> | undefined): boolean {
+    return proto3.util.equals(GetRevisionRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetRevisionResponse
+ */
+export class GetRevisionResponse extends Message<GetRevisionResponse> {
+  /**
+   * @generated from field: api.v1.capsule.Revision revision = 1;
+   */
+  revision?: Revision;
+
+  constructor(data?: PartialMessage<GetRevisionResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetRevisionResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "revision", kind: "message", T: Revision },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRevisionResponse {
+    return new GetRevisionResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRevisionResponse {
+    return new GetRevisionResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRevisionResponse {
+    return new GetRevisionResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRevisionResponse | PlainMessage<GetRevisionResponse> | undefined, b: GetRevisionResponse | PlainMessage<GetRevisionResponse> | undefined): boolean {
+    return proto3.util.equals(GetRevisionResponse, a, b);
   }
 }
 
