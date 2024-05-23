@@ -586,6 +586,16 @@ export class CapsuleStatus extends Message<CapsuleStatus> {
  * @generated from message api.v1.pipeline.InterfaceStatus
  */
 export class InterfaceStatus extends Message<InterfaceStatus> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: uint32 port = 2;
+   */
+  port = 0;
+
   constructor(data?: PartialMessage<InterfaceStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -594,6 +604,8 @@ export class InterfaceStatus extends Message<InterfaceStatus> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.pipeline.InterfaceStatus";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceStatus {
