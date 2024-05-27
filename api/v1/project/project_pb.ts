@@ -62,13 +62,6 @@ export class Project extends Message<Project> {
   projectId = "";
 
   /**
-   * Deprecated: Name of the project.
-   *
-   * @generated from field: string name = 2;
-   */
-  name = "";
-
-  /**
    * When the project was created.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
@@ -98,7 +91,6 @@ export class Project extends Message<Project> {
   static readonly typeName = "api.v1.project.Project";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "created_at", kind: "message", T: Timestamp },
     { no: 4, name: "updated_at", kind: "message", T: Timestamp },
     { no: 5, name: "installation_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -127,19 +119,6 @@ export class Project extends Message<Project> {
  * @generated from message api.v1.project.Update
  */
 export class Update extends Message<Update> {
-  /**
-   * @generated from oneof api.v1.project.Update.field
-   */
-  field: {
-    /**
-     * Update the name of the project.
-     *
-     * @generated from field: string name = 1;
-     */
-    value: string;
-    case: "name";
-  } | { case: undefined; value?: undefined } = { case: undefined };
-
   constructor(data?: PartialMessage<Update>) {
     super();
     proto3.util.initPartial(data, this);
@@ -148,7 +127,6 @@ export class Update extends Message<Update> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
