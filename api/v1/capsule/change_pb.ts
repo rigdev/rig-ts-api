@@ -25,12 +25,18 @@ export enum PathMatchType {
    * @generated from enum value: PATH_MATCH_TYPE_EXACT = 2;
    */
   EXACT = 2,
+
+  /**
+   * @generated from enum value: PATH_MATCH_TYPE_REGULAR_EXPRESSION = 3;
+   */
+  REGULAR_EXPRESSION = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(PathMatchType)
 proto3.util.setEnumType(PathMatchType, "api.v1.capsule.PathMatchType", [
   { no: 0, name: "PATH_MATCH_TYPE_UNSPECIFIED" },
   { no: 1, name: "PATH_MATCH_TYPE_PATH_PREFIX" },
   { no: 2, name: "PATH_MATCH_TYPE_EXACT" },
+  { no: 3, name: "PATH_MATCH_TYPE_REGULAR_EXPRESSION" },
 ]);
 
 /**
