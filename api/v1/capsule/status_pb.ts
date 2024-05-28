@@ -5,11 +5,10 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { ObjectStatus } from "../../../operator/api/v1/pipeline/object_status_pb.js";
-import { State } from "./rollout/status_pb.js";
+import { ObjectState, ObjectStatus } from "../../../operator/api/v1/pipeline/object_status_pb.js";
+import { StageInfo, State, StepInfo } from "./rollout/status_pb.js";
 import { Author } from "../../../model/author_pb.js";
 import { HorizontalScale, HostRoute } from "./change_pb.js";
-import { JobExecution } from "./job_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.Transition
@@ -169,38 +168,43 @@ export class RolloutStatus extends Message<RolloutStatus> {
   rolloutId = protoInt64.zero;
 
   /**
-   * @generated from field: api.v1.capsule.rollout.State state = 2;
+   * @generated from field: api.v1.capsule.rollout.State current_stage = 2;
    */
-  state = State.UNSPECIFIED;
+  currentStage = State.UNSPECIFIED;
+
+  /**
+   * @generated from field: api.v1.capsule.RolloutStages stages = 3;
+   */
+  stages?: RolloutStages;
 
   /**
    * The error message if the rollout failed
    *
-   * @generated from field: string error_message = 3;
+   * @generated from field: string error_message = 4;
    */
   errorMessage = "";
 
   /**
    * The hash of the commit containing the changes
    *
-   * @generated from field: string commit_hash = 4;
+   * @generated from field: string commit_hash = 5;
    */
   commitHash = "";
 
   /**
    * The url to the commit (if known. May be empty)
    *
-   * @generated from field: string commit_url = 5;
+   * @generated from field: string commit_url = 6;
    */
   commitUrl = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: model.Author created_by = 7;
+   * @generated from field: model.Author created_by = 8;
    */
   createdBy?: Author;
 
@@ -213,12 +217,13 @@ export class RolloutStatus extends Message<RolloutStatus> {
   static readonly typeName = "api.v1.capsule.RolloutStatus";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(State) },
-    { no: 3, name: "error_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "commit_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "commit_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "created_at", kind: "message", T: Timestamp },
-    { no: 7, name: "created_by", kind: "message", T: Author },
+    { no: 2, name: "current_stage", kind: "enum", T: proto3.getEnumType(State) },
+    { no: 3, name: "stages", kind: "message", T: RolloutStages },
+    { no: 4, name: "error_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "commit_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "commit_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "created_at", kind: "message", T: Timestamp },
+    { no: 8, name: "created_by", kind: "message", T: Author },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutStatus {
@@ -235,6 +240,98 @@ export class RolloutStatus extends Message<RolloutStatus> {
 
   static equals(a: RolloutStatus | PlainMessage<RolloutStatus> | undefined, b: RolloutStatus | PlainMessage<RolloutStatus> | undefined): boolean {
     return proto3.util.equals(RolloutStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.RolloutStages
+ */
+export class RolloutStages extends Message<RolloutStages> {
+  /**
+   * @generated from field: api.v1.capsule.Stage configure_stage = 1;
+   */
+  configureStage?: Stage;
+
+  /**
+   * @generated from field: api.v1.capsule.Stage resource_creation_stage = 2;
+   */
+  resourceCreationStage?: Stage;
+
+  /**
+   * @generated from field: api.v1.capsule.Stage running_stage = 3;
+   */
+  runningStage?: Stage;
+
+  constructor(data?: PartialMessage<RolloutStages>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.RolloutStages";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "configure_stage", kind: "message", T: Stage },
+    { no: 2, name: "resource_creation_stage", kind: "message", T: Stage },
+    { no: 3, name: "running_stage", kind: "message", T: Stage },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutStages {
+    return new RolloutStages().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RolloutStages {
+    return new RolloutStages().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RolloutStages {
+    return new RolloutStages().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RolloutStages | PlainMessage<RolloutStages> | undefined, b: RolloutStages | PlainMessage<RolloutStages> | undefined): boolean {
+    return proto3.util.equals(RolloutStages, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Stage
+ */
+export class Stage extends Message<Stage> {
+  /**
+   * @generated from field: api.v1.capsule.rollout.StageInfo info = 1;
+   */
+  info?: StageInfo;
+
+  /**
+   * @generated from field: api.v1.capsule.rollout.StepInfo latest_step_info = 2;
+   */
+  latestStepInfo?: StepInfo;
+
+  constructor(data?: PartialMessage<Stage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Stage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "info", kind: "message", T: StageInfo },
+    { no: 2, name: "latest_step_info", kind: "message", T: StepInfo },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Stage {
+    return new Stage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Stage {
+    return new Stage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Stage {
+    return new Stage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Stage | PlainMessage<Stage> | undefined, b: Stage | PlainMessage<Stage> | undefined): boolean {
+    return proto3.util.equals(Stage, a, b);
   }
 }
 
@@ -542,9 +639,9 @@ export class CronJobStatus extends Message<CronJobStatus> {
   schedule = "";
 
   /**
-   * @generated from field: api.v1.capsule.JobExecution last_execution = 3;
+   * @generated from field: api.v1.pipeline.ObjectState last_execution = 3;
    */
-  lastExecution?: JobExecution;
+  lastExecution = ObjectState.UNSPECIFIED;
 
   /**
    * @generated from field: api.v1.capsule.Transition transition = 4;
@@ -561,7 +658,7 @@ export class CronJobStatus extends Message<CronJobStatus> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "job_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "schedule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "last_execution", kind: "message", T: JobExecution },
+    { no: 3, name: "last_execution", kind: "enum", T: proto3.getEnumType(ObjectState) },
     { no: 4, name: "transition", kind: "enum", T: proto3.getEnumType(Transition) },
   ]);
 
