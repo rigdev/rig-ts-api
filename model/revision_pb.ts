@@ -99,3 +99,58 @@ export class Fingerprint extends Message<Fingerprint> {
   }
 }
 
+/**
+ * @generated from message model.Fingerprints
+ */
+export class Fingerprints extends Message<Fingerprints> {
+  /**
+   * @generated from field: model.Fingerprint project = 1;
+   */
+  project?: Fingerprint;
+
+  /**
+   * @generated from field: model.Fingerprint environment = 2;
+   */
+  environment?: Fingerprint;
+
+  /**
+   * @generated from field: model.Fingerprint capsule_set = 3;
+   */
+  capsuleSet?: Fingerprint;
+
+  /**
+   * @generated from field: model.Fingerprint capsule = 4;
+   */
+  capsule?: Fingerprint;
+
+  constructor(data?: PartialMessage<Fingerprints>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Fingerprints";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "message", T: Fingerprint },
+    { no: 2, name: "environment", kind: "message", T: Fingerprint },
+    { no: 3, name: "capsule_set", kind: "message", T: Fingerprint },
+    { no: 4, name: "capsule", kind: "message", T: Fingerprint },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Fingerprints {
+    return new Fingerprints().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Fingerprints {
+    return new Fingerprints().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Fingerprints {
+    return new Fingerprints().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Fingerprints | PlainMessage<Fingerprints> | undefined, b: Fingerprints | PlainMessage<Fingerprints> | undefined): boolean {
+    return proto3.util.equals(Fingerprints, a, b);
+  }
+}
+

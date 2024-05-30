@@ -6,9 +6,13 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Status } from "./rollout/status_pb.js";
+import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { Author } from "../../../model/author_pb.js";
 import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
 import { CronJob } from "./job_pb.js";
+import { Revision } from "../project/revision_pb.js";
+import { Revision as Revision$1 } from "../environment/revision_pb.js";
+import { Revision as Revision$2, SetRevision } from "./revision_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.EventType
@@ -57,6 +61,16 @@ export class Rollout extends Message<Rollout> {
    */
   status?: Status;
 
+  /**
+   * @generated from field: platform.v1.CapsuleSpec spec = 5;
+   */
+  spec?: CapsuleSpec;
+
+  /**
+   * @generated from field: api.v1.capsule.Revisions revisions = 6;
+   */
+  revisions?: Revisions;
+
   constructor(data?: PartialMessage<Rollout>) {
     super();
     proto3.util.initPartial(data, this);
@@ -68,6 +82,8 @@ export class Rollout extends Message<Rollout> {
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "config", kind: "message", T: RolloutConfig },
     { no: 4, name: "status", kind: "message", T: Status },
+    { no: 5, name: "spec", kind: "message", T: CapsuleSpec },
+    { no: 6, name: "revisions", kind: "message", T: Revisions },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rollout {
@@ -262,6 +278,61 @@ export class ConfigFile extends Message<ConfigFile> {
 
   static equals(a: ConfigFile | PlainMessage<ConfigFile> | undefined, b: ConfigFile | PlainMessage<ConfigFile> | undefined): boolean {
     return proto3.util.equals(ConfigFile, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Revisions
+ */
+export class Revisions extends Message<Revisions> {
+  /**
+   * @generated from field: api.v1.project.Revision project = 1;
+   */
+  project?: Revision;
+
+  /**
+   * @generated from field: api.v1.environment.Revision environment = 2;
+   */
+  environment?: Revision$1;
+
+  /**
+   * @generated from field: api.v1.capsule.SetRevision capsule_set = 3;
+   */
+  capsuleSet?: SetRevision;
+
+  /**
+   * @generated from field: api.v1.capsule.Revision capsule = 4;
+   */
+  capsule?: Revision$2;
+
+  constructor(data?: PartialMessage<Revisions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Revisions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "message", T: Revision },
+    { no: 2, name: "environment", kind: "message", T: Revision$1 },
+    { no: 3, name: "capsule_set", kind: "message", T: SetRevision },
+    { no: 4, name: "capsule", kind: "message", T: Revision$2 },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Revisions {
+    return new Revisions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Revisions {
+    return new Revisions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Revisions {
+    return new Revisions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Revisions | PlainMessage<Revisions> | undefined, b: Revisions | PlainMessage<Revisions> | undefined): boolean {
+    return proto3.util.equals(Revisions, a, b);
   }
 }
 

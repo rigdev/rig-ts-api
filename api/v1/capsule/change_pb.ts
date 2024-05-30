@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { CronJob } from "./job_pb.js";
+import { ObjectReference } from "../../../model/metrics_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.PathMatchType
@@ -1834,7 +1835,7 @@ export class ObjectMetric extends Message<ObjectMetric> {
   /**
    * Reference to the object.
    *
-   * @generated from field: api.v1.capsule.ObjectReference object_reference = 5;
+   * @generated from field: model.ObjectReference object_reference = 5;
    */
   objectReference?: ObjectReference;
 
@@ -1867,63 +1868,6 @@ export class ObjectMetric extends Message<ObjectMetric> {
 
   static equals(a: ObjectMetric | PlainMessage<ObjectMetric> | undefined, b: ObjectMetric | PlainMessage<ObjectMetric> | undefined): boolean {
     return proto3.util.equals(ObjectMetric, a, b);
-  }
-}
-
-/**
- * A reference to a kubernetes object.
- *
- * @generated from message api.v1.capsule.ObjectReference
- */
-export class ObjectReference extends Message<ObjectReference> {
-  /**
-   * Type of object.
-   *
-   * @generated from field: string kind = 1;
-   */
-  kind = "";
-
-  /**
-   * Name of the object.
-   *
-   * @generated from field: string name = 2;
-   */
-  name = "";
-
-  /**
-   * Api version of the object.
-   *
-   * @generated from field: string api_version = 3;
-   */
-  apiVersion = "";
-
-  constructor(data?: PartialMessage<ObjectReference>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ObjectReference";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "api_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectReference {
-    return new ObjectReference().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectReference {
-    return new ObjectReference().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectReference {
-    return new ObjectReference().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ObjectReference | PlainMessage<ObjectReference> | undefined, b: ObjectReference | PlainMessage<ObjectReference> | undefined): boolean {
-    return proto3.util.equals(ObjectReference, a, b);
   }
 }
 

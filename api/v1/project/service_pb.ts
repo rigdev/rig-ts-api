@@ -7,8 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
-import { ObjectReference } from "../capsule/change_pb.js";
-import { Metric } from "../capsule/service_pb.js";
+import { Metric, ObjectReference } from "../../../model/metrics_pb.js";
 
 /**
  * The request to create a project.
@@ -519,7 +518,7 @@ export class GetCustomObjectMetricsRequest extends Message<GetCustomObjectMetric
   /**
    * The object to get metrics for.
    *
-   * @generated from field: api.v1.capsule.ObjectReference object_reference = 1;
+   * @generated from field: model.ObjectReference object_reference = 1;
    */
   objectReference?: ObjectReference;
 
@@ -576,7 +575,7 @@ export class GetCustomObjectMetricsResponse extends Message<GetCustomObjectMetri
   /**
    * The metrics for the given object.
    *
-   * @generated from field: repeated api.v1.capsule.Metric metrics = 1;
+   * @generated from field: repeated model.Metric metrics = 1;
    */
   metrics: Metric[] = [];
 

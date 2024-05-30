@@ -13,11 +13,11 @@ import { Pagination } from "../../../model/common_pb.js";
 import { Change } from "./change_pb.js";
 import { Rollout, RolloutConfig } from "./rollout_pb.js";
 import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
-import { Fingerprint } from "../../../model/revision_pb.js";
+import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
 import { Instance } from "./instance_pb.js";
 import { Status as Status$1 } from "./instance/status_pb.js";
 import { Event } from "./event_pb.js";
-import { InstanceMetrics } from "./metrics_pb.js";
+import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
 
 /**
@@ -1278,6 +1278,13 @@ export class DeployResponse extends Message<DeployResponse> {
    */
   rolloutConfig?: RolloutConfig;
 
+  /**
+   * The capsule revision created.
+   *
+   * @generated from field: api.v1.capsule.Revision revision = 4;
+   */
+  revision?: Revision;
+
   constructor(data?: PartialMessage<DeployResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1289,6 +1296,7 @@ export class DeployResponse extends Message<DeployResponse> {
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 3, name: "rollout_config", kind: "message", T: RolloutConfig },
+    { no: 4, name: "revision", kind: "message", T: Revision },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployResponse {
@@ -2061,11 +2069,6 @@ export class GetRolloutResponse extends Message<GetRolloutResponse> {
    */
   rollout?: Rollout;
 
-  /**
-   * @generated from field: api.v1.capsule.Revision revision = 2;
-   */
-  revision?: Revision;
-
   constructor(data?: PartialMessage<GetRolloutResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2075,7 +2078,6 @@ export class GetRolloutResponse extends Message<GetRolloutResponse> {
   static readonly typeName = "api.v1.capsule.GetRolloutResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout", kind: "message", T: Rollout },
-    { no: 2, name: "revision", kind: "message", T: Revision },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutResponse {
@@ -2480,7 +2482,7 @@ export class CapsuleMetricsResponse extends Message<CapsuleMetricsResponse> {
   /**
    * Metrics
    *
-   * @generated from field: repeated api.v1.capsule.InstanceMetrics instance_metrics = 1;
+   * @generated from field: repeated model.InstanceMetrics instance_metrics = 1;
    */
   instanceMetrics: InstanceMetrics[] = [];
 
@@ -2578,7 +2580,7 @@ export class GetCustomInstanceMetricsResponse extends Message<GetCustomInstanceM
   /**
    * Custom Metrics.
    *
-   * @generated from field: repeated api.v1.capsule.Metric metrics = 1;
+   * @generated from field: repeated model.Metric metrics = 1;
    */
   metrics: Metric[] = [];
 
@@ -2607,63 +2609,6 @@ export class GetCustomInstanceMetricsResponse extends Message<GetCustomInstanceM
 
   static equals(a: GetCustomInstanceMetricsResponse | PlainMessage<GetCustomInstanceMetricsResponse> | undefined, b: GetCustomInstanceMetricsResponse | PlainMessage<GetCustomInstanceMetricsResponse> | undefined): boolean {
     return proto3.util.equals(GetCustomInstanceMetricsResponse, a, b);
-  }
-}
-
-/**
- * Custom metrics
- *
- * @generated from message api.v1.capsule.Metric
- */
-export class Metric extends Message<Metric> {
-  /**
-   * Name of the metric.
-   *
-   * @generated from field: string name = 1;
-   */
-  name = "";
-
-  /**
-   * Latest value of the metric.
-   *
-   * @generated from field: double latest_value = 2;
-   */
-  latestValue = 0;
-
-  /**
-   * Timestamp of the latest value.
-   *
-   * @generated from field: google.protobuf.Timestamp latest_timestamp = 3;
-   */
-  latestTimestamp?: Timestamp;
-
-  constructor(data?: PartialMessage<Metric>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.Metric";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "latest_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 3, name: "latest_timestamp", kind: "message", T: Timestamp },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Metric {
-    return new Metric().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Metric {
-    return new Metric().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Metric {
-    return new Metric().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Metric | PlainMessage<Metric> | undefined, b: Metric | PlainMessage<Metric> | undefined): boolean {
-    return proto3.util.equals(Metric, a, b);
   }
 }
 
@@ -2902,6 +2847,178 @@ export class GetRevisionResponse extends Message<GetRevisionResponse> {
 
   static equals(a: GetRevisionResponse | PlainMessage<GetRevisionResponse> | undefined, b: GetRevisionResponse | PlainMessage<GetRevisionResponse> | undefined): boolean {
     return proto3.util.equals(GetRevisionResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetRolloutOfRevisionsRequest
+ */
+export class GetRolloutOfRevisionsRequest extends Message<GetRolloutOfRevisionsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: model.Fingerprints fingerprints = 4;
+   */
+  fingerprints?: Fingerprints;
+
+  constructor(data?: PartialMessage<GetRolloutOfRevisionsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetRolloutOfRevisionsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "fingerprints", kind: "message", T: Fingerprints },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutOfRevisionsRequest {
+    return new GetRolloutOfRevisionsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsRequest {
+    return new GetRolloutOfRevisionsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsRequest {
+    return new GetRolloutOfRevisionsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRolloutOfRevisionsRequest | PlainMessage<GetRolloutOfRevisionsRequest> | undefined, b: GetRolloutOfRevisionsRequest | PlainMessage<GetRolloutOfRevisionsRequest> | undefined): boolean {
+    return proto3.util.equals(GetRolloutOfRevisionsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetRolloutOfRevisionsResponse
+ */
+export class GetRolloutOfRevisionsResponse extends Message<GetRolloutOfRevisionsResponse> {
+  /**
+   * @generated from oneof api.v1.capsule.GetRolloutOfRevisionsResponse.kind
+   */
+  kind: {
+    /**
+     * @generated from field: api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout no_rollout = 1;
+     */
+    value: GetRolloutOfRevisionsResponse_NoRollout;
+    case: "noRollout";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.Rollout rollout = 2;
+     */
+    value: Rollout;
+    case: "rollout";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<GetRolloutOfRevisionsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetRolloutOfRevisionsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "no_rollout", kind: "message", T: GetRolloutOfRevisionsResponse_NoRollout, oneof: "kind" },
+    { no: 2, name: "rollout", kind: "message", T: Rollout, oneof: "kind" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutOfRevisionsResponse {
+    return new GetRolloutOfRevisionsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsResponse {
+    return new GetRolloutOfRevisionsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsResponse {
+    return new GetRolloutOfRevisionsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRolloutOfRevisionsResponse | PlainMessage<GetRolloutOfRevisionsResponse> | undefined, b: GetRolloutOfRevisionsResponse | PlainMessage<GetRolloutOfRevisionsResponse> | undefined): boolean {
+    return proto3.util.equals(GetRolloutOfRevisionsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout
+ */
+export class GetRolloutOfRevisionsResponse_NoRollout extends Message<GetRolloutOfRevisionsResponse_NoRollout> {
+  /**
+   * Indicates no rollout with a project revision at least as new as the one
+   * given.
+   *
+   * @generated from field: bool project = 1;
+   */
+  project = false;
+
+  /**
+   * Indicates no rollout with an environment revision at least as new as the
+   * one given.
+   *
+   * @generated from field: bool environment = 2;
+   */
+  environment = false;
+
+  /**
+   * Indicates no rollout with a capsule set revision at least as new as the
+   * one given.
+   *
+   * @generated from field: bool capsule_set = 3;
+   */
+  capsuleSet = false;
+
+  /**
+   * Indicates no rollout with a capsule revision at least as new as the one
+   * given.
+   *
+   * @generated from field: bool capsule = 4;
+   */
+  capsule = false;
+
+  constructor(data?: PartialMessage<GetRolloutOfRevisionsResponse_NoRollout>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "environment", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "capsule_set", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "capsule", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutOfRevisionsResponse_NoRollout {
+    return new GetRolloutOfRevisionsResponse_NoRollout().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsResponse_NoRollout {
+    return new GetRolloutOfRevisionsResponse_NoRollout().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRolloutOfRevisionsResponse_NoRollout {
+    return new GetRolloutOfRevisionsResponse_NoRollout().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRolloutOfRevisionsResponse_NoRollout | PlainMessage<GetRolloutOfRevisionsResponse_NoRollout> | undefined, b: GetRolloutOfRevisionsResponse_NoRollout | PlainMessage<GetRolloutOfRevisionsResponse_NoRollout> | undefined): boolean {
+    return proto3.util.equals(GetRolloutOfRevisionsResponse_NoRollout, a, b);
   }
 }
 
