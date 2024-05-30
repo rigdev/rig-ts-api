@@ -21,6 +21,98 @@ import { InstanceMetrics } from "./metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
 
 /**
+ * @generated from message api.v1.capsule.WatchStatusRequest
+ */
+export class WatchStatusRequest extends Message<WatchStatusRequest> {
+  /**
+   * The capsule to watch the status of.
+   *
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * The project in which the capsule lives.
+   *
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * The environment to watch the status of.
+   *
+   * @generated from field: string environment_id = 3;
+   */
+  environmentId = "";
+
+  constructor(data?: PartialMessage<WatchStatusRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.WatchStatusRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchStatusRequest {
+    return new WatchStatusRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchStatusRequest {
+    return new WatchStatusRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchStatusRequest {
+    return new WatchStatusRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: WatchStatusRequest | PlainMessage<WatchStatusRequest> | undefined, b: WatchStatusRequest | PlainMessage<WatchStatusRequest> | undefined): boolean {
+    return proto3.util.equals(WatchStatusRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.WatchStatusResponse
+ */
+export class WatchStatusResponse extends Message<WatchStatusResponse> {
+  /**
+   * @generated from field: api.v1.capsule.Status status = 1;
+   */
+  status?: Status;
+
+  constructor(data?: PartialMessage<WatchStatusResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.WatchStatusResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "message", T: Status },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchStatusResponse {
+    return new WatchStatusResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchStatusResponse {
+    return new WatchStatusResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchStatusResponse {
+    return new WatchStatusResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: WatchStatusResponse | PlainMessage<WatchStatusResponse> | undefined, b: WatchStatusResponse | PlainMessage<WatchStatusResponse> | undefined): boolean {
+    return proto3.util.equals(WatchStatusResponse, a, b);
+  }
+}
+
+/**
  * GetStatusRequest is a request to start streaming the capsule status
  *
  * @generated from message api.v1.capsule.GetStatusRequest

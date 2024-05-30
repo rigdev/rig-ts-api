@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, ApplyCapsuleSpecRequest, ApplyCapsuleSpecResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, ApplyCapsuleSpecRequest, ApplyCapsuleSpecResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse, WatchStatusRequest, WatchStatusResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -264,6 +264,15 @@ export const Service = {
       I: GetRevisionRequest,
       O: GetRevisionResponse,
       kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.WatchStatus
+     */
+    watchStatus: {
+      name: "WatchStatus",
+      I: WatchStatusRequest,
+      O: WatchStatusResponse,
+      kind: MethodKind.ServerStreaming,
     },
   }
 } as const;
