@@ -782,6 +782,240 @@ export class ExecuteResponse extends Message<ExecuteResponse> {
 }
 
 /**
+ * @generated from message api.v1.capsule.PortForwardRequest
+ */
+export class PortForwardRequest extends Message<PortForwardRequest> {
+  /**
+   * @generated from oneof api.v1.capsule.PortForwardRequest.request
+   */
+  request: {
+    /**
+     * @generated from field: api.v1.capsule.PortForwardRequest.Start start = 1;
+     */
+    value: PortForwardRequest_Start;
+    case: "start";
+  } | {
+    /**
+     * @generated from field: bytes data = 2;
+     */
+    value: Uint8Array;
+    case: "data";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.PortForwardRequest.Close close = 3;
+     */
+    value: PortForwardRequest_Close;
+    case: "close";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<PortForwardRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PortForwardRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "start", kind: "message", T: PortForwardRequest_Start, oneof: "request" },
+    { no: 2, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "request" },
+    { no: 3, name: "close", kind: "message", T: PortForwardRequest_Close, oneof: "request" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PortForwardRequest {
+    return new PortForwardRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PortForwardRequest {
+    return new PortForwardRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PortForwardRequest {
+    return new PortForwardRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PortForwardRequest | PlainMessage<PortForwardRequest> | undefined, b: PortForwardRequest | PlainMessage<PortForwardRequest> | undefined): boolean {
+    return proto3.util.equals(PortForwardRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PortForwardRequest.Start
+ */
+export class PortForwardRequest_Start extends Message<PortForwardRequest_Start> {
+  /**
+   * The project ID.
+   *
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * The environment ID.
+   *
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: string instance_id = 4;
+   */
+  instanceId = "";
+
+  /**
+   * @generated from field: uint32 port = 5;
+   */
+  port = 0;
+
+  constructor(data?: PartialMessage<PortForwardRequest_Start>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PortForwardRequest.Start";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PortForwardRequest_Start {
+    return new PortForwardRequest_Start().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PortForwardRequest_Start {
+    return new PortForwardRequest_Start().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PortForwardRequest_Start {
+    return new PortForwardRequest_Start().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PortForwardRequest_Start | PlainMessage<PortForwardRequest_Start> | undefined, b: PortForwardRequest_Start | PlainMessage<PortForwardRequest_Start> | undefined): boolean {
+    return proto3.util.equals(PortForwardRequest_Start, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PortForwardRequest.Close
+ */
+export class PortForwardRequest_Close extends Message<PortForwardRequest_Close> {
+  constructor(data?: PartialMessage<PortForwardRequest_Close>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PortForwardRequest.Close";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PortForwardRequest_Close {
+    return new PortForwardRequest_Close().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PortForwardRequest_Close {
+    return new PortForwardRequest_Close().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PortForwardRequest_Close {
+    return new PortForwardRequest_Close().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PortForwardRequest_Close | PlainMessage<PortForwardRequest_Close> | undefined, b: PortForwardRequest_Close | PlainMessage<PortForwardRequest_Close> | undefined): boolean {
+    return proto3.util.equals(PortForwardRequest_Close, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PortForwardResponse
+ */
+export class PortForwardResponse extends Message<PortForwardResponse> {
+  /**
+   * @generated from oneof api.v1.capsule.PortForwardResponse.response
+   */
+  response: {
+    /**
+     * @generated from field: bytes data = 1;
+     */
+    value: Uint8Array;
+    case: "data";
+  } | {
+    /**
+     * @generated from field: api.v1.capsule.PortForwardResponse.Close close = 2;
+     */
+    value: PortForwardResponse_Close;
+    case: "close";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<PortForwardResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PortForwardResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "response" },
+    { no: 2, name: "close", kind: "message", T: PortForwardResponse_Close, oneof: "response" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PortForwardResponse {
+    return new PortForwardResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PortForwardResponse {
+    return new PortForwardResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PortForwardResponse {
+    return new PortForwardResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PortForwardResponse | PlainMessage<PortForwardResponse> | undefined, b: PortForwardResponse | PlainMessage<PortForwardResponse> | undefined): boolean {
+    return proto3.util.equals(PortForwardResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PortForwardResponse.Close
+ */
+export class PortForwardResponse_Close extends Message<PortForwardResponse_Close> {
+  constructor(data?: PartialMessage<PortForwardResponse_Close>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PortForwardResponse.Close";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PortForwardResponse_Close {
+    return new PortForwardResponse_Close().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PortForwardResponse_Close {
+    return new PortForwardResponse_Close().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PortForwardResponse_Close {
+    return new PortForwardResponse_Close().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PortForwardResponse_Close | PlainMessage<PortForwardResponse_Close> | undefined, b: PortForwardResponse_Close | PlainMessage<PortForwardResponse_Close> | undefined): boolean {
+    return proto3.util.equals(PortForwardResponse_Close, a, b);
+  }
+}
+
+/**
  * Create capsule request.
  *
  * @generated from message api.v1.capsule.CreateRequest
