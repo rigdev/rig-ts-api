@@ -8,7 +8,7 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { ObjectState, ObjectStatus } from "../../../operator/api/v1/pipeline/object_status_pb.js";
 import { StageInfo, State, StepInfo } from "./rollout/status_pb.js";
 import { Author } from "../../../model/author_pb.js";
-import { HorizontalScale, HostRoute } from "./change_pb.js";
+import { HorizontalScale, HostRoute, Resources } from "./change_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.Transition
@@ -178,13 +178,6 @@ export class RolloutStatus extends Message<RolloutStatus> {
   stages?: RolloutStages;
 
   /**
-   * The error message if the rollout failed
-   *
-   * @generated from field: string error_message = 4;
-   */
-  errorMessage = "";
-
-  /**
    * The hash of the commit containing the changes
    *
    * @generated from field: string commit_hash = 5;
@@ -219,7 +212,6 @@ export class RolloutStatus extends Message<RolloutStatus> {
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "current_stage", kind: "enum", T: proto3.getEnumType(State) },
     { no: 3, name: "stages", kind: "message", T: RolloutStages },
-    { no: 4, name: "error_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "commit_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "commit_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "created_at", kind: "message", T: Timestamp },
@@ -427,6 +419,11 @@ export class ContainerConfig extends Message<ContainerConfig> {
    */
   scale?: HorizontalScale;
 
+  /**
+   * @generated from field: api.v1.capsule.Resources resources = 6;
+   */
+  resources?: Resources;
+
   constructor(data?: PartialMessage<ContainerConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -440,6 +437,7 @@ export class ContainerConfig extends Message<ContainerConfig> {
     { no: 3, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 4, name: "environment_variables", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 5, name: "scale", kind: "message", T: HorizontalScale },
+    { no: 6, name: "resources", kind: "message", T: Resources },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerConfig {
