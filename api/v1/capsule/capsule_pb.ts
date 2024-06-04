@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "../../../model/author_pb.js";
+import { GitStore } from "../../../model/git_pb.js";
 
 /**
  * Environment wide capsule abstraction.
@@ -34,6 +35,11 @@ export class Capsule extends Message<Capsule> {
    */
   updatedBy?: Author;
 
+  /**
+   * @generated from field: model.GitStore git_store = 8;
+   */
+  gitStore?: GitStore;
+
   constructor(data?: PartialMessage<Capsule>) {
     super();
     proto3.util.initPartial(data, this);
@@ -45,6 +51,7 @@ export class Capsule extends Message<Capsule> {
     { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "updated_at", kind: "message", T: Timestamp },
     { no: 7, name: "updated_by", kind: "message", T: Author },
+    { no: 8, name: "git_store", kind: "message", T: GitStore },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Capsule {

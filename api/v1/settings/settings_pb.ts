@@ -5,6 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { GitStore } from "../../../model/git_pb.js";
+import { EnvironmentFilter } from "../../../model/environment_pb.js";
 
 /**
  * @generated from enum api.v1.settings.NotificationTopic
@@ -85,6 +87,11 @@ export class Settings extends Message<Settings> {
    */
   notificationNotifiers: NotificationNotifier[] = [];
 
+  /**
+   * @generated from field: model.GitStore git_store = 2;
+   */
+  gitStore?: GitStore;
+
   constructor(data?: PartialMessage<Settings>) {
     super();
     proto3.util.initPartial(data, this);
@@ -94,6 +101,7 @@ export class Settings extends Message<Settings> {
   static readonly typeName = "api.v1.settings.Settings";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "notification_notifiers", kind: "message", T: NotificationNotifier, repeated: true },
+    { no: 2, name: "git_store", kind: "message", T: GitStore },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Settings {
@@ -210,9 +218,9 @@ export class NotificationNotifier extends Message<NotificationNotifier> {
   topics: NotificationTopic[] = [];
 
   /**
-   * @generated from field: api.v1.settings.NotificationEnvironments environments = 3;
+   * @generated from field: model.EnvironmentFilter environments = 3;
    */
-  environments?: NotificationEnvironments;
+  environments?: EnvironmentFilter;
 
   constructor(data?: PartialMessage<NotificationNotifier>) {
     super();
@@ -224,7 +232,7 @@ export class NotificationNotifier extends Message<NotificationNotifier> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "target", kind: "message", T: NotificationTarget },
     { no: 2, name: "topics", kind: "enum", T: proto3.getEnumType(NotificationTopic), repeated: true },
-    { no: 3, name: "environments", kind: "message", T: NotificationEnvironments },
+    { no: 3, name: "environments", kind: "message", T: EnvironmentFilter },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationNotifier {
@@ -241,130 +249,6 @@ export class NotificationNotifier extends Message<NotificationNotifier> {
 
   static equals(a: NotificationNotifier | PlainMessage<NotificationNotifier> | undefined, b: NotificationNotifier | PlainMessage<NotificationNotifier> | undefined): boolean {
     return proto3.util.equals(NotificationNotifier, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationEnvironments
- */
-export class NotificationEnvironments extends Message<NotificationEnvironments> {
-  /**
-   * @generated from oneof api.v1.settings.NotificationEnvironments.filter
-   */
-  filter: {
-    /**
-     * @generated from field: api.v1.settings.NotificationEnvironments.All all = 1;
-     */
-    value: NotificationEnvironments_All;
-    case: "all";
-  } | {
-    /**
-     * @generated from field: api.v1.settings.NotificationEnvironments.Selected selected = 2;
-     */
-    value: NotificationEnvironments_Selected;
-    case: "selected";
-  } | { case: undefined; value?: undefined } = { case: undefined };
-
-  constructor(data?: PartialMessage<NotificationEnvironments>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationEnvironments";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "all", kind: "message", T: NotificationEnvironments_All, oneof: "filter" },
-    { no: 2, name: "selected", kind: "message", T: NotificationEnvironments_Selected, oneof: "filter" },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationEnvironments {
-    return new NotificationEnvironments().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationEnvironments {
-    return new NotificationEnvironments().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationEnvironments {
-    return new NotificationEnvironments().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationEnvironments | PlainMessage<NotificationEnvironments> | undefined, b: NotificationEnvironments | PlainMessage<NotificationEnvironments> | undefined): boolean {
-    return proto3.util.equals(NotificationEnvironments, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationEnvironments.All
- */
-export class NotificationEnvironments_All extends Message<NotificationEnvironments_All> {
-  /**
-   * @generated from field: bool include_ephemeral = 1;
-   */
-  includeEphemeral = false;
-
-  constructor(data?: PartialMessage<NotificationEnvironments_All>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationEnvironments.All";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "include_ephemeral", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationEnvironments_All {
-    return new NotificationEnvironments_All().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationEnvironments_All {
-    return new NotificationEnvironments_All().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationEnvironments_All {
-    return new NotificationEnvironments_All().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationEnvironments_All | PlainMessage<NotificationEnvironments_All> | undefined, b: NotificationEnvironments_All | PlainMessage<NotificationEnvironments_All> | undefined): boolean {
-    return proto3.util.equals(NotificationEnvironments_All, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationEnvironments.Selected
- */
-export class NotificationEnvironments_Selected extends Message<NotificationEnvironments_Selected> {
-  /**
-   * @generated from field: repeated string environment_ids = 1;
-   */
-  environmentIds: string[] = [];
-
-  constructor(data?: PartialMessage<NotificationEnvironments_Selected>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationEnvironments.Selected";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "environment_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationEnvironments_Selected {
-    return new NotificationEnvironments_Selected().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationEnvironments_Selected {
-    return new NotificationEnvironments_Selected().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationEnvironments_Selected {
-    return new NotificationEnvironments_Selected().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationEnvironments_Selected | PlainMessage<NotificationEnvironments_Selected> | undefined, b: NotificationEnvironments_Selected | PlainMessage<NotificationEnvironments_Selected> | undefined): boolean {
-    return proto3.util.equals(NotificationEnvironments_Selected, a, b);
   }
 }
 

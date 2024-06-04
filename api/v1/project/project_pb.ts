@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { GitStore } from "../../../model/git_pb.js";
 
 /**
  * The plan for a rig installation
@@ -82,6 +83,11 @@ export class Project extends Message<Project> {
    */
   installationId = "";
 
+  /**
+   * @generated from field: model.GitStore git_store = 6;
+   */
+  gitStore?: GitStore;
+
   constructor(data?: PartialMessage<Project>) {
     super();
     proto3.util.initPartial(data, this);
@@ -94,6 +100,7 @@ export class Project extends Message<Project> {
     { no: 3, name: "created_at", kind: "message", T: Timestamp },
     { no: 4, name: "updated_at", kind: "message", T: Timestamp },
     { no: 5, name: "installation_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "git_store", kind: "message", T: GitStore },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
