@@ -67,9 +67,9 @@ export class RevisionMetadata extends Message<RevisionMetadata> {
  */
 export class Fingerprint extends Message<Fingerprint> {
   /**
-   * @generated from field: bytes bytes = 1;
+   * @generated from field: string data = 1;
    */
-  bytes = new Uint8Array(0);
+  data = "";
 
   constructor(data?: PartialMessage<Fingerprint>) {
     super();
@@ -79,7 +79,7 @@ export class Fingerprint extends Message<Fingerprint> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "model.Fingerprint";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Fingerprint {
