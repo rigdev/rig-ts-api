@@ -132,10 +132,20 @@ export class Update extends Message<Update> {
    */
   field: {
     /**
+     * Set the notification notifiers.
+     *
      * @generated from field: api.v1.settings.Update.SetNotificationNotifiers set_notification_notifiers = 1;
      */
     value: Update_SetNotificationNotifiers;
     case: "setNotificationNotifiers";
+  } | {
+    /**
+     * Set the git store.
+     *
+     * @generated from field: model.GitStore set_git_store = 2;
+     */
+    value: GitStore;
+    case: "setGitStore";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Update>) {
@@ -147,6 +157,7 @@ export class Update extends Message<Update> {
   static readonly typeName = "api.v1.settings.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "set_notification_notifiers", kind: "message", T: Update_SetNotificationNotifiers, oneof: "field" },
+    { no: 2, name: "set_git_store", kind: "message", T: GitStore, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
@@ -265,6 +276,12 @@ export class NotificationTarget extends Message<NotificationTarget> {
      */
     value: NotificationTarget_SlackTarget;
     case: "slack";
+  } | {
+    /**
+     * @generated from field: api.v1.settings.NotificationTarget.EmailTarget email = 2;
+     */
+    value: NotificationTarget_EmailTarget;
+    case: "email";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<NotificationTarget>) {
@@ -276,6 +293,7 @@ export class NotificationTarget extends Message<NotificationTarget> {
   static readonly typeName = "api.v1.settings.NotificationTarget";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "slack", kind: "message", T: NotificationTarget_SlackTarget, oneof: "target" },
+    { no: 2, name: "email", kind: "message", T: NotificationTarget_EmailTarget, oneof: "target" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationTarget {
@@ -335,6 +353,49 @@ export class NotificationTarget_SlackTarget extends Message<NotificationTarget_S
 
   static equals(a: NotificationTarget_SlackTarget | PlainMessage<NotificationTarget_SlackTarget> | undefined, b: NotificationTarget_SlackTarget | PlainMessage<NotificationTarget_SlackTarget> | undefined): boolean {
     return proto3.util.equals(NotificationTarget_SlackTarget, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.NotificationTarget.EmailTarget
+ */
+export class NotificationTarget_EmailTarget extends Message<NotificationTarget_EmailTarget> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string from_email = 2;
+   */
+  fromEmail = "";
+
+  constructor(data?: PartialMessage<NotificationTarget_EmailTarget>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.NotificationTarget.EmailTarget";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "from_email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationTarget_EmailTarget {
+    return new NotificationTarget_EmailTarget().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationTarget_EmailTarget {
+    return new NotificationTarget_EmailTarget().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationTarget_EmailTarget {
+    return new NotificationTarget_EmailTarget().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: NotificationTarget_EmailTarget | PlainMessage<NotificationTarget_EmailTarget> | undefined, b: NotificationTarget_EmailTarget | PlainMessage<NotificationTarget_EmailTarget> | undefined): boolean {
+    return proto3.util.equals(NotificationTarget_EmailTarget, a, b);
   }
 }
 

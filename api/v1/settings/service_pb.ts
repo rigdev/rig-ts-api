@@ -61,6 +61,13 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
    */
   expiresAt?: Timestamp;
 
+  /**
+   * The number of users allowed in the installation.
+   *
+   * @generated from field: int32 user_limit = 3;
+   */
+  userLimit = 0;
+
   constructor(data?: PartialMessage<GetLicenseInfoResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -71,6 +78,7 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "plan", kind: "enum", T: proto3.getEnumType(Plan) },
     { no: 2, name: "expires_at", kind: "message", T: Timestamp },
+    { no: 3, name: "user_limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoResponse {

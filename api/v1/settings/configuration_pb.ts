@@ -7,6 +7,32 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum api.v1.settings.EmailType
+ */
+export enum EmailType {
+  /**
+   * @generated from enum value: EMAIL_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: EMAIL_TYPE_MAILJET = 1;
+   */
+  MAILJET = 1,
+
+  /**
+   * @generated from enum value: EMAIL_TYPE_SMTP = 2;
+   */
+  SMTP = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(EmailType)
+proto3.util.setEnumType(EmailType, "api.v1.settings.EmailType", [
+  { no: 0, name: "EMAIL_TYPE_UNSPECIFIED" },
+  { no: 1, name: "EMAIL_TYPE_MAILJET" },
+  { no: 2, name: "EMAIL_TYPE_SMTP" },
+]);
+
+/**
  * Platform wide static configuration.
  *
  * @generated from message api.v1.settings.Configuration
@@ -17,6 +43,16 @@ export class Configuration extends Message<Configuration> {
    */
   client?: Client;
 
+  /**
+   * @generated from field: repeated string docker_registries = 2;
+   */
+  dockerRegistries: string[] = [];
+
+  /**
+   * @generated from field: api.v1.settings.EmailClient default_email = 3;
+   */
+  defaultEmail?: EmailClient;
+
   constructor(data?: PartialMessage<Configuration>) {
     super();
     proto3.util.initPartial(data, this);
@@ -26,6 +62,8 @@ export class Configuration extends Message<Configuration> {
   static readonly typeName = "api.v1.settings.Configuration";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "client", kind: "message", T: Client },
+    { no: 2, name: "docker_registries", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "default_email", kind: "message", T: EmailClient },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Configuration {
@@ -54,6 +92,11 @@ export class Client extends Message<Client> {
    */
   slack?: Slack;
 
+  /**
+   * @generated from field: repeated api.v1.settings.EmailClient email = 2;
+   */
+  email: EmailClient[] = [];
+
   constructor(data?: PartialMessage<Client>) {
     super();
     proto3.util.initPartial(data, this);
@@ -63,6 +106,7 @@ export class Client extends Message<Client> {
   static readonly typeName = "api.v1.settings.Client";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "slack", kind: "message", T: Slack },
+    { no: 2, name: "email", kind: "message", T: EmailClient, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Client {
@@ -153,6 +197,49 @@ export class Slack_Workspace extends Message<Slack_Workspace> {
 
   static equals(a: Slack_Workspace | PlainMessage<Slack_Workspace> | undefined, b: Slack_Workspace | PlainMessage<Slack_Workspace> | undefined): boolean {
     return proto3.util.equals(Slack_Workspace, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.EmailClient
+ */
+export class EmailClient extends Message<EmailClient> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: api.v1.settings.EmailType type = 2;
+   */
+  type = EmailType.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<EmailClient>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.EmailClient";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(EmailType) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmailClient {
+    return new EmailClient().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmailClient {
+    return new EmailClient().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmailClient {
+    return new EmailClient().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EmailClient | PlainMessage<EmailClient> | undefined, b: EmailClient | PlainMessage<EmailClient> | undefined): boolean {
+    return proto3.util.equals(EmailClient, a, b);
   }
 }
 

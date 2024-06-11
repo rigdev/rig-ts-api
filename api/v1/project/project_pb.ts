@@ -8,48 +8,6 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { GitStore } from "../../../model/git_pb.js";
 
 /**
- * The plan for a rig installation
- *
- * @generated from enum api.v1.project.Plan
- */
-export enum Plan {
-  /**
-   * Unspecified / unactivated plan.
-   *
-   * @generated from enum value: PLAN_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * Free tier.
-   *
-   * @generated from enum value: PLAN_FREE = 1;
-   */
-  FREE = 1,
-
-  /**
-   * Team / Pro tier.
-   *
-   * @generated from enum value: PLAN_TEAM = 2;
-   */
-  TEAM = 2,
-
-  /**
-   * Enterprise tier.
-   *
-   * @generated from enum value: PLAN_ENTERPRISE = 3;
-   */
-  ENTERPRISE = 3,
-}
-// Retrieve enum metadata with: proto3.getEnumType(Plan)
-proto3.util.setEnumType(Plan, "api.v1.project.Plan", [
-  { no: 0, name: "PLAN_UNSPECIFIED" },
-  { no: 1, name: "PLAN_FREE" },
-  { no: 2, name: "PLAN_TEAM" },
-  { no: 3, name: "PLAN_ENTERPRISE" },
-]);
-
-/**
  * The top most model that capsules etc belong to.
  *
  * @generated from message api.v1.project.Project

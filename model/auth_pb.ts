@@ -3,7 +3,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { proto3 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * The LoginType enum defines the type of login.
@@ -54,4 +55,49 @@ proto3.util.setEnumType(LoginType, "model.LoginType", [
   { no: 3, name: "LOGIN_TYPE_USERNAME_PASSWORD" },
   { no: 4, name: "LOGIN_TYPE_SSO" },
 ]);
+
+/**
+ * Message that tells how the user was authenticated.
+ *
+ * @generated from message model.AuthMethod
+ */
+export class AuthMethod extends Message<AuthMethod> {
+  /**
+   * @generated from oneof model.AuthMethod.method
+   */
+  method: {
+    /**
+     * @generated from field: model.LoginType login_type = 1;
+     */
+    value: LoginType;
+    case: "loginType";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<AuthMethod>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.AuthMethod";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "login_type", kind: "enum", T: proto3.getEnumType(LoginType), oneof: "method" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AuthMethod {
+    return new AuthMethod().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AuthMethod {
+    return new AuthMethod().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AuthMethod {
+    return new AuthMethod().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AuthMethod | PlainMessage<AuthMethod> | undefined, b: AuthMethod | PlainMessage<AuthMethod> | undefined): boolean {
+    return proto3.util.equals(AuthMethod, a, b);
+  }
+}
 

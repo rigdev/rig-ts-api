@@ -4,8 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { Plan } from "../project_pb.js";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { Settings, Update } from "./settings_pb.js";
 
 /**
@@ -44,23 +43,14 @@ export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
 /**
  * Response for getting the license information of the Rig installation.
  *
+ * // The plan of the rig installation.
+ * api.v1.project.Plan plan = 1;
+ * // The expiration date of the license.
+ * google.protobuf.Timestamp expires_at = 2;
+ *
  * @generated from message api.v1.project.settings.GetLicenseInfoResponse
  */
 export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
-  /**
-   * The plan of the rig installation.
-   *
-   * @generated from field: api.v1.project.Plan plan = 1;
-   */
-  plan = Plan.UNSPECIFIED;
-
-  /**
-   * The expiration date of the license.
-   *
-   * @generated from field: google.protobuf.Timestamp expires_at = 2;
-   */
-  expiresAt?: Timestamp;
-
   constructor(data?: PartialMessage<GetLicenseInfoResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -69,8 +59,6 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.settings.GetLicenseInfoResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "plan", kind: "enum", T: proto3.getEnumType(Plan) },
-    { no: 2, name: "expires_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLicenseInfoResponse {
