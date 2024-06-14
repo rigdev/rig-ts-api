@@ -97,6 +97,11 @@ export class Client extends Message<Client> {
    */
   email: EmailClient[] = [];
 
+  /**
+   * @generated from field: repeated api.v1.settings.Git git = 3;
+   */
+  git: Git[] = [];
+
   constructor(data?: PartialMessage<Client>) {
     super();
     proto3.util.initPartial(data, this);
@@ -107,6 +112,7 @@ export class Client extends Message<Client> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "slack", kind: "message", T: Slack },
     { no: 2, name: "email", kind: "message", T: EmailClient, repeated: true },
+    { no: 3, name: "git", kind: "message", T: Git, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Client {
@@ -240,6 +246,53 @@ export class EmailClient extends Message<EmailClient> {
 
   static equals(a: EmailClient | PlainMessage<EmailClient> | undefined, b: EmailClient | PlainMessage<EmailClient> | undefined): boolean {
     return proto3.util.equals(EmailClient, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.Git
+ */
+export class Git extends Message<Git> {
+  /**
+   * URL is a exact match for the repo-url this auth can be used for.
+   *
+   * @generated from field: string url = 1;
+   */
+  url = "";
+
+  /**
+   * URLPrefix is a prefix-match for the repo urls this auth can be used for.
+   *
+   * @generated from field: string url_prefix = 2;
+   */
+  urlPrefix = "";
+
+  constructor(data?: PartialMessage<Git>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.Git";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "url_prefix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Git {
+    return new Git().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Git {
+    return new Git().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Git {
+    return new Git().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Git | PlainMessage<Git> | undefined, b: Git | PlainMessage<Git> | undefined): boolean {
+    return proto3.util.equals(Git, a, b);
   }
 }
 
