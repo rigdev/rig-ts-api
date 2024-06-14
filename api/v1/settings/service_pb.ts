@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { Plan, Settings, Update } from "./settings_pb.js";
+import { Settings, Update } from "./settings_pb.js";
 import { Configuration } from "./configuration_pb.js";
 
 /**
@@ -48,13 +48,6 @@ export class GetLicenseInfoRequest extends Message<GetLicenseInfoRequest> {
  */
 export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
   /**
-   * The plan of the rig installation.
-   *
-   * @generated from field: api.v1.settings.Plan plan = 1;
-   */
-  plan = Plan.UNSPECIFIED;
-
-  /**
    * The expiration date of the license.
    *
    * @generated from field: google.protobuf.Timestamp expires_at = 2;
@@ -76,7 +69,6 @@ export class GetLicenseInfoResponse extends Message<GetLicenseInfoResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.settings.GetLicenseInfoResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "plan", kind: "enum", T: proto3.getEnumType(Plan) },
     { no: 2, name: "expires_at", kind: "message", T: Timestamp },
     { no: 3, name: "user_limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
