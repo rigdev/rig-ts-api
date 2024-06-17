@@ -8,6 +8,38 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { EnvironmentFilter } from "./environment_pb.js";
 
 /**
+ * @generated from enum model.GitProvider
+ */
+export enum GitProvider {
+  /**
+   * @generated from enum value: GIT_PROVIDER_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: GIT_PROVIDER_GITHUB = 1;
+   */
+  GITHUB = 1,
+
+  /**
+   * @generated from enum value: GIT_PROVIDER_GITLAB = 2;
+   */
+  GITLAB = 2,
+
+  /**
+   * @generated from enum value: GIT_PROVIDER_BITBUCKET = 3;
+   */
+  BITBUCKET = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(GitProvider)
+proto3.util.setEnumType(GitProvider, "model.GitProvider", [
+  { no: 0, name: "GIT_PROVIDER_UNSPECIFIED" },
+  { no: 1, name: "GIT_PROVIDER_GITHUB" },
+  { no: 2, name: "GIT_PROVIDER_GITLAB" },
+  { no: 3, name: "GIT_PROVIDER_BITBUCKET" },
+]);
+
+/**
  * @generated from message model.GitStore
  */
 export class GitStore extends Message<GitStore> {
@@ -71,6 +103,104 @@ export class GitStore extends Message<GitStore> {
 
   static equals(a: GitStore | PlainMessage<GitStore> | undefined, b: GitStore | PlainMessage<GitStore> | undefined): boolean {
     return proto3.util.equals(GitStore, a, b);
+  }
+}
+
+/**
+ * @generated from message model.Commit
+ */
+export class Commit extends Message<Commit> {
+  /**
+   * @generated from field: model.GitProvider provider = 1;
+   */
+  provider = GitProvider.UNSPECIFIED;
+
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
+
+  /**
+   * @generated from field: string commit_id = 3;
+   */
+  commitId = "";
+
+  /**
+   * @generated from field: string url = 4;
+   */
+  url = "";
+
+  constructor(data?: PartialMessage<Commit>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Commit";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "provider", kind: "enum", T: proto3.getEnumType(GitProvider) },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Commit {
+    return new Commit().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Commit {
+    return new Commit().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Commit {
+    return new Commit().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Commit | PlainMessage<Commit> | undefined, b: Commit | PlainMessage<Commit> | undefined): boolean {
+    return proto3.util.equals(Commit, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GitChange
+ */
+export class GitChange extends Message<GitChange> {
+  /**
+   * @generated from field: model.Commit commit = 1;
+   */
+  commit?: Commit;
+
+  /**
+   * @generated from field: repeated string paths = 2;
+   */
+  paths: string[] = [];
+
+  constructor(data?: PartialMessage<GitChange>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GitChange";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "commit", kind: "message", T: Commit },
+    { no: 2, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitChange {
+    return new GitChange().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GitChange {
+    return new GitChange().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GitChange {
+    return new GitChange().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GitChange | PlainMessage<GitChange> | undefined, b: GitChange | PlainMessage<GitChange> | undefined): boolean {
+    return proto3.util.equals(GitChange, a, b);
   }
 }
 

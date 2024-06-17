@@ -10,9 +10,7 @@ import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { Author } from "../../../model/author_pb.js";
 import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
 import { CronJob } from "./job_pb.js";
-import { Revision } from "../project/revision_pb.js";
-import { Revision as Revision$1 } from "../environment/revision_pb.js";
-import { Revision as Revision$2, SetRevision } from "./revision_pb.js";
+import { RevisionMetadata } from "../../../model/revision_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.EventType
@@ -286,24 +284,24 @@ export class ConfigFile extends Message<ConfigFile> {
  */
 export class Revisions extends Message<Revisions> {
   /**
-   * @generated from field: api.v1.project.Revision project = 1;
+   * @generated from field: repeated model.RevisionMetadata projects = 1;
    */
-  project?: Revision;
+  projects: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: api.v1.environment.Revision environment = 2;
+   * @generated from field: repeated model.RevisionMetadata environments = 2;
    */
-  environment?: Revision$1;
+  environments: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: api.v1.capsule.SetRevision capsule_set = 3;
+   * @generated from field: repeated model.RevisionMetadata capsule_sets = 3;
    */
-  capsuleSet?: SetRevision;
+  capsuleSets: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: api.v1.capsule.Revision capsule = 4;
+   * @generated from field: repeated model.RevisionMetadata capsules = 4;
    */
-  capsule?: Revision$2;
+  capsules: RevisionMetadata[] = [];
 
   constructor(data?: PartialMessage<Revisions>) {
     super();
@@ -313,10 +311,10 @@ export class Revisions extends Message<Revisions> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.Revisions";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project", kind: "message", T: Revision },
-    { no: 2, name: "environment", kind: "message", T: Revision$1 },
-    { no: 3, name: "capsule_set", kind: "message", T: SetRevision },
-    { no: 4, name: "capsule", kind: "message", T: Revision$2 },
+    { no: 1, name: "projects", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 2, name: "environments", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 3, name: "capsule_sets", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 4, name: "capsules", kind: "message", T: RevisionMetadata, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Revisions {

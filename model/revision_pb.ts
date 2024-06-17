@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "./author_pb.js";
+import { GitChange } from "./git_pb.js";
 
 /**
  * @generated from message model.RevisionMetadata
@@ -31,6 +32,11 @@ export class RevisionMetadata extends Message<RevisionMetadata> {
    */
   fingerprint?: Fingerprint;
 
+  /**
+   * @generated from field: model.GitChange git_change = 5;
+   */
+  gitChange?: GitChange;
+
   constructor(data?: PartialMessage<RevisionMetadata>) {
     super();
     proto3.util.initPartial(data, this);
@@ -43,6 +49,7 @@ export class RevisionMetadata extends Message<RevisionMetadata> {
     { no: 2, name: "updated_at", kind: "message", T: Timestamp },
     { no: 3, name: "updated_by", kind: "message", T: Author },
     { no: 4, name: "fingerprint", kind: "message", T: Fingerprint },
+    { no: 5, name: "git_change", kind: "message", T: GitChange },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevisionMetadata {
