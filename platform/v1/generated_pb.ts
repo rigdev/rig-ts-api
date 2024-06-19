@@ -580,3 +580,223 @@ export class Project extends Message<Project> {
   }
 }
 
+/**
+ * @generated from message platform.v1.HostCapsule
+ */
+export class HostCapsule extends Message<HostCapsule> {
+  /**
+   * @generated from field: string kind = 1;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: string apiVersion = 2;
+   */
+  apiVersion = "";
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string project = 4;
+   */
+  project = "";
+
+  /**
+   * @generated from field: string environment = 5;
+   */
+  environment = "";
+
+  /**
+   * @generated from field: platform.v1.HostNetwork network = 6;
+   */
+  network?: HostNetwork;
+
+  constructor(data?: PartialMessage<HostCapsule>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.HostCapsule";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "network", kind: "message", T: HostNetwork },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HostCapsule {
+    return new HostCapsule().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HostCapsule {
+    return new HostCapsule().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HostCapsule {
+    return new HostCapsule().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HostCapsule | PlainMessage<HostCapsule> | undefined, b: HostCapsule | PlainMessage<HostCapsule> | undefined): boolean {
+    return proto3.util.equals(HostCapsule, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.HostNetwork
+ */
+export class HostNetwork extends Message<HostNetwork> {
+  /**
+   * @generated from field: repeated platform.v1.ProxyInterface hostInterfaces = 1;
+   */
+  hostInterfaces: ProxyInterface[] = [];
+
+  /**
+   * @generated from field: repeated platform.v1.ProxyInterface capsuleInterfaces = 2;
+   */
+  capsuleInterfaces: ProxyInterface[] = [];
+
+  /**
+   * @generated from field: uint32 tunnelPort = 3;
+   */
+  tunnelPort = 0;
+
+  constructor(data?: PartialMessage<HostNetwork>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.HostNetwork";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hostInterfaces", kind: "message", T: ProxyInterface, repeated: true },
+    { no: 2, name: "capsuleInterfaces", kind: "message", T: ProxyInterface, repeated: true },
+    { no: 3, name: "tunnelPort", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HostNetwork {
+    return new HostNetwork().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HostNetwork {
+    return new HostNetwork().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HostNetwork {
+    return new HostNetwork().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HostNetwork | PlainMessage<HostNetwork> | undefined, b: HostNetwork | PlainMessage<HostNetwork> | undefined): boolean {
+    return proto3.util.equals(HostNetwork, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.ProxyInterface
+ */
+export class ProxyInterface extends Message<ProxyInterface> {
+  /**
+   * @generated from field: uint32 port = 1;
+   */
+  port = 0;
+
+  /**
+   * @generated from field: string target = 2;
+   */
+  target = "";
+
+  /**
+   * @generated from field: platform.v1.InterfaceOptions options = 3;
+   */
+  options?: InterfaceOptions;
+
+  constructor(data?: PartialMessage<ProxyInterface>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.ProxyInterface";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "options", kind: "message", T: InterfaceOptions },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProxyInterface {
+    return new ProxyInterface().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProxyInterface {
+    return new ProxyInterface().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProxyInterface {
+    return new ProxyInterface().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProxyInterface | PlainMessage<ProxyInterface> | undefined, b: ProxyInterface | PlainMessage<ProxyInterface> | undefined): boolean {
+    return proto3.util.equals(ProxyInterface, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.InterfaceOptions
+ */
+export class InterfaceOptions extends Message<InterfaceOptions> {
+  /**
+   * @generated from field: bool tcp = 1;
+   */
+  tcp = false;
+
+  /**
+   * @generated from field: string allowOrigin = 2;
+   */
+  allowOrigin = "";
+
+  /**
+   * @generated from field: bool changeOrigin = 3;
+   */
+  changeOrigin = false;
+
+  /**
+   * @generated from field: map<string, string> headers = 4;
+   */
+  headers: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<InterfaceOptions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.InterfaceOptions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tcp", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "allowOrigin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "changeOrigin", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceOptions {
+    return new InterfaceOptions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceOptions {
+    return new InterfaceOptions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceOptions {
+    return new InterfaceOptions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InterfaceOptions | PlainMessage<InterfaceOptions> | undefined, b: InterfaceOptions | PlainMessage<InterfaceOptions> | undefined): boolean {
+    return proto3.util.equals(InterfaceOptions, a, b);
+  }
+}
+
