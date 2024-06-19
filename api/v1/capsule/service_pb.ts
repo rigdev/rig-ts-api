@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
-import { Rollout, RolloutConfig } from "./rollout_pb.js";
+import { Rollout, RolloutConfig, RolloutProposal } from "./rollout_pb.js";
 import { Status } from "./instance/status_pb.js";
 import { Status as Status$1 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
@@ -1792,6 +1792,245 @@ export class DeployResponse extends Message<DeployResponse> {
 
   static equals(a: DeployResponse | PlainMessage<DeployResponse> | undefined, b: DeployResponse | PlainMessage<DeployResponse> | undefined): boolean {
     return proto3.util.equals(DeployResponse, a, b);
+  }
+}
+
+/**
+ * Deploy request. This will deploy a number of changes which results in a new
+ * rollout.
+ *
+ * @generated from message api.v1.capsule.ProposeRolloutRequest
+ */
+export class ProposeRolloutRequest extends Message<ProposeRolloutRequest> {
+  /**
+   * Capsule to deploy to.
+   *
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * Changes to include in the new rollout.
+   *
+   * @generated from field: repeated api.v1.capsule.Change changes = 2;
+   */
+  changes: Change[] = [];
+
+  /**
+   * Project in which the capsule lives.
+   *
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * Environment in which to deploy.
+   *
+   * @generated from field: string environment_id = 4;
+   */
+  environmentId = "";
+
+  /**
+   * Deploy message.
+   *
+   * @generated from field: string message = 5;
+   */
+  message = "";
+
+  /**
+   * By default, existing objects will be kept in favor of overriding them. To
+   * force the override of resources, set this flag to true. An example of this
+   * use-case is a migration step, where resource created by a previous
+   * toolchain e.g. based on Helm charts, are to be replaced and instead be
+   * created by the Rig operator.
+   * While the override is irreversible, this flag is not "sticky" and must be
+   * set by each deploy that should use this behavior.
+   *
+   * @generated from field: bool force_override = 6;
+   */
+  forceOverride = false;
+
+  /**
+   * @generated from field: string branch_name = 7;
+   */
+  branchName = "";
+
+  constructor(data?: PartialMessage<ProposeRolloutRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProposeRolloutRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "force_override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeRolloutRequest {
+    return new ProposeRolloutRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProposeRolloutRequest {
+    return new ProposeRolloutRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProposeRolloutRequest {
+    return new ProposeRolloutRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProposeRolloutRequest | PlainMessage<ProposeRolloutRequest> | undefined, b: ProposeRolloutRequest | PlainMessage<ProposeRolloutRequest> | undefined): boolean {
+    return proto3.util.equals(ProposeRolloutRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ProposeRolloutResponse
+ */
+export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
+  /**
+   * @generated from field: string proposal_id = 1;
+   */
+  proposalId = "";
+
+  /**
+   * The YAML of the resources that will be deployed.
+   *
+   * @generated from field: map<string, string> resource_yaml = 2;
+   */
+  resourceYaml: { [key: string]: string } = {};
+
+  /**
+   * The rollout config.
+   *
+   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 3;
+   */
+  rolloutConfig?: RolloutConfig;
+
+  /**
+   * @generated from field: api.v1.capsule.RolloutProposal deploy = 4;
+   */
+  deploy?: RolloutProposal;
+
+  constructor(data?: PartialMessage<ProposeRolloutResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProposeRolloutResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "proposal_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "rollout_config", kind: "message", T: RolloutConfig },
+    { no: 4, name: "deploy", kind: "message", T: RolloutProposal },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeRolloutResponse {
+    return new ProposeRolloutResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProposeRolloutResponse {
+    return new ProposeRolloutResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProposeRolloutResponse {
+    return new ProposeRolloutResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProposeRolloutResponse | PlainMessage<ProposeRolloutResponse> | undefined, b: ProposeRolloutResponse | PlainMessage<ProposeRolloutResponse> | undefined): boolean {
+    return proto3.util.equals(ProposeRolloutResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListRolloutProposalsRequest
+ */
+export class ListRolloutProposalsRequest extends Message<ListRolloutProposalsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  constructor(data?: PartialMessage<ListRolloutProposalsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListRolloutProposalsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRolloutProposalsRequest {
+    return new ListRolloutProposalsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListRolloutProposalsRequest {
+    return new ListRolloutProposalsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRolloutProposalsRequest {
+    return new ListRolloutProposalsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListRolloutProposalsRequest | PlainMessage<ListRolloutProposalsRequest> | undefined, b: ListRolloutProposalsRequest | PlainMessage<ListRolloutProposalsRequest> | undefined): boolean {
+    return proto3.util.equals(ListRolloutProposalsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListRolloutProposalsResponse
+ */
+export class ListRolloutProposalsResponse extends Message<ListRolloutProposalsResponse> {
+  /**
+   * @generated from field: repeated api.v1.capsule.RolloutProposal proposals = 1;
+   */
+  proposals: RolloutProposal[] = [];
+
+  constructor(data?: PartialMessage<ListRolloutProposalsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListRolloutProposalsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "proposals", kind: "message", T: RolloutProposal, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRolloutProposalsResponse {
+    return new ListRolloutProposalsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListRolloutProposalsResponse {
+    return new ListRolloutProposalsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRolloutProposalsResponse {
+    return new ListRolloutProposalsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListRolloutProposalsResponse | PlainMessage<ListRolloutProposalsResponse> | undefined, b: ListRolloutProposalsResponse | PlainMessage<ListRolloutProposalsResponse> | undefined): boolean {
+    return proto3.util.equals(ListRolloutProposalsResponse, a, b);
   }
 }
 

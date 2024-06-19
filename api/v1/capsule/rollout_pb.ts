@@ -11,6 +11,7 @@ import { Author } from "../../../model/author_pb.js";
 import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
 import { CronJob } from "./job_pb.js";
 import { RevisionMetadata } from "../../../model/revision_pb.js";
+import { RepoBranch } from "../../../model/git_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.EventType
@@ -331,6 +332,103 @@ export class Revisions extends Message<Revisions> {
 
   static equals(a: Revisions | PlainMessage<Revisions> | undefined, b: Revisions | PlainMessage<Revisions> | undefined): boolean {
     return proto3.util.equals(Revisions, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.RolloutProposal
+ */
+export class RolloutProposal extends Message<RolloutProposal> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: string branch_name = 4;
+   */
+  branchName = "";
+
+  /**
+   * @generated from field: platform.v1.CapsuleSpec spec = 5;
+   */
+  spec?: CapsuleSpec;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.Change changes = 6;
+   */
+  changes: Change[] = [];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: model.Author created_by = 8;
+   */
+  createdBy?: Author;
+
+  /**
+   * @generated from field: string proposal_id = 9;
+   */
+  proposalId = "";
+
+  /**
+   * @generated from field: model.RepoBranch repo_branch = 10;
+   */
+  repoBranch?: RepoBranch;
+
+  /**
+   * @generated from field: string review_url = 11;
+   */
+  reviewUrl = "";
+
+  constructor(data?: PartialMessage<RolloutProposal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.RolloutProposal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "spec", kind: "message", T: CapsuleSpec },
+    { no: 6, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 7, name: "created_at", kind: "message", T: Timestamp },
+    { no: 8, name: "created_by", kind: "message", T: Author },
+    { no: 9, name: "proposal_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "repo_branch", kind: "message", T: RepoBranch },
+    { no: 11, name: "review_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RolloutProposal {
+    return new RolloutProposal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RolloutProposal {
+    return new RolloutProposal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RolloutProposal {
+    return new RolloutProposal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RolloutProposal | PlainMessage<RolloutProposal> | undefined, b: RolloutProposal | PlainMessage<RolloutProposal> | undefined): boolean {
+    return proto3.util.equals(RolloutProposal, a, b);
   }
 }
 
