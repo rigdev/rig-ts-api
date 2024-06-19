@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { EnvironmentFilter } from "./environment_pb.js";
 
 /**
@@ -201,6 +201,110 @@ export class GitChange extends Message<GitChange> {
 
   static equals(a: GitChange | PlainMessage<GitChange> | undefined, b: GitChange | PlainMessage<GitChange> | undefined): boolean {
     return proto3.util.equals(GitChange, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GitStatus
+ */
+export class GitStatus extends Message<GitStatus> {
+  /**
+   * @generated from field: string last_processed_commit_id = 1;
+   */
+  lastProcessedCommitId = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp last_processed_commit_time = 2;
+   */
+  lastProcessedCommitTime?: Timestamp;
+
+  /**
+   * @generated from field: string last_successful_commit_id = 3;
+   */
+  lastSuccessfulCommitId = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp last_successful_commit_time = 4;
+   */
+  lastSuccessfulCommitTime?: Timestamp;
+
+  /**
+   * @generated from field: string error = 5;
+   */
+  error = "";
+
+  constructor(data?: PartialMessage<GitStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GitStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "last_processed_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "last_processed_commit_time", kind: "message", T: Timestamp },
+    { no: 3, name: "last_successful_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "last_successful_commit_time", kind: "message", T: Timestamp },
+    { no: 5, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitStatus {
+    return new GitStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GitStatus {
+    return new GitStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GitStatus {
+    return new GitStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GitStatus | PlainMessage<GitStatus> | undefined, b: GitStatus | PlainMessage<GitStatus> | undefined): boolean {
+    return proto3.util.equals(GitStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message model.RepoBranch
+ */
+export class RepoBranch extends Message<RepoBranch> {
+  /**
+   * @generated from field: string repository = 1;
+   */
+  repository = "";
+
+  /**
+   * @generated from field: string branch = 2;
+   */
+  branch = "";
+
+  constructor(data?: PartialMessage<RepoBranch>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.RepoBranch";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepoBranch {
+    return new RepoBranch().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RepoBranch {
+    return new RepoBranch().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepoBranch {
+    return new RepoBranch().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RepoBranch | PlainMessage<RepoBranch> | undefined, b: RepoBranch | PlainMessage<RepoBranch> | undefined): boolean {
+    return proto3.util.equals(RepoBranch, a, b);
   }
 }
 

@@ -84,6 +84,19 @@ export class Project extends Message<Project> {
  * @generated from message api.v1.project.Update
  */
 export class Update extends Message<Update> {
+  /**
+   * @generated from oneof api.v1.project.Update.field
+   */
+  field: {
+    /**
+     * Set the git store.
+     *
+     * @generated from field: model.GitStore set_git_store = 1;
+     */
+    value: GitStore;
+    case: "setGitStore";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
   constructor(data?: PartialMessage<Update>) {
     super();
     proto3.util.initPartial(data, this);
@@ -92,6 +105,7 @@ export class Update extends Message<Update> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.Update";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "set_git_store", kind: "message", T: GitStore, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {

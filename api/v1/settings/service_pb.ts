@@ -7,6 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Settings, Update } from "./settings_pb.js";
 import { Configuration } from "./configuration_pb.js";
+import { GitStatus, RepoBranch } from "../../../model/git_pb.js";
+import { CapsuleID } from "../../../model/id_pb.js";
 
 /**
  * Request to get the license information of the Rig installation.
@@ -291,6 +293,215 @@ export class GetConfigurationResponse extends Message<GetConfigurationResponse> 
 
   static equals(a: GetConfigurationResponse | PlainMessage<GetConfigurationResponse> | undefined, b: GetConfigurationResponse | PlainMessage<GetConfigurationResponse> | undefined): boolean {
     return proto3.util.equals(GetConfigurationResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.GetGitStoreStatusRequest
+ */
+export class GetGitStoreStatusRequest extends Message<GetGitStoreStatusRequest> {
+  constructor(data?: PartialMessage<GetGitStoreStatusRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.GetGitStoreStatusRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGitStoreStatusRequest {
+    return new GetGitStoreStatusRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGitStoreStatusRequest {
+    return new GetGitStoreStatusRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGitStoreStatusRequest {
+    return new GetGitStoreStatusRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGitStoreStatusRequest | PlainMessage<GetGitStoreStatusRequest> | undefined, b: GetGitStoreStatusRequest | PlainMessage<GetGitStoreStatusRequest> | undefined): boolean {
+    return proto3.util.equals(GetGitStoreStatusRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.GetGitStoreStatusResponse
+ */
+export class GetGitStoreStatusResponse extends Message<GetGitStoreStatusResponse> {
+  /**
+   * @generated from field: repeated api.v1.settings.GetGitStoreStatusResponse.RepoGitStatus repositories = 1;
+   */
+  repositories: GetGitStoreStatusResponse_RepoGitStatus[] = [];
+
+  /**
+   * @generated from field: repeated api.v1.settings.GetGitStoreStatusResponse.CapsuleStatus capsules = 2;
+   */
+  capsules: GetGitStoreStatusResponse_CapsuleStatus[] = [];
+
+  /**
+   * @generated from field: repeated api.v1.settings.GetGitStoreStatusResponse.CallbackErr errors = 3;
+   */
+  errors: GetGitStoreStatusResponse_CallbackErr[] = [];
+
+  constructor(data?: PartialMessage<GetGitStoreStatusResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.GetGitStoreStatusResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "repositories", kind: "message", T: GetGitStoreStatusResponse_RepoGitStatus, repeated: true },
+    { no: 2, name: "capsules", kind: "message", T: GetGitStoreStatusResponse_CapsuleStatus, repeated: true },
+    { no: 3, name: "errors", kind: "message", T: GetGitStoreStatusResponse_CallbackErr, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGitStoreStatusResponse {
+    return new GetGitStoreStatusResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse {
+    return new GetGitStoreStatusResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse {
+    return new GetGitStoreStatusResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGitStoreStatusResponse | PlainMessage<GetGitStoreStatusResponse> | undefined, b: GetGitStoreStatusResponse | PlainMessage<GetGitStoreStatusResponse> | undefined): boolean {
+    return proto3.util.equals(GetGitStoreStatusResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.GetGitStoreStatusResponse.RepoGitStatus
+ */
+export class GetGitStoreStatusResponse_RepoGitStatus extends Message<GetGitStoreStatusResponse_RepoGitStatus> {
+  /**
+   * @generated from field: model.RepoBranch repo = 1;
+   */
+  repo?: RepoBranch;
+
+  /**
+   * @generated from field: model.GitStatus status = 2;
+   */
+  status?: GitStatus;
+
+  constructor(data?: PartialMessage<GetGitStoreStatusResponse_RepoGitStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.GetGitStoreStatusResponse.RepoGitStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "repo", kind: "message", T: RepoBranch },
+    { no: 2, name: "status", kind: "message", T: GitStatus },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGitStoreStatusResponse_RepoGitStatus {
+    return new GetGitStoreStatusResponse_RepoGitStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_RepoGitStatus {
+    return new GetGitStoreStatusResponse_RepoGitStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_RepoGitStatus {
+    return new GetGitStoreStatusResponse_RepoGitStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGitStoreStatusResponse_RepoGitStatus | PlainMessage<GetGitStoreStatusResponse_RepoGitStatus> | undefined, b: GetGitStoreStatusResponse_RepoGitStatus | PlainMessage<GetGitStoreStatusResponse_RepoGitStatus> | undefined): boolean {
+    return proto3.util.equals(GetGitStoreStatusResponse_RepoGitStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.GetGitStoreStatusResponse.CapsuleStatus
+ */
+export class GetGitStoreStatusResponse_CapsuleStatus extends Message<GetGitStoreStatusResponse_CapsuleStatus> {
+  /**
+   * @generated from field: model.CapsuleID capsule = 1;
+   */
+  capsule?: CapsuleID;
+
+  /**
+   * @generated from field: model.GitStatus status = 3;
+   */
+  status?: GitStatus;
+
+  constructor(data?: PartialMessage<GetGitStoreStatusResponse_CapsuleStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.GetGitStoreStatusResponse.CapsuleStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule", kind: "message", T: CapsuleID },
+    { no: 3, name: "status", kind: "message", T: GitStatus },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGitStoreStatusResponse_CapsuleStatus {
+    return new GetGitStoreStatusResponse_CapsuleStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_CapsuleStatus {
+    return new GetGitStoreStatusResponse_CapsuleStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_CapsuleStatus {
+    return new GetGitStoreStatusResponse_CapsuleStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGitStoreStatusResponse_CapsuleStatus | PlainMessage<GetGitStoreStatusResponse_CapsuleStatus> | undefined, b: GetGitStoreStatusResponse_CapsuleStatus | PlainMessage<GetGitStoreStatusResponse_CapsuleStatus> | undefined): boolean {
+    return proto3.util.equals(GetGitStoreStatusResponse_CapsuleStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.GetGitStoreStatusResponse.CallbackErr
+ */
+export class GetGitStoreStatusResponse_CallbackErr extends Message<GetGitStoreStatusResponse_CallbackErr> {
+  /**
+   * @generated from field: string err = 1;
+   */
+  err = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   */
+  timestamp?: Timestamp;
+
+  constructor(data?: PartialMessage<GetGitStoreStatusResponse_CallbackErr>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.GetGitStoreStatusResponse.CallbackErr";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "err", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGitStoreStatusResponse_CallbackErr {
+    return new GetGitStoreStatusResponse_CallbackErr().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_CallbackErr {
+    return new GetGitStoreStatusResponse_CallbackErr().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGitStoreStatusResponse_CallbackErr {
+    return new GetGitStoreStatusResponse_CallbackErr().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGitStoreStatusResponse_CallbackErr | PlainMessage<GetGitStoreStatusResponse_CallbackErr> | undefined, b: GetGitStoreStatusResponse_CallbackErr | PlainMessage<GetGitStoreStatusResponse_CallbackErr> | undefined): boolean {
+    return proto3.util.equals(GetGitStoreStatusResponse_CallbackErr, a, b);
   }
 }
 
