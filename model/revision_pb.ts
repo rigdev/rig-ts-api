@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "./author_pb.js";
-import { GitChange } from "./git_pb.js";
+import { GitChange, RepoBranch } from "./git_pb.js";
 
 /**
  * @generated from message model.RevisionMetadata
@@ -158,6 +158,73 @@ export class Fingerprints extends Message<Fingerprints> {
 
   static equals(a: Fingerprints | PlainMessage<Fingerprints> | undefined, b: Fingerprints | PlainMessage<Fingerprints> | undefined): boolean {
     return proto3.util.equals(Fingerprints, a, b);
+  }
+}
+
+/**
+ * @generated from message model.ProposalMetadata
+ */
+export class ProposalMetadata extends Message<ProposalMetadata> {
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 1;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: model.Author created_by = 2;
+   */
+  createdBy?: Author;
+
+  /**
+   * @generated from field: model.Fingerprint fingerprint = 3;
+   */
+  fingerprint?: Fingerprint;
+
+  /**
+   * @generated from field: model.RepoBranch spawn_point = 4;
+   */
+  spawnPoint?: RepoBranch;
+
+  /**
+   * @generated from field: string branch = 5;
+   */
+  branch = "";
+
+  /**
+   * @generated from field: string review_url = 6;
+   */
+  reviewUrl = "";
+
+  constructor(data?: PartialMessage<ProposalMetadata>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.ProposalMetadata";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "created_at", kind: "message", T: Timestamp },
+    { no: 2, name: "created_by", kind: "message", T: Author },
+    { no: 3, name: "fingerprint", kind: "message", T: Fingerprint },
+    { no: 4, name: "spawn_point", kind: "message", T: RepoBranch },
+    { no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "review_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposalMetadata {
+    return new ProposalMetadata().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProposalMetadata {
+    return new ProposalMetadata().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProposalMetadata {
+    return new ProposalMetadata().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProposalMetadata | PlainMessage<ProposalMetadata> | undefined, b: ProposalMetadata | PlainMessage<ProposalMetadata> | undefined): boolean {
+    return proto3.util.equals(ProposalMetadata, a, b);
   }
 }
 
