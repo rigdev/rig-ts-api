@@ -284,22 +284,22 @@ export class ConfigFile extends Message<ConfigFile> {
  */
 export class Revisions extends Message<Revisions> {
   /**
-   * @generated from field: repeated model.RevisionMetadata projects = 1;
+   * @generated from field: repeated model.RevisionMetadata projects = 5;
    */
   projects: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: repeated model.RevisionMetadata environments = 2;
+   * @generated from field: repeated model.RevisionMetadata environments = 6;
    */
   environments: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: repeated model.RevisionMetadata capsule_sets = 3;
+   * @generated from field: repeated model.RevisionMetadata capsule_sets = 7;
    */
   capsuleSets: RevisionMetadata[] = [];
 
   /**
-   * @generated from field: repeated model.RevisionMetadata capsules = 4;
+   * @generated from field: repeated model.RevisionMetadata capsules = 8;
    */
   capsules: RevisionMetadata[] = [];
 
@@ -311,10 +311,10 @@ export class Revisions extends Message<Revisions> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.Revisions";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "projects", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 2, name: "environments", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 3, name: "capsule_sets", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 4, name: "capsules", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 5, name: "projects", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 6, name: "environments", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 7, name: "capsule_sets", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 8, name: "capsules", kind: "message", T: RevisionMetadata, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Revisions {
