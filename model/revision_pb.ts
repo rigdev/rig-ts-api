@@ -228,3 +228,58 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
   }
 }
 
+/**
+ * @generated from message model.Revisions
+ */
+export class Revisions extends Message<Revisions> {
+  /**
+   * @generated from field: repeated model.RevisionMetadata projects = 5;
+   */
+  projects: RevisionMetadata[] = [];
+
+  /**
+   * @generated from field: repeated model.RevisionMetadata environments = 6;
+   */
+  environments: RevisionMetadata[] = [];
+
+  /**
+   * @generated from field: repeated model.RevisionMetadata capsule_sets = 7;
+   */
+  capsuleSets: RevisionMetadata[] = [];
+
+  /**
+   * @generated from field: repeated model.RevisionMetadata capsules = 8;
+   */
+  capsules: RevisionMetadata[] = [];
+
+  constructor(data?: PartialMessage<Revisions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Revisions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 5, name: "projects", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 6, name: "environments", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 7, name: "capsule_sets", kind: "message", T: RevisionMetadata, repeated: true },
+    { no: 8, name: "capsules", kind: "message", T: RevisionMetadata, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Revisions {
+    return new Revisions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Revisions {
+    return new Revisions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Revisions {
+    return new Revisions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Revisions | PlainMessage<Revisions> | undefined, b: Revisions | PlainMessage<Revisions> | undefined): boolean {
+    return proto3.util.equals(Revisions, a, b);
+  }
+}
+

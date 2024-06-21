@@ -73,6 +73,21 @@ export class GitStore extends Message<GitStore> {
    */
   environments?: EnvironmentFilter;
 
+  /**
+   * @generated from field: string pr_title_template = 7;
+   */
+  prTitleTemplate = "";
+
+  /**
+   * @generated from field: string pr_body_template = 8;
+   */
+  prBodyTemplate = "";
+
+  /**
+   * @generated from field: bool require_pull_request = 9;
+   */
+  requirePullRequest = false;
+
   constructor(data?: PartialMessage<GitStore>) {
     super();
     proto3.util.initPartial(data, this);
@@ -87,6 +102,9 @@ export class GitStore extends Message<GitStore> {
     { no: 4, name: "capsule_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "commit_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "environments", kind: "message", T: EnvironmentFilter },
+    { no: 7, name: "pr_title_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "pr_body_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "require_pull_request", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitStore {
@@ -121,6 +139,11 @@ export class Commit extends Message<Commit> {
   repository = "";
 
   /**
+   * @generated from field: string owner = 5;
+   */
+  owner = "";
+
+  /**
    * @generated from field: string commit_id = 3;
    */
   commitId = "";
@@ -140,6 +163,7 @@ export class Commit extends Message<Commit> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "provider", kind: "enum", T: proto3.getEnumType(GitProvider) },
     { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);

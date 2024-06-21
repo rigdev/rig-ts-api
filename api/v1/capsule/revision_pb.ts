@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Capsule, CapsuleSet } from "../../../platform/v1/generated_pb.js";
-import { RevisionMetadata } from "../../../model/revision_pb.js";
+import { ProposalMetadata, RevisionMetadata } from "../../../model/revision_pb.js";
 import { Change } from "./change_pb.js";
 
 /**
@@ -104,6 +104,55 @@ export class Revision extends Message<Revision> {
 
   static equals(a: Revision | PlainMessage<Revision> | undefined, b: Revision | PlainMessage<Revision> | undefined): boolean {
     return proto3.util.equals(Revision, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Proposal
+ */
+export class Proposal extends Message<Proposal> {
+  /**
+   * @generated from field: platform.v1.Capsule spec = 1;
+   */
+  spec?: Capsule;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.Change changes = 2;
+   */
+  changes: Change[] = [];
+
+  /**
+   * @generated from field: model.ProposalMetadata metadata = 3;
+   */
+  metadata?: ProposalMetadata;
+
+  constructor(data?: PartialMessage<Proposal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Proposal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spec", kind: "message", T: Capsule },
+    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 3, name: "metadata", kind: "message", T: ProposalMetadata },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proposal {
+    return new Proposal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proposal {
+    return new Proposal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proposal {
+    return new Proposal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proposal | PlainMessage<Proposal> | undefined, b: Proposal | PlainMessage<Proposal> | undefined): boolean {
+    return proto3.util.equals(Proposal, a, b);
   }
 }
 

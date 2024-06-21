@@ -6,11 +6,11 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Status } from "./rollout/status_pb.js";
-import { Capsule, CapsuleSpec } from "../../../platform/v1/generated_pb.js";
+import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
+import { Revisions } from "../../../model/revision_pb.js";
 import { Author } from "../../../model/author_pb.js";
 import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
 import { CronJob } from "./job_pb.js";
-import { ProposalMetadata, RevisionMetadata } from "../../../model/revision_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.EventType
@@ -65,7 +65,7 @@ export class Rollout extends Message<Rollout> {
   spec?: CapsuleSpec;
 
   /**
-   * @generated from field: api.v1.capsule.Revisions revisions = 6;
+   * @generated from field: model.Revisions revisions = 6;
    */
   revisions?: Revisions;
 
@@ -276,110 +276,6 @@ export class ConfigFile extends Message<ConfigFile> {
 
   static equals(a: ConfigFile | PlainMessage<ConfigFile> | undefined, b: ConfigFile | PlainMessage<ConfigFile> | undefined): boolean {
     return proto3.util.equals(ConfigFile, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.Revisions
- */
-export class Revisions extends Message<Revisions> {
-  /**
-   * @generated from field: repeated model.RevisionMetadata projects = 5;
-   */
-  projects: RevisionMetadata[] = [];
-
-  /**
-   * @generated from field: repeated model.RevisionMetadata environments = 6;
-   */
-  environments: RevisionMetadata[] = [];
-
-  /**
-   * @generated from field: repeated model.RevisionMetadata capsule_sets = 7;
-   */
-  capsuleSets: RevisionMetadata[] = [];
-
-  /**
-   * @generated from field: repeated model.RevisionMetadata capsules = 8;
-   */
-  capsules: RevisionMetadata[] = [];
-
-  constructor(data?: PartialMessage<Revisions>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.Revisions";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 5, name: "projects", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 6, name: "environments", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 7, name: "capsule_sets", kind: "message", T: RevisionMetadata, repeated: true },
-    { no: 8, name: "capsules", kind: "message", T: RevisionMetadata, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Revisions {
-    return new Revisions().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Revisions {
-    return new Revisions().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Revisions {
-    return new Revisions().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Revisions | PlainMessage<Revisions> | undefined, b: Revisions | PlainMessage<Revisions> | undefined): boolean {
-    return proto3.util.equals(Revisions, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.CapsuleProposal
- */
-export class CapsuleProposal extends Message<CapsuleProposal> {
-  /**
-   * @generated from field: platform.v1.Capsule spec = 1;
-   */
-  spec?: Capsule;
-
-  /**
-   * @generated from field: repeated api.v1.capsule.Change changes = 2;
-   */
-  changes: Change[] = [];
-
-  /**
-   * @generated from field: model.ProposalMetadata metadata = 3;
-   */
-  metadata?: ProposalMetadata;
-
-  constructor(data?: PartialMessage<CapsuleProposal>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.CapsuleProposal";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spec", kind: "message", T: Capsule },
-    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
-    { no: 3, name: "metadata", kind: "message", T: ProposalMetadata },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleProposal {
-    return new CapsuleProposal().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleProposal {
-    return new CapsuleProposal().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleProposal {
-    return new CapsuleProposal().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: CapsuleProposal | PlainMessage<CapsuleProposal> | undefined, b: CapsuleProposal | PlainMessage<CapsuleProposal> | undefined): boolean {
-    return proto3.util.equals(CapsuleProposal, a, b);
   }
 }
 

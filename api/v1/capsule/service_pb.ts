@@ -6,11 +6,11 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
-import { CapsuleProposal, Rollout, RolloutConfig } from "./rollout_pb.js";
+import { Rollout, RolloutConfig } from "./rollout_pb.js";
 import { Status } from "./instance/status_pb.js";
 import { Status as Status$1 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
-import { Revision, SetRevision } from "./revision_pb.js";
+import { Proposal, Revision, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
 import { Change } from "./change_pb.js";
 import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
@@ -19,6 +19,7 @@ import { Instance } from "./instance_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
+import { GitStore } from "../../../model/git_pb.js";
 
 /**
  * @generated from message api.v1.capsule.WatchRolloutsRequest
@@ -1894,28 +1895,23 @@ export class ProposeRolloutRequest extends Message<ProposeRolloutRequest> {
  */
 export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
   /**
-   * @generated from field: string proposal_id = 1;
-   */
-  proposalId = "";
-
-  /**
    * The YAML of the resources that will be deployed.
    *
-   * @generated from field: map<string, string> resource_yaml = 2;
+   * @generated from field: map<string, string> resource_yaml = 1;
    */
   resourceYaml: { [key: string]: string } = {};
 
   /**
    * The rollout config.
    *
-   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 3;
+   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 2;
    */
   rolloutConfig?: RolloutConfig;
 
   /**
-   * @generated from field: api.v1.capsule.CapsuleProposal deploy = 4;
+   * @generated from field: api.v1.capsule.Proposal proposal = 3;
    */
-  deploy?: CapsuleProposal;
+  proposal?: Proposal;
 
   constructor(data?: PartialMessage<ProposeRolloutResponse>) {
     super();
@@ -1925,10 +1921,9 @@ export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ProposeRolloutResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "proposal_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
-    { no: 3, name: "rollout_config", kind: "message", T: RolloutConfig },
-    { no: 4, name: "deploy", kind: "message", T: CapsuleProposal },
+    { no: 1, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 2, name: "rollout_config", kind: "message", T: RolloutConfig },
+    { no: 3, name: "proposal", kind: "message", T: Proposal },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeRolloutResponse {
@@ -1949,9 +1944,9 @@ export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
 }
 
 /**
- * @generated from message api.v1.capsule.ListCapsuleProposalsRequest
+ * @generated from message api.v1.capsule.ListProposalsRequest
  */
-export class ListCapsuleProposalsRequest extends Message<ListCapsuleProposalsRequest> {
+export class ListProposalsRequest extends Message<ListProposalsRequest> {
   /**
    * @generated from field: string project_id = 1;
    */
@@ -1967,70 +1962,70 @@ export class ListCapsuleProposalsRequest extends Message<ListCapsuleProposalsReq
    */
   capsuleId = "";
 
-  constructor(data?: PartialMessage<ListCapsuleProposalsRequest>) {
+  constructor(data?: PartialMessage<ListProposalsRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ListCapsuleProposalsRequest";
+  static readonly typeName = "api.v1.capsule.ListProposalsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListCapsuleProposalsRequest {
-    return new ListCapsuleProposalsRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProposalsRequest {
+    return new ListProposalsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListCapsuleProposalsRequest {
-    return new ListCapsuleProposalsRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListProposalsRequest {
+    return new ListProposalsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListCapsuleProposalsRequest {
-    return new ListCapsuleProposalsRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListProposalsRequest {
+    return new ListProposalsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListCapsuleProposalsRequest | PlainMessage<ListCapsuleProposalsRequest> | undefined, b: ListCapsuleProposalsRequest | PlainMessage<ListCapsuleProposalsRequest> | undefined): boolean {
-    return proto3.util.equals(ListCapsuleProposalsRequest, a, b);
+  static equals(a: ListProposalsRequest | PlainMessage<ListProposalsRequest> | undefined, b: ListProposalsRequest | PlainMessage<ListProposalsRequest> | undefined): boolean {
+    return proto3.util.equals(ListProposalsRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.capsule.ListCapsuleProposalsResponse
+ * @generated from message api.v1.capsule.ListProposalsResponse
  */
-export class ListCapsuleProposalsResponse extends Message<ListCapsuleProposalsResponse> {
+export class ListProposalsResponse extends Message<ListProposalsResponse> {
   /**
-   * @generated from field: repeated api.v1.capsule.CapsuleProposal proposals = 1;
+   * @generated from field: repeated api.v1.capsule.Proposal proposals = 1;
    */
-  proposals: CapsuleProposal[] = [];
+  proposals: Proposal[] = [];
 
-  constructor(data?: PartialMessage<ListCapsuleProposalsResponse>) {
+  constructor(data?: PartialMessage<ListProposalsResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ListCapsuleProposalsResponse";
+  static readonly typeName = "api.v1.capsule.ListProposalsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "proposals", kind: "message", T: CapsuleProposal, repeated: true },
+    { no: 1, name: "proposals", kind: "message", T: Proposal, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListCapsuleProposalsResponse {
-    return new ListCapsuleProposalsResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProposalsResponse {
+    return new ListProposalsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListCapsuleProposalsResponse {
-    return new ListCapsuleProposalsResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListProposalsResponse {
+    return new ListProposalsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListCapsuleProposalsResponse {
-    return new ListCapsuleProposalsResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListProposalsResponse {
+    return new ListProposalsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListCapsuleProposalsResponse | PlainMessage<ListCapsuleProposalsResponse> | undefined, b: ListCapsuleProposalsResponse | PlainMessage<ListCapsuleProposalsResponse> | undefined): boolean {
-    return proto3.util.equals(ListCapsuleProposalsResponse, a, b);
+  static equals(a: ListProposalsResponse | PlainMessage<ListProposalsResponse> | undefined, b: ListProposalsResponse | PlainMessage<ListProposalsResponse> | undefined): boolean {
+    return proto3.util.equals(ListProposalsResponse, a, b);
   }
 }
 
@@ -3737,6 +3732,98 @@ export class GetRolloutOfRevisionsResponse_NoRollout extends Message<GetRolloutO
 
   static equals(a: GetRolloutOfRevisionsResponse_NoRollout | PlainMessage<GetRolloutOfRevisionsResponse_NoRollout> | undefined, b: GetRolloutOfRevisionsResponse_NoRollout | PlainMessage<GetRolloutOfRevisionsResponse_NoRollout> | undefined): boolean {
     return proto3.util.equals(GetRolloutOfRevisionsResponse_NoRollout, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetEffectiveGitSettingsRequest
+ */
+export class GetEffectiveGitSettingsRequest extends Message<GetEffectiveGitSettingsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  constructor(data?: PartialMessage<GetEffectiveGitSettingsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetEffectiveGitSettingsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveGitSettingsRequest | PlainMessage<GetEffectiveGitSettingsRequest> | undefined, b: GetEffectiveGitSettingsRequest | PlainMessage<GetEffectiveGitSettingsRequest> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveGitSettingsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetEffectiveGitSettingsResponse
+ */
+export class GetEffectiveGitSettingsResponse extends Message<GetEffectiveGitSettingsResponse> {
+  /**
+   * @generated from field: model.GitStore git = 1;
+   */
+  git?: GitStore;
+
+  /**
+   * @generated from field: bool environment_enabled = 2;
+   */
+  environmentEnabled = false;
+
+  constructor(data?: PartialMessage<GetEffectiveGitSettingsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetEffectiveGitSettingsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "git", kind: "message", T: GitStore },
+    { no: 2, name: "environment_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined, b: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveGitSettingsResponse, a, b);
   }
 }
 
