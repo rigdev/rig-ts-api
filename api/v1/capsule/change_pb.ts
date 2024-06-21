@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { CronJob } from "./job_pb.js";
+import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { ObjectReference } from "../../../model/metrics_pb.js";
 
 /**
@@ -227,6 +228,14 @@ export class Change extends Message<Change> {
      */
     value: Change_AddImage;
     case: "addImage";
+  } | {
+    /**
+     * Complete capsule-spec to replace the current.
+     *
+     * @generated from field: platform.v1.CapsuleSpec spec = 24;
+     */
+    value: CapsuleSpec;
+    case: "spec";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Change>) {
@@ -259,6 +268,7 @@ export class Change extends Message<Change> {
     { no: 21, name: "set_annotation", kind: "message", T: Change_KeyValue, oneof: "field" },
     { no: 22, name: "remove_annotation", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 23, name: "add_image", kind: "message", T: Change_AddImage, oneof: "field" },
+    { no: 24, name: "spec", kind: "message", T: CapsuleSpec, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change {
