@@ -2064,6 +2064,11 @@ export class ListProposalsRequest extends Message<ListProposalsRequest> {
    */
   capsuleId = "";
 
+  /**
+   * @generated from field: model.Pagination pagination = 4;
+   */
+  pagination?: Pagination;
+
   constructor(data?: PartialMessage<ListProposalsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2075,6 +2080,7 @@ export class ListProposalsRequest extends Message<ListProposalsRequest> {
     { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "pagination", kind: "message", T: Pagination },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProposalsRequest {
@@ -2103,6 +2109,11 @@ export class ListProposalsResponse extends Message<ListProposalsResponse> {
    */
   proposals: Proposal[] = [];
 
+  /**
+   * @generated from field: uint64 total = 2;
+   */
+  total = protoInt64.zero;
+
   constructor(data?: PartialMessage<ListProposalsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2112,6 +2123,7 @@ export class ListProposalsResponse extends Message<ListProposalsResponse> {
   static readonly typeName = "api.v1.capsule.ListProposalsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "proposals", kind: "message", T: Proposal, repeated: true },
+    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProposalsResponse {

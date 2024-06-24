@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Author } from "./author_pb.js";
 import { GitChange, RepoBranch } from "./git_pb.js";
 
@@ -195,6 +195,17 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
    */
   reviewUrl = "";
 
+  /**
+   * @generated from oneof model.ProposalMetadata.provider
+   */
+  provider: {
+    /**
+     * @generated from field: model.GithubProposal github = 7;
+     */
+    value: GithubProposal;
+    case: "github";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
   constructor(data?: PartialMessage<ProposalMetadata>) {
     super();
     proto3.util.initPartial(data, this);
@@ -209,6 +220,7 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
     { no: 4, name: "spawn_point", kind: "message", T: RepoBranch },
     { no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "review_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "github", kind: "message", T: GithubProposal, oneof: "provider" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposalMetadata {
@@ -225,6 +237,43 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
 
   static equals(a: ProposalMetadata | PlainMessage<ProposalMetadata> | undefined, b: ProposalMetadata | PlainMessage<ProposalMetadata> | undefined): boolean {
     return proto3.util.equals(ProposalMetadata, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GithubProposal
+ */
+export class GithubProposal extends Message<GithubProposal> {
+  /**
+   * @generated from field: int64 pr_id = 1;
+   */
+  prId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GithubProposal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GithubProposal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pr_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GithubProposal {
+    return new GithubProposal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GithubProposal {
+    return new GithubProposal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GithubProposal {
+    return new GithubProposal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GithubProposal | PlainMessage<GithubProposal> | undefined, b: GithubProposal | PlainMessage<GithubProposal> | undefined): boolean {
+    return proto3.util.equals(GithubProposal, a, b);
   }
 }
 
