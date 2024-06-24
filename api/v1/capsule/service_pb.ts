@@ -5,7 +5,6 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Change } from "./change_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Rollout, RolloutConfig } from "./rollout_pb.js";
 import { Status } from "./instance/status_pb.js";
@@ -13,6 +12,7 @@ import { Status as Status$1 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
 import { Proposal, Revision, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
+import { Change } from "./change_pb.js";
 import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
 import { Instance } from "./instance_pb.js";
@@ -20,108 +20,6 @@ import { Event } from "./event_pb.js";
 import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
-
-/**
- * @generated from message api.v1.capsule.GetEnvironmentDifferencesRequest
- */
-export class GetEnvironmentDifferencesRequest extends Message<GetEnvironmentDifferencesRequest> {
-  /**
-   * The capsule to promote.
-   *
-   * @generated from field: string capsule_id = 1;
-   */
-  capsuleId = "";
-
-  /**
-   * The project in which the capsule lives.
-   *
-   * @generated from field: string project_id = 2;
-   */
-  projectId = "";
-
-  /**
-   * The environment to promote from
-   *
-   * @generated from field: string from_environment = 3;
-   */
-  fromEnvironment = "";
-
-  /**
-   * The environment to promote to
-   *
-   * @generated from field: string to_environment = 4;
-   */
-  toEnvironment = "";
-
-  constructor(data?: PartialMessage<GetEnvironmentDifferencesRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.GetEnvironmentDifferencesRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "from_environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "to_environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentDifferencesRequest {
-    return new GetEnvironmentDifferencesRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentDifferencesRequest {
-    return new GetEnvironmentDifferencesRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentDifferencesRequest {
-    return new GetEnvironmentDifferencesRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetEnvironmentDifferencesRequest | PlainMessage<GetEnvironmentDifferencesRequest> | undefined, b: GetEnvironmentDifferencesRequest | PlainMessage<GetEnvironmentDifferencesRequest> | undefined): boolean {
-    return proto3.util.equals(GetEnvironmentDifferencesRequest, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.GetEnvironmentDifferencesResponse
- */
-export class GetEnvironmentDifferencesResponse extends Message<GetEnvironmentDifferencesResponse> {
-  /**
-   * The changes between the environments
-   *
-   * @generated from field: repeated api.v1.capsule.Change changes = 1;
-   */
-  changes: Change[] = [];
-
-  constructor(data?: PartialMessage<GetEnvironmentDifferencesResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.GetEnvironmentDifferencesResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "changes", kind: "message", T: Change, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentDifferencesResponse {
-    return new GetEnvironmentDifferencesResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentDifferencesResponse {
-    return new GetEnvironmentDifferencesResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentDifferencesResponse {
-    return new GetEnvironmentDifferencesResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetEnvironmentDifferencesResponse | PlainMessage<GetEnvironmentDifferencesResponse> | undefined, b: GetEnvironmentDifferencesResponse | PlainMessage<GetEnvironmentDifferencesResponse> | undefined): boolean {
-    return proto3.util.equals(GetEnvironmentDifferencesResponse, a, b);
-  }
-}
 
 /**
  * @generated from message api.v1.capsule.WatchRolloutsRequest
