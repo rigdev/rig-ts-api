@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { GitStore } from "../../../model/git_pb.js";
 import { EnvironmentFilter } from "../../../model/environment_pb.js";
+import { ProjectFilter } from "../../../model/project_pb.js";
 
 /**
  * @generated from enum api.v1.settings.NotificationTopic
@@ -233,6 +234,11 @@ export class NotificationNotifier extends Message<NotificationNotifier> {
    */
   environments?: EnvironmentFilter;
 
+  /**
+   * @generated from field: model.ProjectFilter projects = 4;
+   */
+  projects?: ProjectFilter;
+
   constructor(data?: PartialMessage<NotificationNotifier>) {
     super();
     proto3.util.initPartial(data, this);
@@ -244,6 +250,7 @@ export class NotificationNotifier extends Message<NotificationNotifier> {
     { no: 1, name: "target", kind: "message", T: NotificationTarget },
     { no: 2, name: "topics", kind: "enum", T: proto3.getEnumType(NotificationTopic), repeated: true },
     { no: 3, name: "environments", kind: "message", T: EnvironmentFilter },
+    { no: 4, name: "projects", kind: "message", T: ProjectFilter },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationNotifier {
