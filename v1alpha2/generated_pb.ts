@@ -388,98 +388,6 @@ export class HTTPPathRoute extends Message<HTTPPathRoute> {
 }
 
 /**
- * @generated from message v1alpha2.CapsuleScale
- */
-export class CapsuleScale extends Message<CapsuleScale> {
-  /**
-   * @generated from field: v1alpha2.HorizontalScale horizontal = 1;
-   */
-  horizontal?: HorizontalScale;
-
-  /**
-   * @generated from field: v1alpha2.VerticalScale vertical = 2;
-   */
-  vertical?: VerticalScale;
-
-  constructor(data?: PartialMessage<CapsuleScale>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "v1alpha2.CapsuleScale";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "horizontal", kind: "message", T: HorizontalScale },
-    { no: 2, name: "vertical", kind: "message", T: VerticalScale },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleScale {
-    return new CapsuleScale().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleScale {
-    return new CapsuleScale().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleScale {
-    return new CapsuleScale().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: CapsuleScale | PlainMessage<CapsuleScale> | undefined, b: CapsuleScale | PlainMessage<CapsuleScale> | undefined): boolean {
-    return proto3.util.equals(CapsuleScale, a, b);
-  }
-}
-
-/**
- * @generated from message v1alpha2.HorizontalScale
- */
-export class HorizontalScale extends Message<HorizontalScale> {
-  /**
-   * @generated from field: v1alpha2.Instances instances = 1;
-   */
-  instances?: Instances;
-
-  /**
-   * @generated from field: v1alpha2.CPUTarget cpuTarget = 2;
-   */
-  cpuTarget?: CPUTarget;
-
-  /**
-   * @generated from field: repeated v1alpha2.CustomMetric customMetrics = 3;
-   */
-  customMetrics: CustomMetric[] = [];
-
-  constructor(data?: PartialMessage<HorizontalScale>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "v1alpha2.HorizontalScale";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instances", kind: "message", T: Instances },
-    { no: 2, name: "cpuTarget", kind: "message", T: CPUTarget },
-    { no: 3, name: "customMetrics", kind: "message", T: CustomMetric, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HorizontalScale {
-    return new HorizontalScale().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HorizontalScale {
-    return new HorizontalScale().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HorizontalScale {
-    return new HorizontalScale().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: HorizontalScale | PlainMessage<HorizontalScale> | undefined, b: HorizontalScale | PlainMessage<HorizontalScale> | undefined): boolean {
-    return proto3.util.equals(HorizontalScale, a, b);
-  }
-}
-
-/**
  * @generated from message v1alpha2.Instances
  */
 export class Instances extends Message<Instances> {
@@ -997,6 +905,98 @@ export class JobCommand extends Message<JobCommand> {
 
   static equals(a: JobCommand | PlainMessage<JobCommand> | undefined, b: JobCommand | PlainMessage<JobCommand> | undefined): boolean {
     return proto3.util.equals(JobCommand, a, b);
+  }
+}
+
+/**
+ * @generated from message v1alpha2.CapsuleScale
+ */
+export class CapsuleScale extends Message<CapsuleScale> {
+  /**
+   * @generated from field: v1alpha2.HorizontalScale horizontal = 1;
+   */
+  horizontal?: HorizontalScale;
+
+  /**
+   * @generated from field: v1alpha2.VerticalScale vertical = 2;
+   */
+  vertical?: VerticalScale;
+
+  constructor(data?: PartialMessage<CapsuleScale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "v1alpha2.CapsuleScale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "horizontal", kind: "message", T: HorizontalScale },
+    { no: 2, name: "vertical", kind: "message", T: VerticalScale },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleScale {
+    return new CapsuleScale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleScale {
+    return new CapsuleScale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleScale {
+    return new CapsuleScale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CapsuleScale | PlainMessage<CapsuleScale> | undefined, b: CapsuleScale | PlainMessage<CapsuleScale> | undefined): boolean {
+    return proto3.util.equals(CapsuleScale, a, b);
+  }
+}
+
+/**
+ * @generated from message v1alpha2.HorizontalScale
+ */
+export class HorizontalScale extends Message<HorizontalScale> {
+  /**
+   * @generated from field: v1alpha2.Instances instances = 1;
+   */
+  instances?: Instances;
+
+  /**
+   * @generated from field: v1alpha2.CPUTarget cpuTarget = 2;
+   */
+  cpuTarget?: CPUTarget;
+
+  /**
+   * @generated from field: repeated v1alpha2.CustomMetric customMetrics = 3;
+   */
+  customMetrics: CustomMetric[] = [];
+
+  constructor(data?: PartialMessage<HorizontalScale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "v1alpha2.HorizontalScale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instances", kind: "message", T: Instances },
+    { no: 2, name: "cpuTarget", kind: "message", T: CPUTarget },
+    { no: 3, name: "customMetrics", kind: "message", T: CustomMetric, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HorizontalScale | PlainMessage<HorizontalScale> | undefined, b: HorizontalScale | PlainMessage<HorizontalScale> | undefined): boolean {
+    return proto3.util.equals(HorizontalScale, a, b);
   }
 }
 

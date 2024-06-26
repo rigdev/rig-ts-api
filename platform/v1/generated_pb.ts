@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { CapsuleInterface, CapsuleScale, CronJob } from "../../v1alpha2/generated_pb.js";
+import { CapsuleInterface, CPUTarget, CronJob, CustomMetric, Instances, VerticalScale } from "../../v1alpha2/generated_pb.js";
 
 /**
  * @generated from message platform.v1.CapsuleSet
@@ -130,9 +130,9 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
   env?: EnvironmentVariables;
 
   /**
-   * @generated from field: v1alpha2.CapsuleScale scale = 8;
+   * @generated from field: platform.v1.Scale scale = 8;
    */
-  scale?: CapsuleScale;
+  scale?: Scale;
 
   /**
    * @generated from field: repeated v1alpha2.CronJob cronJobs = 10;
@@ -161,7 +161,7 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
     { no: 6, name: "interfaces", kind: "message", T: CapsuleInterface, repeated: true },
     { no: 7, name: "files", kind: "message", T: File, repeated: true },
     { no: 12, name: "env", kind: "message", T: EnvironmentVariables },
-    { no: 8, name: "scale", kind: "message", T: CapsuleScale },
+    { no: 8, name: "scale", kind: "message", T: Scale },
     { no: 10, name: "cronJobs", kind: "message", T: CronJob, repeated: true },
     { no: 13, name: "autoAddRigServiceAccounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
@@ -321,6 +321,110 @@ export class EnvironmentSource extends Message<EnvironmentSource> {
 
   static equals(a: EnvironmentSource | PlainMessage<EnvironmentSource> | undefined, b: EnvironmentSource | PlainMessage<EnvironmentSource> | undefined): boolean {
     return proto3.util.equals(EnvironmentSource, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.Scale
+ */
+export class Scale extends Message<Scale> {
+  /**
+   * @generated from field: platform.v1.HorizontalScale horizontal = 1;
+   */
+  horizontal?: HorizontalScale;
+
+  /**
+   * @generated from field: v1alpha2.VerticalScale vertical = 2;
+   */
+  vertical?: VerticalScale;
+
+  constructor(data?: PartialMessage<Scale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.Scale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "horizontal", kind: "message", T: HorizontalScale },
+    { no: 2, name: "vertical", kind: "message", T: VerticalScale },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Scale {
+    return new Scale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Scale {
+    return new Scale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Scale {
+    return new Scale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Scale | PlainMessage<Scale> | undefined, b: Scale | PlainMessage<Scale> | undefined): boolean {
+    return proto3.util.equals(Scale, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.HorizontalScale
+ */
+export class HorizontalScale extends Message<HorizontalScale> {
+  /**
+   * @generated from field: uint32 min = 4;
+   */
+  min = 0;
+
+  /**
+   * @generated from field: uint32 max = 5;
+   */
+  max = 0;
+
+  /**
+   * @generated from field: v1alpha2.Instances instances = 1;
+   */
+  instances?: Instances;
+
+  /**
+   * @generated from field: v1alpha2.CPUTarget cpuTarget = 2;
+   */
+  cpuTarget?: CPUTarget;
+
+  /**
+   * @generated from field: repeated v1alpha2.CustomMetric customMetrics = 3;
+   */
+  customMetrics: CustomMetric[] = [];
+
+  constructor(data?: PartialMessage<HorizontalScale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.HorizontalScale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 4, name: "min", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "max", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: "instances", kind: "message", T: Instances },
+    { no: 2, name: "cpuTarget", kind: "message", T: CPUTarget },
+    { no: 3, name: "customMetrics", kind: "message", T: CustomMetric, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HorizontalScale {
+    return new HorizontalScale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HorizontalScale | PlainMessage<HorizontalScale> | undefined, b: HorizontalScale | PlainMessage<HorizontalScale> | undefined): boolean {
+    return proto3.util.equals(HorizontalScale, a, b);
   }
 }
 
