@@ -2049,23 +2049,16 @@ export class ProposeRolloutRequest extends Message<ProposeRolloutRequest> {
  */
 export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
   /**
-   * The YAML of the resources that will be deployed.
-   *
-   * @generated from field: map<string, string> resource_yaml = 1;
-   */
-  resourceYaml: { [key: string]: string } = {};
-
-  /**
-   * The rollout config.
-   *
-   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 2;
-   */
-  rolloutConfig?: RolloutConfig;
-
-  /**
-   * @generated from field: api.v1.capsule.Proposal proposal = 3;
+   * @generated from field: api.v1.capsule.Proposal proposal = 1;
    */
   proposal?: Proposal;
+
+  /**
+   * Breakdown of the changes that this deploy would make to the system.
+   *
+   * @generated from field: api.v1.capsule.DeployOutcome outcome = 2;
+   */
+  outcome?: DeployOutcome;
 
   constructor(data?: PartialMessage<ProposeRolloutResponse>) {
     super();
@@ -2075,9 +2068,8 @@ export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ProposeRolloutResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
-    { no: 2, name: "rollout_config", kind: "message", T: RolloutConfig },
-    { no: 3, name: "proposal", kind: "message", T: Proposal },
+    { no: 1, name: "proposal", kind: "message", T: Proposal },
+    { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeRolloutResponse {
