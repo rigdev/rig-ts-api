@@ -5,35 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { NotificationNotifier } from "../../../model/notification_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
-import { EnvironmentFilter } from "../../../model/environment_pb.js";
-import { ProjectFilter } from "../../../model/project_pb.js";
-
-/**
- * @generated from enum api.v1.settings.NotificationTopic
- */
-export enum NotificationTopic {
-  /**
-   * @generated from enum value: NOTIFICATION_TOPIC_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: NOTIFICATION_TOPIC_ROLLOUT = 1;
-   */
-  ROLLOUT = 1,
-
-  /**
-   * @generated from enum value: NOTIFICATION_TOPIC_ISSUE = 2;
-   */
-  ISSUE = 2,
-}
-// Retrieve enum metadata with: proto3.getEnumType(NotificationTopic)
-proto3.util.setEnumType(NotificationTopic, "api.v1.settings.NotificationTopic", [
-  { no: 0, name: "NOTIFICATION_TOPIC_UNSPECIFIED" },
-  { no: 1, name: "NOTIFICATION_TOPIC_ROLLOUT" },
-  { no: 2, name: "NOTIFICATION_TOPIC_ISSUE" },
-]);
 
 /**
  * The plan for a rig installation
@@ -84,7 +57,7 @@ proto3.util.setEnumType(Plan, "api.v1.settings.Plan", [
  */
 export class Settings extends Message<Settings> {
   /**
-   * @generated from field: repeated api.v1.settings.NotificationNotifier notification_notifiers = 1;
+   * @generated from field: repeated model.NotificationNotifier notification_notifiers = 1;
    */
   notificationNotifiers: NotificationNotifier[] = [];
 
@@ -183,7 +156,7 @@ export class Update extends Message<Update> {
  */
 export class Update_SetNotificationNotifiers extends Message<Update_SetNotificationNotifiers> {
   /**
-   * @generated from field: repeated api.v1.settings.NotificationNotifier notifiers = 1;
+   * @generated from field: repeated model.NotificationNotifier notifiers = 1;
    */
   notifiers: NotificationNotifier[] = [];
 
@@ -212,203 +185,6 @@ export class Update_SetNotificationNotifiers extends Message<Update_SetNotificat
 
   static equals(a: Update_SetNotificationNotifiers | PlainMessage<Update_SetNotificationNotifiers> | undefined, b: Update_SetNotificationNotifiers | PlainMessage<Update_SetNotificationNotifiers> | undefined): boolean {
     return proto3.util.equals(Update_SetNotificationNotifiers, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationNotifier
- */
-export class NotificationNotifier extends Message<NotificationNotifier> {
-  /**
-   * @generated from field: api.v1.settings.NotificationTarget target = 1;
-   */
-  target?: NotificationTarget;
-
-  /**
-   * @generated from field: repeated api.v1.settings.NotificationTopic topics = 2;
-   */
-  topics: NotificationTopic[] = [];
-
-  /**
-   * @generated from field: model.EnvironmentFilter environments = 3;
-   */
-  environments?: EnvironmentFilter;
-
-  /**
-   * @generated from field: model.ProjectFilter projects = 4;
-   */
-  projects?: ProjectFilter;
-
-  constructor(data?: PartialMessage<NotificationNotifier>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationNotifier";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "message", T: NotificationTarget },
-    { no: 2, name: "topics", kind: "enum", T: proto3.getEnumType(NotificationTopic), repeated: true },
-    { no: 3, name: "environments", kind: "message", T: EnvironmentFilter },
-    { no: 4, name: "projects", kind: "message", T: ProjectFilter },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationNotifier {
-    return new NotificationNotifier().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationNotifier {
-    return new NotificationNotifier().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationNotifier {
-    return new NotificationNotifier().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationNotifier | PlainMessage<NotificationNotifier> | undefined, b: NotificationNotifier | PlainMessage<NotificationNotifier> | undefined): boolean {
-    return proto3.util.equals(NotificationNotifier, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationTarget
- */
-export class NotificationTarget extends Message<NotificationTarget> {
-  /**
-   * @generated from oneof api.v1.settings.NotificationTarget.target
-   */
-  target: {
-    /**
-     * @generated from field: api.v1.settings.NotificationTarget.SlackTarget slack = 1;
-     */
-    value: NotificationTarget_SlackTarget;
-    case: "slack";
-  } | {
-    /**
-     * @generated from field: api.v1.settings.NotificationTarget.EmailTarget email = 2;
-     */
-    value: NotificationTarget_EmailTarget;
-    case: "email";
-  } | { case: undefined; value?: undefined } = { case: undefined };
-
-  constructor(data?: PartialMessage<NotificationTarget>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationTarget";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "slack", kind: "message", T: NotificationTarget_SlackTarget, oneof: "target" },
-    { no: 2, name: "email", kind: "message", T: NotificationTarget_EmailTarget, oneof: "target" },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationTarget {
-    return new NotificationTarget().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationTarget {
-    return new NotificationTarget().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationTarget {
-    return new NotificationTarget().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationTarget | PlainMessage<NotificationTarget> | undefined, b: NotificationTarget | PlainMessage<NotificationTarget> | undefined): boolean {
-    return proto3.util.equals(NotificationTarget, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationTarget.SlackTarget
- */
-export class NotificationTarget_SlackTarget extends Message<NotificationTarget_SlackTarget> {
-  /**
-   * @generated from field: string workspace = 1;
-   */
-  workspace = "";
-
-  /**
-   * @generated from field: string channel_id = 2;
-   */
-  channelId = "";
-
-  constructor(data?: PartialMessage<NotificationTarget_SlackTarget>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationTarget.SlackTarget";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "workspace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationTarget_SlackTarget {
-    return new NotificationTarget_SlackTarget().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationTarget_SlackTarget {
-    return new NotificationTarget_SlackTarget().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationTarget_SlackTarget {
-    return new NotificationTarget_SlackTarget().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationTarget_SlackTarget | PlainMessage<NotificationTarget_SlackTarget> | undefined, b: NotificationTarget_SlackTarget | PlainMessage<NotificationTarget_SlackTarget> | undefined): boolean {
-    return proto3.util.equals(NotificationTarget_SlackTarget, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.settings.NotificationTarget.EmailTarget
- */
-export class NotificationTarget_EmailTarget extends Message<NotificationTarget_EmailTarget> {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id = "";
-
-  /**
-   * @generated from field: string from_email = 2;
-   */
-  fromEmail = "";
-
-  /**
-   * @generated from field: repeated string to_emails = 3;
-   */
-  toEmails: string[] = [];
-
-  constructor(data?: PartialMessage<NotificationTarget_EmailTarget>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.settings.NotificationTarget.EmailTarget";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "from_email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "to_emails", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NotificationTarget_EmailTarget {
-    return new NotificationTarget_EmailTarget().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NotificationTarget_EmailTarget {
-    return new NotificationTarget_EmailTarget().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NotificationTarget_EmailTarget {
-    return new NotificationTarget_EmailTarget().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: NotificationTarget_EmailTarget | PlainMessage<NotificationTarget_EmailTarget> | undefined, b: NotificationTarget_EmailTarget | PlainMessage<NotificationTarget_EmailTarget> | undefined): boolean {
-    return proto3.util.equals(NotificationTarget_EmailTarget, a, b);
   }
 }
 
