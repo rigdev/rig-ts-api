@@ -13,9 +13,8 @@ import { Capsule, Update } from "./capsule_pb.js";
 import { Proposal, Revision, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
 import { Change } from "./change_pb.js";
-import { FieldChange } from "./field_pb.js";
-import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
+import { FieldChange } from "./field_pb.js";
 import { Instance } from "./instance_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
@@ -1684,6 +1683,15 @@ export class DeployRequest extends Message<DeployRequest> {
   currentRolloutId = protoInt64.zero;
 
   /**
+   * If set, this will constrain the rollout only to be created if the current
+   * latest capsule fingerprint matches the given.
+   * Cannot be used together with `current_rollout_id`
+   *
+   * @generated from field: model.Fingerprint current_fingerprint = 10;
+   */
+  currentFingerprint?: Fingerprint;
+
+  /**
    * By default, existing objects will be kept in favor of overriding them. To
    * force the override of resources, set this flag to true. An example of this
    * use-case is a migration step, where resource created by a previous
@@ -1712,6 +1720,7 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "current_rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 10, name: "current_fingerprint", kind: "message", T: Fingerprint },
     { no: 9, name: "force_override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
@@ -2184,110 +2193,6 @@ export class ListProposalsResponse extends Message<ListProposalsResponse> {
 
   static equals(a: ListProposalsResponse | PlainMessage<ListProposalsResponse> | undefined, b: ListProposalsResponse | PlainMessage<ListProposalsResponse> | undefined): boolean {
     return proto3.util.equals(ListProposalsResponse, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.ApplyCapsuleSpecRequest
- */
-export class ApplyCapsuleSpecRequest extends Message<ApplyCapsuleSpecRequest> {
-  /**
-   * @generated from field: platform.v1.CapsuleSpec spec = 1;
-   */
-  spec?: CapsuleSpec;
-
-  /**
-   * @generated from field: string project_id = 2;
-   */
-  projectId = "";
-
-  /**
-   * @generated from field: string environment_id = 3;
-   */
-  environmentId = "";
-
-  /**
-   * @generated from field: string capsule_id = 4;
-   */
-  capsuleId = "";
-
-  /**
-   * @generated from field: model.Fingerprint current_fingerprint = 5;
-   */
-  currentFingerprint?: Fingerprint;
-
-  /**
-   * @generated from field: bool dry_run = 6;
-   */
-  dryRun = false;
-
-  constructor(data?: PartialMessage<ApplyCapsuleSpecRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ApplyCapsuleSpecRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spec", kind: "message", T: CapsuleSpec },
-    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "current_fingerprint", kind: "message", T: Fingerprint },
-    { no: 6, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ApplyCapsuleSpecRequest {
-    return new ApplyCapsuleSpecRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecRequest {
-    return new ApplyCapsuleSpecRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecRequest {
-    return new ApplyCapsuleSpecRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ApplyCapsuleSpecRequest | PlainMessage<ApplyCapsuleSpecRequest> | undefined, b: ApplyCapsuleSpecRequest | PlainMessage<ApplyCapsuleSpecRequest> | undefined): boolean {
-    return proto3.util.equals(ApplyCapsuleSpecRequest, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.capsule.ApplyCapsuleSpecResponse
- */
-export class ApplyCapsuleSpecResponse extends Message<ApplyCapsuleSpecResponse> {
-  /**
-   * @generated from field: model.Fingerprint fingerprint = 1;
-   */
-  fingerprint?: Fingerprint;
-
-  constructor(data?: PartialMessage<ApplyCapsuleSpecResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ApplyCapsuleSpecResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "fingerprint", kind: "message", T: Fingerprint },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ApplyCapsuleSpecResponse {
-    return new ApplyCapsuleSpecResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecResponse {
-    return new ApplyCapsuleSpecResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ApplyCapsuleSpecResponse {
-    return new ApplyCapsuleSpecResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ApplyCapsuleSpecResponse | PlainMessage<ApplyCapsuleSpecResponse> | undefined, b: ApplyCapsuleSpecResponse | PlainMessage<ApplyCapsuleSpecResponse> | undefined): boolean {
-    return proto3.util.equals(ApplyCapsuleSpecResponse, a, b);
   }
 }
 
