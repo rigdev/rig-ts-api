@@ -243,9 +243,9 @@ export class File extends Message<File> {
  */
 export class EnvironmentVariables extends Message<EnvironmentVariables> {
   /**
-   * @generated from field: map<string, string> direct = 1;
+   * @generated from field: map<string, string> raw = 1;
    */
-  direct: { [key: string]: string } = {};
+  raw: { [key: string]: string } = {};
 
   /**
    * @generated from field: repeated platform.v1.EnvironmentSource sources = 2;
@@ -260,7 +260,7 @@ export class EnvironmentVariables extends Message<EnvironmentVariables> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "platform.v1.EnvironmentVariables";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "direct", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: "raw", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 2, name: "sources", kind: "message", T: EnvironmentSource, repeated: true },
   ]);
 
