@@ -321,6 +321,11 @@ export class RunCapsuleRequest extends Message<RunCapsuleRequest> {
    */
   capsuleObject = new Uint8Array(0);
 
+  /**
+   * @generated from field: repeated bytes additional_objects = 3;
+   */
+  additionalObjects: Uint8Array[] = [];
+
   constructor(data?: PartialMessage<RunCapsuleRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -331,6 +336,7 @@ export class RunCapsuleRequest extends Message<RunCapsuleRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "run_server", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 2, name: "capsule_object", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "additional_objects", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RunCapsuleRequest {
