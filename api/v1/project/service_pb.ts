@@ -8,6 +8,7 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Metric, ObjectReference } from "../../../model/metrics_pb.js";
+import { GitStore } from "../../../model/git_pb.js";
 
 /**
  * The request to create a project.
@@ -776,6 +777,80 @@ export class GetObjectsByKindResponse extends Message<GetObjectsByKindResponse> 
 
   static equals(a: GetObjectsByKindResponse | PlainMessage<GetObjectsByKindResponse> | undefined, b: GetObjectsByKindResponse | PlainMessage<GetObjectsByKindResponse> | undefined): boolean {
     return proto3.util.equals(GetObjectsByKindResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectiveGitSettingsRequest
+ */
+export class GetEffectiveGitSettingsRequest extends Message<GetEffectiveGitSettingsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  constructor(data?: PartialMessage<GetEffectiveGitSettingsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectiveGitSettingsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsRequest {
+    return new GetEffectiveGitSettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveGitSettingsRequest | PlainMessage<GetEffectiveGitSettingsRequest> | undefined, b: GetEffectiveGitSettingsRequest | PlainMessage<GetEffectiveGitSettingsRequest> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveGitSettingsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectiveGitSettingsResponse
+ */
+export class GetEffectiveGitSettingsResponse extends Message<GetEffectiveGitSettingsResponse> {
+  /**
+   * @generated from field: model.GitStore git = 1;
+   */
+  git?: GitStore;
+
+  constructor(data?: PartialMessage<GetEffectiveGitSettingsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectiveGitSettingsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "git", kind: "message", T: GitStore },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveGitSettingsResponse {
+    return new GetEffectiveGitSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined, b: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveGitSettingsResponse, a, b);
   }
 }
 
