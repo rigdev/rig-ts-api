@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { NotificationNotifier } from "../../../model/notification_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
+import { Pipeline } from "../../../model/pipeline_pb.js";
 
 /**
  * The plan for a rig installation
@@ -66,6 +67,11 @@ export class Settings extends Message<Settings> {
    */
   gitStore?: GitStore;
 
+  /**
+   * @generated from field: repeated model.Pipeline pipelines = 3;
+   */
+  pipelines: Pipeline[] = [];
+
   constructor(data?: PartialMessage<Settings>) {
     super();
     proto3.util.initPartial(data, this);
@@ -76,6 +82,7 @@ export class Settings extends Message<Settings> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "notification_notifiers", kind: "message", T: NotificationNotifier, repeated: true },
     { no: 2, name: "git_store", kind: "message", T: GitStore },
+    { no: 3, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Settings {
@@ -120,6 +127,14 @@ export class Update extends Message<Update> {
      */
     value: GitStore;
     case: "setGitStore";
+  } | {
+    /**
+     * Set the pipelines.
+     *
+     * @generated from field: api.v1.settings.Update.SetPipelines set_pipelines = 3;
+     */
+    value: Update_SetPipelines;
+    case: "setPipelines";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Update>) {
@@ -132,6 +147,7 @@ export class Update extends Message<Update> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "set_notification_notifiers", kind: "message", T: Update_SetNotificationNotifiers, oneof: "field" },
     { no: 2, name: "set_git_store", kind: "message", T: GitStore, oneof: "field" },
+    { no: 3, name: "set_pipelines", kind: "message", T: Update_SetPipelines, oneof: "field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update {
@@ -185,6 +201,43 @@ export class Update_SetNotificationNotifiers extends Message<Update_SetNotificat
 
   static equals(a: Update_SetNotificationNotifiers | PlainMessage<Update_SetNotificationNotifiers> | undefined, b: Update_SetNotificationNotifiers | PlainMessage<Update_SetNotificationNotifiers> | undefined): boolean {
     return proto3.util.equals(Update_SetNotificationNotifiers, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.Update.SetPipelines
+ */
+export class Update_SetPipelines extends Message<Update_SetPipelines> {
+  /**
+   * @generated from field: repeated model.Pipeline pipelines = 1;
+   */
+  pipelines: Pipeline[] = [];
+
+  constructor(data?: PartialMessage<Update_SetPipelines>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.Update.SetPipelines";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Update_SetPipelines {
+    return new Update_SetPipelines().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Update_SetPipelines {
+    return new Update_SetPipelines().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Update_SetPipelines {
+    return new Update_SetPipelines().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Update_SetPipelines | PlainMessage<Update_SetPipelines> | undefined, b: Update_SetPipelines | PlainMessage<Update_SetPipelines> | undefined): boolean {
+    return proto3.util.equals(Update_SetPipelines, a, b);
   }
 }
 
