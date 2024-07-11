@@ -204,6 +204,12 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
      */
     value: GithubProposal;
     case: "github";
+  } | {
+    /**
+     * @generated from field: model.GitLabProposal gitlab = 8;
+     */
+    value: GitLabProposal;
+    case: "gitlab";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<ProposalMetadata>) {
@@ -221,6 +227,7 @@ export class ProposalMetadata extends Message<ProposalMetadata> {
     { no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "review_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "github", kind: "message", T: GithubProposal, oneof: "provider" },
+    { no: 8, name: "gitlab", kind: "message", T: GitLabProposal, oneof: "provider" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposalMetadata {
@@ -274,6 +281,43 @@ export class GithubProposal extends Message<GithubProposal> {
 
   static equals(a: GithubProposal | PlainMessage<GithubProposal> | undefined, b: GithubProposal | PlainMessage<GithubProposal> | undefined): boolean {
     return proto3.util.equals(GithubProposal, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GitLabProposal
+ */
+export class GitLabProposal extends Message<GitLabProposal> {
+  /**
+   * @generated from field: int64 pr_id = 1;
+   */
+  prId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GitLabProposal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GitLabProposal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pr_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitLabProposal {
+    return new GitLabProposal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GitLabProposal {
+    return new GitLabProposal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GitLabProposal {
+    return new GitLabProposal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GitLabProposal | PlainMessage<GitLabProposal> | undefined, b: GitLabProposal | PlainMessage<GitLabProposal> | undefined): boolean {
+    return proto3.util.equals(GitLabProposal, a, b);
   }
 }
 

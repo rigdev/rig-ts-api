@@ -134,14 +134,27 @@ export class Commit extends Message<Commit> {
   provider = GitProvider.UNSPECIFIED;
 
   /**
-   * @generated from field: string repository = 2;
+   * @generated from oneof model.Commit.provider_info
    */
-  repository = "";
-
-  /**
-   * @generated from field: string owner = 5;
-   */
-  owner = "";
+  providerInfo: {
+    /**
+     * @generated from field: model.GitHubInfo github = 7;
+     */
+    value: GitHubInfo;
+    case: "github";
+  } | {
+    /**
+     * @generated from field: model.GitLabInfo gitlab = 8;
+     */
+    value: GitLabInfo;
+    case: "gitlab";
+  } | {
+    /**
+     * @generated from field: model.BitBucketInfo bitbucket = 9;
+     */
+    value: BitBucketInfo;
+    case: "bitbucket";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
    * @generated from field: string commit_id = 3;
@@ -149,9 +162,14 @@ export class Commit extends Message<Commit> {
   commitId = "";
 
   /**
-   * @generated from field: string url = 4;
+   * @generated from field: string commit_url = 4;
    */
-  url = "";
+  commitUrl = "";
+
+  /**
+   * @generated from field: string repository_url = 6;
+   */
+  repositoryUrl = "";
 
   constructor(data?: PartialMessage<Commit>) {
     super();
@@ -162,10 +180,12 @@ export class Commit extends Message<Commit> {
   static readonly typeName = "model.Commit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "provider", kind: "enum", T: proto3.getEnumType(GitProvider) },
-    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "github", kind: "message", T: GitHubInfo, oneof: "provider_info" },
+    { no: 8, name: "gitlab", kind: "message", T: GitLabInfo, oneof: "provider_info" },
+    { no: 9, name: "bitbucket", kind: "message", T: BitBucketInfo, oneof: "provider_info" },
     { no: 3, name: "commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "commit_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "repository_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Commit {
@@ -329,6 +349,141 @@ export class RepoBranch extends Message<RepoBranch> {
 
   static equals(a: RepoBranch | PlainMessage<RepoBranch> | undefined, b: RepoBranch | PlainMessage<RepoBranch> | undefined): boolean {
     return proto3.util.equals(RepoBranch, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GitHubInfo
+ */
+export class GitHubInfo extends Message<GitHubInfo> {
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
+
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
+
+  constructor(data?: PartialMessage<GitHubInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GitHubInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitHubInfo {
+    return new GitHubInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GitHubInfo {
+    return new GitHubInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GitHubInfo {
+    return new GitHubInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GitHubInfo | PlainMessage<GitHubInfo> | undefined, b: GitHubInfo | PlainMessage<GitHubInfo> | undefined): boolean {
+    return proto3.util.equals(GitHubInfo, a, b);
+  }
+}
+
+/**
+ * @generated from message model.GitLabInfo
+ */
+export class GitLabInfo extends Message<GitLabInfo> {
+  /**
+   * @generated from field: repeated string groups = 1;
+   */
+  groups: string[] = [];
+
+  /**
+   * @generated from field: string project = 2;
+   */
+  project = "";
+
+  constructor(data?: PartialMessage<GitLabInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.GitLabInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "groups", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GitLabInfo {
+    return new GitLabInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GitLabInfo {
+    return new GitLabInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GitLabInfo {
+    return new GitLabInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GitLabInfo | PlainMessage<GitLabInfo> | undefined, b: GitLabInfo | PlainMessage<GitLabInfo> | undefined): boolean {
+    return proto3.util.equals(GitLabInfo, a, b);
+  }
+}
+
+/**
+ * @generated from message model.BitBucketInfo
+ */
+export class BitBucketInfo extends Message<BitBucketInfo> {
+  /**
+   * @generated from field: string team = 1;
+   */
+  team = "";
+
+  /**
+   * @generated from field: string project = 2;
+   */
+  project = "";
+
+  /**
+   * @generated from field: string repository = 3;
+   */
+  repository = "";
+
+  constructor(data?: PartialMessage<BitBucketInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.BitBucketInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "team", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BitBucketInfo {
+    return new BitBucketInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BitBucketInfo {
+    return new BitBucketInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BitBucketInfo {
+    return new BitBucketInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BitBucketInfo | PlainMessage<BitBucketInfo> | undefined, b: BitBucketInfo | PlainMessage<BitBucketInfo> | undefined): boolean {
+    return proto3.util.equals(BitBucketInfo, a, b);
   }
 }
 
