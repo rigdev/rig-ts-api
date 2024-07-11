@@ -10,7 +10,7 @@ import { Rollout, RolloutConfig } from "./rollout_pb.js";
 import { Status } from "./instance/status_pb.js";
 import { Status as Status$1 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
-import { Proposal, Revision, SetRevision } from "./revision_pb.js";
+import { Proposal, Revision, SetProposal, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
 import { Change } from "./change_pb.js";
 import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
@@ -1960,6 +1960,207 @@ export class DeployOutcome_KubernetesObject extends Message<DeployOutcome_Kubern
 }
 
 /**
+ * @generated from message api.v1.capsule.DeploySetRequest
+ */
+export class DeploySetRequest extends Message<DeploySetRequest> {
+  /**
+   * Capsule to deploy to.
+   *
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * Changes to include in the new rollout.
+   *
+   * @generated from field: repeated api.v1.capsule.Change changes = 2;
+   */
+  changes: Change[] = [];
+
+  /**
+   * Force deploy, aborting existing rollouts if ongoing.
+   *
+   * @generated from field: bool force = 3;
+   */
+  force = false;
+
+  /**
+   * Project in which the capsule lives.
+   *
+   * @generated from field: string project_id = 4;
+   */
+  projectId = "";
+
+  /**
+   * Deploy message.
+   *
+   * @generated from field: string message = 6;
+   */
+  message = "";
+
+  /**
+   * if true, the deploy will not be executed, but the request will return the
+   * rollout config.
+   *
+   * @generated from field: bool dry_run = 7;
+   */
+  dryRun = false;
+
+  /**
+   * If present, maps from environment to expected current rollout within that
+   * environment. This will constrain the rollout only to be created if the
+   * currently running rollout matches this identifier. If this check fails, the
+   * request will return an `Aborted` error.
+   *
+   * @generated from field: map<string, uint64> current_rollout_ids = 8;
+   */
+  currentRolloutIds: { [key: string]: bigint } = {};
+
+  /**
+   * If set, this will constrain the rollout only to be created if the current
+   * latest capsuleset fingerprint matches the given.
+   *
+   * @generated from field: model.Fingerprint current_fingerprint = 9;
+   */
+  currentFingerprint?: Fingerprint;
+
+  /**
+   * If set, this will constrain the rollout only to be created if the current
+   * latest capsule fingerprint for each environment in the map matches the ones
+   * in the map. Cannot be used together with `current_rollout_ids`
+   *
+   * @generated from field: map<string, model.Fingerprint> current_environment_fingerprints = 10;
+   */
+  currentEnvironmentFingerprints: { [key: string]: Fingerprint } = {};
+
+  /**
+   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 11;
+   */
+  outcome?: DeploySetOutcome;
+
+  constructor(data?: PartialMessage<DeploySetRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.DeploySetRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 3, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "current_rollout_ids", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 4 /* ScalarType.UINT64 */} },
+    { no: 9, name: "current_fingerprint", kind: "message", T: Fingerprint },
+    { no: 10, name: "current_environment_fingerprints", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Fingerprint} },
+    { no: 11, name: "outcome", kind: "message", T: DeploySetOutcome },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetRequest {
+    return new DeploySetRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeploySetRequest {
+    return new DeploySetRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeploySetRequest {
+    return new DeploySetRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeploySetRequest | PlainMessage<DeploySetRequest> | undefined, b: DeploySetRequest | PlainMessage<DeploySetRequest> | undefined): boolean {
+    return proto3.util.equals(DeploySetRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.DeploySetOutcome
+ */
+export class DeploySetOutcome extends Message<DeploySetOutcome> {
+  /**
+   * @generated from field: map<string, api.v1.capsule.DeployOutcome> environments = 1;
+   */
+  environments: { [key: string]: DeployOutcome } = {};
+
+  constructor(data?: PartialMessage<DeploySetOutcome>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.DeploySetOutcome";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environments", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: DeployOutcome} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetOutcome {
+    return new DeploySetOutcome().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeploySetOutcome {
+    return new DeploySetOutcome().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeploySetOutcome {
+    return new DeploySetOutcome().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeploySetOutcome | PlainMessage<DeploySetOutcome> | undefined, b: DeploySetOutcome | PlainMessage<DeploySetOutcome> | undefined): boolean {
+    return proto3.util.equals(DeploySetOutcome, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.DeploySetResponse
+ */
+export class DeploySetResponse extends Message<DeploySetResponse> {
+  /**
+   * The capsule revision created.
+   *
+   * @generated from field: api.v1.capsule.SetRevision revision = 1;
+   */
+  revision?: SetRevision;
+
+  /**
+   * Breakdown of the changes that this deploy would make to the system.
+   * Only populated if dry-run is used.
+   *
+   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 5;
+   */
+  outcome?: DeploySetOutcome;
+
+  constructor(data?: PartialMessage<DeploySetResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.DeploySetResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "revision", kind: "message", T: SetRevision },
+    { no: 5, name: "outcome", kind: "message", T: DeploySetOutcome },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetResponse {
+    return new DeploySetResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeploySetResponse {
+    return new DeploySetResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeploySetResponse {
+    return new DeploySetResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeploySetResponse | PlainMessage<DeploySetResponse> | undefined, b: DeploySetResponse | PlainMessage<DeploySetResponse> | undefined): boolean {
+    return proto3.util.equals(DeploySetResponse, a, b);
+  }
+}
+
+/**
  * Deploy request. This will deploy a number of changes which results in a new
  * rollout.
  *
@@ -2095,6 +2296,134 @@ export class ProposeRolloutResponse extends Message<ProposeRolloutResponse> {
 
   static equals(a: ProposeRolloutResponse | PlainMessage<ProposeRolloutResponse> | undefined, b: ProposeRolloutResponse | PlainMessage<ProposeRolloutResponse> | undefined): boolean {
     return proto3.util.equals(ProposeRolloutResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ProposeSetRolloutRequest
+ */
+export class ProposeSetRolloutRequest extends Message<ProposeSetRolloutRequest> {
+  /**
+   * Capsule to deploy to.
+   *
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * Changes to include in the new rollout.
+   *
+   * @generated from field: repeated api.v1.capsule.Change changes = 2;
+   */
+  changes: Change[] = [];
+
+  /**
+   * Project in which the capsule lives.
+   *
+   * @generated from field: string project_id = 3;
+   */
+  projectId = "";
+
+  /**
+   * Deploy message.
+   *
+   * @generated from field: string message = 4;
+   */
+  message = "";
+
+  /**
+   * By default, existing objects will be kept in favor of overriding them. To
+   * force the override of resources, set this flag to true. An example of this
+   * use-case is a migration step, where resource created by a previous
+   * toolchain e.g. based on Helm charts, are to be replaced and instead be
+   * created by the Rig operator.
+   * While the override is irreversible, this flag is not "sticky" and must be
+   * set by each deploy that should use this behavior.
+   *
+   * @generated from field: bool force_override = 5;
+   */
+  forceOverride = false;
+
+  /**
+   * @generated from field: string branch_name = 6;
+   */
+  branchName = "";
+
+  constructor(data?: PartialMessage<ProposeSetRolloutRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProposeSetRolloutRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 3, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "force_override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeSetRolloutRequest {
+    return new ProposeSetRolloutRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProposeSetRolloutRequest {
+    return new ProposeSetRolloutRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProposeSetRolloutRequest {
+    return new ProposeSetRolloutRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProposeSetRolloutRequest | PlainMessage<ProposeSetRolloutRequest> | undefined, b: ProposeSetRolloutRequest | PlainMessage<ProposeSetRolloutRequest> | undefined): boolean {
+    return proto3.util.equals(ProposeSetRolloutRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ProposeSetRolloutResponse
+ */
+export class ProposeSetRolloutResponse extends Message<ProposeSetRolloutResponse> {
+  /**
+   * @generated from field: api.v1.capsule.SetProposal proposal = 1;
+   */
+  proposal?: SetProposal;
+
+  /**
+   * Breakdown of the changes that this deploy would make to the system.
+   *
+   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 2;
+   */
+  outcome?: DeploySetOutcome;
+
+  constructor(data?: PartialMessage<ProposeSetRolloutResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProposeSetRolloutResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "proposal", kind: "message", T: SetProposal },
+    { no: 2, name: "outcome", kind: "message", T: DeploySetOutcome },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProposeSetRolloutResponse {
+    return new ProposeSetRolloutResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProposeSetRolloutResponse {
+    return new ProposeSetRolloutResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProposeSetRolloutResponse {
+    return new ProposeSetRolloutResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProposeSetRolloutResponse | PlainMessage<ProposeSetRolloutResponse> | undefined, b: ProposeSetRolloutResponse | PlainMessage<ProposeSetRolloutResponse> | undefined): boolean {
+    return proto3.util.equals(ProposeSetRolloutResponse, a, b);
   }
 }
 

@@ -156,3 +156,52 @@ export class Proposal extends Message<Proposal> {
   }
 }
 
+/**
+ * @generated from message api.v1.capsule.SetProposal
+ */
+export class SetProposal extends Message<SetProposal> {
+  /**
+   * @generated from field: platform.v1.CapsuleSet spec = 1;
+   */
+  spec?: CapsuleSet;
+
+  /**
+   * @generated from field: repeated api.v1.capsule.Change changes = 2;
+   */
+  changes: Change[] = [];
+
+  /**
+   * @generated from field: model.ProposalMetadata metadata = 3;
+   */
+  metadata?: ProposalMetadata;
+
+  constructor(data?: PartialMessage<SetProposal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.SetProposal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spec", kind: "message", T: CapsuleSet },
+    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
+    { no: 3, name: "metadata", kind: "message", T: ProposalMetadata },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetProposal {
+    return new SetProposal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetProposal {
+    return new SetProposal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetProposal {
+    return new SetProposal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SetProposal | PlainMessage<SetProposal> | undefined, b: SetProposal | PlainMessage<SetProposal> | undefined): boolean {
+    return proto3.util.equals(SetProposal, a, b);
+  }
+}
+

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutOfRevisionsRequest, GetRolloutOfRevisionsResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListProposalsRequest, ListProposalsResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, PortForwardRequest, PortForwardResponse, ProposeRolloutRequest, ProposeRolloutResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse, WatchInstanceStatusesRequest, WatchInstanceStatusesResponse, WatchRolloutsRequest, WatchRolloutsResponse, WatchStatusRequest, WatchStatusResponse } from "./service_pb.js";
+import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, DeploySetRequest, DeploySetResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutOfRevisionsRequest, GetRolloutOfRevisionsResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListProposalsRequest, ListProposalsResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, LogsRequest, LogsResponse, PortForwardRequest, PortForwardResponse, ProposeRolloutRequest, ProposeRolloutResponse, ProposeSetRolloutRequest, ProposeSetRolloutResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse, WatchInstanceStatusesRequest, WatchInstanceStatusesResponse, WatchRolloutsRequest, WatchRolloutsResponse, WatchStatusRequest, WatchStatusResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -95,12 +95,30 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc api.v1.capsule.Service.DeploySet
+     */
+    deploySet: {
+      name: "DeploySet",
+      I: DeploySetRequest,
+      O: DeploySetResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc api.v1.capsule.Service.ProposeRollout
      */
     proposeRollout: {
       name: "ProposeRollout",
       I: ProposeRolloutRequest,
       O: ProposeRolloutResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.ProposeSetRollout
+     */
+    proposeSetRollout: {
+      name: "ProposeSetRollout",
+      I: ProposeSetRolloutRequest,
+      O: ProposeSetRolloutResponse,
       kind: MethodKind.Unary,
     },
     /**
