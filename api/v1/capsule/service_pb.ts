@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
-import { Rollout, RolloutConfig } from "./rollout_pb.js";
+import { Rollout } from "./rollout_pb.js";
 import { Status } from "./instance/status_pb.js";
 import { Status as Status$1 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
@@ -1764,17 +1764,20 @@ export class DeployResponse extends Message<DeployResponse> {
 
   /**
    * The rollout config.
-   *
-   * @generated from field: api.v1.capsule.RolloutConfig rollout_config = 3;
-   */
-  rolloutConfig?: RolloutConfig;
-
-  /**
+   * api.v1.capsule.RolloutConfig rollout_config = 3;
    * The capsule revision created.
    *
    * @generated from field: api.v1.capsule.Revision revision = 4;
    */
   revision?: Revision;
+
+  /**
+   * The capsule set revision created if it's the first time deploying to the
+   * environment.
+   *
+   * @generated from field: api.v1.capsule.SetRevision set_revision = 6;
+   */
+  setRevision?: SetRevision;
 
   /**
    * Breakdown of the changes that this deploy would make to the system.
@@ -1794,8 +1797,8 @@ export class DeployResponse extends Message<DeployResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "resource_yaml", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
-    { no: 3, name: "rollout_config", kind: "message", T: RolloutConfig },
     { no: 4, name: "revision", kind: "message", T: Revision },
+    { no: 6, name: "set_revision", kind: "message", T: SetRevision },
     { no: 5, name: "outcome", kind: "message", T: DeployOutcome },
   ]);
 
@@ -2033,11 +2036,6 @@ export class DeploySetRequest extends Message<DeploySetRequest> {
    */
   currentEnvironmentFingerprints: { [key: string]: Fingerprint } = {};
 
-  /**
-   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 11;
-   */
-  outcome?: DeploySetOutcome;
-
   constructor(data?: PartialMessage<DeploySetRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2055,7 +2053,6 @@ export class DeploySetRequest extends Message<DeploySetRequest> {
     { no: 8, name: "current_rollout_ids", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 4 /* ScalarType.UINT64 */} },
     { no: 9, name: "current_fingerprint", kind: "message", T: Fingerprint },
     { no: 10, name: "current_environment_fingerprints", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Fingerprint} },
-    { no: 11, name: "outcome", kind: "message", T: DeploySetOutcome },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetRequest {
@@ -2080,7 +2077,14 @@ export class DeploySetRequest extends Message<DeploySetRequest> {
  */
 export class DeploySetOutcome extends Message<DeploySetOutcome> {
   /**
-   * @generated from field: map<string, api.v1.capsule.DeployOutcome> environments = 1;
+   * The field-level changes that comes from applying this change.
+   *
+   * @generated from field: repeated api.v1.capsule.FieldChange field_changes = 1;
+   */
+  fieldChanges: FieldChange[] = [];
+
+  /**
+   * @generated from field: map<string, api.v1.capsule.DeployOutcome> environments = 2;
    */
   environments: { [key: string]: DeployOutcome } = {};
 
@@ -2092,7 +2096,8 @@ export class DeploySetOutcome extends Message<DeploySetOutcome> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.DeploySetOutcome";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "environments", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: DeployOutcome} },
+    { no: 1, name: "field_changes", kind: "message", T: FieldChange, repeated: true },
+    { no: 2, name: "environments", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: DeployOutcome} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetOutcome {
@@ -2127,9 +2132,17 @@ export class DeploySetResponse extends Message<DeploySetResponse> {
    * Breakdown of the changes that this deploy would make to the system.
    * Only populated if dry-run is used.
    *
-   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 5;
+   * @generated from field: api.v1.capsule.DeploySetOutcome outcome = 2;
    */
   outcome?: DeploySetOutcome;
+
+  /**
+   * The environments which currently have rollouts. These will receive a
+   * rollout as result of the SetDeploy
+   *
+   * @generated from field: repeated string ActiveEnvironments = 3;
+   */
+  ActiveEnvironments: string[] = [];
 
   constructor(data?: PartialMessage<DeploySetResponse>) {
     super();
@@ -2140,7 +2153,8 @@ export class DeploySetResponse extends Message<DeploySetResponse> {
   static readonly typeName = "api.v1.capsule.DeploySetResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "revision", kind: "message", T: SetRevision },
-    { no: 5, name: "outcome", kind: "message", T: DeploySetOutcome },
+    { no: 2, name: "outcome", kind: "message", T: DeploySetOutcome },
+    { no: 3, name: "ActiveEnvironments", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeploySetResponse {
@@ -4019,13 +4033,13 @@ export class GetRolloutOfRevisionsResponse extends Message<GetRolloutOfRevisions
    */
   kind: {
     /**
-     * @generated from field: api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout no_rollout = 1;
+     * @generated from field: api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout no_rollout = 4;
      */
     value: GetRolloutOfRevisionsResponse_NoRollout;
     case: "noRollout";
   } | {
     /**
-     * @generated from field: api.v1.capsule.Rollout rollout = 2;
+     * @generated from field: api.v1.capsule.Rollout rollout = 5;
      */
     value: Rollout;
     case: "rollout";
@@ -4039,8 +4053,8 @@ export class GetRolloutOfRevisionsResponse extends Message<GetRolloutOfRevisions
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.GetRolloutOfRevisionsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "no_rollout", kind: "message", T: GetRolloutOfRevisionsResponse_NoRollout, oneof: "kind" },
-    { no: 2, name: "rollout", kind: "message", T: Rollout, oneof: "kind" },
+    { no: 4, name: "no_rollout", kind: "message", T: GetRolloutOfRevisionsResponse_NoRollout, oneof: "kind" },
+    { no: 5, name: "rollout", kind: "message", T: Rollout, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutOfRevisionsResponse {

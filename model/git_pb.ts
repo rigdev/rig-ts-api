@@ -64,6 +64,11 @@ export class GitStore extends Message<GitStore> {
   capsulePath = "";
 
   /**
+   * @generated from field: string capsule_set_path = 10;
+   */
+  capsuleSetPath = "";
+
+  /**
    * @generated from field: string commit_template = 5;
    */
   commitTemplate = "";
@@ -100,6 +105,7 @@ export class GitStore extends Message<GitStore> {
     { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "capsule_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "capsule_set_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "commit_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "environments", kind: "message", T: EnvironmentFilter },
     { no: 7, name: "pr_title_template", kind: "scalar", T: 9 /* ScalarType.STRING */ },

@@ -55,3 +55,46 @@ export class CapsuleID extends Message<CapsuleID> {
   }
 }
 
+/**
+ * @generated from message model.CapsuleSetID
+ */
+export class CapsuleSetID extends Message<CapsuleSetID> {
+  /**
+   * @generated from field: string project = 1;
+   */
+  project = "";
+
+  /**
+   * @generated from field: string capsule = 2;
+   */
+  capsule = "";
+
+  constructor(data?: PartialMessage<CapsuleSetID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.CapsuleSetID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSetID {
+    return new CapsuleSetID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleSetID {
+    return new CapsuleSetID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleSetID {
+    return new CapsuleSetID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CapsuleSetID | PlainMessage<CapsuleSetID> | undefined, b: CapsuleSetID | PlainMessage<CapsuleSetID> | undefined): boolean {
+    return proto3.util.equals(CapsuleSetID, a, b);
+  }
+}
+
