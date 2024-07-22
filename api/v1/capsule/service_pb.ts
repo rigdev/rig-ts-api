@@ -1846,6 +1846,14 @@ export class DeployOutcome extends Message<DeployOutcome> {
    */
   kubernetesObjects: DeployOutcome_KubernetesObject[] = [];
 
+  /**
+   * In case generation of kubernetes files failed, this field will
+   * be populated with the error.
+   *
+   * @generated from field: string kubernetes_error = 4;
+   */
+  kubernetesError = "";
+
   constructor(data?: PartialMessage<DeployOutcome>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1857,6 +1865,7 @@ export class DeployOutcome extends Message<DeployOutcome> {
     { no: 1, name: "field_changes", kind: "message", T: FieldChange, repeated: true },
     { no: 2, name: "platform_objects", kind: "message", T: DeployOutcome_PlatformObject, repeated: true },
     { no: 3, name: "kubernetes_objects", kind: "message", T: DeployOutcome_KubernetesObject, repeated: true },
+    { no: 4, name: "kubernetes_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployOutcome {
