@@ -2549,6 +2549,98 @@ export class ListProposalsResponse extends Message<ListProposalsResponse> {
 }
 
 /**
+ * @generated from message api.v1.capsule.ListSetProposalsRequest
+ */
+export class ListSetProposalsRequest extends Message<ListSetProposalsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string capsule_id = 2;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: model.Pagination pagination = 3;
+   */
+  pagination?: Pagination;
+
+  constructor(data?: PartialMessage<ListSetProposalsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListSetProposalsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "pagination", kind: "message", T: Pagination },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSetProposalsRequest {
+    return new ListSetProposalsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSetProposalsRequest {
+    return new ListSetProposalsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSetProposalsRequest {
+    return new ListSetProposalsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSetProposalsRequest | PlainMessage<ListSetProposalsRequest> | undefined, b: ListSetProposalsRequest | PlainMessage<ListSetProposalsRequest> | undefined): boolean {
+    return proto3.util.equals(ListSetProposalsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListSetProposalsResponse
+ */
+export class ListSetProposalsResponse extends Message<ListSetProposalsResponse> {
+  /**
+   * @generated from field: repeated api.v1.capsule.SetProposal proposals = 1;
+   */
+  proposals: SetProposal[] = [];
+
+  /**
+   * @generated from field: uint64 total = 2;
+   */
+  total = protoInt64.zero;
+
+  constructor(data?: PartialMessage<ListSetProposalsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListSetProposalsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "proposals", kind: "message", T: SetProposal, repeated: true },
+    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSetProposalsResponse {
+    return new ListSetProposalsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSetProposalsResponse {
+    return new ListSetProposalsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSetProposalsResponse {
+    return new ListSetProposalsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSetProposalsResponse | PlainMessage<ListSetProposalsResponse> | undefined, b: ListSetProposalsResponse | PlainMessage<ListSetProposalsResponse> | undefined): boolean {
+    return proto3.util.equals(ListSetProposalsResponse, a, b);
+  }
+}
+
+/**
  * List instances request.
  *
  * @generated from message api.v1.capsule.ListInstancesRequest
