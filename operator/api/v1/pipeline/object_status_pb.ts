@@ -7,6 +7,56 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * Different states a job execution can be in
+ *
+ * @generated from enum api.v1.pipeline.JobExecutionState
+ */
+export enum JobExecutionState {
+  /**
+   * Default value.
+   *
+   * @generated from enum value: JOB_STATE_UNSPECIFIED = 0;
+   */
+  JOB_STATE_UNSPECIFIED = 0,
+
+  /**
+   * The job is running.
+   *
+   * @generated from enum value: JOB_STATE_ONGOING = 1;
+   */
+  JOB_STATE_ONGOING = 1,
+
+  /**
+   * The job completed successfully.
+   *
+   * @generated from enum value: JOB_STATE_COMPLETED = 2;
+   */
+  JOB_STATE_COMPLETED = 2,
+
+  /**
+   * The job failed.
+   *
+   * @generated from enum value: JOB_STATE_FAILED = 3;
+   */
+  JOB_STATE_FAILED = 3,
+
+  /**
+   * The job was terminated.
+   *
+   * @generated from enum value: JOB_STATE_TERMINATED = 4;
+   */
+  JOB_STATE_TERMINATED = 4,
+}
+// Retrieve enum metadata with: proto3.getEnumType(JobExecutionState)
+proto3.util.setEnumType(JobExecutionState, "api.v1.pipeline.JobExecutionState", [
+  { no: 0, name: "JOB_STATE_UNSPECIFIED" },
+  { no: 1, name: "JOB_STATE_ONGOING" },
+  { no: 2, name: "JOB_STATE_COMPLETED" },
+  { no: 3, name: "JOB_STATE_FAILED" },
+  { no: 4, name: "JOB_STATE_TERMINATED" },
+]);
+
+/**
  * @generated from enum api.v1.pipeline.ObjectState
  */
 export enum ObjectState {
@@ -679,6 +729,12 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
      */
     value: InterfaceStatus;
     case: "interface";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.JobExecutionStatus job_execution = 9;
+     */
+    value: JobExecutionStatus;
+    case: "jobExecution";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<PlatformObjectStatus>) {
@@ -697,6 +753,7 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
     { no: 6, name: "cronjob", kind: "message", T: CronjobStatus, oneof: "kind" },
     { no: 7, name: "capsule", kind: "message", T: CapsuleStatus, oneof: "kind" },
     { no: 8, name: "interface", kind: "message", T: InterfaceStatus, oneof: "kind" },
+    { no: 9, name: "job_execution", kind: "message", T: JobExecutionStatus, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlatformObjectStatus {
@@ -713,6 +770,73 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
 
   static equals(a: PlatformObjectStatus | PlainMessage<PlatformObjectStatus> | undefined, b: PlatformObjectStatus | PlainMessage<PlatformObjectStatus> | undefined): boolean {
     return proto3.util.equals(PlatformObjectStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.JobExecutionStatus
+ */
+export class JobExecutionStatus extends Message<JobExecutionStatus> {
+  /**
+   * @generated from field: string job_name = 1;
+   */
+  jobName = "";
+
+  /**
+   * @generated from field: uint64 rollout_id = 2;
+   */
+  rolloutId = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 retries = 3;
+   */
+  retries = 0;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 4;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp finished_at = 5;
+   */
+  finishedAt?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.pipeline.JobExecutionState state = 6;
+   */
+  state = JobExecutionState.JOB_STATE_UNSPECIFIED;
+
+  constructor(data?: PartialMessage<JobExecutionStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.JobExecutionStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "job_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "retries", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "created_at", kind: "message", T: Timestamp },
+    { no: 5, name: "finished_at", kind: "message", T: Timestamp },
+    { no: 6, name: "state", kind: "enum", T: proto3.getEnumType(JobExecutionState) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JobExecutionStatus {
+    return new JobExecutionStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JobExecutionStatus {
+    return new JobExecutionStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JobExecutionStatus {
+    return new JobExecutionStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: JobExecutionStatus | PlainMessage<JobExecutionStatus> | undefined, b: JobExecutionStatus | PlainMessage<JobExecutionStatus> | undefined): boolean {
+    return proto3.util.equals(JobExecutionStatus, a, b);
   }
 }
 
