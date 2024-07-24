@@ -4146,13 +4146,13 @@ export class GetRolloutOfRevisionsResponse extends Message<GetRolloutOfRevisions
    */
   kind: {
     /**
-     * @generated from field: api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout no_rollout = 4;
+     * @generated from field: api.v1.capsule.GetRolloutOfRevisionsResponse.NoRollout no_rollout = 1;
      */
     value: GetRolloutOfRevisionsResponse_NoRollout;
     case: "noRollout";
   } | {
     /**
-     * @generated from field: api.v1.capsule.Rollout rollout = 5;
+     * @generated from field: api.v1.capsule.Rollout rollout = 2;
      */
     value: Rollout;
     case: "rollout";
@@ -4166,8 +4166,8 @@ export class GetRolloutOfRevisionsResponse extends Message<GetRolloutOfRevisions
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.GetRolloutOfRevisionsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 4, name: "no_rollout", kind: "message", T: GetRolloutOfRevisionsResponse_NoRollout, oneof: "kind" },
-    { no: 5, name: "rollout", kind: "message", T: Rollout, oneof: "kind" },
+    { no: 1, name: "no_rollout", kind: "message", T: GetRolloutOfRevisionsResponse_NoRollout, oneof: "kind" },
+    { no: 2, name: "rollout", kind: "message", T: Rollout, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRolloutOfRevisionsResponse {
