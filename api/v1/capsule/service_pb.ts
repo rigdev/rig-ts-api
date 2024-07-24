@@ -1854,6 +1854,16 @@ export class DeployOutcome extends Message<DeployOutcome> {
    */
   kubernetesError = "";
 
+  /**
+   * @generated from field: string cluster_name = 5;
+   */
+  clusterName = "";
+
+  /**
+   * @generated from field: string kubernetes_namespace = 6;
+   */
+  kubernetesNamespace = "";
+
   constructor(data?: PartialMessage<DeployOutcome>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1866,6 +1876,8 @@ export class DeployOutcome extends Message<DeployOutcome> {
     { no: 2, name: "platform_objects", kind: "message", T: DeployOutcome_PlatformObject, repeated: true },
     { no: 3, name: "kubernetes_objects", kind: "message", T: DeployOutcome_KubernetesObject, repeated: true },
     { no: 4, name: "kubernetes_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "cluster_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "kubernetes_namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployOutcome {
