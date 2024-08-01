@@ -37,6 +37,11 @@ export class RevisionMetadata extends Message<RevisionMetadata> {
    */
   gitChange?: GitChange;
 
+  /**
+   * @generated from field: model.BookmarkingConfiguration bookmarking = 6;
+   */
+  bookmarking?: BookmarkingConfiguration;
+
   constructor(data?: PartialMessage<RevisionMetadata>) {
     super();
     proto3.util.initPartial(data, this);
@@ -50,6 +55,7 @@ export class RevisionMetadata extends Message<RevisionMetadata> {
     { no: 3, name: "updated_by", kind: "message", T: Author },
     { no: 4, name: "fingerprint", kind: "message", T: Fingerprint },
     { no: 5, name: "git_change", kind: "message", T: GitChange },
+    { no: 6, name: "bookmarking", kind: "message", T: BookmarkingConfiguration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevisionMetadata {
@@ -373,6 +379,43 @@ export class Revisions extends Message<Revisions> {
 
   static equals(a: Revisions | PlainMessage<Revisions> | undefined, b: Revisions | PlainMessage<Revisions> | undefined): boolean {
     return proto3.util.equals(Revisions, a, b);
+  }
+}
+
+/**
+ * @generated from message model.BookmarkingConfiguration
+ */
+export class BookmarkingConfiguration extends Message<BookmarkingConfiguration> {
+  /**
+   * @generated from field: bool dont_bookmark = 1;
+   */
+  dontBookmark = false;
+
+  constructor(data?: PartialMessage<BookmarkingConfiguration>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.BookmarkingConfiguration";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "dont_bookmark", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BookmarkingConfiguration {
+    return new BookmarkingConfiguration().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BookmarkingConfiguration {
+    return new BookmarkingConfiguration().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BookmarkingConfiguration {
+    return new BookmarkingConfiguration().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BookmarkingConfiguration | PlainMessage<BookmarkingConfiguration> | undefined, b: BookmarkingConfiguration | PlainMessage<BookmarkingConfiguration> | undefined): boolean {
+    return proto3.util.equals(BookmarkingConfiguration, a, b);
   }
 }
 
