@@ -69,6 +69,11 @@ export class Rollout extends Message<Rollout> {
    */
   revisions?: Revisions;
 
+  /**
+   * @generated from field: api.v1.capsule.Changelog changelog = 7;
+   */
+  changelog?: Changelog;
+
   constructor(data?: PartialMessage<Rollout>) {
     super();
     proto3.util.initPartial(data, this);
@@ -82,6 +87,7 @@ export class Rollout extends Message<Rollout> {
     { no: 4, name: "status", kind: "message", T: Status },
     { no: 5, name: "spec", kind: "message", T: CapsuleSpec },
     { no: 6, name: "revisions", kind: "message", T: Revisions },
+    { no: 7, name: "changelog", kind: "message", T: Changelog },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rollout {
@@ -276,6 +282,80 @@ export class ConfigFile extends Message<ConfigFile> {
 
   static equals(a: ConfigFile | PlainMessage<ConfigFile> | undefined, b: ConfigFile | PlainMessage<ConfigFile> | undefined): boolean {
     return proto3.util.equals(ConfigFile, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Changelog
+ */
+export class Changelog extends Message<Changelog> {
+  /**
+   * @generated from field: repeated api.v1.capsule.Changelog.Change changes = 1;
+   */
+  changes: Changelog_Change[] = [];
+
+  constructor(data?: PartialMessage<Changelog>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Changelog";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "changes", kind: "message", T: Changelog_Change, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Changelog {
+    return new Changelog().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Changelog {
+    return new Changelog().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Changelog {
+    return new Changelog().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Changelog | PlainMessage<Changelog> | undefined, b: Changelog | PlainMessage<Changelog> | undefined): boolean {
+    return proto3.util.equals(Changelog, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.Changelog.Change
+ */
+export class Changelog_Change extends Message<Changelog_Change> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<Changelog_Change>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Changelog.Change";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Changelog_Change {
+    return new Changelog_Change().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Changelog_Change {
+    return new Changelog_Change().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Changelog_Change {
+    return new Changelog_Change().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Changelog_Change | PlainMessage<Changelog_Change> | undefined, b: Changelog_Change | PlainMessage<Changelog_Change> | undefined): boolean {
+    return proto3.util.equals(Changelog_Change, a, b);
   }
 }
 
