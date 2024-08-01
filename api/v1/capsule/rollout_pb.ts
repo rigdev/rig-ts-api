@@ -294,6 +294,11 @@ export class Changelog extends Message<Changelog> {
    */
   changes: Changelog_Change[] = [];
 
+  /**
+   * @generated from field: string message = 2;
+   */
+  message = "";
+
   constructor(data?: PartialMessage<Changelog>) {
     super();
     proto3.util.initPartial(data, this);
@@ -303,6 +308,7 @@ export class Changelog extends Message<Changelog> {
   static readonly typeName = "api.v1.capsule.Changelog";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "changes", kind: "message", T: Changelog_Change, repeated: true },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Changelog {
