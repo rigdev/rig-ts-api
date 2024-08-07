@@ -56,11 +56,11 @@ export class Project extends Message<Project> {
   notifiers?: NotificationNotifiers;
 
   /**
-   * Environment pipeline for the project
+   * Environment pipelines for the project
    *
-   * @generated from field: api.v1.project.Pipelines pipeline = 8;
+   * @generated from field: api.v1.project.Pipelines pipelines = 8;
    */
-  pipeline?: Pipelines;
+  pipelines?: Pipelines;
 
   constructor(data?: PartialMessage<Project>) {
     super();
@@ -76,7 +76,7 @@ export class Project extends Message<Project> {
     { no: 5, name: "installation_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "git_store", kind: "message", T: GitStore },
     { no: 7, name: "notifiers", kind: "message", T: NotificationNotifiers },
-    { no: 8, name: "pipeline", kind: "message", T: Pipelines },
+    { no: 8, name: "pipelines", kind: "message", T: Pipelines },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, DeploySetRequest, DeploySetResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutOfRevisionsRequest, GetRolloutOfRevisionsResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListProposalsRequest, ListProposalsResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, ListSetProposalsRequest, ListSetProposalsResponse, LogsRequest, LogsResponse, PortForwardRequest, PortForwardResponse, ProposeRolloutRequest, ProposeRolloutResponse, ProposeSetRolloutRequest, ProposeSetRolloutResponse, RestartInstanceRequest, RestartInstanceResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse, WatchInstanceStatusesRequest, WatchInstanceStatusesResponse, WatchRolloutsRequest, WatchRolloutsResponse, WatchStatusRequest, WatchStatusResponse } from "./service_pb.js";
+import { AbortPipelineRequest, AbortPipelineResponse, AbortRolloutRequest, AbortRolloutResponse, CapsuleMetricsRequest, CapsuleMetricsResponse, CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, DeployRequest, DeployResponse, DeploySetRequest, DeploySetResponse, ExecuteRequest, ExecuteResponse, GetCustomInstanceMetricsRequest, GetCustomInstanceMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetInstanceStatusRequest, GetInstanceStatusResponse, GetJobExecutionsRequest, GetJobExecutionsResponse, GetPipelineStatusRequest, GetPipelineStatusResponse, GetRequest, GetResponse, GetRevisionRequest, GetRevisionResponse, GetRolloutOfRevisionsRequest, GetRolloutOfRevisionsResponse, GetRolloutRequest, GetRolloutResponse, GetStatusRequest, GetStatusResponse, ListEventsRequest, ListEventsResponse, ListInstancesRequest, ListInstancesResponse, ListInstanceStatusesRequest, ListInstanceStatusesResponse, ListPipelineStatusesRequest, ListPipelineStatusesResponse, ListProposalsRequest, ListProposalsResponse, ListRequest, ListResponse, ListRolloutsRequest, ListRolloutsResponse, ListSetProposalsRequest, ListSetProposalsResponse, LogsRequest, LogsResponse, PortForwardRequest, PortForwardResponse, ProgressPipelineRequest, ProgressPipelineResponse, ProposeRolloutRequest, ProposeRolloutResponse, ProposeSetRolloutRequest, ProposeSetRolloutResponse, RestartInstanceRequest, RestartInstanceResponse, StartPipelineRequest, StartPipelineResponse, StopRolloutRequest, StopRolloutResponse, UpdateRequest, UpdateResponse, WatchInstanceStatusesRequest, WatchInstanceStatusesResponse, WatchRolloutsRequest, WatchRolloutsResponse, WatchStatusRequest, WatchStatusResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -360,6 +360,59 @@ export const Service = {
       name: "GetEffectiveGitSettings",
       I: GetEffectiveGitSettingsRequest,
       O: GetEffectiveGitSettingsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Will initiate the pipeline, from the initial environment and it's current
+     * rollout.
+     *
+     * @generated from rpc api.v1.capsule.Service.StartPipeline
+     */
+    startPipeline: {
+      name: "StartPipeline",
+      I: StartPipelineRequest,
+      O: StartPipelineResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.GetPipelineStatus
+     */
+    getPipelineStatus: {
+      name: "GetPipelineStatus",
+      I: GetPipelineStatusRequest,
+      O: GetPipelineStatusResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Progress the pipeline to the next environment.
+     *
+     * @generated from rpc api.v1.capsule.Service.ProgressPipeline
+     */
+    progressPipeline: {
+      name: "ProgressPipeline",
+      I: ProgressPipelineRequest,
+      O: ProgressPipelineResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Abort the pipeline execution. This will stop the pipeline from any further
+     * promotions.
+     *
+     * @generated from rpc api.v1.capsule.Service.AbortPipeline
+     */
+    abortPipeline: {
+      name: "AbortPipeline",
+      I: AbortPipelineRequest,
+      O: AbortPipelineResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capsule.Service.ListPipelineStatuses
+     */
+    listPipelineStatuses: {
+      name: "ListPipelineStatuses",
+      I: ListPipelineStatusesRequest,
+      O: ListPipelineStatusesResponse,
       kind: MethodKind.Unary,
     },
   }

@@ -6,9 +6,10 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
+import { State, Status } from "./pipeline/status_pb.js";
 import { Rollout } from "./rollout_pb.js";
-import { Status } from "./instance/status_pb.js";
-import { Status as Status$1 } from "./status_pb.js";
+import { Status as Status$1 } from "./instance/status_pb.js";
+import { Status as Status$2 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
 import { Proposal, Revision, SetProposal, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
@@ -20,6 +21,438 @@ import { Event } from "./event_pb.js";
 import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
 import { JobExecution, JobState } from "./job_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
+
+/**
+ * @generated from message api.v1.capsule.ListPipelineStatusesRequest
+ */
+export class ListPipelineStatusesRequest extends Message<ListPipelineStatusesRequest> {
+  /**
+   * @generated from field: model.Pagination pagination = 1;
+   */
+  pagination?: Pagination;
+
+  /**
+   * Only include pipelines that are run in the given project.
+   *
+   * @generated from field: string project_filter = 2;
+   */
+  projectFilter = "";
+
+  /**
+   * Only include pipelines that are run with the given capsule.
+   *
+   * @generated from field: string capsule_filter = 3;
+   */
+  capsuleFilter = "";
+
+  /**
+   * Only include pipelines that are in one of the given states.
+   *
+   * @generated from field: repeated api.v1.capsule.pipeline.State states_filter = 4;
+   */
+  statesFilter: State[] = [];
+
+  /**
+   * Only include pipelines that have the given name.
+   *
+   * @generated from field: string name_filter = 5;
+   */
+  nameFilter = "";
+
+  constructor(data?: PartialMessage<ListPipelineStatusesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListPipelineStatusesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pagination", kind: "message", T: Pagination },
+    { no: 2, name: "project_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "states_filter", kind: "enum", T: proto3.getEnumType(State), repeated: true },
+    { no: 5, name: "name_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPipelineStatusesRequest {
+    return new ListPipelineStatusesRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPipelineStatusesRequest {
+    return new ListPipelineStatusesRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPipelineStatusesRequest {
+    return new ListPipelineStatusesRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListPipelineStatusesRequest | PlainMessage<ListPipelineStatusesRequest> | undefined, b: ListPipelineStatusesRequest | PlainMessage<ListPipelineStatusesRequest> | undefined): boolean {
+    return proto3.util.equals(ListPipelineStatusesRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ListPipelineStatusesResponse
+ */
+export class ListPipelineStatusesResponse extends Message<ListPipelineStatusesResponse> {
+  /**
+   * @generated from field: repeated api.v1.capsule.pipeline.Status statuses = 1;
+   */
+  statuses: Status[] = [];
+
+  constructor(data?: PartialMessage<ListPipelineStatusesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ListPipelineStatusesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "statuses", kind: "message", T: Status, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPipelineStatusesResponse {
+    return new ListPipelineStatusesResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPipelineStatusesResponse {
+    return new ListPipelineStatusesResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPipelineStatusesResponse {
+    return new ListPipelineStatusesResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListPipelineStatusesResponse | PlainMessage<ListPipelineStatusesResponse> | undefined, b: ListPipelineStatusesResponse | PlainMessage<ListPipelineStatusesResponse> | undefined): boolean {
+    return proto3.util.equals(ListPipelineStatusesResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.AbortPipelineRequest
+ */
+export class AbortPipelineRequest extends Message<AbortPipelineRequest> {
+  /**
+   * @generated from field: uint64 execution_id = 1;
+   */
+  executionId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<AbortPipelineRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.AbortPipelineRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "execution_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AbortPipelineRequest {
+    return new AbortPipelineRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AbortPipelineRequest {
+    return new AbortPipelineRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AbortPipelineRequest {
+    return new AbortPipelineRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AbortPipelineRequest | PlainMessage<AbortPipelineRequest> | undefined, b: AbortPipelineRequest | PlainMessage<AbortPipelineRequest> | undefined): boolean {
+    return proto3.util.equals(AbortPipelineRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.AbortPipelineResponse
+ */
+export class AbortPipelineResponse extends Message<AbortPipelineResponse> {
+  /**
+   * @generated from field: api.v1.capsule.pipeline.Status status = 1;
+   */
+  status?: Status;
+
+  constructor(data?: PartialMessage<AbortPipelineResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.AbortPipelineResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "message", T: Status },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AbortPipelineResponse {
+    return new AbortPipelineResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AbortPipelineResponse {
+    return new AbortPipelineResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AbortPipelineResponse {
+    return new AbortPipelineResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AbortPipelineResponse | PlainMessage<AbortPipelineResponse> | undefined, b: AbortPipelineResponse | PlainMessage<AbortPipelineResponse> | undefined): boolean {
+    return proto3.util.equals(AbortPipelineResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ProgressPipelineRequest
+ */
+export class ProgressPipelineRequest extends Message<ProgressPipelineRequest> {
+  /**
+   * @generated from field: uint64 execution_id = 1;
+   */
+  executionId = protoInt64.zero;
+
+  /**
+   * If true, the progression will not be executed, but instead a
+   * breakdown of changes will be returned
+   *
+   * @generated from field: bool dry_run = 2;
+   */
+  dryRun = false;
+
+  constructor(data?: PartialMessage<ProgressPipelineRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProgressPipelineRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "execution_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProgressPipelineRequest {
+    return new ProgressPipelineRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProgressPipelineRequest {
+    return new ProgressPipelineRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProgressPipelineRequest {
+    return new ProgressPipelineRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProgressPipelineRequest | PlainMessage<ProgressPipelineRequest> | undefined, b: ProgressPipelineRequest | PlainMessage<ProgressPipelineRequest> | undefined): boolean {
+    return proto3.util.equals(ProgressPipelineRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.ProgressPipelineResponse
+ */
+export class ProgressPipelineResponse extends Message<ProgressPipelineResponse> {
+  /**
+   * @generated from field: api.v1.capsule.pipeline.Status status = 1;
+   */
+  status?: Status;
+
+  /**
+   * Breakdown of the changes that this deploy would make to the system.
+   * Only populated if dry-run is used.
+   *
+   * @generated from field: api.v1.capsule.DeployOutcome outcome = 2;
+   */
+  outcome?: DeployOutcome;
+
+  constructor(data?: PartialMessage<ProgressPipelineResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.ProgressPipelineResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "message", T: Status },
+    { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProgressPipelineResponse {
+    return new ProgressPipelineResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProgressPipelineResponse {
+    return new ProgressPipelineResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProgressPipelineResponse {
+    return new ProgressPipelineResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProgressPipelineResponse | PlainMessage<ProgressPipelineResponse> | undefined, b: ProgressPipelineResponse | PlainMessage<ProgressPipelineResponse> | undefined): boolean {
+    return proto3.util.equals(ProgressPipelineResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetPipelineStatusRequest
+ */
+export class GetPipelineStatusRequest extends Message<GetPipelineStatusRequest> {
+  /**
+   * @generated from field: uint64 execution_id = 1;
+   */
+  executionId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GetPipelineStatusRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetPipelineStatusRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "execution_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPipelineStatusRequest {
+    return new GetPipelineStatusRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPipelineStatusRequest {
+    return new GetPipelineStatusRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPipelineStatusRequest {
+    return new GetPipelineStatusRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetPipelineStatusRequest | PlainMessage<GetPipelineStatusRequest> | undefined, b: GetPipelineStatusRequest | PlainMessage<GetPipelineStatusRequest> | undefined): boolean {
+    return proto3.util.equals(GetPipelineStatusRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetPipelineStatusResponse
+ */
+export class GetPipelineStatusResponse extends Message<GetPipelineStatusResponse> {
+  /**
+   * @generated from field: api.v1.capsule.pipeline.Status status = 1;
+   */
+  status?: Status;
+
+  constructor(data?: PartialMessage<GetPipelineStatusResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetPipelineStatusResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "message", T: Status },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPipelineStatusResponse {
+    return new GetPipelineStatusResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPipelineStatusResponse {
+    return new GetPipelineStatusResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPipelineStatusResponse {
+    return new GetPipelineStatusResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetPipelineStatusResponse | PlainMessage<GetPipelineStatusResponse> | undefined, b: GetPipelineStatusResponse | PlainMessage<GetPipelineStatusResponse> | undefined): boolean {
+    return proto3.util.equals(GetPipelineStatusResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.StartPipelineRequest
+ */
+export class StartPipelineRequest extends Message<StartPipelineRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string capsule_id = 2;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: string pipeline_name = 3;
+   */
+  pipelineName = "";
+
+  constructor(data?: PartialMessage<StartPipelineRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.StartPipelineRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "pipeline_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StartPipelineRequest {
+    return new StartPipelineRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StartPipelineRequest {
+    return new StartPipelineRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StartPipelineRequest {
+    return new StartPipelineRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StartPipelineRequest | PlainMessage<StartPipelineRequest> | undefined, b: StartPipelineRequest | PlainMessage<StartPipelineRequest> | undefined): boolean {
+    return proto3.util.equals(StartPipelineRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.StartPipelineResponse
+ */
+export class StartPipelineResponse extends Message<StartPipelineResponse> {
+  /**
+   * @generated from field: api.v1.capsule.pipeline.Status status = 1;
+   */
+  status?: Status;
+
+  constructor(data?: PartialMessage<StartPipelineResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.StartPipelineResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "message", T: Status },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StartPipelineResponse {
+    return new StartPipelineResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StartPipelineResponse {
+    return new StartPipelineResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StartPipelineResponse {
+    return new StartPipelineResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StartPipelineResponse | PlainMessage<StartPipelineResponse> | undefined, b: StartPipelineResponse | PlainMessage<StartPipelineResponse> | undefined): boolean {
+    return proto3.util.equals(StartPipelineResponse, a, b);
+  }
+}
 
 /**
  * @generated from message api.v1.capsule.WatchRolloutsRequest
@@ -227,7 +660,7 @@ export class WatchInstanceStatusesResponse extends Message<WatchInstanceStatuses
     /**
      * @generated from field: api.v1.capsule.instance.Status updated = 1;
      */
-    value: Status;
+    value: Status$1;
     case: "updated";
   } | {
     /**
@@ -245,7 +678,7 @@ export class WatchInstanceStatusesResponse extends Message<WatchInstanceStatuses
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.WatchInstanceStatusesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "updated", kind: "message", T: Status, oneof: "response" },
+    { no: 1, name: "updated", kind: "message", T: Status$1, oneof: "response" },
     { no: 2, name: "deleted", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "response" },
   ]);
 
@@ -328,7 +761,7 @@ export class WatchStatusResponse extends Message<WatchStatusResponse> {
   /**
    * @generated from field: api.v1.capsule.Status status = 1;
    */
-  status?: Status$1;
+  status?: Status$2;
 
   constructor(data?: PartialMessage<WatchStatusResponse>) {
     super();
@@ -338,7 +771,7 @@ export class WatchStatusResponse extends Message<WatchStatusResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.WatchStatusResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "message", T: Status$1 },
+    { no: 1, name: "status", kind: "message", T: Status$2 },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchStatusResponse {
@@ -426,7 +859,7 @@ export class GetStatusResponse extends Message<GetStatusResponse> {
    *
    * @generated from field: api.v1.capsule.Status status = 1;
    */
-  status?: Status$1;
+  status?: Status$2;
 
   constructor(data?: PartialMessage<GetStatusResponse>) {
     super();
@@ -436,7 +869,7 @@ export class GetStatusResponse extends Message<GetStatusResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.GetStatusResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "message", T: Status$1 },
+    { no: 1, name: "status", kind: "message", T: Status$2 },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStatusResponse {
@@ -2858,7 +3291,7 @@ export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse
    *
    * @generated from field: api.v1.capsule.instance.Status status = 1;
    */
-  status?: Status;
+  status?: Status$1;
 
   constructor(data?: PartialMessage<GetInstanceStatusResponse>) {
     super();
@@ -2868,7 +3301,7 @@ export class GetInstanceStatusResponse extends Message<GetInstanceStatusResponse
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.GetInstanceStatusResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "message", T: Status },
+    { no: 1, name: "status", kind: "message", T: Status$1 },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetInstanceStatusResponse {
@@ -2980,7 +3413,7 @@ export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesRe
    *
    * @generated from field: repeated api.v1.capsule.instance.Status instances = 1;
    */
-  instances: Status[] = [];
+  instances: Status$1[] = [];
 
   /**
    * Total number of instances in the capsule for the given environment.
@@ -2997,7 +3430,7 @@ export class ListInstanceStatusesResponse extends Message<ListInstanceStatusesRe
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.capsule.ListInstanceStatusesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "instances", kind: "message", T: Status, repeated: true },
+    { no: 1, name: "instances", kind: "message", T: Status$1, repeated: true },
     { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
