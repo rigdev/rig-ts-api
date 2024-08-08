@@ -7,11 +7,11 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
 import { State, Status } from "./pipeline/status_pb.js";
+import { Proposal, Revision, SetProposal, SetRevision } from "./revision_pb.js";
 import { Rollout } from "./rollout_pb.js";
 import { Status as Status$1 } from "./instance/status_pb.js";
 import { Status as Status$2 } from "./status_pb.js";
 import { Capsule, Update } from "./capsule_pb.js";
-import { Proposal, Revision, SetProposal, SetRevision } from "./revision_pb.js";
 import { Log } from "./log_pb.js";
 import { Change } from "./change_pb.js";
 import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
@@ -265,6 +265,13 @@ export class ProgressPipelineResponse extends Message<ProgressPipelineResponse> 
    */
   outcome?: DeployOutcome;
 
+  /**
+   * The capsule revision created.
+   *
+   * @generated from field: api.v1.capsule.Revision revision = 3;
+   */
+  revision?: Revision;
+
   constructor(data?: PartialMessage<ProgressPipelineResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -275,6 +282,7 @@ export class ProgressPipelineResponse extends Message<ProgressPipelineResponse> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "status", kind: "message", T: Status },
     { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
+    { no: 3, name: "revision", kind: "message", T: Revision },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProgressPipelineResponse {

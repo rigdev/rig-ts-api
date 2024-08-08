@@ -9,6 +9,7 @@ import { Project, Update } from "./project_pb.js";
 import { Pagination } from "../../../model/common_pb.js";
 import { Metric, ObjectReference } from "../../../model/metrics_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
+import { Pipeline } from "../../../model/pipeline_pb.js";
 
 /**
  * The request to create a project.
@@ -851,6 +852,80 @@ export class GetEffectiveGitSettingsResponse extends Message<GetEffectiveGitSett
 
   static equals(a: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined, b: GetEffectiveGitSettingsResponse | PlainMessage<GetEffectiveGitSettingsResponse> | undefined): boolean {
     return proto3.util.equals(GetEffectiveGitSettingsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectivePipelineSettingsRequest
+ */
+export class GetEffectivePipelineSettingsRequest extends Message<GetEffectivePipelineSettingsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  constructor(data?: PartialMessage<GetEffectivePipelineSettingsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectivePipelineSettingsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectivePipelineSettingsRequest {
+    return new GetEffectivePipelineSettingsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsRequest {
+    return new GetEffectivePipelineSettingsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsRequest {
+    return new GetEffectivePipelineSettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectivePipelineSettingsRequest | PlainMessage<GetEffectivePipelineSettingsRequest> | undefined, b: GetEffectivePipelineSettingsRequest | PlainMessage<GetEffectivePipelineSettingsRequest> | undefined): boolean {
+    return proto3.util.equals(GetEffectivePipelineSettingsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectivePipelineSettingsResponse
+ */
+export class GetEffectivePipelineSettingsResponse extends Message<GetEffectivePipelineSettingsResponse> {
+  /**
+   * @generated from field: repeated model.Pipeline pipelines = 1;
+   */
+  pipelines: Pipeline[] = [];
+
+  constructor(data?: PartialMessage<GetEffectivePipelineSettingsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectivePipelineSettingsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectivePipelineSettingsResponse {
+    return new GetEffectivePipelineSettingsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsResponse {
+    return new GetEffectivePipelineSettingsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsResponse {
+    return new GetEffectivePipelineSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined, b: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined): boolean {
+    return proto3.util.equals(GetEffectivePipelineSettingsResponse, a, b);
   }
 }
 
