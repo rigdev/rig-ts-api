@@ -10,6 +10,7 @@ import { Pagination } from "../../../model/common_pb.js";
 import { Metric, ObjectReference } from "../../../model/metrics_pb.js";
 import { GitStore } from "../../../model/git_pb.js";
 import { Pipeline } from "../../../model/pipeline_pb.js";
+import { NotificationNotifier } from "../../../model/notification_pb.js";
 
 /**
  * The request to create a project.
@@ -926,6 +927,80 @@ export class GetEffectivePipelineSettingsResponse extends Message<GetEffectivePi
 
   static equals(a: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined, b: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined): boolean {
     return proto3.util.equals(GetEffectivePipelineSettingsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectiveNotificationSettingsRequest
+ */
+export class GetEffectiveNotificationSettingsRequest extends Message<GetEffectiveNotificationSettingsRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  constructor(data?: PartialMessage<GetEffectiveNotificationSettingsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectiveNotificationSettingsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveNotificationSettingsRequest {
+    return new GetEffectiveNotificationSettingsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveNotificationSettingsRequest {
+    return new GetEffectiveNotificationSettingsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveNotificationSettingsRequest {
+    return new GetEffectiveNotificationSettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveNotificationSettingsRequest | PlainMessage<GetEffectiveNotificationSettingsRequest> | undefined, b: GetEffectiveNotificationSettingsRequest | PlainMessage<GetEffectiveNotificationSettingsRequest> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveNotificationSettingsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectiveNotificationSettingsResponse
+ */
+export class GetEffectiveNotificationSettingsResponse extends Message<GetEffectiveNotificationSettingsResponse> {
+  /**
+   * @generated from field: repeated model.NotificationNotifier notifiers = 1;
+   */
+  notifiers: NotificationNotifier[] = [];
+
+  constructor(data?: PartialMessage<GetEffectiveNotificationSettingsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectiveNotificationSettingsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "notifiers", kind: "message", T: NotificationNotifier, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectiveNotificationSettingsResponse {
+    return new GetEffectiveNotificationSettingsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectiveNotificationSettingsResponse {
+    return new GetEffectiveNotificationSettingsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectiveNotificationSettingsResponse {
+    return new GetEffectiveNotificationSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectiveNotificationSettingsResponse | PlainMessage<GetEffectiveNotificationSettingsResponse> | undefined, b: GetEffectiveNotificationSettingsResponse | PlainMessage<GetEffectiveNotificationSettingsResponse> | undefined): boolean {
+    return proto3.util.equals(GetEffectiveNotificationSettingsResponse, a, b);
   }
 }
 

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomObjectMetricsRequest, GetCustomObjectMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetEffectivePipelineSettingsRequest, GetEffectivePipelineSettingsResponse, GetObjectsByKindRequest, GetObjectsByKindResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetCustomObjectMetricsRequest, GetCustomObjectMetricsResponse, GetEffectiveGitSettingsRequest, GetEffectiveGitSettingsResponse, GetEffectiveNotificationSettingsRequest, GetEffectiveNotificationSettingsResponse, GetEffectivePipelineSettingsRequest, GetEffectivePipelineSettingsResponse, GetObjectsByKindRequest, GetObjectsByKindResponse, GetRequest, GetResponse, ListRequest, ListResponse, PublicKeyRequest, PublicKeyResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -118,6 +118,15 @@ export const Service = {
       name: "GetEffectivePipelineSettings",
       I: GetEffectivePipelineSettingsRequest,
       O: GetEffectivePipelineSettingsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.project.Service.GetEffectiveNotificationSettings
+     */
+    getEffectiveNotificationSettings: {
+      name: "GetEffectiveNotificationSettings",
+      I: GetEffectiveNotificationSettingsRequest,
+      O: GetEffectiveNotificationSettingsResponse,
       kind: MethodKind.Unary,
     },
   }
