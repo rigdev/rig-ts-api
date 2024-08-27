@@ -212,6 +212,11 @@ export class ObjectStatus extends Message<ObjectStatus> {
   updatedAt?: Timestamp;
 
   /**
+   * @generated from field: google.protobuf.Timestamp deletion_at = 6;
+   */
+  deletionAt?: Timestamp;
+
+  /**
    * @generated from field: api.v1.pipeline.ObjectRef parent = 4;
    */
   parent?: ObjectRef;
@@ -228,6 +233,7 @@ export class ObjectStatus extends Message<ObjectStatus> {
     { no: 2, name: "info", kind: "message", T: ObjectStatusInfo },
     { no: 5, name: "created_at", kind: "message", T: Timestamp },
     { no: 3, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 6, name: "deletion_at", kind: "message", T: Timestamp },
     { no: 4, name: "parent", kind: "message", T: ObjectRef },
   ]);
 
