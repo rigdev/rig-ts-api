@@ -2145,6 +2145,14 @@ export class DeployRequest extends Message<DeployRequest> {
    */
   forceOverride = false;
 
+  /**
+   * Only allowed with dry_run = true. Will use this config for the operator
+   * instead of the config running in the cluster.
+   *
+   * @generated from field: string operator_config = 11;
+   */
+  operatorConfig = "";
+
   constructor(data?: PartialMessage<DeployRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2163,6 +2171,7 @@ export class DeployRequest extends Message<DeployRequest> {
     { no: 8, name: "current_rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 10, name: "current_fingerprint", kind: "message", T: Fingerprint },
     { no: 9, name: "force_override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: "operator_config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeployRequest {
