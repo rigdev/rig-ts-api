@@ -4,8 +4,8 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { CapsuleInterface, CPUTarget, CronJob, CustomMetric, Instances, VerticalScale } from "../../v1alpha2/generated_pb.js";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { CrossVersionObjectReference } from "../../k8s.io/api/autoscaling/v2/generated_pb.js";
 
 /**
  * @generated from message platform.v1.CapsuleSet
@@ -115,7 +115,7 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
   args: string[] = [];
 
   /**
-   * @generated from field: repeated v1alpha2.CapsuleInterface interfaces = 6;
+   * @generated from field: repeated platform.v1.CapsuleInterface interfaces = 6;
    */
   interfaces: CapsuleInterface[] = [];
 
@@ -135,7 +135,7 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
   scale?: Scale;
 
   /**
-   * @generated from field: repeated v1alpha2.CronJob cronJobs = 10;
+   * @generated from field: repeated platform.v1.CronJob cronJobs = 10;
    */
   cronJobs: CronJob[] = [];
 
@@ -180,6 +180,257 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
 
   static equals(a: CapsuleSpec | PlainMessage<CapsuleSpec> | undefined, b: CapsuleSpec | PlainMessage<CapsuleSpec> | undefined): boolean {
     return proto3.util.equals(CapsuleSpec, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.CapsuleInterface
+ */
+export class CapsuleInterface extends Message<CapsuleInterface> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: int32 port = 2;
+   */
+  port = 0;
+
+  /**
+   * @generated from field: platform.v1.InterfaceProbe liveness = 3;
+   */
+  liveness?: InterfaceProbe;
+
+  /**
+   * @generated from field: platform.v1.InterfaceProbe readiness = 4;
+   */
+  readiness?: InterfaceProbe;
+
+  /**
+   * @generated from field: repeated platform.v1.HostRoute routes = 6;
+   */
+  routes: HostRoute[] = [];
+
+  constructor(data?: PartialMessage<CapsuleInterface>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.CapsuleInterface";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "port", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "liveness", kind: "message", T: InterfaceProbe },
+    { no: 4, name: "readiness", kind: "message", T: InterfaceProbe },
+    { no: 6, name: "routes", kind: "message", T: HostRoute, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleInterface {
+    return new CapsuleInterface().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CapsuleInterface {
+    return new CapsuleInterface().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CapsuleInterface {
+    return new CapsuleInterface().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CapsuleInterface | PlainMessage<CapsuleInterface> | undefined, b: CapsuleInterface | PlainMessage<CapsuleInterface> | undefined): boolean {
+    return proto3.util.equals(CapsuleInterface, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.InterfaceProbe
+ */
+export class InterfaceProbe extends Message<InterfaceProbe> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: bool tcp = 2;
+   */
+  tcp = false;
+
+  /**
+   * @generated from field: platform.v1.InterfaceGRPCProbe grpc = 3;
+   */
+  grpc?: InterfaceGRPCProbe;
+
+  constructor(data?: PartialMessage<InterfaceProbe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.InterfaceProbe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "tcp", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "grpc", kind: "message", T: InterfaceGRPCProbe },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceProbe {
+    return new InterfaceProbe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceProbe {
+    return new InterfaceProbe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceProbe {
+    return new InterfaceProbe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InterfaceProbe | PlainMessage<InterfaceProbe> | undefined, b: InterfaceProbe | PlainMessage<InterfaceProbe> | undefined): boolean {
+    return proto3.util.equals(InterfaceProbe, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.InterfaceGRPCProbe
+ */
+export class InterfaceGRPCProbe extends Message<InterfaceGRPCProbe> {
+  /**
+   * @generated from field: string service = 1;
+   */
+  service = "";
+
+  /**
+   * @generated from field: bool enabled = 2;
+   */
+  enabled = false;
+
+  constructor(data?: PartialMessage<InterfaceGRPCProbe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.InterfaceGRPCProbe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "service", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceGRPCProbe {
+    return new InterfaceGRPCProbe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceGRPCProbe {
+    return new InterfaceGRPCProbe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceGRPCProbe {
+    return new InterfaceGRPCProbe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InterfaceGRPCProbe | PlainMessage<InterfaceGRPCProbe> | undefined, b: InterfaceGRPCProbe | PlainMessage<InterfaceGRPCProbe> | undefined): boolean {
+    return proto3.util.equals(InterfaceGRPCProbe, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.HostRoute
+ */
+export class HostRoute extends Message<HostRoute> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string host = 2;
+   */
+  host = "";
+
+  /**
+   * @generated from field: repeated platform.v1.HTTPPathRoute paths = 3;
+   */
+  paths: HTTPPathRoute[] = [];
+
+  /**
+   * @generated from field: map<string, string> annotations = 4;
+   */
+  annotations: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<HostRoute>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.HostRoute";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "paths", kind: "message", T: HTTPPathRoute, repeated: true },
+    { no: 4, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HostRoute {
+    return new HostRoute().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HostRoute {
+    return new HostRoute().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HostRoute {
+    return new HostRoute().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HostRoute | PlainMessage<HostRoute> | undefined, b: HostRoute | PlainMessage<HostRoute> | undefined): boolean {
+    return proto3.util.equals(HostRoute, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.HTTPPathRoute
+ */
+export class HTTPPathRoute extends Message<HTTPPathRoute> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: string match = 2;
+   */
+  match = "";
+
+  constructor(data?: PartialMessage<HTTPPathRoute>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.HTTPPathRoute";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "match", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HTTPPathRoute {
+    return new HTTPPathRoute().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HTTPPathRoute {
+    return new HTTPPathRoute().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HTTPPathRoute {
+    return new HTTPPathRoute().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HTTPPathRoute | PlainMessage<HTTPPathRoute> | undefined, b: HTTPPathRoute | PlainMessage<HTTPPathRoute> | undefined): boolean {
+    return proto3.util.equals(HTTPPathRoute, a, b);
   }
 }
 
@@ -334,7 +585,7 @@ export class Scale extends Message<Scale> {
   horizontal?: HorizontalScale;
 
   /**
-   * @generated from field: v1alpha2.VerticalScale vertical = 2;
+   * @generated from field: platform.v1.VerticalScale vertical = 2;
    */
   vertical?: VerticalScale;
 
@@ -382,17 +633,17 @@ export class HorizontalScale extends Message<HorizontalScale> {
   max = 0;
 
   /**
-   * @generated from field: v1alpha2.Instances instances = 1;
+   * @generated from field: platform.v1.Instances instances = 1;
    */
   instances?: Instances;
 
   /**
-   * @generated from field: v1alpha2.CPUTarget cpuTarget = 2;
+   * @generated from field: platform.v1.CPUTarget cpuTarget = 2;
    */
   cpuTarget?: CPUTarget;
 
   /**
-   * @generated from field: repeated v1alpha2.CustomMetric customMetrics = 3;
+   * @generated from field: repeated platform.v1.CustomMetric customMetrics = 3;
    */
   customMetrics: CustomMetric[] = [];
 
@@ -425,6 +676,527 @@ export class HorizontalScale extends Message<HorizontalScale> {
 
   static equals(a: HorizontalScale | PlainMessage<HorizontalScale> | undefined, b: HorizontalScale | PlainMessage<HorizontalScale> | undefined): boolean {
     return proto3.util.equals(HorizontalScale, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.Instances
+ */
+export class Instances extends Message<Instances> {
+  /**
+   * @generated from field: uint32 min = 1;
+   */
+  min = 0;
+
+  /**
+   * @generated from field: uint32 max = 2;
+   */
+  max = 0;
+
+  constructor(data?: PartialMessage<Instances>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.Instances";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "min", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "max", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Instances {
+    return new Instances().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Instances {
+    return new Instances().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Instances {
+    return new Instances().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Instances | PlainMessage<Instances> | undefined, b: Instances | PlainMessage<Instances> | undefined): boolean {
+    return proto3.util.equals(Instances, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.CPUTarget
+ */
+export class CPUTarget extends Message<CPUTarget> {
+  /**
+   * @generated from field: uint32 utilization = 1;
+   */
+  utilization = 0;
+
+  constructor(data?: PartialMessage<CPUTarget>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.CPUTarget";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "utilization", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CPUTarget {
+    return new CPUTarget().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CPUTarget {
+    return new CPUTarget().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CPUTarget {
+    return new CPUTarget().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CPUTarget | PlainMessage<CPUTarget> | undefined, b: CPUTarget | PlainMessage<CPUTarget> | undefined): boolean {
+    return proto3.util.equals(CPUTarget, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.CustomMetric
+ */
+export class CustomMetric extends Message<CustomMetric> {
+  /**
+   * @generated from field: platform.v1.InstanceMetric instanceMetric = 1;
+   */
+  instanceMetric?: InstanceMetric;
+
+  /**
+   * @generated from field: platform.v1.ObjectMetric objectMetric = 2;
+   */
+  objectMetric?: ObjectMetric;
+
+  constructor(data?: PartialMessage<CustomMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.CustomMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "instanceMetric", kind: "message", T: InstanceMetric },
+    { no: 2, name: "objectMetric", kind: "message", T: ObjectMetric },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomMetric {
+    return new CustomMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomMetric {
+    return new CustomMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomMetric {
+    return new CustomMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CustomMetric | PlainMessage<CustomMetric> | undefined, b: CustomMetric | PlainMessage<CustomMetric> | undefined): boolean {
+    return proto3.util.equals(CustomMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.InstanceMetric
+ */
+export class InstanceMetric extends Message<InstanceMetric> {
+  /**
+   * @generated from field: string metricName = 1;
+   */
+  metricName = "";
+
+  /**
+   * @generated from field: map<string, string> matchLabels = 2;
+   */
+  matchLabels: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: string averageValue = 3;
+   */
+  averageValue = "";
+
+  constructor(data?: PartialMessage<InstanceMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.InstanceMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metricName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "matchLabels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "averageValue", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InstanceMetric {
+    return new InstanceMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InstanceMetric | PlainMessage<InstanceMetric> | undefined, b: InstanceMetric | PlainMessage<InstanceMetric> | undefined): boolean {
+    return proto3.util.equals(InstanceMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.ObjectMetric
+ */
+export class ObjectMetric extends Message<ObjectMetric> {
+  /**
+   * @generated from field: string metricName = 1;
+   */
+  metricName = "";
+
+  /**
+   * @generated from field: map<string, string> matchLabels = 2;
+   */
+  matchLabels: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: string averageValue = 3;
+   */
+  averageValue = "";
+
+  /**
+   * @generated from field: string value = 4;
+   */
+  value = "";
+
+  /**
+   * @generated from field: k8s.io.api.autoscaling.v2.CrossVersionObjectReference objectReference = 5;
+   */
+  objectReference?: CrossVersionObjectReference;
+
+  constructor(data?: PartialMessage<ObjectMetric>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.ObjectMetric";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metricName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "matchLabels", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 3, name: "averageValue", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "objectReference", kind: "message", T: CrossVersionObjectReference },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ObjectMetric {
+    return new ObjectMetric().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ObjectMetric | PlainMessage<ObjectMetric> | undefined, b: ObjectMetric | PlainMessage<ObjectMetric> | undefined): boolean {
+    return proto3.util.equals(ObjectMetric, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.VerticalScale
+ */
+export class VerticalScale extends Message<VerticalScale> {
+  /**
+   * @generated from field: platform.v1.ResourceLimits cpu = 1;
+   */
+  cpu?: ResourceLimits;
+
+  /**
+   * @generated from field: platform.v1.ResourceLimits memory = 2;
+   */
+  memory?: ResourceLimits;
+
+  /**
+   * @generated from field: platform.v1.ResourceRequest gpu = 3;
+   */
+  gpu?: ResourceRequest;
+
+  constructor(data?: PartialMessage<VerticalScale>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.VerticalScale";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cpu", kind: "message", T: ResourceLimits },
+    { no: 2, name: "memory", kind: "message", T: ResourceLimits },
+    { no: 3, name: "gpu", kind: "message", T: ResourceRequest },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerticalScale {
+    return new VerticalScale().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VerticalScale {
+    return new VerticalScale().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VerticalScale {
+    return new VerticalScale().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VerticalScale | PlainMessage<VerticalScale> | undefined, b: VerticalScale | PlainMessage<VerticalScale> | undefined): boolean {
+    return proto3.util.equals(VerticalScale, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.ResourceLimits
+ */
+export class ResourceLimits extends Message<ResourceLimits> {
+  /**
+   * @generated from field: string request = 1;
+   */
+  request = "";
+
+  /**
+   * @generated from field: string limit = 2;
+   */
+  limit = "";
+
+  constructor(data?: PartialMessage<ResourceLimits>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.ResourceLimits";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "request", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "limit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceLimits {
+    return new ResourceLimits().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ResourceLimits {
+    return new ResourceLimits().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ResourceLimits {
+    return new ResourceLimits().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ResourceLimits | PlainMessage<ResourceLimits> | undefined, b: ResourceLimits | PlainMessage<ResourceLimits> | undefined): boolean {
+    return proto3.util.equals(ResourceLimits, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.ResourceRequest
+ */
+export class ResourceRequest extends Message<ResourceRequest> {
+  /**
+   * @generated from field: string request = 1;
+   */
+  request = "";
+
+  constructor(data?: PartialMessage<ResourceRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.ResourceRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "request", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ResourceRequest {
+    return new ResourceRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ResourceRequest {
+    return new ResourceRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ResourceRequest {
+    return new ResourceRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ResourceRequest | PlainMessage<ResourceRequest> | undefined, b: ResourceRequest | PlainMessage<ResourceRequest> | undefined): boolean {
+    return proto3.util.equals(ResourceRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.CronJob
+ */
+export class CronJob extends Message<CronJob> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string schedule = 2;
+   */
+  schedule = "";
+
+  /**
+   * @generated from field: platform.v1.URL url = 3;
+   */
+  url?: URL;
+
+  /**
+   * @generated from field: platform.v1.JobCommand command = 4;
+   */
+  command?: JobCommand;
+
+  /**
+   * @generated from field: uint64 maxRetries = 5;
+   */
+  maxRetries = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 timeoutSeconds = 6;
+   */
+  timeoutSeconds = protoInt64.zero;
+
+  constructor(data?: PartialMessage<CronJob>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.CronJob";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schedule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "url", kind: "message", T: URL },
+    { no: 4, name: "command", kind: "message", T: JobCommand },
+    { no: 5, name: "maxRetries", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: "timeoutSeconds", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CronJob {
+    return new CronJob().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CronJob {
+    return new CronJob().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CronJob {
+    return new CronJob().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CronJob | PlainMessage<CronJob> | undefined, b: CronJob | PlainMessage<CronJob> | undefined): boolean {
+    return proto3.util.equals(CronJob, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.URL
+ */
+export class URL extends Message<URL> {
+  /**
+   * @generated from field: uint32 port = 1;
+   */
+  port = 0;
+
+  /**
+   * @generated from field: string path = 2;
+   */
+  path = "";
+
+  /**
+   * @generated from field: map<string, string> queryParameters = 3;
+   */
+  queryParameters: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<URL>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.URL";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "queryParameters", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): URL {
+    return new URL().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): URL {
+    return new URL().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): URL {
+    return new URL().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: URL | PlainMessage<URL> | undefined, b: URL | PlainMessage<URL> | undefined): boolean {
+    return proto3.util.equals(URL, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.JobCommand
+ */
+export class JobCommand extends Message<JobCommand> {
+  /**
+   * @generated from field: string command = 1;
+   */
+  command = "";
+
+  /**
+   * @generated from field: repeated string args = 2;
+   */
+  args: string[] = [];
+
+  constructor(data?: PartialMessage<JobCommand>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.JobCommand";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JobCommand {
+    return new JobCommand().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JobCommand {
+    return new JobCommand().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JobCommand {
+    return new JobCommand().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: JobCommand | PlainMessage<JobCommand> | undefined, b: JobCommand | PlainMessage<JobCommand> | undefined): boolean {
+    return proto3.util.equals(JobCommand, a, b);
   }
 }
 
