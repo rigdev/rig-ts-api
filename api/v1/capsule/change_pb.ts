@@ -102,6 +102,14 @@ export class Change extends Message<Change> {
     case: "setConfigFile";
   } | {
     /**
+     * Set a config file ref - either update or add.
+     *
+     * @generated from field: api.v1.capsule.Change.ConfigFileRef set_config_file_ref = 25;
+     */
+    value: Change_ConfigFileRef;
+    case: "setConfigFileRef";
+  } | {
+    /**
      * Path of a config file to remove.
      *
      * @generated from field: string remove_config_file = 7;
@@ -252,6 +260,7 @@ export class Change extends Message<Change> {
     { no: 4, name: "container_settings", kind: "message", T: ContainerSettings, oneof: "field" },
     { no: 5, name: "auto_add_rig_service_accounts", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "field" },
     { no: 6, name: "set_config_file", kind: "message", T: Change_ConfigFile, oneof: "field" },
+    { no: 25, name: "set_config_file_ref", kind: "message", T: Change_ConfigFileRef, oneof: "field" },
     { no: 7, name: "remove_config_file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "field" },
     { no: 8, name: "horizontal_scale", kind: "message", T: HorizontalScale, oneof: "field" },
     { no: 9, name: "rollback", kind: "message", T: Change_Rollback, oneof: "field" },
@@ -342,6 +351,71 @@ export class Change_ConfigFile extends Message<Change_ConfigFile> {
 
   static equals(a: Change_ConfigFile | PlainMessage<Change_ConfigFile> | undefined, b: Change_ConfigFile | PlainMessage<Change_ConfigFile> | undefined): boolean {
     return proto3.util.equals(Change_ConfigFile, a, b);
+  }
+}
+
+/**
+ * Config file ref change.
+ *
+ * @generated from message api.v1.capsule.Change.ConfigFileRef
+ */
+export class Change_ConfigFileRef extends Message<Change_ConfigFileRef> {
+  /**
+   * Path of the file in the instance.
+   *
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * Kind of the object to inject as config file. Either ConfigMap or Secret.
+   *
+   * @generated from field: string kind = 2;
+   */
+  kind = "";
+
+  /**
+   * Name of the object to inject as a config file.
+   *
+   * @generated from field: string name = 3;
+   */
+  name = "";
+
+  /**
+   * Key of the data within the object contents.
+   *
+   * @generated from field: string key = 4;
+   */
+  key = "";
+
+  constructor(data?: PartialMessage<Change_ConfigFileRef>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.Change.ConfigFileRef";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Change_ConfigFileRef {
+    return new Change_ConfigFileRef().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Change_ConfigFileRef {
+    return new Change_ConfigFileRef().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Change_ConfigFileRef {
+    return new Change_ConfigFileRef().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Change_ConfigFileRef | PlainMessage<Change_ConfigFileRef> | undefined, b: Change_ConfigFileRef | PlainMessage<Change_ConfigFileRef> | undefined): boolean {
+    return proto3.util.equals(Change_ConfigFileRef, a, b);
   }
 }
 

@@ -458,6 +458,11 @@ export class File extends Message<File> {
    */
   string = "";
 
+  /**
+   * @generated from field: platform.v1.FileReference ref = 6;
+   */
+  ref?: FileReference;
+
   constructor(data?: PartialMessage<File>) {
     super();
     proto3.util.initPartial(data, this);
@@ -470,6 +475,7 @@ export class File extends Message<File> {
     { no: 3, name: "asSecret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 5, name: "string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "ref", kind: "message", T: FileReference },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): File {
@@ -486,6 +492,55 @@ export class File extends Message<File> {
 
   static equals(a: File | PlainMessage<File> | undefined, b: File | PlainMessage<File> | undefined): boolean {
     return proto3.util.equals(File, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.FileReference
+ */
+export class FileReference extends Message<FileReference> {
+  /**
+   * @generated from field: string kind = 1;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string key = 3;
+   */
+  key = "";
+
+  constructor(data?: PartialMessage<FileReference>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.FileReference";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileReference {
+    return new FileReference().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FileReference {
+    return new FileReference().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileReference {
+    return new FileReference().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FileReference | PlainMessage<FileReference> | undefined, b: FileReference | PlainMessage<FileReference> | undefined): boolean {
+    return proto3.util.equals(FileReference, a, b);
   }
 }
 
