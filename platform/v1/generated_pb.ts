@@ -198,14 +198,14 @@ export class CapsuleInterface extends Message<CapsuleInterface> {
   port = 0;
 
   /**
-   * @generated from field: platform.v1.InterfaceProbe liveness = 3;
+   * @generated from field: platform.v1.InterfaceLivenessProbe liveness = 3;
    */
-  liveness?: InterfaceProbe;
+  liveness?: InterfaceLivenessProbe;
 
   /**
-   * @generated from field: platform.v1.InterfaceProbe readiness = 4;
+   * @generated from field: platform.v1.InterfaceReadinessProbe readiness = 4;
    */
-  readiness?: InterfaceProbe;
+  readiness?: InterfaceReadinessProbe;
 
   /**
    * @generated from field: repeated platform.v1.HostRoute routes = 6;
@@ -222,8 +222,8 @@ export class CapsuleInterface extends Message<CapsuleInterface> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "port", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "liveness", kind: "message", T: InterfaceProbe },
-    { no: 4, name: "readiness", kind: "message", T: InterfaceProbe },
+    { no: 3, name: "liveness", kind: "message", T: InterfaceLivenessProbe },
+    { no: 4, name: "readiness", kind: "message", T: InterfaceReadinessProbe },
     { no: 6, name: "routes", kind: "message", T: HostRoute, repeated: true },
   ]);
 
@@ -245,9 +245,9 @@ export class CapsuleInterface extends Message<CapsuleInterface> {
 }
 
 /**
- * @generated from message platform.v1.InterfaceProbe
+ * @generated from message platform.v1.InterfaceLivenessProbe
  */
-export class InterfaceProbe extends Message<InterfaceProbe> {
+export class InterfaceLivenessProbe extends Message<InterfaceLivenessProbe> {
   /**
    * @generated from field: string path = 1;
    */
@@ -263,33 +263,39 @@ export class InterfaceProbe extends Message<InterfaceProbe> {
    */
   grpc?: InterfaceGRPCProbe;
 
-  constructor(data?: PartialMessage<InterfaceProbe>) {
+  /**
+   * @generated from field: uint32 startupDelay = 4;
+   */
+  startupDelay = 0;
+
+  constructor(data?: PartialMessage<InterfaceLivenessProbe>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "platform.v1.InterfaceProbe";
+  static readonly typeName = "platform.v1.InterfaceLivenessProbe";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "tcp", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "grpc", kind: "message", T: InterfaceGRPCProbe },
+    { no: 4, name: "startupDelay", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceProbe {
-    return new InterfaceProbe().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceLivenessProbe {
+    return new InterfaceLivenessProbe().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceProbe {
-    return new InterfaceProbe().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceLivenessProbe {
+    return new InterfaceLivenessProbe().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceProbe {
-    return new InterfaceProbe().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceLivenessProbe {
+    return new InterfaceLivenessProbe().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InterfaceProbe | PlainMessage<InterfaceProbe> | undefined, b: InterfaceProbe | PlainMessage<InterfaceProbe> | undefined): boolean {
-    return proto3.util.equals(InterfaceProbe, a, b);
+  static equals(a: InterfaceLivenessProbe | PlainMessage<InterfaceLivenessProbe> | undefined, b: InterfaceLivenessProbe | PlainMessage<InterfaceLivenessProbe> | undefined): boolean {
+    return proto3.util.equals(InterfaceLivenessProbe, a, b);
   }
 }
 
@@ -333,6 +339,55 @@ export class InterfaceGRPCProbe extends Message<InterfaceGRPCProbe> {
 
   static equals(a: InterfaceGRPCProbe | PlainMessage<InterfaceGRPCProbe> | undefined, b: InterfaceGRPCProbe | PlainMessage<InterfaceGRPCProbe> | undefined): boolean {
     return proto3.util.equals(InterfaceGRPCProbe, a, b);
+  }
+}
+
+/**
+ * @generated from message platform.v1.InterfaceReadinessProbe
+ */
+export class InterfaceReadinessProbe extends Message<InterfaceReadinessProbe> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: bool tcp = 2;
+   */
+  tcp = false;
+
+  /**
+   * @generated from field: platform.v1.InterfaceGRPCProbe grpc = 3;
+   */
+  grpc?: InterfaceGRPCProbe;
+
+  constructor(data?: PartialMessage<InterfaceReadinessProbe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "platform.v1.InterfaceReadinessProbe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "tcp", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "grpc", kind: "message", T: InterfaceGRPCProbe },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterfaceReadinessProbe {
+    return new InterfaceReadinessProbe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterfaceReadinessProbe {
+    return new InterfaceReadinessProbe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterfaceReadinessProbe {
+    return new InterfaceReadinessProbe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InterfaceReadinessProbe | PlainMessage<InterfaceReadinessProbe> | undefined, b: InterfaceReadinessProbe | PlainMessage<InterfaceReadinessProbe> | undefined): boolean {
+    return proto3.util.equals(InterfaceReadinessProbe, a, b);
   }
 }
 
