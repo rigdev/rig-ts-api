@@ -53,6 +53,11 @@ export class Configuration extends Message<Configuration> {
    */
   defaultEmail?: EmailClient;
 
+  /**
+   * @generated from field: map<string, api.v1.settings.Extension> capsule_extensions = 4;
+   */
+  capsuleExtensions: { [key: string]: Extension } = {};
+
   constructor(data?: PartialMessage<Configuration>) {
     super();
     proto3.util.initPartial(data, this);
@@ -64,6 +69,7 @@ export class Configuration extends Message<Configuration> {
     { no: 1, name: "client", kind: "message", T: Client },
     { no: 2, name: "docker_registries", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 3, name: "default_email", kind: "message", T: EmailClient },
+    { no: 4, name: "capsule_extensions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Extension} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Configuration {
@@ -293,6 +299,46 @@ export class Git extends Message<Git> {
 
   static equals(a: Git | PlainMessage<Git> | undefined, b: Git | PlainMessage<Git> | undefined): boolean {
     return proto3.util.equals(Git, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.settings.Extension
+ */
+export class Extension extends Message<Extension> {
+  /**
+   * The schema of the extension, expressed as a json-schema
+   * (https://json-schema.org/).
+   *
+   * @generated from field: string json_schema = 1;
+   */
+  jsonSchema = "";
+
+  constructor(data?: PartialMessage<Extension>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.settings.Extension";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "json_schema", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Extension {
+    return new Extension().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Extension {
+    return new Extension().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Extension {
+    return new Extension().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Extension | PlainMessage<Extension> | undefined, b: Extension | PlainMessage<Extension> | undefined): boolean {
+    return proto3.util.equals(Extension, a, b);
   }
 }
 
