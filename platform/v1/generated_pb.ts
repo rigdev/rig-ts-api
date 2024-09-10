@@ -145,9 +145,9 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
   autoAddRigServiceAccounts = false;
 
   /**
-   * @generated from field: map<string, google.protobuf.Struct> extensions = 14;
+   * @generated from field: map<string, google.protobuf.Struct> extentions = 14;
    */
-  extensions: { [key: string]: Struct } = {};
+  extentions: { [key: string]: Struct } = {};
 
   constructor(data?: PartialMessage<CapsuleSpec>) {
     super();
@@ -169,7 +169,7 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
     { no: 8, name: "scale", kind: "message", T: Scale },
     { no: 10, name: "cronJobs", kind: "message", T: CronJob, repeated: true },
     { no: 13, name: "autoAddRigServiceAccounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 14, name: "extensions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Struct} },
+    { no: 14, name: "extentions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Struct} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSpec {
