@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
 import { CrossVersionObjectReference } from "../../k8s.io/api/autoscaling/v2/generated_pb.js";
 
 /**
@@ -144,6 +144,11 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
    */
   autoAddRigServiceAccounts = false;
 
+  /**
+   * @generated from field: map<string, google.protobuf.Struct> extensions = 14;
+   */
+  extensions: { [key: string]: Struct } = {};
+
   constructor(data?: PartialMessage<CapsuleSpec>) {
     super();
     proto3.util.initPartial(data, this);
@@ -164,6 +169,7 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
     { no: 8, name: "scale", kind: "message", T: Scale },
     { no: 10, name: "cronJobs", kind: "message", T: CronJob, repeated: true },
     { no: 13, name: "autoAddRigServiceAccounts", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "extensions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Struct} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CapsuleSpec {
