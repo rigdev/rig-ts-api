@@ -420,6 +420,11 @@ export class ConfigFileStatus extends Message<ConfigFileStatus> {
    */
   transition = Transition.UNSPECIFIED;
 
+  /**
+   * @generated from field: bytes content = 5;
+   */
+  content = new Uint8Array(0);
+
   constructor(data?: PartialMessage<ConfigFileStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -432,6 +437,7 @@ export class ConfigFileStatus extends Message<ConfigFileStatus> {
     { no: 2, name: "isSecret", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "status", kind: "message", T: ObjectStatus, repeated: true },
     { no: 4, name: "transition", kind: "enum", T: proto3.getEnumType(Transition) },
+    { no: 5, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConfigFileStatus {
