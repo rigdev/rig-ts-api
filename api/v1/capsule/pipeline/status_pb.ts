@@ -193,9 +193,9 @@ export class PhaseStatus extends Message<PhaseStatus> {
   rolloutId = protoInt64.zero;
 
   /**
-   * @generated from field: string message = 4;
+   * @generated from field: repeated api.v1.capsule.pipeline.PhaseMessage messages = 4;
    */
-  message = "";
+  messages: PhaseMessage[] = [];
 
   constructor(data?: PartialMessage<PhaseStatus>) {
     super();
@@ -208,7 +208,7 @@ export class PhaseStatus extends Message<PhaseStatus> {
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(PhaseState) },
     { no: 3, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "messages", kind: "message", T: PhaseMessage, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PhaseStatus {
@@ -225,6 +225,49 @@ export class PhaseStatus extends Message<PhaseStatus> {
 
   static equals(a: PhaseStatus | PlainMessage<PhaseStatus> | undefined, b: PhaseStatus | PlainMessage<PhaseStatus> | undefined): boolean {
     return proto3.util.equals(PhaseStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.pipeline.PhaseMessage
+ */
+export class PhaseMessage extends Message<PhaseMessage> {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   */
+  timestamp?: Timestamp;
+
+  constructor(data?: PartialMessage<PhaseMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.pipeline.PhaseMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PhaseMessage {
+    return new PhaseMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PhaseMessage {
+    return new PhaseMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PhaseMessage {
+    return new PhaseMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PhaseMessage | PlainMessage<PhaseMessage> | undefined, b: PhaseMessage | PlainMessage<PhaseMessage> | undefined): boolean {
+    return proto3.util.equals(PhaseMessage, a, b);
   }
 }
 
