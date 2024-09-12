@@ -337,3 +337,187 @@ export class Object$ extends Message<Object$> {
   }
 }
 
+/**
+ * @generated from message api.v1.pipeline.DryRunPluginConfigRequest
+ */
+export class DryRunPluginConfigRequest extends Message<DryRunPluginConfigRequest> {
+  /**
+   * @generated from field: string namespace = 1;
+   */
+  namespace = "";
+
+  /**
+   * @generated from field: string capsule = 2;
+   */
+  capsule = "";
+
+  /**
+   * @generated from field: string operator_config = 3;
+   */
+  operatorConfig = "";
+
+  /**
+   * @generated from field: string capsule_spec = 4;
+   */
+  capsuleSpec = "";
+
+  constructor(data?: PartialMessage<DryRunPluginConfigRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.DryRunPluginConfigRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "operator_config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "capsule_spec", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DryRunPluginConfigRequest {
+    return new DryRunPluginConfigRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DryRunPluginConfigRequest {
+    return new DryRunPluginConfigRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DryRunPluginConfigRequest {
+    return new DryRunPluginConfigRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DryRunPluginConfigRequest | PlainMessage<DryRunPluginConfigRequest> | undefined, b: DryRunPluginConfigRequest | PlainMessage<DryRunPluginConfigRequest> | undefined): boolean {
+    return proto3.util.equals(DryRunPluginConfigRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.DryRunPluginConfigResponse
+ */
+export class DryRunPluginConfigResponse extends Message<DryRunPluginConfigResponse> {
+  /**
+   * @generated from field: repeated api.v1.pipeline.StepConfig steps = 1;
+   */
+  steps: StepConfig[] = [];
+
+  constructor(data?: PartialMessage<DryRunPluginConfigResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.DryRunPluginConfigResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "steps", kind: "message", T: StepConfig, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DryRunPluginConfigResponse {
+    return new DryRunPluginConfigResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DryRunPluginConfigResponse {
+    return new DryRunPluginConfigResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DryRunPluginConfigResponse {
+    return new DryRunPluginConfigResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DryRunPluginConfigResponse | PlainMessage<DryRunPluginConfigResponse> | undefined, b: DryRunPluginConfigResponse | PlainMessage<DryRunPluginConfigResponse> | undefined): boolean {
+    return proto3.util.equals(DryRunPluginConfigResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.StepConfig
+ */
+export class StepConfig extends Message<StepConfig> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: repeated api.v1.pipeline.PluginConfig plugins = 2;
+   */
+  plugins: PluginConfig[] = [];
+
+  constructor(data?: PartialMessage<StepConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.StepConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "plugins", kind: "message", T: PluginConfig, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StepConfig {
+    return new StepConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StepConfig {
+    return new StepConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StepConfig {
+    return new StepConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StepConfig | PlainMessage<StepConfig> | undefined, b: StepConfig | PlainMessage<StepConfig> | undefined): boolean {
+    return proto3.util.equals(StepConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.PluginConfig
+ */
+export class PluginConfig extends Message<PluginConfig> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string config = 2;
+   */
+  config = "";
+
+  /**
+   * @generated from field: string err = 3;
+   */
+  err = "";
+
+  constructor(data?: PartialMessage<PluginConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.PluginConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "config", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "err", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginConfig {
+    return new PluginConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PluginConfig {
+    return new PluginConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginConfig {
+    return new PluginConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PluginConfig | PlainMessage<PluginConfig> | undefined, b: PluginConfig | PlainMessage<PluginConfig> | undefined): boolean {
+    return proto3.util.equals(PluginConfig, a, b);
+  }
+}
+

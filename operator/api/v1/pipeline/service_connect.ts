@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DryRunRequest, DryRunResponse, WatchObjectStatusRequest, WatchObjectStatusResponse } from "./service_pb.js";
+import { DryRunPluginConfigRequest, DryRunPluginConfigResponse, DryRunRequest, DryRunResponse, WatchObjectStatusRequest, WatchObjectStatusResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,15 @@ export const Service = {
       name: "DryRun",
       I: DryRunRequest,
       O: DryRunResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.pipeline.Service.DryRunPluginConfig
+     */
+    dryRunPluginConfig: {
+      name: "DryRunPluginConfig",
+      I: DryRunPluginConfigRequest,
+      O: DryRunPluginConfigResponse,
       kind: MethodKind.Unary,
     },
   }
