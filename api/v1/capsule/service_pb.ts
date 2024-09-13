@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
 import { State, Status } from "./pipeline/status_pb.js";
+import { FieldChange } from "./field_pb.js";
 import { Proposal, Revision, SetProposal, SetRevision } from "./revision_pb.js";
 import { Rollout } from "./rollout_pb.js";
 import { Status as Status$1 } from "./instance/status_pb.js";
@@ -15,7 +16,6 @@ import { Capsule, Update } from "./capsule_pb.js";
 import { Log } from "./log_pb.js";
 import { Change } from "./change_pb.js";
 import { Fingerprint, Fingerprints } from "../../../model/revision_pb.js";
-import { FieldChange } from "./field_pb.js";
 import { Instance } from "./instance_pb.js";
 import { Event } from "./event_pb.js";
 import { InstanceMetrics, Metric } from "../../../model/metrics_pb.js";
@@ -203,9 +203,9 @@ export class AbortPipelineResponse extends Message<AbortPipelineResponse> {
 }
 
 /**
- * @generated from message api.v1.capsule.ProgressPipelineRequest
+ * @generated from message api.v1.capsule.PromotePipelineRequest
  */
-export class ProgressPipelineRequest extends Message<ProgressPipelineRequest> {
+export class PromotePipelineRequest extends Message<PromotePipelineRequest> {
   /**
    * @generated from field: uint64 execution_id = 1;
    */
@@ -219,39 +219,47 @@ export class ProgressPipelineRequest extends Message<ProgressPipelineRequest> {
    */
   dryRun = false;
 
-  constructor(data?: PartialMessage<ProgressPipelineRequest>) {
+  /**
+   * additional changes to include in the manual promotion
+   *
+   * @generated from field: repeated api.v1.capsule.FieldChange field_changes = 3;
+   */
+  fieldChanges: FieldChange[] = [];
+
+  constructor(data?: PartialMessage<PromotePipelineRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ProgressPipelineRequest";
+  static readonly typeName = "api.v1.capsule.PromotePipelineRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "execution_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "field_changes", kind: "message", T: FieldChange, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProgressPipelineRequest {
-    return new ProgressPipelineRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PromotePipelineRequest {
+    return new PromotePipelineRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProgressPipelineRequest {
-    return new ProgressPipelineRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PromotePipelineRequest {
+    return new PromotePipelineRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProgressPipelineRequest {
-    return new ProgressPipelineRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PromotePipelineRequest {
+    return new PromotePipelineRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ProgressPipelineRequest | PlainMessage<ProgressPipelineRequest> | undefined, b: ProgressPipelineRequest | PlainMessage<ProgressPipelineRequest> | undefined): boolean {
-    return proto3.util.equals(ProgressPipelineRequest, a, b);
+  static equals(a: PromotePipelineRequest | PlainMessage<PromotePipelineRequest> | undefined, b: PromotePipelineRequest | PlainMessage<PromotePipelineRequest> | undefined): boolean {
+    return proto3.util.equals(PromotePipelineRequest, a, b);
   }
 }
 
 /**
- * @generated from message api.v1.capsule.ProgressPipelineResponse
+ * @generated from message api.v1.capsule.PromotePipelineResponse
  */
-export class ProgressPipelineResponse extends Message<ProgressPipelineResponse> {
+export class PromotePipelineResponse extends Message<PromotePipelineResponse> {
   /**
    * @generated from field: api.v1.capsule.pipeline.Status status = 1;
    */
@@ -272,33 +280,33 @@ export class ProgressPipelineResponse extends Message<ProgressPipelineResponse> 
    */
   revision?: Revision;
 
-  constructor(data?: PartialMessage<ProgressPipelineResponse>) {
+  constructor(data?: PartialMessage<PromotePipelineResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.capsule.ProgressPipelineResponse";
+  static readonly typeName = "api.v1.capsule.PromotePipelineResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "status", kind: "message", T: Status },
     { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
     { no: 3, name: "revision", kind: "message", T: Revision },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProgressPipelineResponse {
-    return new ProgressPipelineResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PromotePipelineResponse {
+    return new PromotePipelineResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProgressPipelineResponse {
-    return new ProgressPipelineResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PromotePipelineResponse {
+    return new PromotePipelineResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProgressPipelineResponse {
-    return new ProgressPipelineResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PromotePipelineResponse {
+    return new PromotePipelineResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ProgressPipelineResponse | PlainMessage<ProgressPipelineResponse> | undefined, b: ProgressPipelineResponse | PlainMessage<ProgressPipelineResponse> | undefined): boolean {
-    return proto3.util.equals(ProgressPipelineResponse, a, b);
+  static equals(a: PromotePipelineResponse | PlainMessage<PromotePipelineResponse> | undefined, b: PromotePipelineResponse | PlainMessage<PromotePipelineResponse> | undefined): boolean {
+    return proto3.util.equals(PromotePipelineResponse, a, b);
   }
 }
 

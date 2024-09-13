@@ -90,9 +90,9 @@ export class Phase extends Message<Phase> {
   /**
    * Promotion triggers.
    *
-   * @generated from field: repeated model.PromotionTrigger triggers = 3;
+   * @generated from field: model.Triggers triggers = 3;
    */
-  triggers: PromotionTrigger[] = [];
+  triggers?: Triggers;
 
   constructor(data?: PartialMessage<Phase>) {
     super();
@@ -104,7 +104,7 @@ export class Phase extends Message<Phase> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "field_prefixes", kind: "message", T: FieldPrefixes },
-    { no: 3, name: "triggers", kind: "message", T: PromotionTrigger, repeated: true },
+    { no: 3, name: "triggers", kind: "message", T: Triggers },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Phase {
@@ -129,6 +129,9 @@ export class Phase extends Message<Phase> {
  */
 export class FieldPrefixes extends Message<FieldPrefixes> {
   /**
+   * If true, only fields with the specified prefixes will be promoted
+   * If false, only fields without the specified prefixes will be promoted
+   *
    * @generated from field: bool inclusion = 1;
    */
   inclusion = false;
@@ -168,51 +171,142 @@ export class FieldPrefixes extends Message<FieldPrefixes> {
 }
 
 /**
- * @generated from message model.PromotionTrigger
+ * @generated from message model.Triggers
  */
-export class PromotionTrigger extends Message<PromotionTrigger> {
+export class Triggers extends Message<Triggers> {
   /**
-   * @generated from field: bool automatic = 1;
+   * The automatic trigger
+   *
+   * @generated from field: model.Trigger automatic = 1;
    */
-  automatic = false;
+  automatic?: Trigger;
 
   /**
-   * @generated from oneof model.PromotionTrigger.condition
+   * The manual trigger
+   *
+   * @generated from field: model.Trigger manual = 2;
    */
-  condition: {
-    /**
-     * @generated from field: google.protobuf.Duration time_alive = 2;
-     */
-    value: Duration;
-    case: "timeAlive";
-  } | { case: undefined; value?: undefined } = { case: undefined };
+  manual?: Trigger;
 
-  constructor(data?: PartialMessage<PromotionTrigger>) {
+  constructor(data?: PartialMessage<Triggers>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "model.PromotionTrigger";
+  static readonly typeName = "model.Triggers";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "automatic", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "time_alive", kind: "message", T: Duration, oneof: "condition" },
+    { no: 1, name: "automatic", kind: "message", T: Trigger },
+    { no: 2, name: "manual", kind: "message", T: Trigger },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PromotionTrigger {
-    return new PromotionTrigger().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Triggers {
+    return new Triggers().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PromotionTrigger {
-    return new PromotionTrigger().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Triggers {
+    return new Triggers().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PromotionTrigger {
-    return new PromotionTrigger().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Triggers {
+    return new Triggers().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PromotionTrigger | PlainMessage<PromotionTrigger> | undefined, b: PromotionTrigger | PlainMessage<PromotionTrigger> | undefined): boolean {
-    return proto3.util.equals(PromotionTrigger, a, b);
+  static equals(a: Triggers | PlainMessage<Triggers> | undefined, b: Triggers | PlainMessage<Triggers> | undefined): boolean {
+    return proto3.util.equals(Triggers, a, b);
+  }
+}
+
+/**
+ * @generated from message model.Trigger
+ */
+export class Trigger extends Message<Trigger> {
+  /**
+   * The conditions that must be met for the trigger to fire.
+   *
+   * @generated from field: repeated model.Trigger.Condition conditions = 1;
+   */
+  conditions: Trigger_Condition[] = [];
+
+  /**
+   * If true, all conditions must be met for the trigger to fire. Otherwise only
+   * a single condition must be met.
+   *
+   * @generated from field: bool require_all = 2;
+   */
+  requireAll = false;
+
+  constructor(data?: PartialMessage<Trigger>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Trigger";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "conditions", kind: "message", T: Trigger_Condition, repeated: true },
+    { no: 2, name: "require_all", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Trigger {
+    return new Trigger().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Trigger {
+    return new Trigger().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Trigger {
+    return new Trigger().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Trigger | PlainMessage<Trigger> | undefined, b: Trigger | PlainMessage<Trigger> | undefined): boolean {
+    return proto3.util.equals(Trigger, a, b);
+  }
+}
+
+/**
+ * Condition that must be met for the trigger to fire.
+ *
+ * @generated from message model.Trigger.Condition
+ */
+export class Trigger_Condition extends Message<Trigger_Condition> {
+  /**
+   * @generated from oneof model.Trigger.Condition.Condition
+   */
+  Condition: {
+    /**
+     * @generated from field: google.protobuf.Duration time_alive = 1;
+     */
+    value: Duration;
+    case: "timeAlive";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<Trigger_Condition>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Trigger.Condition";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "time_alive", kind: "message", T: Duration, oneof: "Condition" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Trigger_Condition {
+    return new Trigger_Condition().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Trigger_Condition {
+    return new Trigger_Condition().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Trigger_Condition {
+    return new Trigger_Condition().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Trigger_Condition | PlainMessage<Trigger_Condition> | undefined, b: Trigger_Condition | PlainMessage<Trigger_Condition> | undefined): boolean {
+    return proto3.util.equals(Trigger_Condition, a, b);
   }
 }
 
