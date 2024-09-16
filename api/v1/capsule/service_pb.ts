@@ -4804,3 +4804,89 @@ export class GetEffectiveGitSettingsResponse extends Message<GetEffectiveGitSett
   }
 }
 
+/**
+ * @generated from message api.v1.capsule.GetProposalsEnabledRequest
+ */
+export class GetProposalsEnabledRequest extends Message<GetProposalsEnabledRequest> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string environment_id = 2;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: string capsule_id = 3;
+   */
+  capsuleId = "";
+
+  constructor(data?: PartialMessage<GetProposalsEnabledRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetProposalsEnabledRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProposalsEnabledRequest {
+    return new GetProposalsEnabledRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProposalsEnabledRequest {
+    return new GetProposalsEnabledRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProposalsEnabledRequest {
+    return new GetProposalsEnabledRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProposalsEnabledRequest | PlainMessage<GetProposalsEnabledRequest> | undefined, b: GetProposalsEnabledRequest | PlainMessage<GetProposalsEnabledRequest> | undefined): boolean {
+    return proto3.util.equals(GetProposalsEnabledRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.GetProposalsEnabledResponse
+ */
+export class GetProposalsEnabledResponse extends Message<GetProposalsEnabledResponse> {
+  /**
+   * @generated from field: bool enabled = 1;
+   */
+  enabled = false;
+
+  constructor(data?: PartialMessage<GetProposalsEnabledResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.GetProposalsEnabledResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProposalsEnabledResponse {
+    return new GetProposalsEnabledResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProposalsEnabledResponse {
+    return new GetProposalsEnabledResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProposalsEnabledResponse {
+    return new GetProposalsEnabledResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProposalsEnabledResponse | PlainMessage<GetProposalsEnabledResponse> | undefined, b: GetProposalsEnabledResponse | PlainMessage<GetProposalsEnabledResponse> | undefined): boolean {
+    return proto3.util.equals(GetProposalsEnabledResponse, a, b);
+  }
+}
+
