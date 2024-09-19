@@ -266,12 +266,12 @@ export class PromotePipelineResponse extends Message<PromotePipelineResponse> {
   status?: Status;
 
   /**
-   * Breakdown of the changes that this deploy would make to the system.
-   * Only populated if dry-run is used.
+   * Breakdown of the changes that will be made to the environments throughout
+   * the pipeline. Only populated if dry-run is used.
    *
-   * @generated from field: api.v1.capsule.DeployOutcome outcome = 2;
+   * @generated from field: repeated api.v1.capsule.PipelineDryRunOutput dry_run_outcomes = 2;
    */
-  outcome?: DeployOutcome;
+  dryRunOutcomes: PipelineDryRunOutput[] = [];
 
   /**
    * The capsule revision created.
@@ -289,7 +289,7 @@ export class PromotePipelineResponse extends Message<PromotePipelineResponse> {
   static readonly typeName = "api.v1.capsule.PromotePipelineResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "status", kind: "message", T: Status },
-    { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
+    { no: 2, name: "dry_run_outcomes", kind: "message", T: PipelineDryRunOutput, repeated: true },
     { no: 3, name: "revision", kind: "message", T: Revision },
   ]);
 
@@ -307,6 +307,59 @@ export class PromotePipelineResponse extends Message<PromotePipelineResponse> {
 
   static equals(a: PromotePipelineResponse | PlainMessage<PromotePipelineResponse> | undefined, b: PromotePipelineResponse | PlainMessage<PromotePipelineResponse> | undefined): boolean {
     return proto3.util.equals(PromotePipelineResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.capsule.PipelineDryRunOutput
+ */
+export class PipelineDryRunOutput extends Message<PipelineDryRunOutput> {
+  /**
+   * Environment to promote to.
+   *
+   * @generated from field: string environment_id = 1;
+   */
+  environmentId = "";
+
+  /**
+   * Breakdown of the changes that this deploy would make to the system.
+   *
+   * @generated from field: api.v1.capsule.DeployOutcome outcome = 2;
+   */
+  outcome?: DeployOutcome;
+
+  /**
+   * @generated from field: api.v1.capsule.Revision revision = 3;
+   */
+  revision?: Revision;
+
+  constructor(data?: PartialMessage<PipelineDryRunOutput>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.capsule.PipelineDryRunOutput";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "outcome", kind: "message", T: DeployOutcome },
+    { no: 3, name: "revision", kind: "message", T: Revision },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PipelineDryRunOutput {
+    return new PipelineDryRunOutput().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PipelineDryRunOutput {
+    return new PipelineDryRunOutput().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PipelineDryRunOutput {
+    return new PipelineDryRunOutput().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PipelineDryRunOutput | PlainMessage<PipelineDryRunOutput> | undefined, b: PipelineDryRunOutput | PlainMessage<PipelineDryRunOutput> | undefined): boolean {
+    return proto3.util.equals(PipelineDryRunOutput, a, b);
   }
 }
 
@@ -403,6 +456,11 @@ export class StartPipelineRequest extends Message<StartPipelineRequest> {
    */
   pipelineName = "";
 
+  /**
+   * @generated from field: bool dry_run = 4;
+   */
+  dryRun = false;
+
   constructor(data?: PartialMessage<StartPipelineRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -414,6 +472,7 @@ export class StartPipelineRequest extends Message<StartPipelineRequest> {
     { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "pipeline_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StartPipelineRequest {
@@ -442,6 +501,14 @@ export class StartPipelineResponse extends Message<StartPipelineResponse> {
    */
   status?: Status;
 
+  /**
+   * Breakdown of the changes that will be made to the environments throughout
+   * the pipeline. Only populated if dry-run is used.
+   *
+   * @generated from field: repeated api.v1.capsule.PipelineDryRunOutput dry_run_outcomes = 2;
+   */
+  dryRunOutcomes: PipelineDryRunOutput[] = [];
+
   constructor(data?: PartialMessage<StartPipelineResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -451,6 +518,7 @@ export class StartPipelineResponse extends Message<StartPipelineResponse> {
   static readonly typeName = "api.v1.capsule.StartPipelineResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "status", kind: "message", T: Status },
+    { no: 2, name: "dry_run_outcomes", kind: "message", T: PipelineDryRunOutput, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StartPipelineResponse {
