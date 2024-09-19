@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { ContainerType } from "../../../../operator/api/v1/pipeline/object_status_pb.js";
 
 /**
  * Different states a stage can be in.
@@ -54,38 +55,6 @@ proto3.util.setEnumType(StageState, "api.v1.capsule.instance.StageState", [
   { no: 2, name: "STAGE_STATE_FAILED" },
   { no: 3, name: "STAGE_STATE_DONE" },
   { no: 4, name: "STAGE_STATE_RUNNING" },
-]);
-
-/**
- * @generated from enum api.v1.capsule.instance.ContainerType
- */
-export enum ContainerType {
-  /**
-   * @generated from enum value: CONTAINER_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: CONTAINER_TYPE_MAIN = 1;
-   */
-  MAIN = 1,
-
-  /**
-   * @generated from enum value: CONTAINER_TYPE_SIDECAR = 2;
-   */
-  SIDECAR = 2,
-
-  /**
-   * @generated from enum value: CONTAINER_TYPE_INIT = 3;
-   */
-  INIT = 3,
-}
-// Retrieve enum metadata with: proto3.getEnumType(ContainerType)
-proto3.util.setEnumType(ContainerType, "api.v1.capsule.instance.ContainerType", [
-  { no: 0, name: "CONTAINER_TYPE_UNSPECIFIED" },
-  { no: 1, name: "CONTAINER_TYPE_MAIN" },
-  { no: 2, name: "CONTAINER_TYPE_SIDECAR" },
-  { no: 3, name: "CONTAINER_TYPE_INIT" },
 ]);
 
 /**
@@ -735,7 +704,7 @@ export class ContainerInfo extends Message<ContainerInfo> {
   name = "";
 
   /**
-   * @generated from field: api.v1.capsule.instance.ContainerType type = 2;
+   * @generated from field: api.v1.pipeline.ContainerType type = 2;
    */
   type = ContainerType.UNSPECIFIED;
 

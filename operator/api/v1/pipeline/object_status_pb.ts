@@ -7,6 +7,38 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum api.v1.pipeline.ContainerType
+ */
+export enum ContainerType {
+  /**
+   * @generated from enum value: CONTAINER_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_MAIN = 1;
+   */
+  MAIN = 1,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_SIDECAR = 2;
+   */
+  SIDECAR = 2,
+
+  /**
+   * @generated from enum value: CONTAINER_TYPE_INIT = 3;
+   */
+  INIT = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ContainerType)
+proto3.util.setEnumType(ContainerType, "api.v1.pipeline.ContainerType", [
+  { no: 0, name: "CONTAINER_TYPE_UNSPECIFIED" },
+  { no: 1, name: "CONTAINER_TYPE_MAIN" },
+  { no: 2, name: "CONTAINER_TYPE_SIDECAR" },
+  { no: 3, name: "CONTAINER_TYPE_INIT" },
+]);
+
+/**
  * Different states a job execution can be in
  *
  * @generated from enum api.v1.pipeline.JobExecutionState
@@ -425,6 +457,11 @@ export class ContainerStatus extends Message<ContainerStatus> {
    */
   image = "";
 
+  /**
+   * @generated from field: api.v1.pipeline.ContainerType type = 5;
+   */
+  type = ContainerType.UNSPECIFIED;
+
   constructor(data?: PartialMessage<ContainerStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -437,6 +474,7 @@ export class ContainerStatus extends Message<ContainerStatus> {
     { no: 2, name: "last_termination", kind: "message", T: ContainerStatus_ContainerTermination },
     { no: 3, name: "started_at", kind: "message", T: Timestamp },
     { no: 4, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "type", kind: "enum", T: proto3.getEnumType(ContainerType) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContainerStatus {
