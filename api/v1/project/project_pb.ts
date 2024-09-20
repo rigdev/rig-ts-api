@@ -58,7 +58,7 @@ export class Project extends Message<Project> {
   /**
    * Environment pipelines for the project
    *
-   * @generated from field: repeated model.Pipeline pipelines = 2;
+   * @generated from field: repeated model.Pipeline pipelines = 8;
    */
   pipelines: Pipeline[] = [];
 
@@ -76,7 +76,7 @@ export class Project extends Message<Project> {
     { no: 5, name: "installation_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "git_store", kind: "message", T: GitStore },
     { no: 7, name: "notifiers", kind: "message", T: NotificationNotifiers },
-    { no: 2, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
+    { no: 8, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
