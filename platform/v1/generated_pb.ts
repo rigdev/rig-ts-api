@@ -85,16 +85,6 @@ export class CapsuleSet extends Message<CapsuleSet> {
  */
 export class CapsuleSpec extends Message<CapsuleSpec> {
   /**
-   * @generated from field: string kind = 1;
-   */
-  kind = "";
-
-  /**
-   * @generated from field: string apiVersion = 2;
-   */
-  apiVersion = "";
-
-  /**
    * @generated from field: map<string, string> annotations = 11;
    */
   annotations: { [key: string]: string } = {};
@@ -157,8 +147,6 @@ export class CapsuleSpec extends Message<CapsuleSpec> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "platform.v1.CapsuleSpec";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "apiVersion", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "annotations", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 3, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
