@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetMetricsRequest, GetMetricsResponse } from "./service_pb.js";
+import { GetMetricsManyRequest, GetMetricsManyResponse, GetMetricsRequest, GetMetricsResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,7 +14,7 @@ export const Service = {
   methods: {
     /**
      * Retrieve metrics. metric_type is mandatory, while the rest of the fields
-     * are optional. If project, env or capsule is not
+     * in the tags are optional. If project, env or capsule is not
      * specified, they will be treated as wildcards.
      *
      * @generated from rpc api.v1.metrics.Service.GetMetrics
@@ -23,6 +23,18 @@ export const Service = {
       name: "GetMetrics",
       I: GetMetricsRequest,
       O: GetMetricsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Retrive metrics for multiple sets of tags at a time. Metrics within the
+     * same set of tags will be in ascending order of timestamp.
+     *
+     * @generated from rpc api.v1.metrics.Service.GetMetricsMany
+     */
+    getMetricsMany: {
+      name: "GetMetricsMany",
+      I: GetMetricsManyRequest,
+      O: GetMetricsManyResponse,
       kind: MethodKind.Unary,
     },
   }

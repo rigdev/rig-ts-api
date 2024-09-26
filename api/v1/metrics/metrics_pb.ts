@@ -20,13 +20,6 @@ export class Metric extends Message<Metric> {
    */
   value = 0;
 
-  /**
-   * Metadata is only populated when metrics are aggregated.
-   *
-   * @generated from field: api.v1.metrics.Metadata metadata = 4;
-   */
-  metadata?: Metadata;
-
   constructor(data?: PartialMessage<Metric>) {
     super();
     proto3.util.initPartial(data, this);
@@ -37,7 +30,6 @@ export class Metric extends Message<Metric> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "timestamp", kind: "message", T: Timestamp },
     { no: 2, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 4, name: "metadata", kind: "message", T: Metadata },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Metric {
@@ -58,9 +50,52 @@ export class Metric extends Message<Metric> {
 }
 
 /**
- * @generated from message api.v1.metrics.Metadata
+ * @generated from message api.v1.metrics.MetricFull
  */
-export class Metadata extends Message<Metadata> {
+export class MetricFull extends Message<MetricFull> {
+  /**
+   * @generated from field: api.v1.metrics.Metric metric = 1;
+   */
+  metric?: Metric;
+
+  /**
+   * @generated from field: api.v1.metrics.Tags tags = 2;
+   */
+  tags?: Tags;
+
+  constructor(data?: PartialMessage<MetricFull>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.MetricFull";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metric", kind: "message", T: Metric },
+    { no: 2, name: "tags", kind: "message", T: Tags },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MetricFull {
+    return new MetricFull().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MetricFull {
+    return new MetricFull().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MetricFull {
+    return new MetricFull().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MetricFull | PlainMessage<MetricFull> | undefined, b: MetricFull | PlainMessage<MetricFull> | undefined): boolean {
+    return proto3.util.equals(MetricFull, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Tags
+ */
+export class Tags extends Message<Tags> {
   /**
    * @generated from field: string project = 1;
    */
@@ -76,33 +111,39 @@ export class Metadata extends Message<Metadata> {
    */
   capsule = "";
 
-  constructor(data?: PartialMessage<Metadata>) {
+  /**
+   * @generated from field: string metric_type = 4;
+   */
+  metricType = "";
+
+  constructor(data?: PartialMessage<Tags>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.metrics.Metadata";
+  static readonly typeName = "api.v1.metrics.Tags";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "metric_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Metadata {
-    return new Metadata().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Tags {
+    return new Tags().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Metadata {
-    return new Metadata().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Tags {
+    return new Tags().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Metadata {
-    return new Metadata().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Tags {
+    return new Tags().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Metadata | PlainMessage<Metadata> | undefined, b: Metadata | PlainMessage<Metadata> | undefined): boolean {
-    return proto3.util.equals(Metadata, a, b);
+  static equals(a: Tags | PlainMessage<Tags> | undefined, b: Tags | PlainMessage<Tags> | undefined): boolean {
+    return proto3.util.equals(Tags, a, b);
   }
 }
 

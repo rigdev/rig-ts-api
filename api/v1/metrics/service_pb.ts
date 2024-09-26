@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { Metric } from "./metrics_pb.js";
+import { Metric, MetricFull, Tags } from "./metrics_pb.js";
 
 /**
  * @generated from enum api.v1.metrics.Aggregator
@@ -50,37 +50,22 @@ proto3.util.setEnumType(Aggregator, "api.v1.metrics.Aggregator", [
  */
 export class GetMetricsRequest extends Message<GetMetricsRequest> {
   /**
-   * @generated from field: string metric_type = 1;
+   * @generated from field: api.v1.metrics.Tags tags = 1;
    */
-  metricType = "";
+  tags?: Tags;
 
   /**
-   * @generated from field: string project = 2;
-   */
-  project = "";
-
-  /**
-   * @generated from field: string environment = 3;
-   */
-  environment = "";
-
-  /**
-   * @generated from field: string capsule = 4;
-   */
-  capsule = "";
-
-  /**
-   * @generated from field: google.protobuf.Timestamp from = 5;
+   * @generated from field: google.protobuf.Timestamp from = 2;
    */
   from?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp to = 6;
+   * @generated from field: google.protobuf.Timestamp to = 3;
    */
   to?: Timestamp;
 
   /**
-   * @generated from field: api.v1.metrics.Aggregation aggregation = 7;
+   * @generated from field: api.v1.metrics.Aggregation aggregation = 4;
    */
   aggregation?: Aggregation;
 
@@ -92,13 +77,10 @@ export class GetMetricsRequest extends Message<GetMetricsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.metrics.GetMetricsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "metric_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "from", kind: "message", T: Timestamp },
-    { no: 6, name: "to", kind: "message", T: Timestamp },
-    { no: 7, name: "aggregation", kind: "message", T: Aggregation },
+    { no: 1, name: "tags", kind: "message", T: Tags },
+    { no: 2, name: "from", kind: "message", T: Timestamp },
+    { no: 3, name: "to", kind: "message", T: Timestamp },
+    { no: 4, name: "aggregation", kind: "message", T: Aggregation },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMetricsRequest {
@@ -152,6 +134,98 @@ export class GetMetricsResponse extends Message<GetMetricsResponse> {
 
   static equals(a: GetMetricsResponse | PlainMessage<GetMetricsResponse> | undefined, b: GetMetricsResponse | PlainMessage<GetMetricsResponse> | undefined): boolean {
     return proto3.util.equals(GetMetricsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.GetMetricsManyRequest
+ */
+export class GetMetricsManyRequest extends Message<GetMetricsManyRequest> {
+  /**
+   * @generated from field: repeated api.v1.metrics.Tags tags = 1;
+   */
+  tags: Tags[] = [];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp from = 2;
+   */
+  from?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp to = 3;
+   */
+  to?: Timestamp;
+
+  /**
+   * @generated from field: api.v1.metrics.Aggregation aggregation = 4;
+   */
+  aggregation?: Aggregation;
+
+  constructor(data?: PartialMessage<GetMetricsManyRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.GetMetricsManyRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tags", kind: "message", T: Tags, repeated: true },
+    { no: 2, name: "from", kind: "message", T: Timestamp },
+    { no: 3, name: "to", kind: "message", T: Timestamp },
+    { no: 4, name: "aggregation", kind: "message", T: Aggregation },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMetricsManyRequest {
+    return new GetMetricsManyRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMetricsManyRequest {
+    return new GetMetricsManyRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetMetricsManyRequest {
+    return new GetMetricsManyRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetMetricsManyRequest | PlainMessage<GetMetricsManyRequest> | undefined, b: GetMetricsManyRequest | PlainMessage<GetMetricsManyRequest> | undefined): boolean {
+    return proto3.util.equals(GetMetricsManyRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.GetMetricsManyResponse
+ */
+export class GetMetricsManyResponse extends Message<GetMetricsManyResponse> {
+  /**
+   * @generated from field: repeated api.v1.metrics.MetricFull metrics = 1;
+   */
+  metrics: MetricFull[] = [];
+
+  constructor(data?: PartialMessage<GetMetricsManyResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.GetMetricsManyResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metrics", kind: "message", T: MetricFull, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMetricsManyResponse {
+    return new GetMetricsManyResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMetricsManyResponse {
+    return new GetMetricsManyResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetMetricsManyResponse {
+    return new GetMetricsManyResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetMetricsManyResponse | PlainMessage<GetMetricsManyResponse> | undefined, b: GetMetricsManyResponse | PlainMessage<GetMetricsManyResponse> | undefined): boolean {
+    return proto3.util.equals(GetMetricsManyResponse, a, b);
   }
 }
 
