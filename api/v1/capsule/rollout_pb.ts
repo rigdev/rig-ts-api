@@ -9,7 +9,7 @@ import { Status } from "./rollout/status_pb.js";
 import { CapsuleSpec } from "../../../platform/v1/generated_pb.js";
 import { Revisions } from "../../../model/revision_pb.js";
 import { Author } from "../../../model/author_pb.js";
-import { Change, ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
+import { ContainerSettings, HorizontalScale, Network } from "./change_pb.js";
 import { CronJob } from "./job_pb.js";
 
 /**
@@ -124,11 +124,6 @@ export class RolloutConfig extends Message<RolloutConfig> {
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: repeated api.v1.capsule.Change changes = 3;
-   */
-  changes: Change[] = [];
-
-  /**
    * @generated from field: uint32 replicas = 4;
    */
   replicas = 0;
@@ -193,7 +188,6 @@ export class RolloutConfig extends Message<RolloutConfig> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "created_by", kind: "message", T: Author },
     { no: 2, name: "created_at", kind: "message", T: Timestamp },
-    { no: 3, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 4, name: "replicas", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 5, name: "image_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "network", kind: "message", T: Network },

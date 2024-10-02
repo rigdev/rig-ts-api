@@ -7,7 +7,6 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Capsule, CapsuleSet } from "../../../platform/v1/generated_pb.js";
 import { ProposalMetadata, RevisionMetadata } from "../../../model/revision_pb.js";
-import { Change } from "./change_pb.js";
 
 /**
  * @generated from message api.v1.capsule.SetRevision
@@ -67,11 +66,6 @@ export class Revision extends Message<Revision> {
   metadata?: RevisionMetadata;
 
   /**
-   * @generated from field: repeated api.v1.capsule.Change changes = 3;
-   */
-  changes: Change[] = [];
-
-  /**
    * @generated from field: string message = 4;
    */
   message = "";
@@ -86,7 +80,6 @@ export class Revision extends Message<Revision> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "spec", kind: "message", T: Capsule },
     { no: 2, name: "metadata", kind: "message", T: RevisionMetadata },
-    { no: 3, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -117,11 +110,6 @@ export class Proposal extends Message<Proposal> {
   spec?: Capsule;
 
   /**
-   * @generated from field: repeated api.v1.capsule.Change changes = 2;
-   */
-  changes: Change[] = [];
-
-  /**
    * @generated from field: model.ProposalMetadata metadata = 3;
    */
   metadata?: ProposalMetadata;
@@ -135,7 +123,6 @@ export class Proposal extends Message<Proposal> {
   static readonly typeName = "api.v1.capsule.Proposal";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "spec", kind: "message", T: Capsule },
-    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 3, name: "metadata", kind: "message", T: ProposalMetadata },
   ]);
 
@@ -166,11 +153,6 @@ export class SetProposal extends Message<SetProposal> {
   spec?: CapsuleSet;
 
   /**
-   * @generated from field: repeated api.v1.capsule.Change changes = 2;
-   */
-  changes: Change[] = [];
-
-  /**
    * @generated from field: model.ProposalMetadata metadata = 3;
    */
   metadata?: ProposalMetadata;
@@ -184,7 +166,6 @@ export class SetProposal extends Message<SetProposal> {
   static readonly typeName = "api.v1.capsule.SetProposal";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "spec", kind: "message", T: CapsuleSet },
-    { no: 2, name: "changes", kind: "message", T: Change, repeated: true },
     { no: 3, name: "metadata", kind: "message", T: ProposalMetadata },
   ]);
 
