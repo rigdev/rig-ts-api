@@ -112,9 +112,9 @@ export class Tags extends Message<Tags> {
   capsule = "";
 
   /**
-   * @generated from field: string metric_type = 4;
+   * @generated from field: string metric_name = 4;
    */
-  metricType = "";
+  metricName = "";
 
   constructor(data?: PartialMessage<Tags>) {
     super();
@@ -127,7 +127,7 @@ export class Tags extends Message<Tags> {
     { no: 1, name: "project", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "metric_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "metric_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Tags {

@@ -236,6 +236,13 @@ export class Trigger extends Message<Trigger> {
    */
   requireAll = false;
 
+  /**
+   * If true, the trigger is enabled. Otherwise it is disabled.
+   *
+   * @generated from field: bool enabled = 3;
+   */
+  enabled = false;
+
   constructor(data?: PartialMessage<Trigger>) {
     super();
     proto3.util.initPartial(data, this);
@@ -246,6 +253,7 @@ export class Trigger extends Message<Trigger> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "conditions", kind: "message", T: Trigger_Condition, repeated: true },
     { no: 2, name: "require_all", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Trigger {
