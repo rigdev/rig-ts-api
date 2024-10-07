@@ -18,24 +18,39 @@ export class Pipeline extends Message<Pipeline> {
   name = "";
 
   /**
+   * The environment to base the pipeline on.
+   *
    * @generated from field: string initial_environment = 2;
    */
   initialEnvironment = "";
 
   /**
+   * The subsequent phases of the pipeline to promote to.
+   *
    * @generated from field: repeated model.Phase phases = 3;
    */
   phases: Phase[] = [];
 
   /**
+   * The time the pipeline was created.
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
   /**
+   * The time the pipeline was updated.
+   *
    * @generated from field: google.protobuf.Timestamp updated_at = 5;
    */
   updatedAt?: Timestamp;
+
+  /**
+   * User specified description of the pipeline.
+   *
+   * @generated from field: string description = 6;
+   */
+  description = "";
 
   constructor(data?: PartialMessage<Pipeline>) {
     super();
@@ -50,6 +65,7 @@ export class Pipeline extends Message<Pipeline> {
     { no: 3, name: "phases", kind: "message", T: Phase, repeated: true },
     { no: 4, name: "created_at", kind: "message", T: Timestamp },
     { no: 5, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 6, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pipeline {

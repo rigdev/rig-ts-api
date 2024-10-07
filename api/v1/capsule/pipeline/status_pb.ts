@@ -139,6 +139,13 @@ export class Status extends Message<Status> {
    */
   updatedAt?: Timestamp;
 
+  /**
+   * current phase
+   *
+   * @generated from field: uint32 current_phase = 8;
+   */
+  currentPhase = 0;
+
   constructor(data?: PartialMessage<Status>) {
     super();
     proto3.util.initPartial(data, this);
@@ -154,6 +161,7 @@ export class Status extends Message<Status> {
     { no: 5, name: "phase_statuses", kind: "message", T: PhaseStatus, repeated: true },
     { no: 6, name: "started_at", kind: "message", T: Timestamp },
     { no: 7, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 8, name: "current_phase", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Status {
@@ -197,6 +205,11 @@ export class PhaseStatus extends Message<PhaseStatus> {
    */
   messages: PhaseMessage[] = [];
 
+  /**
+   * @generated from field: google.protobuf.Timestamp started_at = 5;
+   */
+  startedAt?: Timestamp;
+
   constructor(data?: PartialMessage<PhaseStatus>) {
     super();
     proto3.util.initPartial(data, this);
@@ -209,6 +222,7 @@ export class PhaseStatus extends Message<PhaseStatus> {
     { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(PhaseState) },
     { no: 3, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 4, name: "messages", kind: "message", T: PhaseMessage, repeated: true },
+    { no: 5, name: "started_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PhaseStatus {

@@ -226,6 +226,14 @@ export class PromotePipelineRequest extends Message<PromotePipelineRequest> {
    */
   fieldChanges: FieldChange[] = [];
 
+  /**
+   * If true, the pipeline will be force promoted to the next environment
+   * regardless of the state of the pipeline and the triggers.
+   *
+   * @generated from field: bool force = 4;
+   */
+  force = false;
+
   constructor(data?: PartialMessage<PromotePipelineRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -237,6 +245,7 @@ export class PromotePipelineRequest extends Message<PromotePipelineRequest> {
     { no: 1, name: "execution_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "field_changes", kind: "message", T: FieldChange, repeated: true },
+    { no: 4, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PromotePipelineRequest {
@@ -461,6 +470,14 @@ export class StartPipelineRequest extends Message<StartPipelineRequest> {
    */
   dryRun = false;
 
+  /**
+   * If true, and the pipeline is already running for the capsule and project,
+   * it will be aborted and a new one started.
+   *
+   * @generated from field: bool abort_current = 5;
+   */
+  abortCurrent = false;
+
   constructor(data?: PartialMessage<StartPipelineRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -473,6 +490,7 @@ export class StartPipelineRequest extends Message<StartPipelineRequest> {
     { no: 2, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "pipeline_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "dry_run", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "abort_current", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StartPipelineRequest {
