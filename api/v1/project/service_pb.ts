@@ -865,6 +865,14 @@ export class GetEffectivePipelineSettingsRequest extends Message<GetEffectivePip
    */
   projectId = "";
 
+  /**
+   * If set, the response will contain information as to whether the pipeline is
+   * already running for that capsule.
+   *
+   * @generated from field: string capsule_id = 2;
+   */
+  capsuleId = "";
+
   constructor(data?: PartialMessage<GetEffectivePipelineSettingsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -874,6 +882,7 @@ export class GetEffectivePipelineSettingsRequest extends Message<GetEffectivePip
   static readonly typeName = "api.v1.project.GetEffectivePipelineSettingsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectivePipelineSettingsRequest {
@@ -898,9 +907,9 @@ export class GetEffectivePipelineSettingsRequest extends Message<GetEffectivePip
  */
 export class GetEffectivePipelineSettingsResponse extends Message<GetEffectivePipelineSettingsResponse> {
   /**
-   * @generated from field: repeated model.Pipeline pipelines = 1;
+   * @generated from field: repeated api.v1.project.GetEffectivePipelineSettingsResponse.Pipeline pipelines = 1;
    */
-  pipelines: Pipeline[] = [];
+  pipelines: GetEffectivePipelineSettingsResponse_Pipeline[] = [];
 
   constructor(data?: PartialMessage<GetEffectivePipelineSettingsResponse>) {
     super();
@@ -910,7 +919,7 @@ export class GetEffectivePipelineSettingsResponse extends Message<GetEffectivePi
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.project.GetEffectivePipelineSettingsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pipelines", kind: "message", T: Pipeline, repeated: true },
+    { no: 1, name: "pipelines", kind: "message", T: GetEffectivePipelineSettingsResponse_Pipeline, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectivePipelineSettingsResponse {
@@ -927,6 +936,49 @@ export class GetEffectivePipelineSettingsResponse extends Message<GetEffectivePi
 
   static equals(a: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined, b: GetEffectivePipelineSettingsResponse | PlainMessage<GetEffectivePipelineSettingsResponse> | undefined): boolean {
     return proto3.util.equals(GetEffectivePipelineSettingsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.project.GetEffectivePipelineSettingsResponse.Pipeline
+ */
+export class GetEffectivePipelineSettingsResponse_Pipeline extends Message<GetEffectivePipelineSettingsResponse_Pipeline> {
+  /**
+   * @generated from field: model.Pipeline pipeline = 1;
+   */
+  pipeline?: Pipeline;
+
+  /**
+   * @generated from field: bool already_running = 2;
+   */
+  alreadyRunning = false;
+
+  constructor(data?: PartialMessage<GetEffectivePipelineSettingsResponse_Pipeline>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.project.GetEffectivePipelineSettingsResponse.Pipeline";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "pipeline", kind: "message", T: Pipeline },
+    { no: 2, name: "already_running", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEffectivePipelineSettingsResponse_Pipeline {
+    return new GetEffectivePipelineSettingsResponse_Pipeline().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsResponse_Pipeline {
+    return new GetEffectivePipelineSettingsResponse_Pipeline().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEffectivePipelineSettingsResponse_Pipeline {
+    return new GetEffectivePipelineSettingsResponse_Pipeline().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEffectivePipelineSettingsResponse_Pipeline | PlainMessage<GetEffectivePipelineSettingsResponse_Pipeline> | undefined, b: GetEffectivePipelineSettingsResponse_Pipeline | PlainMessage<GetEffectivePipelineSettingsResponse_Pipeline> | undefined): boolean {
+    return proto3.util.equals(GetEffectivePipelineSettingsResponse_Pipeline, a, b);
   }
 }
 
