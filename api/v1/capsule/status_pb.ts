@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Issue } from "../../../model/issue_pb.js";
 import { ObjectState, ObjectStatus } from "../../../operator/api/v1/pipeline/object_status_pb.js";
 import { HorizontalScale, HostRoute, Resources } from "./change_pb.js";
 
@@ -84,6 +85,14 @@ export class Status extends Message<Status> {
    */
   cronJobs: CronJobStatus[] = [];
 
+  /**
+   * List of all issues associated to the Capsule, include those of the current
+   * rollout. The list does not include instance-level issues.
+   *
+   * @generated from field: repeated model.Issue issues = 9;
+   */
+  issues: Issue[] = [];
+
   constructor(data?: PartialMessage<Status>) {
     super();
     proto3.util.initPartial(data, this);
@@ -100,6 +109,7 @@ export class Status extends Message<Status> {
     { no: 6, name: "interfaces", kind: "message", T: InterfaceStatus, repeated: true },
     { no: 7, name: "config_files", kind: "message", T: ConfigFileStatus, repeated: true },
     { no: 8, name: "cron_jobs", kind: "message", T: CronJobStatus, repeated: true },
+    { no: 9, name: "issues", kind: "message", T: Issue, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Status {
