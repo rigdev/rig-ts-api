@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Pipeline } from "../../../../model/pipeline_pb.js";
 
 /**
  * @generated from enum api.v1.capsule.pipeline.State
@@ -146,6 +147,13 @@ export class Status extends Message<Status> {
    */
   currentPhase = 0;
 
+  /**
+   * the configured pipeline
+   *
+   * @generated from field: model.Pipeline config = 9;
+   */
+  config?: Pipeline;
+
   constructor(data?: PartialMessage<Status>) {
     super();
     proto3.util.initPartial(data, this);
@@ -162,6 +170,7 @@ export class Status extends Message<Status> {
     { no: 6, name: "started_at", kind: "message", T: Timestamp },
     { no: 7, name: "updated_at", kind: "message", T: Timestamp },
     { no: 8, name: "current_phase", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 9, name: "config", kind: "message", T: Pipeline },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Status {
