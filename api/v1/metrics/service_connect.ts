@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetMetricsManyRequest, GetMetricsManyResponse, GetMetricsRequest, GetMetricsResponse } from "./service_pb.js";
+import { GetMetricsExpressionRequest, GetMetricsExpressionResponse, GetMetricsManyRequest, GetMetricsManyResponse, GetMetricsRequest, GetMetricsResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -35,6 +35,15 @@ export const Service = {
       name: "GetMetricsMany",
       I: GetMetricsManyRequest,
       O: GetMetricsManyResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.metrics.Service.GetMetricsExpression
+     */
+    getMetricsExpression: {
+      name: "GetMetricsExpression",
+      I: GetMetricsExpressionRequest,
+      O: GetMetricsExpressionResponse,
       kind: MethodKind.Unary,
     },
   }

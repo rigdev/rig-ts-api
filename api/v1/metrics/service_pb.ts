@@ -46,6 +46,44 @@ proto3.util.setEnumType(Aggregator, "api.v1.metrics.Aggregator", [
 ]);
 
 /**
+ * @generated from enum api.v1.metrics.BinOp
+ */
+export enum BinOp {
+  /**
+   * @generated from enum value: BINOP_UNSPECIFIED = 0;
+   */
+  BINOP_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: BINOP_ADD = 1;
+   */
+  BINOP_ADD = 1,
+
+  /**
+   * @generated from enum value: BINOP_SUB = 2;
+   */
+  BINOP_SUB = 2,
+
+  /**
+   * @generated from enum value: BINOP_MULT = 3;
+   */
+  BINOP_MULT = 3,
+
+  /**
+   * @generated from enum value: BINOP_DIV = 4;
+   */
+  BINOP_DIV = 4,
+}
+// Retrieve enum metadata with: proto3.getEnumType(BinOp)
+proto3.util.setEnumType(BinOp, "api.v1.metrics.BinOp", [
+  { no: 0, name: "BINOP_UNSPECIFIED" },
+  { no: 1, name: "BINOP_ADD" },
+  { no: 2, name: "BINOP_SUB" },
+  { no: 3, name: "BINOP_MULT" },
+  { no: 4, name: "BINOP_DIV" },
+]);
+
+/**
  * @generated from message api.v1.metrics.GetMetricsRequest
  */
 export class GetMetricsRequest extends Message<GetMetricsRequest> {
@@ -269,6 +307,284 @@ export class Aggregation extends Message<Aggregation> {
 
   static equals(a: Aggregation | PlainMessage<Aggregation> | undefined, b: Aggregation | PlainMessage<Aggregation> | undefined): boolean {
     return proto3.util.equals(Aggregation, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.GetMetricsExpressionRequest
+ */
+export class GetMetricsExpressionRequest extends Message<GetMetricsExpressionRequest> {
+  /**
+   * @generated from field: api.v1.metrics.Expression expression = 1;
+   */
+  expression?: Expression;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp from = 2;
+   */
+  from?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp to = 3;
+   */
+  to?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Duration bucket_size = 4;
+   */
+  bucketSize?: Duration;
+
+  constructor(data?: PartialMessage<GetMetricsExpressionRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.GetMetricsExpressionRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "expression", kind: "message", T: Expression },
+    { no: 2, name: "from", kind: "message", T: Timestamp },
+    { no: 3, name: "to", kind: "message", T: Timestamp },
+    { no: 4, name: "bucket_size", kind: "message", T: Duration },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMetricsExpressionRequest {
+    return new GetMetricsExpressionRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMetricsExpressionRequest {
+    return new GetMetricsExpressionRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetMetricsExpressionRequest {
+    return new GetMetricsExpressionRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetMetricsExpressionRequest | PlainMessage<GetMetricsExpressionRequest> | undefined, b: GetMetricsExpressionRequest | PlainMessage<GetMetricsExpressionRequest> | undefined): boolean {
+    return proto3.util.equals(GetMetricsExpressionRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.GetMetricsExpressionResponse
+ */
+export class GetMetricsExpressionResponse extends Message<GetMetricsExpressionResponse> {
+  /**
+   * @generated from field: repeated api.v1.metrics.Metric metrics = 1;
+   */
+  metrics: Metric[] = [];
+
+  constructor(data?: PartialMessage<GetMetricsExpressionResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.GetMetricsExpressionResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metrics", kind: "message", T: Metric, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetMetricsExpressionResponse {
+    return new GetMetricsExpressionResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetMetricsExpressionResponse {
+    return new GetMetricsExpressionResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetMetricsExpressionResponse {
+    return new GetMetricsExpressionResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetMetricsExpressionResponse | PlainMessage<GetMetricsExpressionResponse> | undefined, b: GetMetricsExpressionResponse | PlainMessage<GetMetricsExpressionResponse> | undefined): boolean {
+    return proto3.util.equals(GetMetricsExpressionResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression
+ */
+export class Expression extends Message<Expression> {
+  /**
+   * @generated from oneof api.v1.metrics.Expression.expression
+   */
+  expression: {
+    /**
+     * @generated from field: api.v1.metrics.Expression.Leaf leaf = 1;
+     */
+    value: Expression_Leaf;
+    case: "leaf";
+  } | {
+    /**
+     * @generated from field: api.v1.metrics.Expression.Operation operation = 2;
+     */
+    value: Expression_Operation;
+    case: "operation";
+  } | {
+    /**
+     * @generated from field: api.v1.metrics.Expression.Constant constant = 3;
+     */
+    value: Expression_Constant;
+    case: "constant";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<Expression>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "leaf", kind: "message", T: Expression_Leaf, oneof: "expression" },
+    { no: 2, name: "operation", kind: "message", T: Expression_Operation, oneof: "expression" },
+    { no: 3, name: "constant", kind: "message", T: Expression_Constant, oneof: "expression" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression {
+    return new Expression().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression {
+    return new Expression().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression {
+    return new Expression().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression | PlainMessage<Expression> | undefined, b: Expression | PlainMessage<Expression> | undefined): boolean {
+    return proto3.util.equals(Expression, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression.Leaf
+ */
+export class Expression_Leaf extends Message<Expression_Leaf> {
+  /**
+   * @generated from field: api.v1.metrics.Tags tags = 1;
+   */
+  tags?: Tags;
+
+  /**
+   * @generated from field: api.v1.metrics.Aggregator aggregator = 2;
+   */
+  aggregator = Aggregator.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<Expression_Leaf>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression.Leaf";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tags", kind: "message", T: Tags },
+    { no: 2, name: "aggregator", kind: "enum", T: proto3.getEnumType(Aggregator) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Leaf {
+    return new Expression_Leaf().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression_Leaf {
+    return new Expression_Leaf().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression_Leaf {
+    return new Expression_Leaf().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression_Leaf | PlainMessage<Expression_Leaf> | undefined, b: Expression_Leaf | PlainMessage<Expression_Leaf> | undefined): boolean {
+    return proto3.util.equals(Expression_Leaf, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression.Operation
+ */
+export class Expression_Operation extends Message<Expression_Operation> {
+  /**
+   * @generated from field: api.v1.metrics.Expression left = 1;
+   */
+  left?: Expression;
+
+  /**
+   * @generated from field: api.v1.metrics.Expression right = 2;
+   */
+  right?: Expression;
+
+  /**
+   * @generated from field: api.v1.metrics.BinOp operation = 3;
+   */
+  operation = BinOp.BINOP_UNSPECIFIED;
+
+  constructor(data?: PartialMessage<Expression_Operation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression.Operation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "left", kind: "message", T: Expression },
+    { no: 2, name: "right", kind: "message", T: Expression },
+    { no: 3, name: "operation", kind: "enum", T: proto3.getEnumType(BinOp) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Operation {
+    return new Expression_Operation().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression_Operation {
+    return new Expression_Operation().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression_Operation {
+    return new Expression_Operation().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression_Operation | PlainMessage<Expression_Operation> | undefined, b: Expression_Operation | PlainMessage<Expression_Operation> | undefined): boolean {
+    return proto3.util.equals(Expression_Operation, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression.Constant
+ */
+export class Expression_Constant extends Message<Expression_Constant> {
+  /**
+   * @generated from field: double constant = 1;
+   */
+  constant = 0;
+
+  constructor(data?: PartialMessage<Expression_Constant>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression.Constant";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "constant", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Constant {
+    return new Expression_Constant().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression_Constant {
+    return new Expression_Constant().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression_Constant {
+    return new Expression_Constant().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression_Constant | PlainMessage<Expression_Constant> | undefined, b: Expression_Constant | PlainMessage<Expression_Constant> | undefined): boolean {
+    return proto3.util.equals(Expression_Constant, a, b);
   }
 }
 
