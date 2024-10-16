@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { Metric, MetricFull, Tags } from "./metrics_pb.js";
+import { Keys, Metric, MetricFull, Tags } from "./metrics_pb.js";
 
 /**
  * @generated from enum api.v1.metrics.Aggregator
@@ -536,9 +536,14 @@ export class Expression_Operation extends Message<Expression_Operation> {
   operation = BinOp.BINOP_UNSPECIFIED;
 
   /**
-   * @generated from field: api.v1.metrics.Tags tags = 4;
+   * @generated from field: api.v1.metrics.Keys on = 4;
    */
-  tags?: Tags;
+  on?: Keys;
+
+  /**
+   * @generated from field: api.v1.metrics.Keys ignore = 5;
+   */
+  ignore?: Keys;
 
   constructor(data?: PartialMessage<Expression_Operation>) {
     super();
@@ -551,7 +556,8 @@ export class Expression_Operation extends Message<Expression_Operation> {
     { no: 1, name: "left", kind: "message", T: Expression },
     { no: 2, name: "right", kind: "message", T: Expression },
     { no: 3, name: "operation", kind: "enum", T: proto3.getEnumType(BinOp) },
-    { no: 4, name: "tags", kind: "message", T: Tags },
+    { no: 4, name: "on", kind: "message", T: Keys },
+    { no: 5, name: "ignore", kind: "message", T: Keys },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Operation {
@@ -656,12 +662,17 @@ export class Expression_WithDefault extends Message<Expression_WithDefault> {
  */
 export class Expression_Sum extends Message<Expression_Sum> {
   /**
-   * @generated from field: api.v1.metrics.Tags tags = 1;
+   * @generated from field: api.v1.metrics.Keys on = 1;
    */
-  tags?: Tags;
+  on?: Keys;
 
   /**
-   * @generated from field: api.v1.metrics.Expression expression = 2;
+   * @generated from field: api.v1.metrics.Keys ignore = 2;
+   */
+  ignore?: Keys;
+
+  /**
+   * @generated from field: api.v1.metrics.Expression expression = 3;
    */
   expression?: Expression;
 
@@ -673,8 +684,9 @@ export class Expression_Sum extends Message<Expression_Sum> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.metrics.Expression.Sum";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tags", kind: "message", T: Tags },
-    { no: 2, name: "expression", kind: "message", T: Expression },
+    { no: 1, name: "on", kind: "message", T: Keys },
+    { no: 2, name: "ignore", kind: "message", T: Keys },
+    { no: 3, name: "expression", kind: "message", T: Expression },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Sum {

@@ -147,3 +147,64 @@ export class Tags extends Message<Tags> {
   }
 }
 
+/**
+ * @generated from message api.v1.metrics.Keys
+ */
+export class Keys extends Message<Keys> {
+  /**
+   * @generated from field: bool project = 1;
+   */
+  project = false;
+
+  /**
+   * @generated from field: bool environment = 2;
+   */
+  environment = false;
+
+  /**
+   * @generated from field: bool capsule = 3;
+   */
+  capsule = false;
+
+  /**
+   * @generated from field: bool metric_name = 4;
+   */
+  metricName = false;
+
+  /**
+   * @generated from field: bool all = 5;
+   */
+  all = false;
+
+  constructor(data?: PartialMessage<Keys>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Keys";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "environment", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "capsule", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "metric_name", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "all", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Keys {
+    return new Keys().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Keys {
+    return new Keys().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Keys {
+    return new Keys().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Keys | PlainMessage<Keys> | undefined, b: Keys | PlainMessage<Keys> | undefined): boolean {
+    return proto3.util.equals(Keys, a, b);
+  }
+}
+
