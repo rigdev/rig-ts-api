@@ -534,3 +534,77 @@ export class GetNamespacesResponse extends Message<GetNamespacesResponse> {
   }
 }
 
+/**
+ * @generated from message api.v1.environment.GetRequest
+ */
+export class GetRequest extends Message<GetRequest> {
+  /**
+   * @generated from field: string environment_id = 1;
+   */
+  environmentId = "";
+
+  constructor(data?: PartialMessage<GetRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.GetRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
+    return new GetRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRequest {
+    return new GetRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRequest {
+    return new GetRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRequest | PlainMessage<GetRequest> | undefined, b: GetRequest | PlainMessage<GetRequest> | undefined): boolean {
+    return proto3.util.equals(GetRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.environment.GetResponse
+ */
+export class GetResponse extends Message<GetResponse> {
+  /**
+   * @generated from field: api.v1.environment.Environment environment = 1;
+   */
+  environment?: Environment;
+
+  constructor(data?: PartialMessage<GetResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.environment.GetResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment", kind: "message", T: Environment },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
+    return new GetResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetResponse {
+    return new GetResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetResponse {
+    return new GetResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetResponse | PlainMessage<GetResponse> | undefined, b: GetResponse | PlainMessage<GetResponse> | undefined): boolean {
+    return proto3.util.equals(GetResponse, a, b);
+  }
+}
+

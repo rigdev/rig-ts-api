@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetNamespacesRequest, GetNamespacesResponse, ListRequest, ListResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
+import { CreateRequest, CreateResponse, DeleteRequest, DeleteResponse, GetNamespacesRequest, GetNamespacesResponse, GetRequest, GetResponse, ListRequest, ListResponse, UpdateRequest, UpdateResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -57,6 +57,15 @@ export const Service = {
       name: "GetNamespaces",
       I: GetNamespacesRequest,
       O: GetNamespacesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.environment.Service.Get
+     */
+    get: {
+      name: "Get",
+      I: GetRequest,
+      O: GetResponse,
       kind: MethodKind.Unary,
     },
   }
