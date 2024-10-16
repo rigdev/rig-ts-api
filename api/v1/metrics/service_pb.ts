@@ -427,6 +427,18 @@ export class Expression extends Message<Expression> {
      */
     value: Expression_Constant;
     case: "constant";
+  } | {
+    /**
+     * @generated from field: api.v1.metrics.Expression.WithDefault with_default = 4;
+     */
+    value: Expression_WithDefault;
+    case: "withDefault";
+  } | {
+    /**
+     * @generated from field: api.v1.metrics.Expression.Sum sum = 5;
+     */
+    value: Expression_Sum;
+    case: "sum";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Expression>) {
@@ -440,6 +452,8 @@ export class Expression extends Message<Expression> {
     { no: 1, name: "leaf", kind: "message", T: Expression_Leaf, oneof: "expression" },
     { no: 2, name: "operation", kind: "message", T: Expression_Operation, oneof: "expression" },
     { no: 3, name: "constant", kind: "message", T: Expression_Constant, oneof: "expression" },
+    { no: 4, name: "with_default", kind: "message", T: Expression_WithDefault, oneof: "expression" },
+    { no: 5, name: "sum", kind: "message", T: Expression_Sum, oneof: "expression" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression {
@@ -521,6 +535,11 @@ export class Expression_Operation extends Message<Expression_Operation> {
    */
   operation = BinOp.BINOP_UNSPECIFIED;
 
+  /**
+   * @generated from field: api.v1.metrics.Tags tags = 4;
+   */
+  tags?: Tags;
+
   constructor(data?: PartialMessage<Expression_Operation>) {
     super();
     proto3.util.initPartial(data, this);
@@ -532,6 +551,7 @@ export class Expression_Operation extends Message<Expression_Operation> {
     { no: 1, name: "left", kind: "message", T: Expression },
     { no: 2, name: "right", kind: "message", T: Expression },
     { no: 3, name: "operation", kind: "enum", T: proto3.getEnumType(BinOp) },
+    { no: 4, name: "tags", kind: "message", T: Tags },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Operation {
@@ -585,6 +605,92 @@ export class Expression_Constant extends Message<Expression_Constant> {
 
   static equals(a: Expression_Constant | PlainMessage<Expression_Constant> | undefined, b: Expression_Constant | PlainMessage<Expression_Constant> | undefined): boolean {
     return proto3.util.equals(Expression_Constant, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression.WithDefault
+ */
+export class Expression_WithDefault extends Message<Expression_WithDefault> {
+  /**
+   * @generated from field: api.v1.metrics.Expression expression = 1;
+   */
+  expression?: Expression;
+
+  /**
+   * @generated from field: double default = 2;
+   */
+  default = 0;
+
+  constructor(data?: PartialMessage<Expression_WithDefault>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression.WithDefault";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "expression", kind: "message", T: Expression },
+    { no: 2, name: "default", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_WithDefault {
+    return new Expression_WithDefault().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression_WithDefault {
+    return new Expression_WithDefault().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression_WithDefault {
+    return new Expression_WithDefault().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression_WithDefault | PlainMessage<Expression_WithDefault> | undefined, b: Expression_WithDefault | PlainMessage<Expression_WithDefault> | undefined): boolean {
+    return proto3.util.equals(Expression_WithDefault, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.metrics.Expression.Sum
+ */
+export class Expression_Sum extends Message<Expression_Sum> {
+  /**
+   * @generated from field: api.v1.metrics.Tags tags = 1;
+   */
+  tags?: Tags;
+
+  /**
+   * @generated from field: api.v1.metrics.Expression expression = 2;
+   */
+  expression?: Expression;
+
+  constructor(data?: PartialMessage<Expression_Sum>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.metrics.Expression.Sum";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tags", kind: "message", T: Tags },
+    { no: 2, name: "expression", kind: "message", T: Expression },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expression_Sum {
+    return new Expression_Sum().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Expression_Sum {
+    return new Expression_Sum().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Expression_Sum {
+    return new Expression_Sum().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Expression_Sum | PlainMessage<Expression_Sum> | undefined, b: Expression_Sum | PlainMessage<Expression_Sum> | undefined): boolean {
+    return proto3.util.equals(Expression_Sum, a, b);
   }
 }
 
