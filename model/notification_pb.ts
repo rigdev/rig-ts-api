@@ -25,12 +25,36 @@ export enum NotificationTopic {
    * @generated from enum value: NOTIFICATION_TOPIC_ISSUE = 2;
    */
   ISSUE = 2,
+
+  /**
+   * @generated from enum value: NOTIFICATION_TOPIC_PROJECT = 3;
+   */
+  PROJECT = 3,
+
+  /**
+   * @generated from enum value: NOTIFICATION_TOPIC_ENVIRONMENT = 4;
+   */
+  ENVIRONMENT = 4,
+
+  /**
+   * @generated from enum value: NOTIFICATION_TOPIC_CAPSULE = 5;
+   */
+  CAPSULE = 5,
+
+  /**
+   * @generated from enum value: NOTIFICATION_TOPIC_USER = 6;
+   */
+  USER = 6,
 }
 // Retrieve enum metadata with: proto3.getEnumType(NotificationTopic)
 proto3.util.setEnumType(NotificationTopic, "model.NotificationTopic", [
   { no: 0, name: "NOTIFICATION_TOPIC_UNSPECIFIED" },
   { no: 1, name: "NOTIFICATION_TOPIC_ROLLOUT" },
   { no: 2, name: "NOTIFICATION_TOPIC_ISSUE" },
+  { no: 3, name: "NOTIFICATION_TOPIC_PROJECT" },
+  { no: 4, name: "NOTIFICATION_TOPIC_ENVIRONMENT" },
+  { no: 5, name: "NOTIFICATION_TOPIC_CAPSULE" },
+  { no: 6, name: "NOTIFICATION_TOPIC_USER" },
 ]);
 
 /**
