@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Pagination } from "../../../model/common_pb.js";
 import { Activity } from "./activity_pb.js";
 
 /**
@@ -21,6 +22,11 @@ export class GetActivitiesRequest extends Message<GetActivitiesRequest> {
    */
   to?: Timestamp;
 
+  /**
+   * @generated from field: model.Pagination pagination = 3;
+   */
+  pagination?: Pagination;
+
   constructor(data?: PartialMessage<GetActivitiesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -31,6 +37,7 @@ export class GetActivitiesRequest extends Message<GetActivitiesRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "from", kind: "message", T: Timestamp },
     { no: 2, name: "to", kind: "message", T: Timestamp },
+    { no: 3, name: "pagination", kind: "message", T: Pagination },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetActivitiesRequest {
