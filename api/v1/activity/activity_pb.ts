@@ -252,6 +252,11 @@ export class Message_Issue extends Message$1<Message_Issue> {
    */
   message = "";
 
+  /**
+   * @generated from field: bool resolved = 4;
+   */
+  resolved = false;
+
   constructor(data?: PartialMessage<Message_Issue>) {
     super();
     proto3.util.initPartial(data, this);
@@ -263,6 +268,7 @@ export class Message_Issue extends Message$1<Message_Issue> {
     { no: 1, name: "level", kind: "enum", T: proto3.getEnumType(Level) },
     { no: 2, name: "rolloutID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "resolved", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Issue {
