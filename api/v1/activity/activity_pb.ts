@@ -4,32 +4,28 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { NotificationTopic } from "../../../model/notification_pb.js";
+import { Message as Message$1, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { StepState } from "../capsule/rollout/status_pb.js";
+import { Level } from "../../../model/issue_pb.js";
 
 /**
  * @generated from message api.v1.activity.Activity
  */
-export class Activity extends Message<Activity> {
+export class Activity extends Message$1<Activity> {
   /**
-   * @generated from field: model.NotificationTopic topic = 1;
-   */
-  topic = NotificationTopic.UNSPECIFIED;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   * @generated from field: google.protobuf.Timestamp timestamp = 1;
    */
   timestamp?: Timestamp;
 
   /**
-   * @generated from field: api.v1.activity.Scope scope = 3;
+   * @generated from field: api.v1.activity.Scope scope = 2;
    */
   scope?: Scope;
 
   /**
-   * @generated from field: string message = 4;
+   * @generated from field: api.v1.activity.Message message = 3;
    */
-  message = "";
+  message?: Message;
 
   constructor(data?: PartialMessage<Activity>) {
     super();
@@ -39,10 +35,9 @@ export class Activity extends Message<Activity> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "api.v1.activity.Activity";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "topic", kind: "enum", T: proto3.getEnumType(NotificationTopic) },
-    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 3, name: "scope", kind: "message", T: Scope },
-    { no: 4, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 2, name: "scope", kind: "message", T: Scope },
+    { no: 3, name: "message", kind: "message", T: Message },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Activity {
@@ -65,7 +60,7 @@ export class Activity extends Message<Activity> {
 /**
  * @generated from message api.v1.activity.Scope
  */
-export class Scope extends Message<Scope> {
+export class Scope extends Message$1<Scope> {
   /**
    * @generated from field: string project = 1;
    */
@@ -114,6 +109,348 @@ export class Scope extends Message<Scope> {
 
   static equals(a: Scope | PlainMessage<Scope> | undefined, b: Scope | PlainMessage<Scope> | undefined): boolean {
     return proto3.util.equals(Scope, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message
+ */
+export class Message extends Message$1<Message> {
+  /**
+   * @generated from oneof api.v1.activity.Message.message
+   */
+  message: {
+    /**
+     * @generated from field: api.v1.activity.Message.Rollout rollout = 1;
+     */
+    value: Message_Rollout;
+    case: "rollout";
+  } | {
+    /**
+     * @generated from field: api.v1.activity.Message.Issue issue = 2;
+     */
+    value: Message_Issue;
+    case: "issue";
+  } | {
+    /**
+     * @generated from field: api.v1.activity.Message.Project project = 3;
+     */
+    value: Message_Project;
+    case: "project";
+  } | {
+    /**
+     * @generated from field: api.v1.activity.Message.Environment environment = 4;
+     */
+    value: Message_Environment;
+    case: "environment";
+  } | {
+    /**
+     * @generated from field: api.v1.activity.Message.Capsule capsule = 5;
+     */
+    value: Message_Capsule;
+    case: "capsule";
+  } | {
+    /**
+     * @generated from field: api.v1.activity.Message.User user = 6;
+     */
+    value: Message_User;
+    case: "user";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<Message>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "rollout", kind: "message", T: Message_Rollout, oneof: "message" },
+    { no: 2, name: "issue", kind: "message", T: Message_Issue, oneof: "message" },
+    { no: 3, name: "project", kind: "message", T: Message_Project, oneof: "message" },
+    { no: 4, name: "environment", kind: "message", T: Message_Environment, oneof: "message" },
+    { no: 5, name: "capsule", kind: "message", T: Message_Capsule, oneof: "message" },
+    { no: 6, name: "user", kind: "message", T: Message_User, oneof: "message" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message {
+    return new Message().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message {
+    return new Message().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message {
+    return new Message().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message | PlainMessage<Message> | undefined, b: Message | PlainMessage<Message> | undefined): boolean {
+    return proto3.util.equals(Message, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.Rollout
+ */
+export class Message_Rollout extends Message$1<Message_Rollout> {
+  /**
+   * @generated from field: uint64 rollout_id = 1;
+   */
+  rolloutId = protoInt64.zero;
+
+  /**
+   * @generated from field: api.v1.capsule.rollout.StepState state = 2;
+   */
+  state = StepState.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<Message_Rollout>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.Rollout";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "rollout_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "state", kind: "enum", T: proto3.getEnumType(StepState) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Rollout {
+    return new Message_Rollout().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Rollout {
+    return new Message_Rollout().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Rollout {
+    return new Message_Rollout().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_Rollout | PlainMessage<Message_Rollout> | undefined, b: Message_Rollout | PlainMessage<Message_Rollout> | undefined): boolean {
+    return proto3.util.equals(Message_Rollout, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.Issue
+ */
+export class Message_Issue extends Message$1<Message_Issue> {
+  /**
+   * @generated from field: model.Level level = 1;
+   */
+  level = Level.UNSPECIFIED;
+
+  /**
+   * @generated from field: uint64 rolloutID = 2;
+   */
+  rolloutID = protoInt64.zero;
+
+  /**
+   * @generated from field: string message = 3;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<Message_Issue>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.Issue";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "level", kind: "enum", T: proto3.getEnumType(Level) },
+    { no: 2, name: "rolloutID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Issue {
+    return new Message_Issue().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Issue {
+    return new Message_Issue().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Issue {
+    return new Message_Issue().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_Issue | PlainMessage<Message_Issue> | undefined, b: Message_Issue | PlainMessage<Message_Issue> | undefined): boolean {
+    return proto3.util.equals(Message_Issue, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.Project
+ */
+export class Message_Project extends Message$1<Message_Project> {
+  /**
+   * @generated from field: string project_id = 1;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: bool deleted = 2;
+   */
+  deleted = false;
+
+  constructor(data?: PartialMessage<Message_Project>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.Project";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Project {
+    return new Message_Project().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Project {
+    return new Message_Project().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Project {
+    return new Message_Project().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_Project | PlainMessage<Message_Project> | undefined, b: Message_Project | PlainMessage<Message_Project> | undefined): boolean {
+    return proto3.util.equals(Message_Project, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.Environment
+ */
+export class Message_Environment extends Message$1<Message_Environment> {
+  /**
+   * @generated from field: string environment_id = 1;
+   */
+  environmentId = "";
+
+  /**
+   * @generated from field: bool deleted = 2;
+   */
+  deleted = false;
+
+  constructor(data?: PartialMessage<Message_Environment>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.Environment";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Environment {
+    return new Message_Environment().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Environment {
+    return new Message_Environment().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Environment {
+    return new Message_Environment().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_Environment | PlainMessage<Message_Environment> | undefined, b: Message_Environment | PlainMessage<Message_Environment> | undefined): boolean {
+    return proto3.util.equals(Message_Environment, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.Capsule
+ */
+export class Message_Capsule extends Message$1<Message_Capsule> {
+  /**
+   * @generated from field: string capsule_id = 1;
+   */
+  capsuleId = "";
+
+  /**
+   * @generated from field: bool deleted = 2;
+   */
+  deleted = false;
+
+  constructor(data?: PartialMessage<Message_Capsule>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.Capsule";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "capsule_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Capsule {
+    return new Message_Capsule().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Capsule {
+    return new Message_Capsule().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Capsule {
+    return new Message_Capsule().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_Capsule | PlainMessage<Message_Capsule> | undefined, b: Message_Capsule | PlainMessage<Message_Capsule> | undefined): boolean {
+    return proto3.util.equals(Message_Capsule, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.activity.Message.User
+ */
+export class Message_User extends Message$1<Message_User> {
+  /**
+   * @generated from field: string printable_name = 1;
+   */
+  printableName = "";
+
+  /**
+   * @generated from field: bool deleted = 2;
+   */
+  deleted = false;
+
+  constructor(data?: PartialMessage<Message_User>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.Message.User";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "printable_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_User {
+    return new Message_User().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_User {
+    return new Message_User().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_User {
+    return new Message_User().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Message_User | PlainMessage<Message_User> | undefined, b: Message_User | PlainMessage<Message_User> | undefined): boolean {
+    return proto3.util.equals(Message_User, a, b);
   }
 }
 

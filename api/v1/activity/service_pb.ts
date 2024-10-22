@@ -58,6 +58,61 @@ export class GetActivitiesRequest extends Message<GetActivitiesRequest> {
 }
 
 /**
+ * @generated from message api.v1.activity.ActivityFilter
+ */
+export class ActivityFilter extends Message<ActivityFilter> {
+  /**
+   * @generated from field: string project_filter = 1;
+   */
+  projectFilter = "";
+
+  /**
+   * @generated from field: string environment_filter = 2;
+   */
+  environmentFilter = "";
+
+  /**
+   * @generated from field: string capsule_filter = 3;
+   */
+  capsuleFilter = "";
+
+  /**
+   * @generated from field: string user_identifier_filter = 4;
+   */
+  userIdentifierFilter = "";
+
+  constructor(data?: PartialMessage<ActivityFilter>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.activity.ActivityFilter";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "capsule_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "user_identifier_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ActivityFilter {
+    return new ActivityFilter().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ActivityFilter {
+    return new ActivityFilter().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActivityFilter {
+    return new ActivityFilter().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ActivityFilter | PlainMessage<ActivityFilter> | undefined, b: ActivityFilter | PlainMessage<ActivityFilter> | undefined): boolean {
+    return proto3.util.equals(ActivityFilter, a, b);
+  }
+}
+
+/**
  * @generated from message api.v1.activity.GetActivitiesResponse
  */
 export class GetActivitiesResponse extends Message<GetActivitiesResponse> {
