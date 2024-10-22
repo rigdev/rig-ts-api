@@ -27,6 +27,11 @@ export class GetActivitiesRequest extends Message<GetActivitiesRequest> {
    */
   pagination?: Pagination;
 
+  /**
+   * @generated from field: api.v1.activity.ActivityFilter filter = 4;
+   */
+  filter?: ActivityFilter;
+
   constructor(data?: PartialMessage<GetActivitiesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -38,6 +43,7 @@ export class GetActivitiesRequest extends Message<GetActivitiesRequest> {
     { no: 1, name: "from", kind: "message", T: Timestamp },
     { no: 2, name: "to", kind: "message", T: Timestamp },
     { no: 3, name: "pagination", kind: "message", T: Pagination },
+    { no: 4, name: "filter", kind: "message", T: ActivityFilter },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetActivitiesRequest {
