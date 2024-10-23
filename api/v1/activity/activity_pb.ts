@@ -127,12 +127,6 @@ export class Message extends Message$1<Message> {
     case: "rollout";
   } | {
     /**
-     * @generated from field: api.v1.activity.Message.Issue issue = 2;
-     */
-    value: Message_Issue;
-    case: "issue";
-  } | {
-    /**
      * @generated from field: api.v1.activity.Message.Project project = 3;
      */
     value: Message_Project;
@@ -166,7 +160,6 @@ export class Message extends Message$1<Message> {
   static readonly typeName = "api.v1.activity.Message";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "rollout", kind: "message", T: Message_Rollout, oneof: "message" },
-    { no: 2, name: "issue", kind: "message", T: Message_Issue, oneof: "message" },
     { no: 3, name: "project", kind: "message", T: Message_Project, oneof: "message" },
     { no: 4, name: "environment", kind: "message", T: Message_Environment, oneof: "message" },
     { no: 5, name: "capsule", kind: "message", T: Message_Capsule, oneof: "message" },

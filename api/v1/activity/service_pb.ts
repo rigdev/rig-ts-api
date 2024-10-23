@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { Pagination } from "../../../model/common_pb.js";
 import { Activity } from "./activity_pb.js";
 
@@ -127,6 +127,11 @@ export class GetActivitiesResponse extends Message<GetActivitiesResponse> {
    */
   activities: Activity[] = [];
 
+  /**
+   * @generated from field: uint64 total = 2;
+   */
+  total = protoInt64.zero;
+
   constructor(data?: PartialMessage<GetActivitiesResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -136,6 +141,7 @@ export class GetActivitiesResponse extends Message<GetActivitiesResponse> {
   static readonly typeName = "api.v1.activity.GetActivitiesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "activities", kind: "message", T: Activity, repeated: true },
+    { no: 2, name: "total", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetActivitiesResponse {
