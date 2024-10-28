@@ -779,6 +779,12 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
      */
     value: JobExecutionStatus;
     case: "jobExecution";
+  } | {
+    /**
+     * @generated from field: api.v1.pipeline.VerticalPodAutoscalerStatus vpa = 10;
+     */
+    value: VerticalPodAutoscalerStatus;
+    case: "vpa";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<PlatformObjectStatus>) {
@@ -798,6 +804,7 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
     { no: 7, name: "capsule", kind: "message", T: CapsuleStatus, oneof: "kind" },
     { no: 8, name: "interface", kind: "message", T: InterfaceStatus, oneof: "kind" },
     { no: 9, name: "job_execution", kind: "message", T: JobExecutionStatus, oneof: "kind" },
+    { no: 10, name: "vpa", kind: "message", T: VerticalPodAutoscalerStatus, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlatformObjectStatus {
@@ -814,6 +821,98 @@ export class PlatformObjectStatus extends Message<PlatformObjectStatus> {
 
   static equals(a: PlatformObjectStatus | PlainMessage<PlatformObjectStatus> | undefined, b: PlatformObjectStatus | PlainMessage<PlatformObjectStatus> | undefined): boolean {
     return proto3.util.equals(PlatformObjectStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.VerticalPodAutoscalerStatus
+ */
+export class VerticalPodAutoscalerStatus extends Message<VerticalPodAutoscalerStatus> {
+  /**
+   * @generated from field: api.v1.pipeline.Recommendation cpu_millis = 1;
+   */
+  cpuMillis?: Recommendation;
+
+  /**
+   * @generated from field: api.v1.pipeline.Recommendation memory_bytes = 2;
+   */
+  memoryBytes?: Recommendation;
+
+  constructor(data?: PartialMessage<VerticalPodAutoscalerStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.VerticalPodAutoscalerStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cpu_millis", kind: "message", T: Recommendation },
+    { no: 2, name: "memory_bytes", kind: "message", T: Recommendation },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerticalPodAutoscalerStatus {
+    return new VerticalPodAutoscalerStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VerticalPodAutoscalerStatus {
+    return new VerticalPodAutoscalerStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VerticalPodAutoscalerStatus {
+    return new VerticalPodAutoscalerStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VerticalPodAutoscalerStatus | PlainMessage<VerticalPodAutoscalerStatus> | undefined, b: VerticalPodAutoscalerStatus | PlainMessage<VerticalPodAutoscalerStatus> | undefined): boolean {
+    return proto3.util.equals(VerticalPodAutoscalerStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message api.v1.pipeline.Recommendation
+ */
+export class Recommendation extends Message<Recommendation> {
+  /**
+   * @generated from field: uint64 lower_bound = 1;
+   */
+  lowerBound = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 target = 2;
+   */
+  target = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 upper_bound = 3;
+   */
+  upperBound = protoInt64.zero;
+
+  constructor(data?: PartialMessage<Recommendation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "api.v1.pipeline.Recommendation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "lower_bound", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "target", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "upper_bound", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Recommendation {
+    return new Recommendation().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Recommendation {
+    return new Recommendation().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Recommendation {
+    return new Recommendation().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Recommendation | PlainMessage<Recommendation> | undefined, b: Recommendation | PlainMessage<Recommendation> | undefined): boolean {
+    return proto3.util.equals(Recommendation, a, b);
   }
 }
 
