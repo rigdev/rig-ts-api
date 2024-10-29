@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Issue } from "../../../model/issue_pb.js";
+import { Issue } from "../issue/issue_pb.js";
 import { ObjectState, ObjectStatus } from "../../../operator/api/v1/pipeline/object_status_pb.js";
 import { HorizontalScale, HostRoute, Resources } from "./change_pb.js";
 
@@ -89,7 +89,7 @@ export class Status extends Message<Status> {
    * List of all issues associated to the Capsule, include those of the current
    * rollout. The list does not include instance-level issues.
    *
-   * @generated from field: repeated model.Issue issues = 9;
+   * @generated from field: repeated api.v1.issue.Issue issues = 9;
    */
   issues: Issue[] = [];
 

@@ -6,7 +6,6 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message as Message$1, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { StepState } from "../capsule/rollout/status_pb.js";
-import { Level } from "../../../model/issue_pb.js";
 
 /**
  * @generated from message api.v1.activity.Activity
@@ -223,61 +222,6 @@ export class Message_Rollout extends Message$1<Message_Rollout> {
 
   static equals(a: Message_Rollout | PlainMessage<Message_Rollout> | undefined, b: Message_Rollout | PlainMessage<Message_Rollout> | undefined): boolean {
     return proto3.util.equals(Message_Rollout, a, b);
-  }
-}
-
-/**
- * @generated from message api.v1.activity.Message.Issue
- */
-export class Message_Issue extends Message$1<Message_Issue> {
-  /**
-   * @generated from field: model.Level level = 1;
-   */
-  level = Level.UNSPECIFIED;
-
-  /**
-   * @generated from field: uint64 rolloutID = 2;
-   */
-  rolloutID = protoInt64.zero;
-
-  /**
-   * @generated from field: string message = 3;
-   */
-  message = "";
-
-  /**
-   * @generated from field: bool resolved = 4;
-   */
-  resolved = false;
-
-  constructor(data?: PartialMessage<Message_Issue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "api.v1.activity.Message.Issue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "level", kind: "enum", T: proto3.getEnumType(Level) },
-    { no: 2, name: "rolloutID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "resolved", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message_Issue {
-    return new Message_Issue().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message_Issue {
-    return new Message_Issue().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message_Issue {
-    return new Message_Issue().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Message_Issue | PlainMessage<Message_Issue> | undefined, b: Message_Issue | PlainMessage<Message_Issue> | undefined): boolean {
-    return proto3.util.equals(Message_Issue, a, b);
   }
 }
 
