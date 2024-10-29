@@ -250,3 +250,46 @@ export class ObjectReference extends Message<ObjectReference> {
   }
 }
 
+/**
+ * @generated from message model.Resources
+ */
+export class Resources extends Message<Resources> {
+  /**
+   * @generated from field: uint64 cpu_millis = 1;
+   */
+  cpuMillis = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 memory_bytes = 2;
+   */
+  memoryBytes = protoInt64.zero;
+
+  constructor(data?: PartialMessage<Resources>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "model.Resources";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cpu_millis", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "memory_bytes", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Resources {
+    return new Resources().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Resources {
+    return new Resources().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Resources {
+    return new Resources().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Resources | PlainMessage<Resources> | undefined, b: Resources | PlainMessage<Resources> | undefined): boolean {
+    return proto3.util.equals(Resources, a, b);
+  }
+}
+

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetConfigRequest, GetConfigResponse, GetConfigsRequest, GetConfigsResponse, ListRequest, ListResponse } from "./service_pb.js";
+import { GetConfigRequest, GetConfigResponse, GetConfigsRequest, GetConfigsResponse, ListNodePodsRequest, ListNodePodsResponse, ListRequest, ListResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -43,6 +43,15 @@ export const Service = {
       name: "GetConfigs",
       I: GetConfigsRequest,
       O: GetConfigsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.cluster.Service.ListNodePods
+     */
+    listNodePods: {
+      name: "ListNodePods",
+      I: ListNodePodsRequest,
+      O: ListNodePodsResponse,
       kind: MethodKind.Unary,
     },
   }

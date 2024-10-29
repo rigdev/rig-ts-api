@@ -116,6 +116,11 @@ export class Tags extends Message<Tags> {
    */
   metricName = "";
 
+  /**
+   * @generated from field: string cluster = 5;
+   */
+  cluster = "";
+
   constructor(data?: PartialMessage<Tags>) {
     super();
     proto3.util.initPartial(data, this);
@@ -128,6 +133,7 @@ export class Tags extends Message<Tags> {
     { no: 2, name: "environment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "capsule", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "metric_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "cluster", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Tags {
@@ -172,6 +178,11 @@ export class Keys extends Message<Keys> {
   metricName = false;
 
   /**
+   * @generated from field: string cluster = 6;
+   */
+  cluster = "";
+
+  /**
    * @generated from field: bool all = 5;
    */
   all = false;
@@ -188,6 +199,7 @@ export class Keys extends Message<Keys> {
     { no: 2, name: "environment", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "capsule", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 4, name: "metric_name", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "cluster", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "all", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
