@@ -15,21 +15,21 @@ export const Service = {
   typeName: "api.v1.capabilities.Service",
   methods: {
     /**
-     * @generated from rpc api.v1.capabilities.Service.Get
-     */
-    get: {
-      name: "Get",
-      I: GetRequest,
-      O: GetResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * @generated from rpc api.v1.capabilities.Service.GetConfig
      */
     getConfig: {
       name: "GetConfig",
       I: GetConfigRequest,
       O: GetConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc api.v1.capabilities.Service.Get
+     */
+    get: {
+      name: "Get",
+      I: GetRequest,
+      O: GetResponse,
       kind: MethodKind.Unary,
     },
     /**
