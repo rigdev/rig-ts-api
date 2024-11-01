@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { OperatorConfig } from "../../../config/v1alpha1/generated_pb.js";
 
 /**
  * Cluster model.
@@ -19,6 +20,16 @@ export class Cluster extends Message<Cluster> {
    */
   clusterId = "";
 
+  /**
+   * @generated from field: config.v1alpha1.OperatorConfig operator_config = 2;
+   */
+  operatorConfig?: OperatorConfig;
+
+  /**
+   * @generated from field: string operator_version = 3;
+   */
+  operatorVersion = "";
+
   constructor(data?: PartialMessage<Cluster>) {
     super();
     proto3.util.initPartial(data, this);
@@ -28,6 +39,8 @@ export class Cluster extends Message<Cluster> {
   static readonly typeName = "api.v1.cluster.Cluster";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cluster_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "operator_config", kind: "message", T: OperatorConfig },
+    { no: 3, name: "operator_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Cluster {
