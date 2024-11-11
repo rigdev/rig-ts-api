@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { Resources } from "../../../../model/metrics_pb.js";
 
 /**
@@ -94,11 +94,6 @@ export class Node extends Message<Node> {
    */
   usage?: Resources;
 
-  /**
-   * @generated from field: uint64 max_pods = 4;
-   */
-  maxPods = protoInt64.zero;
-
   constructor(data?: PartialMessage<Node>) {
     super();
     proto3.util.initPartial(data, this);
@@ -110,7 +105,6 @@ export class Node extends Message<Node> {
     { no: 1, name: "node_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "allocateable", kind: "message", T: Resources },
     { no: 3, name: "usage", kind: "message", T: Resources },
-    { no: 4, name: "max_pods", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Node {

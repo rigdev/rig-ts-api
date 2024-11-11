@@ -264,6 +264,11 @@ export class Resources extends Message<Resources> {
    */
   memoryBytes = protoInt64.zero;
 
+  /**
+   * @generated from field: uint64 pods = 3;
+   */
+  pods = protoInt64.zero;
+
   constructor(data?: PartialMessage<Resources>) {
     super();
     proto3.util.initPartial(data, this);
@@ -274,6 +279,7 @@ export class Resources extends Message<Resources> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cpu_millis", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 2, name: "memory_bytes", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "pods", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Resources {
