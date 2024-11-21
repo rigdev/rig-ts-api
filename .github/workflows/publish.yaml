@@ -13,6 +13,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
+      - name: Add git tag
+        id: gittag
+        run: echo "gittag=$(git tag --points-at HEAD)" >> $GITHUB_OUTPUT
+
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
@@ -23,9 +27,12 @@ jobs:
           npm run build-index
           npm run build
 
-      - run: npm version prerelease --preid=dev --no-git-tag-version
+      - name: make new version
+        if: steps.gittag.outputs.gittag
+        run: npm version from-git --no-git-tag-version
 
       - name: push the new tag to GitHub
+        if: steps.gittag.outputs.gittag
         run: |
           git config --global user.name 'Rig Automation'
           git config --global user.email "rig-bot@users.noreply.github.com"
@@ -33,6 +40,7 @@ jobs:
           git commit -am "upgraded version of rig npm package [skip ci]"
           git push
 
-      - run: npm publish --access=public
+      - name: set token
+        if: steps.gittag.outputs.gittag
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
